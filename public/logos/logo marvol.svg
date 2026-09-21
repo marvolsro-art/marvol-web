@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="600" height="180">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="100%" stop-color="#EAB308" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 10)">
+    <!-- Sun Rays & Icon -->
+    <path d="M80 15 L80 32 M45 30 L56 46 M115 30 L104 46 M15 62 L32 69 M145 62 L128 69" stroke="#FACC15" stroke-width="7" stroke-linecap="round" />
+    <circle cx="80" cy="62" r="14" fill="url(#goldGrad)" />
+    <path d="M25 145 L50 80 L70 115 L80 95 L90 115 L110 80 L135 145 L113 145 L98 112 L80 145 L62 112 L47 145 Z" fill="url(#goldGrad)" />
+  </g>
+  <!-- Text MARVOL -->
+  <text x="180" y="105" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="76" fill="#FFFFFF" letter-spacing="4">MARVOL</text>
+  <!-- Subtitle -->
+  <text x="184" y="142" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="20" fill="#FACC15" letter-spacing="3">FOTOVOLTIKA &amp; ENERGETIKA</text>
+</svg>

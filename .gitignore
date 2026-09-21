@@ -146,3 +146,9 @@ vite.config.ts.timestamp-*
 
 # Misc
 .DS_Store
+.agents/
+
+# Data
+data/leads.json
+
+
