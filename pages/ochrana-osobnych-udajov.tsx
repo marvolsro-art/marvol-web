@@ -5,13 +5,13 @@ import { Footer } from '@/components/Footer';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden w-full flex flex-col">
       <Head>
         <title>Zásady ochrany osobných údajov (GDPR) | Marvol s.r.o.</title>
         <meta name="description" content="Informácie o spracúvaní osobných údajov podľa nariadenia GDPR a zákona č. 18/2018 Z. z. v spoločnosti Marvol s.r.o." />
       </Head>
       <Header />
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24 text-slate-300 space-y-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24 text-slate-300 space-y-8 flex-1 w-full overflow-x-hidden">
         <h1 className="text-3xl sm:text-4xl font-black text-white border-b border-slate-800 pb-4">
           Zásady ochrany osobných údajov (GDPR)
         </h1>

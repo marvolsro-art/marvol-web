@@ -15,9 +15,9 @@ import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-400 selection:text-slate-950">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-400 selection:text-slate-950 overflow-x-hidden w-full">
       <Header />
-      <main>
+      <main className="overflow-x-hidden w-full">
         <Hero />
         <SubsidyBanner />
         <TargetAudienceSection />

@@ -20,7 +20,7 @@ export const SubsidyBanner: React.FC = () => {
           <div className="shrink-0">
             <a
               href="#kontakt"
-              className="inline-flex items-center gap-2 bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-xl transition-transform hover:scale-105 active:scale-95 text-sm"
+              className="inline-flex items-center justify-center gap-2 bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-xl transition-transform hover:scale-105 active:scale-95 text-sm min-h-[44px]"
             >
               <span>Vybaviť dotáciu s Marvol s.r.o.</span>
               <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

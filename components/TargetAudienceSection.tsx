@@ -68,7 +68,7 @@ export const TargetAudienceSection: React.FC = () => {
             <div className="pt-8">
               <a
                 href="#kalkulacka"
-                className="block w-full py-3 text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-amber-400 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-amber-400"
+                className="block w-full py-3 min-h-[44px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-amber-400 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-amber-400"
               >
                 Mám záujem pre rodinný dom
               </a>
@@ -122,7 +122,7 @@ export const TargetAudienceSection: React.FC = () => {
             <div className="pt-8">
               <a
                 href="#kontakt"
-                className="block w-full py-3 text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-sky-500 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-sky-500"
+                className="block w-full py-3 min-h-[44px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-sky-500 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-sky-500"
               >
                 Kalkulácia pre firemné objekty
               </a>
@@ -176,7 +176,7 @@ export const TargetAudienceSection: React.FC = () => {
             <div className="pt-8">
               <a
                 href="#kontakt"
-                className="block w-full py-3 text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-emerald-400 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-emerald-400"
+                className="block w-full py-3 min-h-[44px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-slate-800 hover:bg-emerald-400 hover:text-slate-950 text-white transition-all border border-slate-700 hover:border-emerald-400"
               >
                 Riešenie pre obce a mestá
               </a>

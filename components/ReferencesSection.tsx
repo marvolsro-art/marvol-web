@@ -85,7 +85,7 @@ export const ReferencesSection: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 pt-6">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
                 filter === 'all'
                   ? 'bg-amber-400 text-slate-950 border-amber-400'
                   : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
@@ -95,7 +95,7 @@ export const ReferencesSection: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('domacnost')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
                 filter === 'domacnost'
                   ? 'bg-amber-400 text-slate-950 border-amber-400'
                   : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
@@ -105,7 +105,7 @@ export const ReferencesSection: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('firma')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
                 filter === 'firma'
                   ? 'bg-amber-400 text-slate-950 border-amber-400'
                   : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
@@ -115,7 +115,7 @@ export const ReferencesSection: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('samosprava')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
                 filter === 'samosprava'
                   ? 'bg-amber-400 text-slate-950 border-amber-400'
                   : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'

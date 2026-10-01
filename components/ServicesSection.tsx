@@ -104,7 +104,7 @@ export const ServicesSection: React.FC = () => {
             <button
               key={service.id}
               onClick={() => setActiveTab(service.id)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-200 border ${
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm min-h-[44px] transition-all duration-200 border cursor-pointer ${
                 activeTab === service.id
                   ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-lg shadow-amber-500/20 scale-105'
                   : 'bg-slate-900 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
@@ -165,13 +165,13 @@ export const ServicesSection: React.FC = () => {
               <div className="pt-4 flex flex-col sm:flex-row gap-4">
                 <a
                   href="#kalkulacka"
-                  className="px-6 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-center text-sm shadow-lg shadow-amber-500/10"
+                  className="px-6 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-center text-sm shadow-lg shadow-amber-500/10 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   Mám záujem o {currentService.title}
                 </a>
                 <a
                   href="#kontakt"
-                  className="px-6 py-3.5 rounded-xl font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors text-center text-sm border border-slate-700"
+                  className="px-6 py-3.5 rounded-xl font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors text-center text-sm border border-slate-700 min-h-[44px] flex items-center justify-center cursor-pointer"
                 >
                   Konzultácia s technikom
                 </a>

@@ -1,15 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Hlavná stránka (Landing Page) -->
   <url>
     <loc>https://marvol.sk/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- Fotovoltika pre domácnosti -->
+  <url>
+    <loc>https://marvol.sk/fotovoltika-pre-domacnosti</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Fotovoltika pre firmy -->
+  <url>
+    <loc>https://marvol.sk/fotovoltika-pre-firmy</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Batériové úložiská BESS & Wallbox -->
+  <url>
+    <loc>https://marvol.sk/bateriove-uloziska-bess</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Tepelné čerpadlá -->
+  <url>
+    <loc>https://marvol.sk/tepelne-cerpadla</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Elektroinštalácie & Revízie -->
+  <url>
+    <loc>https://marvol.sk/elektroinstalacie-revizie</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- E-Shop komponentov & FV setov -->
+  <url>
+    <loc>https://marvol.sk/eshop</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Služba: Návrh projektu & Projektovanie -->
+  <url>
+    <loc>https://marvol.sk/sluzby/navrh-projektu</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Služba: Montáž a inštalácia na kľúč -->
+  <url>
+    <loc>https://marvol.sk/sluzby/instalacia-montaz</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Služba: Konzultácie a energetické poradenstvo -->
+  <url>
+    <loc>https://marvol.sk/sluzby/konzultacie-poradenstvo</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Služba: Protipožiarna ochrana & Bezpečné napätie -->
+  <url>
+    <loc>https://marvol.sk/sluzby/protipoziarna-ochrana-bezpecne-napatie</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Služba: Revízie, servis & Dotácie SIEA -->
+  <url>
+    <loc>https://marvol.sk/sluzby/revizie-dotacie</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Kontakt -->
+  <url>
+    <loc>https://marvol.sk/kontakt</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Ochrana osobných údajov (GDPR) -->
   <url>
     <loc>https://marvol.sk/ochrana-osobnych-udajov</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 </urlset>
