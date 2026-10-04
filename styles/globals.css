@@ -76,3 +76,48 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #0284c7;
 }
+
+/* Minimalist modern animations & glows */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+.glass-minimal {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-minimal-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-minimal-hover:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(15, 23, 42, 0.65);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.08);
+}
