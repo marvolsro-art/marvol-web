@@ -81,7 +81,7 @@ export const CalculatorSection: React.FC = () => {
   };
 
   return (
-    <section id="kalkulacka" className="py-24 bg-hero-pattern text-white relative border-b border-slate-800">
+    <section id="kalkulacka" className="py-24 bg-hero-pattern text-white relative border-b border-slate-800 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

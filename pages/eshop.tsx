@@ -997,14 +997,14 @@ export default function EshopPage() {
                       setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))
                     }
                     placeholder="Hľadať produkt, značku..."
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors min-h-[44px]"
                   />
-                  <span className="absolute left-3 top-2.5 text-slate-500 text-sm">🔍</span>
+                  <span className="absolute left-3 top-3 text-slate-500 text-sm">🔍</span>
                   {filters.searchQuery && (
                     <button
                       type="button"
                       onClick={() => setFilters((prev) => ({ ...prev, searchQuery: '' }))}
-                      className="absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs"
+                      className="absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs min-h-[44px] min-w-[32px] flex items-center justify-center cursor-pointer"
                       aria-label="Vymazať vyhľadávanie"
                     >
                       ✕
@@ -1024,7 +1024,7 @@ export default function EshopPage() {
                 <button
                   type="button"
                   onClick={() => setFilters((prev) => ({ ...prev, category: 'all' }))}
-                  className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
+                  className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
                     filters.category === 'all'
                       ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
                       : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -1039,7 +1039,7 @@ export default function EshopPage() {
                       key={c.id}
                       type="button"
                       onClick={() => setFilters((prev) => ({ ...prev, category: c.id }))}
-                      className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
+                      className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
                         filters.category === c.id
                           ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
                           : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -1062,7 +1062,7 @@ export default function EshopPage() {
                     id="filter-brand"
                     value={filters.brand}
                     onChange={(e) => setFilters((prev) => ({ ...prev, brand: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
                   >
                     <option value="all">Všetky značky</option>
                     <option value="Huawei">Huawei</option>
@@ -1083,7 +1083,7 @@ export default function EshopPage() {
                     id="filter-phase"
                     value={filters.phase}
                     onChange={(e) => setFilters((prev) => ({ ...prev, phase: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
                   >
                     <option value="all">Všetky fázovania</option>
                     <option value="1-phase">1-fázové (230 V)</option>
@@ -1100,7 +1100,7 @@ export default function EshopPage() {
                     id="filter-power"
                     value={filters.powerRange}
                     onChange={(e) => setFilters((prev) => ({ ...prev, powerRange: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
                   >
                     <option value="all">Všetky výkony</option>
                     <option value="under-5">Do 5 kW / kWh</option>
@@ -1115,7 +1115,7 @@ export default function EshopPage() {
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
+                    className="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
                   >
                     <span>🔄</span> Resetovať filtre
                   </button>
@@ -1578,7 +1578,7 @@ export default function EshopPage() {
             <button
               type="button"
               onClick={closeMaterialModal}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition-colors"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-11 h-11 min-h-[44px] min-w-[44px] rounded-full bg-slate-800 flex items-center justify-center transition-colors cursor-pointer"
               aria-label="Zavrieť okno"
             >
               ✕
@@ -1599,7 +1599,7 @@ export default function EshopPage() {
                 <button
                   type="button"
                   onClick={closeMaterialModal}
-                  className="mt-4 px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs"
+                  className="mt-4 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm min-h-[44px]"
                 >
                   Zavrieť
                 </button>
@@ -1635,11 +1635,12 @@ export default function EshopPage() {
                     <label htmlFor="modal-qty" className="block text-[11px] text-slate-400 mb-1 text-right">
                       Počet kusov:
                     </label>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <button
                         type="button"
                         onClick={() => setModalQuantity((prev) => Math.max(1, prev - 1))}
-                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm flex items-center justify-center"
+                        className="w-10 h-10 min-h-[40px] min-w-[40px] rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer"
+                        aria-label="Znížiť počet"
                       >
                         −
                       </button>
@@ -1654,10 +1655,10 @@ export default function EshopPage() {
                           setModalQuantity(
                             isNaN(val) || val < 1
                               ? 1
-                              : Math.min(materialModalProduct.stockQty, Math.max(1, val)) // Math.min(materialModalProduct.stockQty, val)
+                              : Math.min(materialModalProduct.stockQty, Math.max(1, val))
                           );
                         }}
-                        className="w-14 h-8 bg-slate-900 border border-slate-700 rounded-lg text-center text-sm font-bold text-white focus:outline-none focus:border-amber-400"
+                        className="w-14 h-10 bg-slate-900 border border-slate-700 rounded-lg text-center text-base font-bold text-white focus:outline-none focus:border-amber-400"
                       />
                       <button
                         type="button"
@@ -1666,7 +1667,8 @@ export default function EshopPage() {
                             Math.min(materialModalProduct.stockQty, prev + 1)
                           )
                         }
-                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm flex items-center justify-center"
+                        className="w-10 h-10 min-h-[40px] min-w-[40px] rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer"
+                        aria-label="Zvýšiť počet"
                       >
                         +
                       </button>
@@ -1675,7 +1677,7 @@ export default function EshopPage() {
                 </div>
 
                 {/* Total Calculated Price Banner */}
-                <div className="px-3.5 py-2 rounded-lg bg-amber-400/10 border border-amber-400/30 flex justify-between items-center text-xs">
+                <div className="px-3.5 py-2.5 rounded-lg bg-amber-400/10 border border-amber-400/30 flex justify-between items-center text-xs">
                   <span className="text-slate-300 font-medium">Celkom za materiál:</span>
                   <div className="text-right">
                     <span className="font-bold text-amber-400 text-sm">
@@ -1694,7 +1696,7 @@ export default function EshopPage() {
                     <button
                       type="button"
                       onClick={() => setModalCustomerType('b2c')}
-                      className={`py-2 px-3 rounded-lg text-xs font-semibold border transition-all ${
+                      className={`py-2.5 px-3 min-h-[44px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                         modalCustomerType === 'b2c'
                           ? 'bg-amber-400 text-slate-950 border-amber-400 font-bold'
                           : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-800'
@@ -1705,7 +1707,7 @@ export default function EshopPage() {
                     <button
                       type="button"
                       onClick={() => setModalCustomerType('b2b')}
-                      className={`py-2 px-3 rounded-lg text-xs font-semibold border transition-all ${
+                      className={`py-2.5 px-3 min-h-[44px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                         modalCustomerType === 'b2b'
                           ? 'bg-amber-400 text-slate-950 border-amber-400 font-bold'
                           : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-800'
@@ -1718,25 +1720,25 @@ export default function EshopPage() {
 
                 {/* B2B Company Details */}
                 {modalCustomerType === 'b2b' && (
-                  <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
+                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2.5">
                     <input
                       type="text"
-                      placeholder="Obchodné meno firmy"
+                      placeholder="Obchodné meno firmy *"
                       value={modalFormData.companyName}
                       onChange={(e) =>
                         setModalFormData((prev) => ({ ...prev, companyName: e.target.value }))
                       }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       <input
                         type="text"
-                        placeholder="IČO"
+                        placeholder="IČO *"
                         value={modalFormData.ico}
                         onChange={(e) =>
                           setModalFormData((prev) => ({ ...prev, ico: e.target.value }))
                         }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                       />
                       <input
                         type="text"
@@ -1745,7 +1747,7 @@ export default function EshopPage() {
                         onChange={(e) =>
                           setModalFormData((prev) => ({ ...prev, dic: e.target.value }))
                         }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                       />
                     </div>
                   </div>
@@ -1755,23 +1757,23 @@ export default function EshopPage() {
                 <div>
                   <div className="text-xs font-semibold text-slate-300 mb-1.5">Spôsob odberu / prepravy:</div>
                   <div className="space-y-1.5 text-xs">
-                    <label className="flex items-center gap-2 p-2 rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
+                    <label className="flex items-center gap-2 p-2.5 min-h-[44px] rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
                       <input
                         type="radio"
                         name="modal-delivery"
                         checked={modalDelivery === 'pallet'}
                         onChange={() => setModalDelivery('pallet')}
-                        className="text-amber-400 focus:ring-amber-400"
+                        className="text-amber-400 focus:ring-amber-400 h-4 w-4"
                       />
                       <span>🚛 Paletová doprava s hydraulickým čelom (SR 24–48h)</span>
                     </label>
-                    <label className="flex items-center gap-2 p-2 rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
+                    <label className="flex items-center gap-2 p-2.5 min-h-[44px] rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
                       <input
                         type="radio"
                         name="modal-delivery"
                         checked={modalDelivery === 'pickup'}
                         onChange={() => setModalDelivery('pickup')}
-                        className="text-amber-400 focus:ring-amber-400"
+                        className="text-amber-400 focus:ring-amber-400 h-4 w-4"
                       />
                       <span>🏢 Osobný odber v centrálnom sklade Vrútky (zdarma)</span>
                     </label>
@@ -1779,8 +1781,8 @@ export default function EshopPage() {
                 </div>
 
                 {/* Contact Inputs */}
-                <div className="space-y-2">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="space-y-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <input
                       type="text"
                       required
@@ -1789,7 +1791,7 @@ export default function EshopPage() {
                       onChange={(e) =>
                         setModalFormData((prev) => ({ ...prev, name: e.target.value }))
                       }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                     <input
                       type="tel"
@@ -1799,11 +1801,11 @@ export default function EshopPage() {
                       onChange={(e) =>
                         setModalFormData((prev) => ({ ...prev, phone: e.target.value }))
                       }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <input
                       type="email"
                       placeholder="E-mailová adresa"
@@ -1811,7 +1813,7 @@ export default function EshopPage() {
                       onChange={(e) =>
                         setModalFormData((prev) => ({ ...prev, email: e.target.value }))
                       }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                     <input
                       type="text"
@@ -1820,7 +1822,7 @@ export default function EshopPage() {
                       onChange={(e) =>
                         setModalFormData((prev) => ({ ...prev, city: e.target.value }))
                       }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
@@ -1831,7 +1833,7 @@ export default function EshopPage() {
                     onChange={(e) =>
                       setModalFormData((prev) => ({ ...prev, note: e.target.value }))
                     }
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[48px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
                   />
                 </div>
 

@@ -585,7 +585,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden p-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none min-h-[44px] min-w-[44px] min-h-[48px] min-w-[48px] flex items-center justify-center cursor-pointer"
+            className="lg:hidden p-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none min-h-[48px] min-w-[48px] flex items-center justify-center cursor-pointer"
             aria-label="Otvoriť navigáciu"
             aria-expanded={mobileMenuOpen}
           >
@@ -626,7 +626,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}
-            className="p-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 min-h-[44px] min-w-[44px] min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none cursor-pointer"
+            className="p-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none cursor-pointer"
             aria-label="Zatvoriť navigáciu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -772,7 +772,7 @@ export const Header: React.FC = () => {
           <Link
             href="/eshop"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[44px] min-h-[48px]"
+            className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
               <span>🛒</span>
@@ -787,7 +787,7 @@ export const Header: React.FC = () => {
           <Link
             href={getHashHref('#kalkulacka')}
             onClick={(e) => handleNavClick(e, '#kalkulacka')}
-            className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[44px] min-h-[48px]"
+            className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
               <span>⚡</span>
@@ -802,7 +802,7 @@ export const Header: React.FC = () => {
           <Link
             href="/kontakt"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[44px] min-h-[48px]"
+            className="flex items-center p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
               <span>📍</span>
@@ -823,7 +823,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center justify-between text-xs text-slate-400 pt-2 px-1">
             <a
               href="tel:+421948123456"
-              className="text-amber-400 font-bold hover:underline flex items-center gap-1.5 min-h-[44px] min-h-[48px]"
+              className="text-amber-400 font-bold hover:underline flex items-center gap-1.5 min-h-[48px]"
             >
               <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -835,7 +835,7 @@ export const Header: React.FC = () => {
               </svg>
               <span>+421 948 123 456</span>
             </a>
-            <a href="mailto:info@marvol.sk" className="hover:text-white flex items-center gap-1.5 min-h-[44px] min-h-[48px]">
+            <a href="mailto:info@marvol.sk" className="hover:text-white flex items-center gap-1.5 min-h-[48px]">
               <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"

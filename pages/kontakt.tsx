@@ -417,7 +417,7 @@ export default function KontaktPage() {
             </div>
 
             {/* Column 2: LeadForm Integration (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
+            <div id="dopyt" className="lg:col-span-7 space-y-6 scroll-mt-24">
               <div className="sticky top-28">
                 <LeadForm
                   initialService={queryService}

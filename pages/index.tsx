@@ -12,6 +12,7 @@ import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { FAQSection } from '@/components/FAQSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
+import { MobileStickyBar } from '@/components/MobileStickyBar';
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

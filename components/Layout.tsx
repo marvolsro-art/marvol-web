@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { MobileStickyBar } from '@/components/MobileStickyBar';
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -63,6 +64,7 @@ export const Layout: React.FC<LayoutProps> = ({
       </main>
 
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 };
