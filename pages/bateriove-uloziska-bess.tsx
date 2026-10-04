@@ -234,44 +234,58 @@ export default function BaterioveUloziskaBess() {
               </div>
             </div>
 
-            {/* Visual Storage Card */}
+            {/* Visual Storage Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  100% Nehorľavé
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-sky-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/bateriove-uloziska/hero.jpg"
+                    alt="Ilustračná fotka batériového úložiska a smart EV Wallboxu Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    <span>Ilustračné foto BESS &amp; Wallbox</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    Blackout Ready
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">LiFePO4 batérie &amp; Smart EV Wallbox</span>
+                      <span className="text-emerald-400 font-bold">Záloha &lt; 20 ms</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Nehorľavá technológia s dynamickým riadením záťaže (DLB) a plnou trojfázovou asymetriou.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-amber-400 text-2xl">🔋</span>
-                  Prednosti LiFePO4 technológie Marvol
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Nulové riziko požiaru:</strong> Lítium-železo-fosfátová chémia nevytvára kyslík ani pri extrémnom preťažení.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Plná trojfázová asymetria:</strong> Napájanie každej fázy v dome nezávisle podľa reálnej záťaže spotrebičov.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Ostrovný režim Blackout Ready:</strong> Systém nabíja batérie zo slnka aj vtedy, keď celá ulica nemá elektrinu.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Dynamický Wallbox:</strong> Nabíjanie vozidla nepreťaží hlavný domový istič ani pri zapnutí varnej dosky či práčky.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Prediktívny algoritmus:</strong> Inteligentné riadenie podľa predpovede počasia a taríf elektriny.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Škálovateľnosť</span>
-                  <span className="text-amber-400 font-bold">5 kWh až 500+ kWh</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>6 000+ cyklov (15+ rokov)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>11 kW / 22 kW smart nabíjanie</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Škálovateľnosť 5 až 500 kWh</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Automatický UPS záskok</span>
+                  </div>
                 </div>
               </div>
             </div>

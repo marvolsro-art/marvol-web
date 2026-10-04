@@ -238,44 +238,58 @@ export default function TepelneCerpadla() {
               </div>
             </div>
 
-            {/* Visual Value Card */}
+            {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Eko Technológia
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-emerald-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/tepelne-cerpadla/hero.jpg"
+                    alt="Ilustračná fotka inštalácie moderného tepelného čerpadla vzduch-voda Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Ilustračné foto inštalácie TČ</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    A+++ Účinnosť
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Monoblok / Split Vzduch-Voda</span>
+                      <span className="text-emerald-400 font-bold">COP až 5.05</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Kombinácia vykurovania, chladenia a ohrevu teplej úžitkovej vody s prepojením na fotovoltiku.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-emerald-400 text-2xl">🌱</span>
-                  Výhody tepelného čerpadla od Marvol
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>1 zariadenie na 3 účely:</strong> Vykurovanie v zime, príjemné chladenie v lete a celoročný ohrev TÚV.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Koniec závislosti na plyne:</strong> Nulové emisie v mieste prevádzky a nezávislosť od fosílnych palív.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Solárna synergia SG Ready:</strong> Automatické nahrievanie teplej vody prebytkami z fotovoltiky.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Tichá prevádzka od 28 dB:</strong> Neruší vás ani vašich susedov v hustej zástavbe rodinných domov.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Kompletná hydraulika:</strong> Montáž obehových čerpadiel, expanzomatu, filtrov s magnetom a odvzdušnenia.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Dotácia Zelená domácnostiam</span>
-                  <span className="text-emerald-400 font-bold">Vybavíme za vás 100%</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Dotácia do {COMPANY_DETAILS.subsidies.maxHeatPumpSubsidy}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>SG Ready solárna synergia</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Mimoriadne tichý chod (od 28 dB)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Záručný servis a revízie chladiva</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -171,6 +171,40 @@ export default function KontaktPage() {
                 <span className="text-slate-400 text-xs">Oprávnený zhotoviteľ</span>
               </div>
             </div>
+
+            {/* Office & Showroom Visual Banner */}
+            <div className="mt-10 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 shadow-2xl relative group">
+              <div className="relative aspect-[21/9] sm:aspect-[24/9] min-h-[220px] overflow-hidden">
+                <img
+                  src="/images/kontakt/hero.jpg"
+                  alt="Ilustračná fotka zákazníckeho centra a showroomu technológií Marvol"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span>Ilustračné foto zákazníckeho centra</span>
+                </div>
+
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                  <div className="space-y-1">
+                    <h3 className="text-lg sm:text-xl font-black text-white">
+                      Radi vás privítame na osobnej konzultácii
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+                      Prekonzultujte technické parametre vášho projektu, pozrite si ukážky technológií a dohodnite bezplatnú obhliadku.
+                    </p>
+                  </div>
+                  <div className="shrink-0 flex items-center gap-2">
+                    <span className="px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs shadow-lg">
+                      {COMPANY_DETAILS.seat.city}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

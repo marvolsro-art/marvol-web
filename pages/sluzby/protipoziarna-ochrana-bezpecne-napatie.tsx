@@ -277,44 +277,58 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
               </div>
             </div>
 
-            {/* Hero Feature Card */}
+            {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-rose-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Požiarna Istota
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-rose-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/sluzby/protipoziarna-ochrana.jpg"
+                    alt="Ilustračná fotka protipožiarneho DC odpínača a Rapid Shutdown systému Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-rose-500/40 text-rose-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
+                    <span>Ilustračné foto Rapid Shutdown</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-rose-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    STN 92 0203
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">DC Rapid Shutdown &amp; AFDD ochrana</span>
+                      <span className="text-rose-400 font-bold">Bezpečné &lt; 120 V</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Núdzový hasičský odpínač pre bezpečný zásah vodou a detekcia iskrenia pred vznikom požiaru.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-rose-400 text-2xl">🛡️</span>
-                  Prečo nepodceňovať požiarnu ochranu FV?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-rose-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Možnosť hasenia vodou:</strong> Zníženie napätia pod 120 V umožní hasičom bezpečne zasiahnuť bez rizika úrazu prúdom.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-rose-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Okamžité zastavenie oblúka:</strong> AFDD systém rozpozná mikro-iskrenie skôr, ako vznikne otvorený plameň.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-rose-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Plné plnenie od poisťovní:</strong> Doklad o požiarnych prestupoch a revízii chráni pred krátením poistného plnenia.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-rose-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Tlačidlo Total Stop:</strong> Núdzový vypínač umiestnený na dostupnom mieste pre okamžité odpojenie celého objektu.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-rose-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Bezhalogénová kabeláž:</strong> Káble LSOH pri prípadnom zahriatí neuvoľňujú jedovaté plynné splodiny ani leptavé kyseliny.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Platná slovenská norma:</span>
-                  <span className="text-rose-400 font-bold">STN 92 0203 & HaZZ SR</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-rose-400 font-bold">✓</span>
+                    <span>Tlačidlo Total Stop pre hasičov</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-rose-400 font-bold">✓</span>
+                    <span>AFDD digitálna detekcia oblúka</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-rose-400 font-bold">✓</span>
+                    <span>Protipožiarne prestupy EI90</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-rose-400 font-bold">✓</span>
+                    <span>Bezhalogénová LSOH kabeláž</span>
+                  </div>
                 </div>
               </div>
             </div>

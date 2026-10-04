@@ -213,44 +213,58 @@ export default function FotovoltikaPreFirmy() {
               </div>
             </div>
 
-            {/* Visual Value Card */}
+            {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  B2B Inžiniering
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-sky-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/fotovoltika-firmy/hero.jpg"
+                    alt="Ilustračná fotka inštalácie priemyselnej fotovoltiky pre haly a firmy Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-500/40 text-sky-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                    <span>Ilustračné foto B2B inštalácie</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    Lokálny Zdroj
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Ploché strechy výrobných & logistických hál</span>
+                      <span className="text-sky-400 font-bold">Bez poplatkov TPS/TSS</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Staticky overené bezpenetračné uloženie s aerodynamickým odľahčením konštrukcie.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-sky-400 text-2xl">🏢</span>
-                  Komerčné výhody Marvol s.r.o.
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-sky-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Statické posudky & aerodynamika:</strong> bezpečné uloženie bez narušenia hydroizolácie plochých striech hál.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-sky-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Optimalizácia rezervovanej kapacity:</strong> eliminácia sankčných poplatkov za štvrťhodinové odberové špičky.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-sky-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>VN/NN rozvodne & trafostanice:</strong> komplexné prepojenie na vnútorné priemyselné rozvody podniku.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-sky-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Legislatívny inžiniering:</strong> vybavenie povolenia distribúcie (SSD, ZSD, VSD), ÚRSO a dotácie SIEA.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-sky-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Zmluvné SLA a dispečerský dohľad:</strong> monitoring 24/7 s garanciou rýchleho servisného zásahu.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Energetický manažment</span>
-                  <span className="text-sky-400 font-bold">100% Turnkey Delivery</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-sky-400 font-bold">✓</span>
+                    <span>Návratnosť od 3 rokov</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-sky-400 font-bold">✓</span>
+                    <span>Dotácia Zelená podnikom</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-sky-400 font-bold">✓</span>
+                    <span>VN/NN inžiniering</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-sky-400 font-bold">✓</span>
+                    <span>Dispečerský dohľad 24/7</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -400,6 +414,47 @@ export default function FotovoltikaPreFirmy() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Industrial Inverter & Switchboard Showcase */}
+          <div className="mt-14 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-8 backdrop-blur-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+                <div className="aspect-[16/9] overflow-hidden relative">
+                  <img
+                    src="/images/fotovoltika-firmy/industrial-inverter.jpg"
+                    alt="Ilustračná fotka priemyselnej rozvodne a komerčných striedačov FVE Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-sky-500/40 text-sky-400 font-medium text-xs">
+                    ⚡ Ilustračné foto priemyselnej rozvodne FVE
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-5 space-y-4">
+                <span className="text-sky-400 text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded bg-sky-400/10 border border-sky-400/20">
+                  Priemyselná spoľahlivosť
+                </span>
+                <h3 className="text-2xl font-black text-white">
+                  Komerčné striedače a inteligentný energetický manažment
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Používame vysokoúčinné priemyselné reťazcové striedače s viacnásobnými MPPT trackermi, integrovanou ochranou proti oblúkovému skratu (AFCI) a telemetrickým prepojením na energetický dispečing.
+                </p>
+                <div className="pt-2 flex flex-wrap gap-2 text-xs">
+                  <span className="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">
+                    Účinnosť striedačov &gt; 98,7%
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">
+                    Automatické obmedzenie pri záporných cenách
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">
+                    Ochrana trafostanice a VN rozvodne
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -277,44 +277,58 @@ export default function KonzultaciePoradenstvo() {
               </div>
             </div>
 
-            {/* Hero Feature Card */}
+            {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Audítorský Prístup
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-emerald-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/sluzby/poradenstvo.jpg"
+                    alt="Ilustračná fotka osobného energetického poradenstva a ROI analýzy Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Ilustračné foto konzultácie</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    Bezplatný Audit
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Osobná analýza návratnosti &amp; úspor</span>
+                      <span className="text-emerald-400 font-bold">100% Nezávislé</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Vypracovanie modelového rozpočtu, výpočet úspory na 25 rokov a overenie nároku na dotáciu.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-emerald-400 text-2xl">📊</span>
-                  Prečo konzultovať s odborníkmi Marvol?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Nezávislé porovnanie:</strong> Neodporúčame zbytočne drahé zostavy, ale systém presne ušitý na vašu spotrebu.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Transparentná kalkulácia:</strong> Jasný výpočet bez skrytých poplatkov s uvážením rastu cien elektriny.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Garancia dotácie z faktúry:</strong> Dotáciu Zelená domácnostiam odpočítame priamo z ceny realizácie.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Integrácia tepelných čerpadiel:</strong> Synergia SG Ready s <Link href="/tepelne-cerpadla" className="text-emerald-400 underline hover:text-emerald-300">tepelnými čerpadlami</Link> pre maximálne využitie prebytkov.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Riešenia pre firmy aj domy:</strong> Od rodinných rozpočtov až po komplexný manažment pre priemysel.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Dotačný partner:</span>
-                  <span className="text-emerald-400 font-bold">Oprávnený zhotoviteľ SIEA</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Kalkulácia bez skrytých poplatkov</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Odpočet dotácie priamo z faktúry</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>SG Ready synergia s čerpadlami</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Riešenia pre rodinné domy aj firmy</span>
+                  </div>
                 </div>
               </div>
             </div>

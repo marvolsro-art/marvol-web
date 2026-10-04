@@ -277,44 +277,58 @@ export default function RevizieDotacie() {
               </div>
             </div>
 
-            {/* Hero Feature Card */}
+            {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Úradná Platnosť
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-purple-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/sluzby/revizie-dotacie.jpg"
+                    alt="Ilustračná fotka odbornej revízie OPOS a merania fotovoltiky Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-purple-500/40 text-purple-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                    <span>Ilustračné foto revízie OPOS</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    § 24 MPSVR SR
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Kalibrované meranie &amp; vybavenie dotácie</span>
+                      <span className="text-purple-400 font-bold">100% Platnosť</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Úradné revízne správy pre distribúciu (SSD/ZSD/VSD), poisťovne a preplatenie poukážky SIEA.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-400 text-2xl">📋</span>
-                  Prečo revízie a dotácie od Marvol?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Autorizovaná pečiatka § 24:</strong> Platnosť revíznych správ pre kolaudácie, poisťovne i distribútorov (SSD/ZSD/VSD).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Dotácia odpočítaná z faktúry:</strong> Nečakáte na peniaze od štátu, dotáciu zohľadníme v konečnej platbe.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Termovízna diagnostika hot-spotov:</strong> Včasné odhalenie mikroskopických trhlín v článkoch a chýb rozvádzačov.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Odstránenie zistených chýb:</strong> Závady nielen spíšeme, ale naši certifikovaní elektrikári ich ihneď opravia.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Komplexná elektro agenda:</strong> Prepojujeme revízie fotovoltiky so všeobecnými <Link href="/elektroinstalacie-revizie" className="text-purple-400 underline hover:text-purple-300">elektroinštaláciami a bleskozvodmi</Link>.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Právny rámec:</span>
-                  <span className="text-purple-400 font-bold">Vyhláška 508/2009 Z. z. & SIEA</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Meranie izolačných stavov a slučky</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Dotácia odpočítaná priamo z ceny</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Termovízia hot-spotov FLIR</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Okamžité odstránenie závad</span>
+                  </div>
                 </div>
               </div>
             </div>

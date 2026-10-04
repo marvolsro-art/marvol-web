@@ -243,44 +243,58 @@ export default function ElektroinstalacieRevizie() {
               </div>
             </div>
 
-            {/* Visual Value Card */}
+            {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Odborná Spôsobilosť
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-purple-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/elektroinstalacie/hero.jpg"
+                    alt="Ilustračná fotka odbornej elektroinštalácie a zapojenia rozvádzača Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-purple-500/40 text-purple-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                    <span>Ilustračné foto zapojenia rozvádzača</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    § 24 OPOS
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Certifikované rozvádzače &amp; revízie</span>
+                      <span className="text-purple-400 font-bold">100% Kolaudácia</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Precízne zapojenie podľa STN noriem, kalibrované merania a okamžité odstránenie závad.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-amber-400 text-2xl">⚡</span>
-                  Prečo zveriť elektro práce Marvol?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Certifikovaní revízni technici:</strong> Osvedčenia podľa § 24 vyhlášky 508/2009 Z. z. s dlhoročnou praxou.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Kalibrovaná meracia technika:</strong> Pravidelne overované špičkové prístroje Metrel, Megger a termokamery FLIR.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Vlastná dielňa na rozvádzače:</strong> Kusová výroba s typovými skúškami a kompletnou výrobnou dokumentáciou.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Odstránenie závad ihneď:</strong> Zistené chyby pri revízii nielen zapíšeme, ale naši technici ich priamo opravia.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Garancia pre úrady a poisťovne:</strong> Naše revízne správy bez výhrad akceptujú stavebné úrady aj distribútori SSD/ZSD/VSD.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Autorizované merania</span>
-                  <span className="text-purple-400 font-bold">OPOS na celom Slovensku</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Východiskové aj periodické správy</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Meranie bleskozvodov a zemnenia</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Termovízna kontrola spojov FLIR</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-purple-400 font-bold">✓</span>
+                    <span>Platnosť pre SSD, ZSD aj VSD</span>
+                  </div>
                 </div>
               </div>
             </div>

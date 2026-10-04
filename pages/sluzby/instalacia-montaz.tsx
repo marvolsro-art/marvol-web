@@ -277,44 +277,58 @@ export default function InstalaciaMontaz() {
               </div>
             </div>
 
-            {/* Hero Feature Card */}
+            {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Montážna Garancia
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-amber-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/sluzby/montaz-instalacia.jpg"
+                    alt="Ilustračná fotka odbornej montáže fotovoltických panelov na strechu Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    <span>Ilustračné foto montáže</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    1–2 Dni Na Kľúč
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Certifikovaní montážnici &amp; horolezci</span>
+                      <span className="text-amber-400 font-bold">100% Tesnosť</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Precízne kotvenie bez poškodenia strešnej krytiny s EPDM tesnením a zárukou 5 rokov.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-amber-400 text-2xl">⚡</span>
-                  Prečo je precízna inštalácia rozhodujúca?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Nulové riziko zatekania:</strong> Profesionálne zabrusovanie škridiel diamantovými kotúčmi a použitie EPDM tesnení.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Originálne konektory MC4:</strong> Žiadne nekompatibilné lacné náhrady spôsobujúce elektrický oblúk a prehrievanie.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Dvojitá prepäťová ochrana:</strong> Typ 1 + Typ 2 na DC vstupe aj AC výstupe pre ochranu spotrebičov v dome.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Kompletné odskúšanie:</strong> Meranie Voc, Isc a izolačných odporov pred prvým zapnutím systému.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Čisté pracovisko:</strong> Zanechávame za sebou uprataný priestor, odvezený odpad a zaškoleného zákazníka.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Štandard bezpečnosti:</span>
-                  <span className="text-amber-400 font-bold">STN EN 62446 & STN 33 2000-7-712</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Originálne MC4 konektory</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Prepäťové ochrany T1+T2</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Meranie Voc &amp; Isc pred zapnutím</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Čisté pracovisko bez odpadu</span>
+                  </div>
                 </div>
               </div>
             </div>

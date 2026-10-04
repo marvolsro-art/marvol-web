@@ -248,44 +248,58 @@ export default function FotovoltikaPreDomacnosti() {
               </div>
             </div>
 
-            {/* Hero Graphic Card */}
+            {/* Hero Visual Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Marvol Záruka
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-amber-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/fotovoltika-domacnosti/hero.jpg"
+                    alt="Ilustračná fotka inštalácie fotovoltiky pre rodinný dom Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    <span>Ilustračné foto inštalácie</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    Marvol Štandard
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">Celočierne N-Type TOPCon panely</span>
+                      <span className="text-emerald-400 font-bold">Úspora až 80%</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Estetická integrácia na rodinný dom s 30-ročnou garanciou výkonu a bezstarostným servisom.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-amber-400 text-2xl">⚡</span>
-                  Prečo rodinná fotovoltika od Marvol?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>N-Type TOPCon technológia:</strong> vyššia účinnosť aj pri rozptýlenom svetle a nízka ročná degradácia (&lt;0.4%).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Asymetrické hybridné striedače:</strong> dodávajú energiu iba do tej fázy, kde ju dom v reálnom čase spotrebúva.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Bezpečná LiFePO4 batéria:</strong> nehorľavé články s 6 000+ cyklami a mikrosekundovým záložným režimom (UPS).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>0 € starostí s byrokraciou:</strong> kompletne zastrešujeme distribúciu (SSD/ZSD/VSD), projekt aj dotáciu SIEA.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Mobilná aplikácia v slovenčine:</strong> prehľad o výrobe, spotrebe a stave batérie priamo vo vašom telefóne.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Autorizovaný zhotoviteľ SIEA</span>
-                  <span className="text-amber-400 font-bold">IČO: {COMPANY_DETAILS.tax.ico}</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Tier-1 N-Type TOPCon</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Dotácia až {COMPANY_DETAILS.subsidies.maxHomeSubsidy}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Záruka na montáž 5 rokov</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>Slovenská appka v mobile</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -460,6 +474,47 @@ export default function FotovoltikaPreDomacnosti() {
                 <li>• Modulárne rozširovanie kapacity od 5 kWh do 20+ kWh</li>
                 <li>• Nehorľavé články s pokročilým BMS riadením</li>
               </ul>
+            </div>
+          </div>
+
+          {/* Real Showcase Visual: Hybrid Inverter & LiFePO4 Storage */}
+          <div className="mt-14 rounded-3xl overflow-hidden border border-slate-800 bg-slate-950/70 p-6 sm:p-8 backdrop-blur-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+                <div className="aspect-[16/9] overflow-hidden relative">
+                  <img
+                    src="/images/fotovoltika-domacnosti/hybrid-system.jpg"
+                    alt="Ilustračná fotka inštalácie hybridného striedača a LiFePO4 batérie Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/40 text-amber-400 font-medium text-xs">
+                    ⚡ Ilustračné foto technológie v garáži
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-5 space-y-4">
+                <span className="text-amber-400 text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded bg-amber-400/10 border border-amber-400/20">
+                  Čistá inštalácia
+                </span>
+                <h3 className="text-2xl font-black text-white">
+                  Kompaktné zapojenie do každej technickej miestnosti
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Žiadne visiace káble ani neporiadok. Všetku kabeláž vedieme v ochranných lištách a rúrkach, osádzame certifikovaný rozvádzač s prepäťovými ochranami a modulárne batériové úložisko, ktoré viete kedykoľvek v budúcnosti navýšiť.
+                </p>
+                <div className="pt-2 flex flex-wrap gap-2 text-xs">
+                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                    Ochrana pred blackoutom (UPS)
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                    Wi-Fi & LAN cloud monitoring
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                    Tichá pasívna prevádzka
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -277,44 +277,58 @@ export default function NavrhProjektu() {
               </div>
             </div>
 
-            {/* Hero Feature Card */}
+            {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-                <div className="absolute -top-3 -right-3 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
-                  Inžiniersky Štandard
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-amber-500/10 bg-slate-900/90 backdrop-blur-xl">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+                  <img
+                    src="/images/sluzby/navrh-projektu.jpg"
+                    alt="Ilustračná fotka 3D projektovania a simulácie fotovoltiky Marvol"
+                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  
+                  {/* Status Badges */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    <span>Ilustračné foto 3D modelovania</span>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                    PV*SOL Premium
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span className="font-bold text-white text-sm">3D modelovanie &amp; simulácia zatienenia</span>
+                      <span className="text-amber-400 font-bold">Presnosť 98,5%</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Kompletná projektová dokumentácia pre schválenie SSD, ZSD a VSD na prvé podanie.
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-amber-400 text-2xl">📐</span>
-                  Prečo je precízny projekt kľúčom k zisku?
-                </h3>
-
-                <ul className="space-y-3.5 text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Eliminácia strát zatienením:</strong> Presné rozmiestnenie panelov mimo tieňov komínov a okolitých budov.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>100% schválenie distribúciou:</strong> Dokumentácia plne spĺňa podmienky SSD, ZSD aj VSD na prvé podanie.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Optimalizácia dimenzovania:</strong> Správny pomer kWp panelov k výkonu striedača a kapacite batérií.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Požiarna a statická istota:</strong> Bezpečné káblové trasy, protipožiarne prestupy a overené zaťaženie strechy.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-amber-400 font-bold shrink-0 mt-0.5">✓</span>
-                    <span><strong>Podklad pre dotáciu SIEA:</strong> Správne technické špecifikácie nevyhnutné pre uplatnenie poukážky.</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span>Softvérové nástroje:</span>
-                  <span className="text-amber-400 font-bold">PV*SOL Premium & AutoCAD</span>
+                {/* Quick Quality Matrix */}
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Hodinová simulácia 8 760 h</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Jednopólové schémy zapojenia</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Statický posudok krovu</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <span className="text-amber-400 font-bold">✓</span>
+                    <span>Garancia schválenia distribúciou</span>
+                  </div>
                 </div>
               </div>
             </div>
