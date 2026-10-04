@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
         "name": "Marvol s.r.o.",
         "legalName": COMPANY_DETAILS.legalName,
         "url": "https://marvol.sk",
-        "logo": "https://marvol.sk/logos/logo%20marvol.svg",
+        "logo": "https://marvol.sk/logos/logo-marvol.svg",
         "image": "https://marvol.sk/og.png",
         "description": "Špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS, tepelné čerpadlá a elektroinštalácie pre domácnosti a firmy.",
         "telephone": COMPANY_DETAILS.contact.phoneClean,

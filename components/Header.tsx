@@ -327,9 +327,9 @@ export const Header: React.FC = () => {
           {/* Official Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <img
-              src="/logos/logo%20marvol.svg"
+              src="/logos/logo-marvol.svg"
               alt="Marvol s.r.o. Logo"
-              className="h-11 w-auto max-w-[180px] object-contain group-hover:scale-105 transition-transform filter brightness-110 drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
+              className="h-11 sm:h-12 w-auto max-w-[190px] object-contain group-hover:scale-105 transition-transform drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
             />
           </Link>
 
@@ -618,9 +618,9 @@ export const Header: React.FC = () => {
         <div className="p-5 border-b border-slate-800 flex items-center justify-between">
           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
             <img
-              src="/logos/logo%20marvol.svg"
+              src="/logos/logo-marvol.svg"
               alt="Marvol s.r.o. Logo"
-              className="h-9 w-auto max-w-[150px] object-contain filter brightness-110"
+              className="h-9 w-auto max-w-[160px] object-contain drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
             />
           </Link>
           <button

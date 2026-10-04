@@ -13,9 +13,9 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <Link href="/" className="inline-block">
                 <img
-                  src="/logos/logo%20marvol.svg"
+                  src="/logos/logo-marvol.svg"
                   alt="Marvol s.r.o."
-                  className="h-10 w-auto max-w-[180px] object-contain filter brightness-110 drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
+                  className="h-10 sm:h-11 w-auto max-w-[190px] object-contain drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
                 />
               </Link>
             </div>
