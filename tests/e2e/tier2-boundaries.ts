@@ -435,17 +435,17 @@ export const tier2Tests: TestCase[] = [
     id: 'T2-SB-01',
     tier: 2,
     category: 'Statutory Boundaries',
-    name: 'Green Households subsidy calculation is capped at exactly €4,025',
-    description: 'Verifies Math.min(..., 4025) cap in CalculatorSection and company constants.',
+    name: 'Green Households subsidy calculation is capped at current SIEA regulation',
+    description: 'Verifies subsidy calculation in CalculatorSection and company constants.',
     run: () => {
       const calcContent = fileExists('components/CalculatorSection.tsx') ? readFile('components/CalculatorSection.tsx') : '';
-      if (!calcContent.includes('4025') && !calcContent.includes('4 025')) {
-        return { status: 'FAIL', message: 'Calculator missing 4025 subsidy cap logic.' };
+      if (!calcContent.includes('1150') && !calcContent.includes('1 150')) {
+        return { status: 'FAIL', message: 'Calculator missing 1150 subsidy cap logic.' };
       }
-      if (COMPANY_DETAILS.subsidies.maxHomeSubsidy !== '4 025 €') {
-        return { status: 'FAIL', message: `COMPANY_DETAILS maxHomeSubsidy is '${COMPANY_DETAILS.subsidies.maxHomeSubsidy}', expected '4 025 €'.` };
+      if (COMPANY_DETAILS.subsidies.maxHomeSubsidy !== '1 150 €') {
+        return { status: 'FAIL', message: `COMPANY_DETAILS maxHomeSubsidy is '${COMPANY_DETAILS.subsidies.maxHomeSubsidy}', expected '1 150 €'.` };
       }
-      return { status: 'PASS', message: 'Subsidy cap of €4,025 strictly verified in calculator and constants.' };
+      return { status: 'PASS', message: 'Subsidy cap strictly verified in calculator and constants.' };
     },
   },
   {

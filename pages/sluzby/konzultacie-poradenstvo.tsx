@@ -47,14 +47,14 @@ export default function KonzultaciePoradenstvo() {
     {
       id: 'dotacny-manazment-siea',
       title: 'Kompletný dotačný manažment SIEA na kľúč',
-      badge: 'Dotácia do 4 025 €',
+      badge: 'Dotácia SIEA',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
         'Oficiálny zhotoviteľ v programe Zelená domácnostiam a Zelená podnikom. Získajte maximálny štátny príspevok odpočítaný priamo z faktúry bez zbytočnej byrokracie.',
       features: [
         'Bezplatné preverenie splnenia dotačných podmienok na liste vlastníctva nehnuteľnosti',
         'Výber optimálneho programu (Zelená domácnostiam, Zelená solidarita až 90%, Zelená podnikom)',
-        'Kompletná registrácia a garancia rezervácie dotačnej poukážky v portáli SIEA',
+        'Kompletná registrácia a garancia online rezervácie dotácie v portáli SIEA',
         'Odpočítanie dotácie priamo z realizačnej faktúry (nečakáte mesiace na peniaze od štátu)',
         '100% garancia správnosti dotačných podkladov a dokumentácie bez rizika prepadnutia',
       ],
@@ -237,7 +237,7 @@ export default function KonzultaciePoradenstvo() {
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Neplaťte za elektrinu viac, ako musíte. Posúdime váš profil spotreby, navrhneme optimálny výkon fotovoltiky, vypočítame reálnu návratnosť a <strong className="text-white">zabezpečíme štátnu dotáciu Zelená domácnostiam až do 4 025 €</strong> bez zbytočnej byrokracie.
+                Neplaťte za elektrinu viac, ako musíte. Posúdime váš profil spotreby, navrhneme optimálny výkon fotovoltiky, vypočítame reálnu návratnosť a <strong className="text-white">zabezpečíme štátnu dotáciu Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €, Solidarita až 90 %)</strong> bez zbytočnej byrokracie.
               </p>
 
               {/* 4 Key Metrics */}
@@ -251,8 +251,8 @@ export default function KonzultaciePoradenstvo() {
                   <div className="text-slate-400 text-xs mt-0.5">Reálna návratnosť ROI</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">do 4 025 €</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Príspevok zo SIEA</div>
+                  <div className="text-sky-400 font-black text-xl sm:text-2xl">SIEA Dotácia</div>
+                  <div className="text-slate-400 text-xs mt-0.5">Priamy odpočet z faktúry</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-purple-400 font-black text-xl sm:text-2xl">0 €</div>
@@ -435,7 +435,7 @@ export default function KonzultaciePoradenstvo() {
                 100% garancia odpočítania dotácie priamo z faktúry
               </div>
               <div className="text-slate-300 text-xs sm:text-sm">
-                Ako oprávnený zhotoviteľ SIEA garantujeme uplatnenie dotácie Zelená domácnostiam až do 4 025 € bez rizika prepadnutia poukážky.
+                Ako oprávnený zhotoviteľ SIEA garantujeme uplatnenie dotácie Zelená domácnostiam s priamou elektronickou rezerváciou bez rizika zamietnutia.
               </div>
             </div>
             <a

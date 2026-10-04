@@ -25,14 +25,14 @@ export const tier4Tests: TestCase[] = [
     id: 'T4-SC-01',
     tier: 4,
     category: 'End-to-End User Journey',
-    name: 'Journey 1: Residential Homeowner (€4,025 Subsidy + Turnkey Package)',
+    name: 'Journey 1: Residential Homeowner (SIEA Subsidy + Turnkey Package)',
     description: 'Homeowner inspects subsidy terms, selects residential PV, and submits inquiry.',
     milestoneDependency: 'M3',
     run: async () => {
       // 1. Verify subsidy cap in constants and calculator
       const subsidyAmount = COMPANY_DETAILS.subsidies.maxHomeSubsidy;
-      if (subsidyAmount !== '4 025 €') {
-        return { status: 'FAIL', message: `Expected subsidy 4 025 €, got ${subsidyAmount}` };
+      if (subsidyAmount !== '1 150 €') {
+        return { status: 'FAIL', message: `Expected subsidy 1 150 €, got ${subsidyAmount}` };
       }
 
       // 2. Check subpage existence

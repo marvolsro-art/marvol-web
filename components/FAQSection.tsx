@@ -10,7 +10,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: 'Akú výšku dotácie môžem získať pre svoj rodinný dom?',
-      a: 'Z programu Zelená domácnostiam (resp. Zelená solidarita) môžete získať dotáciu až do výšky 4 025 € v závislosti od instalovaného výkonu v kWp a použití batériového úložiska. Spoločnosť Marvol s.r.o. vybaví celú žiadosť a papierovanie bezplatne za vás.'
+      a: 'Z programu Zelená domácnostiam môžete na fotovoltiku získať štátny príspevok v sadzbe 575 € na 1 kW (podporovaný výkon do 2 kW, teda maximálne 1 150 €). Pri tepelných čerpadlách je dotácia až 4 600 € (460 €/kW). Nízkopríjmové domácnosti v programe Zelená solidarita môžu získať podporu až do 90 % oprávnených nákladov. Spoločnosť Marvol s.r.o. ako registrovaný zhotoviteľ SIEA zabezpečí kompletnú online rezerváciu prostriedkov aj administráciu bezplatne za vás.'
     },
     {
       q: 'Čo sa stane s vyrobenou elektrinou, ktorú momentálne nespotrebujem?',

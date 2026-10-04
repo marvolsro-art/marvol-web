@@ -89,7 +89,7 @@ export default function BaterioveUloziskaBess() {
     },
     {
       q: 'Dá sa na batériové úložisko získať štátna dotácia?',
-      a: 'Áno. Pre rodinné domy je batéria podporovaná v rámci programu Zelená domácnostiam ako súčasť hybridného systému (dotácia až do 4 025 €). Pre podniky a firmy je priemyselné úložisko BESS oprávneným výdavkom v programe Zelená podnikom (podpora 35% – 50% formou nenávratného finančného príspevku).',
+      a: 'Áno. Pre rodinné domy je batéria podporovaná v rámci programu Zelená domácnostiam ako integrálna súčasť hybridného systému (dotácia SIEA na fotovoltiku do 1 150 €, v schéme Zelená solidarita až do 90 % oprávnených nákladov). Pre podniky a firmy je priemyselné úložisko BESS oprávneným výdavkom v programe Zelená podnikom (podpora 35 % – 50 % formou nenávratného finančného príspevku).',
     },
   ];
 

@@ -22,7 +22,7 @@ export default function FotovoltikaPreDomacnosti() {
       panels: '7× N-Type TOPCon 435–450 Wp',
       inverter: '1-fázový / 3-fázový sieťový On-Grid striedač (GoodWe / Growatt)',
       storage: 'Bez batérie (s možnosťou neskoršieho doplnenia)',
-      subsidy: 'Až do 1 500 €',
+      subsidy: 'Dotácia SIEA do 1 150 €',
       annualProduction: 'cca 3 300 – 3 600 kWh / rok',
       savings: 'Úspora až 550 € ročne',
       features: [
@@ -44,7 +44,7 @@ export default function FotovoltikaPreDomacnosti() {
       panels: '14× N-Type TOPCon 440–450 Wp',
       inverter: '3-fázový hybridný asymetrický striedač 6–8 kW',
       storage: 'Kapacitná LiFePO4 batéria 5,12 až 10,24 kWh',
-      subsidy: 'Až do 3 000 €',
+      subsidy: 'Dotácia SIEA do 1 150 €',
       annualProduction: 'cca 6 600 – 7 200 kWh / rok',
       savings: 'Úspora až 1 150 € ročne',
       features: [
@@ -53,7 +53,7 @@ export default function FotovoltikaPreDomacnosti() {
         'Modulárne LiFePO4 batériové úložisko (6 000+ cyklov)',
         'Funkcia záložného zdroja (UPS) pri výpadku verejnej siete',
         'Smart meter a meranie spotreby v reálnom čase',
-        'Vybavenie poukážky SIEA a distribučného pripojenia (SSD/ZSD/VSD)',
+        'Vybavenie dotácie SIEA a distribučného pripojenia (SSD/ZSD/VSD)',
       ],
       popular: true,
     },
@@ -66,7 +66,7 @@ export default function FotovoltikaPreDomacnosti() {
       panels: '22–24× N-Type TOPCon 440–450 Wp',
       inverter: '3-fázový hybridný asymetrický striedač 10 kW',
       storage: 'Vysokonapäťová LiFePO4 batéria 10,24 až 15,36 kWh',
-      subsidy: 'Plná dotácia až 4 025 €',
+      subsidy: 'Dotácia 1 150 € (Solidarita až 90 %)',
       annualProduction: 'cca 10 500 – 11 800 kWh / rok',
       savings: 'Úspora až 1 900 € ročne',
       features: [
@@ -84,11 +84,11 @@ export default function FotovoltikaPreDomacnosti() {
   const faqs = [
     {
       q: 'Akú vysokú dotáciu môžem získať na fotovoltiku pre rodinný dom?',
-      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete získať príspevok až do výšky 4 025 €. Základná sadzba je 500 € na 1 kWp inštalovaného výkonu (max. 1 500 € do 3 kWp), pričom pri inštalácii batériového úložiska alebo pri vyššej spotrebe elektriny sa dotácia navyšuje až na maximálnych 4 025 €. Pre nízkopríjmové domácnosti v programe Zelená solidarita je podpora až do 90% oprávnených výdavkov. Spoločnosť Marvol s.r.o. vybaví celú administratívu bezplatne za vás.',
+      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete získať štátny príspevok v sadzbe 575 € na 1 kW inštalovaného výkonu (podporovaný výkon max. 2 kW, celkovo do výšky 1 150 €, najviac 50 % oprávnených nákladov). Pre nízkopríjmové domácnosti v programe Zelená solidarita predstavuje podpora až do 90 % oprávnených výdavkov. Spoločnosť Marvol s.r.o. vybaví celú online rezerváciu a administratívu bezplatne za vás.',
     },
     {
       q: 'Ako dlho trvá kompletná inštalácia fotovoltickej elektrárne na kľúč?',
-      a: 'Samotná fyzická montáž panelov na strechu, inštalácia striedača, batérie a elektroinštalačné prepojenie trvá našim certifikovaným technikom obvykle 1 až 2 pracovné dni. Celý proces vrátane vstupnej obhliadky, schválenia žiadosti u distribučnej spoločnosti (SSD, ZSD alebo VSD), registrácie poukážky SIEA a oficiálnej revízie trvá štandardne 3 až 5 týždňov.',
+      a: 'Samotná fyzická montáž panelov na strechu, inštalácia striedača, batérie a elektroinštalačné prepojenie trvá našim certifikovaným technikom obvykle 1 až 2 pracovné dni. Celý proces vrátane vstupnej obhliadky, schválenia žiadosti u distribučnej spoločnosti (SSD, ZSD alebo VSD), online rezervácie dotácie v systéme SIEA a oficiálnej revízie trvá štandardne 3 až 5 týždňov.',
     },
     {
       q: 'Čo sa stane s prebytočnou vyrobenou elektrinou počas slnečných dní?',
@@ -104,7 +104,7 @@ export default function FotovoltikaPreDomacnosti() {
     },
     {
       q: 'Vybaví Marvol s.r.o. celú komunikáciu s distribučnou spoločnosťou a štátom?',
-      a: 'Áno, garantujeme 100% bezstarostný proces bez byrokracie. Pripravíme žiadosť o pripojenie do distribučnej sústavy (Stredoslovenská distribučná SSD, Západoslovenská ZSD, Východoslovenská VSD), vypracujeme projektovú dokumentáciu skutočného vyhotovenia, vydáme úradnú revíznu správu (OPOS) a zaregistrujeme poukážku v portáli SIEA Zelená domácnostiam.',
+      a: 'Áno, garantujeme 100% bezstarostný proces bez byrokracie. Pripravíme žiadosť o pripojenie do distribučnej sústavy (Stredoslovenská distribučná SSD, Západoslovenská ZSD, Východoslovenská VSD), vypracujeme projektovú dokumentáciu skutočného vyhotovenia, vydáme úradnú revíznu správu (OPOS) a zabezpečíme online rezerváciu dotácie v portáli SIEA Zelená domácnostiam.',
     },
   ];
 
@@ -134,7 +134,7 @@ export default function FotovoltikaPreDomacnosti() {
       name: 'Fotovoltika pre rodinné domy na kľúč',
       serviceType: 'Inštalácia fotovoltických systémov pre domácnosti',
       description:
-        'Kompletné dodanie a montáž fotovoltických elektrární pre rodinné domy s vybavením dotácie Zelená domácnostiam až do výšky 4 025 €.',
+        'Kompletné dodanie a montáž fotovoltických elektrární pre rodinné domy s vybavením dotácie Zelená domácnostiam v novej schéme SIEA (do 1 150 €, Solidarita až do 90 %).',
       provider: {
         '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
@@ -170,8 +170,8 @@ export default function FotovoltikaPreDomacnosti() {
 
   return (
     <Layout
-      title="Fotovoltika pre rodinné domy | Dotácia až 4 025 € | Marvol s.r.o."
-      description="Fotovoltické elektrárne pre rodinné domy na kľúč. Získajte dotáciu Zelená domácnostiam až 4 025 €. Projekt, montáž, revízia a pripojenie do siete bez starostí."
+      title="Fotovoltika pre rodinné domy | Dotácia Zelená domácnostiam | Marvol s.r.o."
+      description="Fotovoltické elektrárne pre rodinné domy na kľúč. Získajte dotáciu Zelená domácnostiam (575 €/kW, max. 1 150 €, Solidarita až 90 %). Projekt, montáž, revízia a pripojenie do siete bez starostí."
       canonicalPath="/fotovoltika-pre-domacnosti"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -549,7 +549,7 @@ export default function FotovoltikaPreDomacnosti() {
               <div className="text-4xl font-black text-amber-400/30 mb-2">02</div>
               <h4 className="text-lg font-bold text-white mb-2">Projekt a žiadosť</h4>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Pripravíme technickú dokumentáciu pre distribúciu (SSD/ZSD/VSD) a podáme žiadosť o poukážku v systéme SIEA Zelená domácnostiam.
+                Pripravíme technickú dokumentáciu pre distribúciu (SSD/ZSD/VSD) a zabezpečíme online rezerváciu dotácie v portáli SIEA Zelená domácnostiam.
               </p>
             </div>
 

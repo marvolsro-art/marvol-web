@@ -46,14 +46,14 @@ export default function RevizieDotacie() {
     },
     {
       id: 'dotacie-zelena-domacnostiam',
-      title: 'Vybavenie dotácie Zelená domácnostiam do 4 025 €',
+      title: 'Vybavenie dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €)',
       badge: 'SIEA Zelená domácnostiam',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
-        'Kompletný servis štátnych poukážok. Sme registrovaným zhotoviteľom SIEA, vďaka čomu dotáciu uplatňujeme okamžite priamo na realizačnej faktúre.',
+        'Kompletný servis štátnych dotácií SIEA. Sme registrovaným zhotoviteľom SIEA, vďaka čomu zabezpečíme priamu online rezerváciu prostriedkov a uplatnenie dotácie priamo na realizačnej faktúre.',
       features: [
         'Kompletná kontrola oprávnenosti žiadateľa a listu vlastníctva nehnuteľnosti',
-        'Zaregistrovanie žiadosti v elektronickom systéme SIEA a rezervácia platnej poukážky',
+        'Zaregistrovanie žiadosti v elektronickom systéme SIEA a online rezervácia finančných prostriedkov',
         'Inštalácia výhradne certifikovaných zariadení evidovaných v zozname oprávnených zariadení',
         'Odpočítanie plnej sumy dotácie priamo z konečnej faktúry (klient nečaká na preplatenie štátom)',
         'Asistencia pri programe Zelená solidarita pre nízkopríjmové domácnosti (financovanie až do 90%)',
@@ -110,7 +110,7 @@ export default function RevizieDotacie() {
     },
     {
       q: 'Ako prebieha odpočítanie dotácie z faktúry?',
-      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA odpočíta Marvol s.r.o. schválenú hodnotu dotačnej poukážky (napr. 4 025 €) priamo z vašej realizačnej faktúry. Vy ako zákazník uhradíte iba doplatok (rozdiel celkovej ceny a dotácie) a preplatenie poukážky si naša spoločnosť vyrieši priamo so štátnou agentúrou SIEA.',
+      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA odpočíta Marvol s.r.o. schválenú hodnotu štátnej dotácie (napr. 1 150 € pri fotovoltike alebo až 4 600 € pri tepelnom čerpadle) priamo z vašej realizačnej faktúry. Vy ako zákazník uhradíte iba doplatok (rozdiel celkovej ceny a dotácie) a administratívne vysporiadanie s agentúrou SIEA vyrieši naša spoločnosť.',
     },
     {
       q: 'Ako často sa musia vykonávať periodické revízie fotovoltiky?',
@@ -158,7 +158,7 @@ export default function RevizieDotacie() {
       name: 'Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA',
       serviceType: 'Revízie elektrických zariadení OPOS a dotačný servis',
       description:
-        'Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam do 4 025 €. Rýchlo a spoľahlivo.',
+        'Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €) a Zelená podnikom. Rýchlo a spoľahlivo.',
       provider: {
         '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
@@ -195,7 +195,7 @@ export default function RevizieDotacie() {
   return (
     <Layout
       title="Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA | Marvol s.r.o."
-      description="Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam do 4 025 €. Rýchlo a spoľahlivo."
+      description="Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €) a Zelená podnikom. Rýchlo a spoľahlivo."
       canonicalPath="/sluzby/revizie-dotacie"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -251,8 +251,8 @@ export default function RevizieDotacie() {
                   <div className="text-slate-400 text-xs mt-0.5">Lehota vystavenia správy</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">do 4 025 €</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Dotácia priamo z faktúry</div>
+                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">Dotácie SIEA</div>
+                  <div className="text-slate-400 text-xs mt-0.5">Odpočet priamo z faktúry</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">100%</div>
@@ -306,7 +306,7 @@ export default function RevizieDotacie() {
                       <span className="text-purple-400 font-bold">100% Platnosť</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
-                      Úradné revízne správy pre distribúciu (SSD/ZSD/VSD), poisťovne a preplatenie poukážky SIEA.
+                      Úradné revízne správy pre distribúciu (SSD/ZSD/VSD), poisťovne a preplatenie dotácie SIEA.
                     </p>
                   </div>
                 </div>
@@ -460,7 +460,7 @@ export default function RevizieDotacie() {
               Všetko o revíziách fotovoltiky a dotáciách SIEA
             </h2>
             <p className="text-slate-400 text-sm">
-              Máte otázky ku kolaudácii, dotačným poukážkam alebo periodickým lehotám? Radi vám poradíme.
+              Máte otázky ku kolaudácii, dotačným podmienkam SIEA alebo periodickým lehotám? Radi vám poradíme.
             </p>
           </div>
 

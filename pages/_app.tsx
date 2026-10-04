@@ -56,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
             "name": "Akú výšku dotácie môžem získať z programu Zelená domácnostiam?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Z programu Zelená domácnostiam môžete získať príspevok na fotovoltiku až do výšky 4 025 €. Výška dotácie závisí od výkonu systému.",
+              "text": "Z programu Zelená domácnostiam môžete získať príspevok na fotovoltiku v sadzbe 575 €/kW (max. 1 150 €) a na tepelné čerpadlá až do 4 600 € (v schéme Zelená solidarita až do 90 % oprávnených nákladov).",
             },
           },
           {

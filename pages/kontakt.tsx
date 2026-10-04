@@ -25,7 +25,7 @@ export default function KontaktPage() {
     },
     {
       q: 'Pomôžete nám s vybavením štátnej dotácie SIEA na kľúč?',
-      a: 'Celú administratívu dotácie (až do výšky 4 025 € pre rodinné domy a Zelená podnikom pre firmy) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – vy len podpíšete žiadosť a dotáciu vám odpočítame priamo z faktúry za dielo.',
+      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike a do 4 600 € pri tepelnom čerpadle, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
     },
   ];
 
@@ -163,8 +163,8 @@ export default function KontaktPage() {
                 <span className="text-slate-400 text-xs">Obhliadka po celej SR</span>
               </div>
               <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
-                <span className="text-sky-400 font-bold block text-sm sm:text-base">Až 4 025 €</span>
-                <span className="text-slate-400 text-xs">Dotácia SIEA na kľúč</span>
+                <span className="text-sky-400 font-bold block text-sm sm:text-base">SIEA Dotácia</span>
+                <span className="text-slate-400 text-xs">Vybavenie na kľúč</span>
               </div>
               <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
                 <span className="text-purple-400 font-bold block text-sm sm:text-base">100% Záruka</span>
@@ -443,7 +443,7 @@ export default function KontaktPage() {
                     <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-xl">
                       <span className="text-emerald-400 font-bold block mb-1">2. Garancia dotácie</span>
                       <p className="text-slate-400 text-[11px]">
-                        Kompletná administratíva SIEA a zmluvná garancia vybavenia poukážky.
+                        Kompletná administratíva SIEA a zmluvná garancia vybavenia dotácie.
                       </p>
                     </div>
                     <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-xl">

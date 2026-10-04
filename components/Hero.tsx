@@ -139,7 +139,7 @@ export const Hero: React.FC = () => {
                   <svg className="w-5 h-5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na zakúpení systému až <strong>4 025 €</strong>.</span>
+                  <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na fotovoltike až <strong>1 150 €</strong> (tepelné čerpadlá až <strong>4 600 €</strong>, Solidarita <strong>90 %</strong>).</span>
                 </div>
 
                 <a

@@ -462,7 +462,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             <span className="text-emerald-400">✓</span> Bezplatná obhliadka
           </span>
           <span className="flex items-center gap-1">
-            <span className="text-emerald-400">✓</span> Dotácia do 4 025 €
+            <span className="text-emerald-400">✓</span> Dotácie Zelená domácnostiam
           </span>
           <span className="flex items-center gap-1">
             <span className="text-emerald-400">✓</span> Odpoveď do 24h

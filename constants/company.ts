@@ -42,9 +42,16 @@ export const COMPANY_DETAILS = {
   subsidies: {
     zelenaDomacnostiam: true,
     zelenaPodnikom: true,
-    maxHomeSubsidy: '4 025 €',
-    maxHeatPumpSubsidy: '3 800 €',
+    zelenaSolidarita: true,
+    maxPvSubsidy: '1 150 €',
+    maxHeatPumpSubsidy: '4 600 €',
+    maxSolidaritySubsidy: 'až do 90 %',
+    maxBusinessSubsidy: 'až do 50 %',
+    maxHomeSubsidy: '1 150 €',
+    pvRatePerKw: '575 € / kW',
+    heatPumpRatePerKw: '460 € / kW',
     providerName: 'SIEA (Slovenská inovačná a energetická agentúra)',
+    mechanism: 'Priama rezervácia finančných prostriedkov a vyplatenie na účet',
   },
   map: {
     googleMapsEmbedUrl: 'https://maps.google.com/maps?q=Chot%C3%A1rna+3394%2F6,+038+61+Vr%C3%BAtky,+Slovakia&t=&z=15&ie=UTF8&iwloc=&output=embed',

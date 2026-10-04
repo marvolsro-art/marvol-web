@@ -14,9 +14,9 @@ export interface NavDropdownItem {
 export const FOTOVOLTIKA_ITEMS: NavDropdownItem[] = [
   {
     title: 'Pre domácnosti',
-    subtitle: 'Rodinné domy, úspora až 80% & dotácia SIEA do 4 025 €',
+    subtitle: 'Rodinné domy, úspora až 80% & dotácia SIEA do 1 150 € (TČ do 4 600 €)',
     href: '/fotovoltika-pre-domacnosti',
-    badge: 'Dotácia 4 025 €',
+    badge: 'Dotácia SIEA',
     badgeColor: 'emerald',
     icon: 'home',
   },
@@ -73,7 +73,7 @@ export const SLUZBY_ITEMS: NavDropdownItem[] = [
   },
   {
     title: 'Revízie, servis & Dotácie SIEA',
-    subtitle: 'Východiskové OPOS revízie, záručný servis & preplatenie poukážok',
+    subtitle: 'Východiskové OPOS revízie, záručný servis & rezervácia dotácií SIEA',
     href: '/sluzby/revizie-dotacie',
     badge: 'Úradné revízie',
     badgeColor: 'emerald',

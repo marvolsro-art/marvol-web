@@ -7,13 +7,13 @@ export const SubsidyBanner: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center lg:text-left">
             <div className="inline-block bg-slate-950 text-amber-400 font-extrabold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-1">
-              Štátna dotácia až do výšky 4 025 €
+              Aktuálne dotácie SIEA: FV do 1 150 € • Tepelné čerpadlá do 4 600 € • Solidarita až 90 %
             </div>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950">
               Vybavíme za vás dotácie z projektov Zelená domácnostiam & Zelená podnikom
             </h2>
             <p className="text-slate-900 font-medium text-sm sm:text-base max-w-3xl">
-              Nemusíte sa obávať žiadnej administratívy. Naši špecialisti pripravia všetky podklady, podajú žiadosť a zabezpečia výplatu dotácie priamo vám.
+              Nemusíte sa obávať novej administratívy ani zmien v systéme SIEA. Zabezpečíme online rezerváciu prostriedkov, kompletnú technickú dokumentáciu a vyplatenie príspevku priamo vám.
             </p>
           </div>
 

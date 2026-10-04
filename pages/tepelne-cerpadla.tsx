@@ -29,7 +29,7 @@ export default function TepelneCerpadla() {
         'Inteligentná SG Ready komunikácia s fotovoltikou',
         'Vybavenie štátnej dotácie Zelená domácnostiam v cene',
       ],
-      subsidy: 'Až do 3 400 €',
+      subsidy: 'Až do 2 760 €',
     },
     {
       id: 'tc-standard-10kw',
@@ -45,9 +45,9 @@ export default function TepelneCerpadla() {
         'Vstavaná záložná elektrická špirála 6–9 kW',
         'Ekvitermická regulácia podľa vonkajšej teploty',
         'Diaľkové ovládanie cez mobilnú aplikáciu odkiaľkoľvek',
-        'Plná dotácia Zelená domácnostiam až 3 800 €',
+        'Plná dotácia Zelená domácnostiam až 4 600 €',
       ],
-      subsidy: 'Až do 3 800 €',
+      subsidy: 'Až do 4 600 €',
       popular: true,
     },
     {
@@ -66,7 +66,7 @@ export default function TepelneCerpadla() {
         'Špičkový záručný a pozáručný servis Marvol s.r.o.',
         'Zvýhodnená sadzba elektriny DD5 / D25 pre celú domácnosť',
       ],
-      subsidy: 'Až do 3 800 €',
+      subsidy: 'Až do 4 600 €',
     },
   ];
 
@@ -77,7 +77,7 @@ export default function TepelneCerpadla() {
     },
     {
       q: 'Aká je výška dotácie na tepelné čerpadlo z programu Zelená domácnostiam?',
-      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete na tepelné čerpadlo získať dotáciu až do výšky 3 800 € (v špecifických prípadoch až 4 025 €). Vyššia podpora platí pri náhrade starého neekologického kotla na tuhé palivo alebo v oblastiach s riadením kvality ovzdušia. Pre nízkopríjmové domácnosti v programe Zelená solidarita môže podpora pokryť až 90% nákladov. Marvol s.r.o. vybaví celú žiadosť za vás.',
+      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete na tepelné čerpadlo získať dotáciu v sadzbe 460 € na 1 kW inštalovaného výkonu až do výšky 4 600 € (maximálny podporovaný výkon je 10 kW). Pre nízkopríjmové domácnosti v programe Zelená solidarita môže podpora pokryť až 90 % oprávnených nákladov. Marvol s.r.o. zabezpečí kompletnú online rezerváciu prostriedkov v systéme SIEA za vás.',
     },
     {
       q: 'Ako presne funguje hybridná synergia medzi fotovoltikou a tepelným čerpadlom?',
@@ -464,7 +464,7 @@ export default function TepelneCerpadla() {
               <div className="text-3xl font-black text-emerald-400/40 mb-2">02</div>
               <h4 className="text-lg font-bold text-white mb-2">Projekt & Dotácia</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
-                Navrhneme hydraulickú schému, zaregistrujeme poukážku v systéme SIEA a pripravíme komponenty.
+                Navrhneme hydraulickú schému, zabezpečíme online rezerváciu dotácie v portáli SIEA a pripravíme komponenty.
               </p>
             </div>
 
@@ -586,7 +586,7 @@ export default function TepelneCerpadla() {
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Dotácia Zelená domácnostiam</div>
-                    <span className="text-white font-medium">Až 3 800 € odpočítaných priamo z faktúry</span>
+                    <span className="text-white font-medium">Až 4 600 € odpočítaných priamo z faktúry</span>
                   </div>
                 </div>
               </div>

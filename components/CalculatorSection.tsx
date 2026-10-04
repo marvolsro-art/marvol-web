@@ -29,9 +29,9 @@ export const CalculatorSection: React.FC = () => {
   const rawSavings = Math.round(annualBill * (hasBattery ? 0.78 : 0.55));
   const estimatedSavings = Math.min(rawSavings, Math.round(maxAnnualSavingsValue));
   
-  // SIEA / Zelená domácnostiam voucher rules
+  // SIEA / Zelená domácnostiam rules (aktuálna sadzba 575 €/kW, max. 2 kW, strop 1 150 €; Zelená solidarita až 90 %)
   const estimatedSubsidy = propertyType === 'home' 
-    ? Math.min(recommendedKwp * 500 + (hasBattery ? 1500 : 0), 4025) 
+    ? Math.min(Math.round(Math.min(recommendedKwp, 2) * 575), 1150) 
     : 0;
 
   const estimatedSystemPrice = Math.round(recommendedKwp * 1050 + (hasBattery ? 3200 : 0) + (hasEV ? 950 : 0));
@@ -229,7 +229,7 @@ export const CalculatorSection: React.FC = () => {
                   <p className="text-xl font-black text-amber-400 mt-1">
                     {estimatedSubsidy > 0 ? `${estimatedSubsidy} €` : 'Zelená podnikom'}
                   </p>
-                  <p className="text-[10px] text-slate-500 mt-1">{propertyType === 'home' ? 'Zelená domácnostiam' : 'B2B Schéma'}</p>
+                  <p className="text-[10px] text-slate-500 mt-1">{propertyType === 'home' ? 'Zelená domácnostiam (575 €/kW)' : 'B2B Schéma (do 50 %)'}</p>
                 </div>
 
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
@@ -241,7 +241,7 @@ export const CalculatorSection: React.FC = () => {
                 <div className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 p-4 rounded-2xl border border-amber-500/30 col-span-2 sm:col-span-2">
                   <p className="text-[11px] text-amber-400 font-bold uppercase tracking-wider">Odhadovaná investícia po dotácii</p>
                   <p className="text-2xl font-black text-white mt-0.5">od {netPrice.toLocaleString('sk-SK')} €</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže, meniča a revízie</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže, meniča, revízie a vybavenia dotácie SIEA (Solidarita až 90 %)</p>
                 </div>
               </div>
             </div>

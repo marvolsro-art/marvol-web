@@ -344,7 +344,7 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
     priceExVat: 7990.0,
     inStock: true,
     stockQty: 6,
-    badge: 'Dotácia SIEA až 4 025 €',
+    badge: 'Dotácia SIEA do 1 150 €',
     badgeColor: 'emerald',
     warranty: '30 rokov panely, 10 rokov menič & batéria',
     specs: [
@@ -411,7 +411,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
     title: 'Hotové FV sety',
     subtitle: 'Kompletné On-grid a hybridné zostavy s batériou pripravené na kľúč',
     icon: '📦',
-    highlight: 'Dotácia SIEA až 4 025 €',
+    highlight: 'Dotácia SIEA do 1 150 €',
   },
 ];
 
@@ -757,7 +757,7 @@ export default function EshopPage() {
           name: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Pri každom produkte môžete zvoliť Kúpiť s kompletnou montážou na kľúč. Náš tím pripraví projektovú dokumentáciu, namontuje systém, vykoná revíziu OPOS a vybaví štátnu dotáciu Zelená domácnostiam do výšky 4 025 €.',
+            text: 'Pri každom produkte môžete zvoliť Kúpiť s kompletnou montážou na kľúč. Náš tím pripraví projektovú dokumentáciu, namontuje systém, vykoná revíziu OPOS a zabezpečí online rezerváciu štátnej dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €, Solidarita až do 90 %).',
           },
         },
       ],
@@ -776,7 +776,7 @@ export default function EshopPage() {
     },
     {
       q: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
-      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (až 4 025 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vyplatenie poukážky SIEA.',
+      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €, TČ až 4 600 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí.',
     },
     {
       q: 'Aká je záruka na dodávané fotovoltické komponenty?',
@@ -795,7 +795,7 @@ export default function EshopPage() {
   return (
     <Layout
       title="E-Shop Solárnych Komponentov & FV Sety | Marvol"
-      description="Veľkoobchodný a maloobchodný predaj fotovoltických panelov TOPCon, meničov Huawei a SolaX, LiFePO4 batérií a montážnych setov. Sklad vo Vrútkach, možnosť montáže na kľúč s dotáciou až 4 025 €."
+      description="Veľkoobchodný a maloobchodný predaj fotovoltických panelov TOPCon, meničov Huawei a SolaX, LiFePO4 batérií a montážnych setov. Sklad vo Vrútkach, možnosť montáže na kľúč s dotáciou SIEA."
       canonicalPath="/eshop"
       schema={storeAndCatalogSchema}
       isSubpage={true}
@@ -840,7 +840,7 @@ export default function EshopPage() {
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
               Dodávame prémiové fotovoltické panely TOPCon, inteligentné trojfázové hybridné striedače,
               bezpečné batériové úložiská LiFePO4 a montážne konštrukcie. Kúpte si samostatný materiál
-              alebo využite kompletnú montáž na kľúč so štátnou dotáciou až do 4 025 €.
+              alebo využite kompletnú montáž na kľúč so štátnou dotáciou SIEA (FV do 1 150 €, Solidarita až 90 %).
             </p>
 
             <div className="mt-6 flex flex-wrap gap-4">
@@ -889,7 +889,7 @@ export default function EshopPage() {
               <div className="text-2xl mb-2">💶</div>
               <h3 className="text-white font-bold text-sm">Montáž na kľúč s dotáciou</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
-                Možnosť realizácie na kľúč certifikovanými montážnikmi s vybavením dotácie SIEA až do 4 025 €.
+                Možnosť realizácie na kľúč certifikovanými montážnikmi s vybavením dotácie SIEA (FV do 1 150 €, TČ do 4 600 €).
               </p>
             </div>
           </div>
@@ -1261,13 +1261,13 @@ export default function EshopPage() {
               </span>
 
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                Získajte fotovoltiku na kľúč s dotáciou až do 4 025 €
+                Získajte fotovoltiku na kľúč so štátnou dotáciou SIEA
               </h2>
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 Nezabezpečujeme len dodanie hardvéru – preberáme 100% zodpovednosť za projektovú
                 dokumentáciu, statické posúdenie, odbornú inštaláciu certifikovanými technikmi Marvol s.r.o.,
-                úradnú revíziu OPOS a kompletné vybavenie poukážky SIEA Zelená domácnostiam bez byrokracie.
+                úradnú revíziu OPOS a kompletné vybavenie dotácie SIEA Zelená domácnostiam bez byrokracie.
               </p>
 
               {/* Dynamic Turnkey Pre-fill Highlight Banner */}
@@ -1297,7 +1297,7 @@ export default function EshopPage() {
                   </div>
 
                   <div className="pt-2 border-t border-amber-500/20 text-xs text-amber-300 font-semibold flex items-center gap-2">
-                    <span>💶</span> Uplatniteľná dotácia SIEA až do 4 025 € zníži vašu investíciu na minimum.
+                    <span>💶</span> Uplatniteľná dotácia SIEA zníži vašu investíciu na minimum (FV do 1 150 €, Solidarita až 90 %).
                   </div>
                 </div>
               ) : (
@@ -1318,7 +1318,7 @@ export default function EshopPage() {
                 </div>
                 <div className="flex items-start gap-2.5">
                   <span className="text-emerald-400 font-bold">✓</span>
-                  <span><strong>100% garancia dotácie:</strong> Pomôžeme s podaním žiadosti a registráciou poukážky SIEA.</span>
+                  <span><strong>100% garancia dotácie:</strong> Pomôžeme s online rezerváciou a schválením dotácie SIEA.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <span className="text-emerald-400 font-bold">✓</span>
