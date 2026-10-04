@@ -95,7 +95,7 @@ export default function MinimalistTestPage() {
       label1: 'Dotácia SIEA (575 €/kW)',
       metric2: '3 – 5 rokov',
       label2: 'Reálna návratnosť',
-      img: '/images/fotovoltika-pre-domacnosti/hero.jpg',
+      img: '/images/fotovoltika-domacnosti/hero.jpg',
       features: ['Tier 1 panely N-Type TOPCon', 'Asymetrický 3-fázový menič', '100% online rezervácia dotácie'],
     },
     business: {
@@ -106,7 +106,7 @@ export default function MinimalistTestPage() {
       label1: 'Podpora Zelená podnikom',
       metric2: 'Bez TPS/TSS',
       label2: 'Inštitút Lokálneho zdroja',
-      img: '/images/fotovoltika-pre-firmy/hero.jpg',
+      img: '/images/fotovoltika-firmy/hero.jpg',
       features: ['Komerčné strešné & pozemné FVE', 'Priemyselné úložiská BESS', 'Optimalizácia 1/4h maxím'],
     },
     storage: {
@@ -117,7 +117,7 @@ export default function MinimalistTestPage() {
       label1: 'Životnosť LiFePO4 batérie',
       metric2: '< 10 ms',
       label2: 'Automatický záskok UPS',
-      img: '/images/bateriove-uloziska-bess/hero.jpg',
+      img: '/images/bateriove-uloziska/hero.jpg',
       features: ['Mikrosekundové prepnutie na batériu', 'Smart riadenie spotových cien', 'Dynamický Wallbox 11/22 kW'],
     },
   };
@@ -632,6 +632,79 @@ export default function MinimalistTestPage() {
               </div>
             </div>
 
+            {/* Dynamic Visual Setup Strip with Illustrative Thumbnails */}
+            <div className="pt-6 border-t border-white/10">
+              <div className="text-xs uppercase font-extrabold tracking-wider text-slate-400 mb-3 flex items-center justify-between">
+                <span>Konfigurácia obsahuje</span>
+                <span className="text-amber-400 font-semibold">{withBattery ? 'Hybridná zostava s batériou' : 'On-Grid fotovoltická zostava'}</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                    <img src="/images/fotovoltika-domacnosti/hero.jpg" alt="Panely" className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-white truncate">Tier 1 Panely</div>
+                    <div className="text-[10px] text-slate-400 truncate">{recommendedKwp} kWp TOPCon</div>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                    <img src="/images/fotovoltika-domacnosti/hybrid-system.jpg" alt="Striedač" className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-white truncate">3F Menič</div>
+                    <div className="text-[10px] text-slate-400 truncate">Asymetrický hybrid</div>
+                  </div>
+                </div>
+
+                {withBattery ? (
+                  <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-amber-400/20">
+                      <img src="/images/bateriove-uloziska/hero.jpg" alt="Batéria" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-amber-300 truncate">LiFePO4 Batéria</div>
+                      <div className="text-[10px] text-slate-400 truncate">Záloha & EPS záskok</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-2.5 rounded-xl bg-slate-900/30 border border-dashed border-white/10 flex items-center gap-2.5 opacity-60">
+                    <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-sm shrink-0">
+                      🔋
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold text-slate-400 truncate">Bez batérie</div>
+                      <div className="text-[10px] text-slate-500 truncate">Možnosť doplniť</div>
+                    </div>
+                  </div>
+                )}
+
+                {withHeatPump ? (
+                  <div className="p-2.5 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-emerald-400/20">
+                      <img src="/images/tepelne-cerpadla/hero.jpg" alt="Tepelné čerpadlo" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-emerald-300 truncate">Tepelné čerpadlo</div>
+                      <div className="text-[10px] text-slate-400 truncate">Dotácia do 4 600 €</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                      <img src="/images/sluzby/revizie-dotacie.jpg" alt="Revízia" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-white truncate">Revízia OPOS</div>
+                      <div className="text-[10px] text-slate-400 truncate">§ 24 a distribúcia</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
             {/* Direct inquiry trigger button */}
             <div className="text-center pt-2">
               <a
@@ -667,97 +740,180 @@ export default function MinimalistTestPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             
             {/* Card 1: Fotovoltika */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-2xl">
-                  ☀️
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-amber-400/30 transition-all duration-300">
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/fotovoltika-domacnosti/hybrid-system.jpg"
+                  alt="N-Type TOPCon Fotovoltika"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
+                    ☀️
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">N-Type TOPCon Fotovoltika</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Najnovšia generácia monokryštalických panelov s účinnosťou až 22,5%. Vysoký zisk aj pri difúznom zimnom svetle a záruka na výkon 30 rokov.
-                </p>
               </div>
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                <span>Dotácia SIEA: 575 €/kW</span>
-                <Link href="/fotovoltika-pre-domacnosti" className="text-amber-400 font-semibold hover:underline">
-                  Podrobnosti &rarr;
-                </Link>
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                    N-Type TOPCon Fotovoltika
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Najnovšia generácia monokryštalických panelov s účinnosťou až 22,5%. Vysoký zisk aj pri difúznom zimnom svetle a lineárna záruka na výkon 30 rokov.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <span>Dotácia SIEA: 575 €/kW</span>
+                  <Link href="/fotovoltika-pre-domacnosti" className="text-amber-400 font-semibold hover:underline flex items-center gap-1">
+                    <span>Podrobnosti</span>
+                    <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Card 2: BESS & Batérie */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-2xl">
-                  🔋
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-purple-400/30 transition-all duration-300">
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/bateriove-uloziska/hero.jpg"
+                  alt="LiFePO4 Batériové úložiská BESS"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
+                    🔋
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">LiFePO4 Batériové úložiská</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Modulárne vysokonapäťové úložiská s 6 000+ nabíjacími cyklami. Bezpečná nehorľavá chémia a automatický mikrosekundový záskok pri výpadku siete.
-                </p>
               </div>
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                <span>Záloha celého domu</span>
-                <Link href="/bateriove-uloziska-bess" className="text-purple-400 font-semibold hover:underline">
-                  Podrobnosti &rarr;
-                </Link>
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                    LiFePO4 Batériové úložiská
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Modulárne vysokonapäťové úložiská s 6 000+ nabíjacími cyklami. Bezpečná nehorľavá chémia a automatický mikrosekundový záskok pri výpadku siete.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <span>Záloha celého domu</span>
+                  <Link href="/bateriove-uloziska-bess" className="text-purple-400 font-semibold hover:underline flex items-center gap-1">
+                    <span>Podrobnosti</span>
+                    <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Tepelné čerpadlá */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-2xl">
-                  🌡️
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-emerald-400/30 transition-all duration-300">
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/tepelne-cerpadla/hero.jpg"
+                  alt="Tepelné čerpadlá Vzduch-Voda"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
+                    🌡️
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">Tepelné čerpadlá Vzduch-Voda</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Ekologické vykurovanie a letné chladenie s energetickou triedou A+++. Inteligentná synergia SG Ready využíva solárne prebytky na ohrev vody.
-                </p>
               </div>
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                <span>Dotácia až 4 600 €</span>
-                <Link href="/tepelne-cerpadla" className="text-emerald-400 font-semibold hover:underline">
-                  Podrobnosti &rarr;
-                </Link>
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    Tepelné čerpadlá Vzduch-Voda
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Ekologické vykurovanie a letné chladenie s energetickou triedou A+++. Inteligentná synergia SG Ready využíva solárne prebytky na ohrev vody.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <span>Dotácia až 4 600 €</span>
+                  <Link href="/tepelne-cerpadla" className="text-emerald-400 font-semibold hover:underline flex items-center gap-1">
+                    <span>Podrobnosti</span>
+                    <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
-            {/* Card 4: Protipožiarna ochrana & Bezpečnosť */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6 md:col-span-2 lg:col-span-2">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-2xl">
-                  🛡️
+            {/* Card 4: Protipožiarna ochrana & Bezpečnosť (2 cols) */}
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col md:flex-row justify-between group border border-white/10 hover:border-sky-400/30 transition-all duration-300 md:col-span-2 lg:col-span-2">
+              <div className="relative md:w-5/12 aspect-[16/9] md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r border-white/10 bg-slate-900">
+                <img
+                  src="/images/sluzby/protipoziarna-ochrana.jpg"
+                  alt="Bezpečné napätie a protipožiarna ochrana STN"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#07090e] via-[#07090e]/30 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
+                    🛡️
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">Bezpečné napätie & Protipožiarna ochrana STN</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Každú inštaláciu vybavujeme bezpečnostnými systémami Rapid Shutdown (zníženie napätia na bezpečnú hodnotu pod 120V pri zásahu hasičov), AFDD oblúkovou ochranou a prepäťovými poistkami SPD typu 1+2.
-                </p>
               </div>
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                <span>Revízie OPOS § 24 v cene</span>
-                <Link href="/sluzby/protipoziarna-ochrana-bezpecne-napatie" className="text-sky-400 font-semibold hover:underline">
-                  Bezpečnostné štandardy STN &rarr;
-                </Link>
+              <div className="p-6 sm:p-8 md:w-7/12 flex flex-col justify-between space-y-6">
+                <div className="space-y-3">
+                  <div className="inline-block text-[11px] font-bold text-sky-400 uppercase tracking-wider">
+                    Bezpečnostný štandard STN
+                  </div>
+                  <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-sky-300 transition-colors">
+                    Bezpečné napätie & Protipožiarna ochrana
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Každú inštaláciu vybavujeme certifikovanými systémami Rapid Shutdown (automatické odpojenie a zníženie napätia pod 120V pri hasičskom zásahu), oblúkovou ochranou AFDD a prepäťovými poistkami SPD typu 1+2.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <span>Revízie OPOS § 24 v cene</span>
+                  <Link href="/sluzby/protipoziarna-ochrana-bezpecne-napatie" className="text-sky-400 font-semibold hover:underline flex items-center gap-1">
+                    <span>Bezpečnostné štandardy STN</span>
+                    <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Card 5: E-shop & Komponenty */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-2xl">
-                  📦
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-amber-400/30 transition-all duration-300">
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/fotovoltika-firmy/industrial-inverter.jpg"
+                  alt="E-Shop solárnych komponentov"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
+                    📦
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">E-Shop solárnych komponentov</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Veľkoobchodný a maloobchodný predaj overených komponentov Huawei, SolaX, Canadian Solar. Sklad vo Vrútkach.
-                </p>
               </div>
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                <span>Skladom na Slovensku</span>
-                <Link href="/eshop" className="text-amber-400 font-semibold hover:underline">
-                  Prejsť do e-shopu &rarr;
-                </Link>
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                    E-Shop solárnych komponentov
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Veľkoobchodný a maloobchodný predaj overených komponentov Huawei, SolaX, Canadian Solar a Fronius. Centrálny sklad vo Vrútkach.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <span>Skladom na Slovensku</span>
+                  <Link href="/eshop" className="text-amber-400 font-semibold hover:underline flex items-center gap-1">
+                    <span>Prejsť do e-shopu</span>
+                    <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -766,7 +922,111 @@ export default function MinimalistTestPage() {
         </div>
       </section>
 
-      {/* PROCESS TIMELINE (Minimalist 4 steps) */}
+      {/* WHY MARVOL S.R.O. (Engineering Excellence & Subsidies Guarantee) */}
+      <section id="preco-marvol" className="relative z-10 py-16 sm:py-24 border-t border-white/5 bg-slate-950/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-2xl mb-12 sm:mb-16 space-y-3 sm:space-y-4">
+            <span className="text-xs uppercase font-extrabold tracking-widest text-amber-400">
+              Prečo zvoliť Marvol
+            </span>
+            <h2 className="text-2xl sm:text-5xl font-black text-white tracking-tight">
+              Inžiniersky prístup a certifikácie bez kompromisov
+            </h2>
+            <p className="text-xs sm:text-base text-slate-400">
+              Neinštalujeme anonymné zostavy. Každé dielo navrhujú a realizujú certifikovaní elektrotechnici podľa najprísnejších noriem STN.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Trust Pillar 1: Interný tím */}
+            <div className="glass-minimal rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 group hover:border-amber-400/30 transition-all duration-300 flex flex-col justify-between">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/elektroinstalacie/hero.jpg"
+                  alt="Interný certifikovaný elektrotechnik Marvol"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/20 to-transparent" />
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-950/80 border border-white/10 text-amber-400 backdrop-blur-md">
+                  Odbornosť &bull; OPOS § 24
+                </span>
+              </div>
+              <div className="p-6 sm:p-7 space-y-3 flex-1">
+                <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+                  Kmeňoví montážnici a revízni technici
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Žiadni externí sprostredkovatelia ani neskúsené partie. Inštaláciu na streche a zapojenie rozvádzača realizujú výlučne naši interní elektrotechnici s osvedčením podľa Vyhlášky 508/2009 Z.z.
+                </p>
+              </div>
+              <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
+                ✓ Úradná revízna správa OPOS v cene každej montáže
+              </div>
+            </div>
+
+            {/* Trust Pillar 2: Dotácie SIEA */}
+            <div className="glass-minimal rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 group hover:border-emerald-400/30 transition-all duration-300 flex flex-col justify-between">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/sluzby/poradenstvo.jpg"
+                  alt="Energetické poradenstvo a dotácia SIEA"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/20 to-transparent" />
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-950/80 border border-white/10 text-emerald-400 backdrop-blur-md">
+                  Oprávnený zhotoviteľ SIEA
+                </span>
+              </div>
+              <div className="p-6 sm:p-7 space-y-3 flex-1">
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  100% garancia odpočítania dotácie
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Ako registrovaný partner SIEA (Zelená domácnostiam & Zelená podnikom) zabezpečíme elektronickú rezerváciu poukážky. Dotáciu do 1 150 € (alebo až 4 600 € pri tepelnom čerpadle) vám odpočítame priamo z faktúry.
+                </p>
+              </div>
+              <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
+                ✓ 0 riziko pre klienta, celú administratívu riešime my
+              </div>
+            </div>
+
+            {/* Trust Pillar 3: Zázemie Vrútky */}
+            <div className="glass-minimal rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 group hover:border-sky-400/30 transition-all duration-300 flex flex-col justify-between">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-900">
+                <img
+                  src="/images/kontakt/hero.jpg"
+                  alt="Sídlo a technické centrum Marvol s.r.o. vo Vrútkach"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/20 to-transparent" />
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-950/80 border border-white/10 text-sky-400 backdrop-blur-md">
+                  Sklad & Centrála Vrútky
+                </span>
+              </div>
+              <div className="p-6 sm:p-7 space-y-3 flex-1">
+                <h3 className="text-lg font-bold text-white group-hover:text-sky-300 transition-colors">
+                  Slovenská spoločnosť s reálnym zázemím
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  Žiadna virtuálna schránka. Disponujeme vlastným skladom komponentov vo Vrútkach, technickou podporou a monitorovacím dispečingom. Sme tu pre vás počas celej 30-ročnej životnosti systému.
+                </p>
+              </div>
+              <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
+                ✓ Záručný a pozáručný servis do 48 hodín
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* PROCESS TIMELINE (Minimalist 4 steps with illustrative thumbnails) */}
       <section id="proces" className="relative z-10 py-16 sm:py-24 bg-slate-950/60 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -788,26 +1048,43 @@ export default function MinimalistTestPage() {
                 step: '01',
                 title: '3D Návrh & Obhliadka',
                 desc: 'Zameriame strechu, vytvoríme digitálny 3D model tienenia a prepočítame reálnu ročnú návratnosť.',
+                img: '/images/sluzby/navrh-projektu.jpg',
               },
               {
                 step: '02',
                 title: 'Rezervácia dotácie SIEA',
                 desc: 'Zaregistrujeme vašu žiadosť v portáli SIEA a garantujeme priame odpočítanie príspevku z faktúry.',
+                img: '/images/sluzby/poradenstvo.jpg',
               },
               {
                 step: '03',
                 title: 'Certifikovaná montáž',
                 desc: 'Naši interní montážnici osadia panely, menič a batériu za 1 až 2 dni bez zásahu do funkčnosti domu.',
+                img: '/images/sluzby/montaz-instalacia.jpg',
               },
               {
                 step: '04',
                 title: 'Revízia OPOS & Sieť',
                 desc: 'Vydáme úradnú revíznu správu § 24 a zabezpečíme pripojenie u distribučnej spoločnosti (SSD/ZSD/VSD).',
+                img: '/images/sluzby/revizie-dotacie.jpg',
               },
             ].map((s) => (
-              <div key={s.step} className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2.5">
-                <div className="text-2xl sm:text-3xl font-black text-amber-400/40">{s.step}</div>
-                <h4 className="text-sm sm:text-base font-bold text-white">{s.title}</h4>
+              <div key={s.step} className="group p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3 hover:border-amber-400/30 transition-all duration-300">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 bg-slate-900">
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/90 border border-white/10 text-amber-400 font-black text-xs">
+                    {s.step}
+                  </span>
+                </div>
+                <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-amber-400 transition-colors">
+                  {s.title}
+                </h4>
                 <p className="text-xs text-slate-400 leading-relaxed">{s.desc}</p>
               </div>
             ))}
@@ -818,157 +1095,244 @@ export default function MinimalistTestPage() {
 
       {/* MINIMALIST CONTACT INQUIRY SECTION (Touch & iOS Zoom Protected) */}
       <section id="kontakt" className="relative z-10 py-16 sm:py-24 lg:py-32">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-10 sm:mb-12 space-y-3">
+          <div className="text-center mb-10 sm:mb-14 space-y-3">
             <span className="text-xs uppercase font-extrabold tracking-widest text-amber-400">
               Nezáväzný dopyt
             </span>
             <h2 className="text-2xl sm:text-5xl font-black text-white tracking-tight">
               Začnite s bezplatnou obhliadkou
             </h2>
-            <p className="text-xs sm:text-base text-slate-400">
-              Odpovieme vám do 24 hodín s orientačným technickým návrhom a kalkuláciou úspor.
+            <p className="text-xs sm:text-base text-slate-400 max-w-xl mx-auto">
+              Odpovieme vám do 24 hodín s orientačným technickým návrhom, prepočtom návratnosti a postupom pre dotáciu SIEA.
             </p>
           </div>
 
-          <div className="glass-minimal rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 shadow-2xl">
-            {formSubmitted ? (
-              <div className="py-10 sm:py-12 text-center space-y-4">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl sm:text-3xl mx-auto font-bold">
-                  ✓
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white">Ďakujeme za váš dopyt!</h3>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                  Náš technický poradca z Marvol s.r.o. vás bude kontaktovať najneskôr do 24 hodín s návrhom riešenia.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleLeadSubmit} className="space-y-5 sm:space-y-6">
-                
-                {formError && (
-                  <div className="p-3.5 sm:p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
-                    {formError}
-                  </div>
-                )}
-
-                {/* Category Pills */}
-                <div>
-                  <label className="text-xs text-slate-400 font-semibold block mb-2">
-                    O aké riešenie máte záujem?
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {[
-                      { id: 'dom', label: 'Rodinný dom' },
-                      { id: 'firma', label: 'Firma / B2B' },
-                      { id: 'bateria', label: 'Batériové úložisko' },
-                      { id: 'cerpadlo', label: 'Tepelné čerpadlo' },
-                    ].map((cat) => (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => setLeadCategory(cat.id as any)}
-                        className={`min-h-[44px] py-2.5 px-2 rounded-xl text-xs font-semibold border transition-all text-center flex items-center justify-center ${
-                          leadCategory === cat.id
-                            ? 'border-amber-400 bg-amber-400/15 text-white shadow-sm'
-                            : 'border-white/5 bg-slate-900/60 text-slate-400 hover:text-white'
-                        }`}
-                      >
-                        {cat.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Inputs Grid (Minimum 16px text-base to prevent iOS Safari auto-zoom) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                  <div>
-                    <label className="text-xs text-slate-400 font-medium block mb-1">
-                      Meno a priezvisko *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Ján Novák"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs text-slate-400 font-medium block mb-1">
-                      Telefónne číslo *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+421 9XX XXX XXX"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                  <div>
-                    <label className="text-xs text-slate-400 font-medium block mb-1">
-                      Mesto / Obec inštalácie
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="napr. Martin, Žilina, Bratislava..."
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs text-slate-400 font-medium block mb-1">
-                      Poznámka alebo otázka (nepovinné)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="napr. šikmá škridlová strecha, ročná spotreba..."
-                      value={note}
-                      onChange={(e) => setNote(e.target.value)}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                {/* GDPR checkbox */}
-                <label className="flex items-start gap-3 cursor-pointer pt-1 min-h-[44px]">
-                  <input
-                    type="checkbox"
-                    checked={gdpr}
-                    onChange={(e) => setGdpr(e.target.checked)}
-                    className="mt-0.5 w-5 h-5 rounded accent-amber-400 cursor-pointer shrink-0"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+            
+            {/* Column 1: Visual Direct Contact Card */}
+            <div className="lg:col-span-5 glass-minimal rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between">
+              <div>
+                <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
+                  <img
+                    src="/images/kontakt/hero.jpg"
+                    alt="Konzultačné centrum a sídlo Marvol s.r.o. vo Vrútkach"
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
                   />
-                  <span className="text-[11px] text-slate-400 leading-tight">
-                    Súhlasím so spracovaním osobných údajov pre účely vypracovania cenovej ponuky spoločnosťou Marvol s.r.o. podľa GDPR.
-                  </span>
-                </label>
-
-                {/* Submit button */}
-                <button
-                  type="submit"
-                  disabled={formSubmitting}
-                  className="w-full min-h-[50px] py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm sm:text-base tracking-wide transition-all shadow-lg hover:shadow-amber-500/20 disabled:opacity-50 cursor-pointer active:scale-[0.99]"
-                >
-                  {formSubmitting ? 'Odosielam dopyt...' : 'Odoslať nezáväzný dopyt & získať prepočet'}
-                </button>
-
-                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] text-slate-500 pt-1 text-center">
-                  <span>✓ 100% bezplatná obhliadka</span>
-                  <span>✓ Dotácia do 1 150 € / 4 600 €</span>
-                  <span>✓ Odpoveď do 24h</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wide uppercase bg-slate-950/80 border border-white/10 text-amber-400 backdrop-blur-md">
+                      Centrála Vrútky
+                    </span>
+                  </div>
                 </div>
 
-              </form>
-            )}
+                <div className="p-5 sm:p-7 space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
+                    Marvol s.r.o.
+                  </h3>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Slovenský certifikovaný zhotoviteľ solárnych elektrární, batériových systémov LiFePO4 a tepelných čerpadiel na kľúč.
+                  </p>
+
+                  <div className="space-y-2.5 pt-1">
+                    <a
+                      href="tel:+421948123456"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-amber-400/40 text-xs text-slate-200 transition-colors"
+                    >
+                      <span className="w-8 h-8 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center text-sm shrink-0">
+                        📞
+                      </span>
+                      <div>
+                        <div className="text-[10px] text-slate-400">Telefonická infolinka</div>
+                        <div className="font-bold text-white text-sm">0948 123 456</div>
+                      </div>
+                    </a>
+
+                    <a
+                      href="mailto:info@marvol.sk"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-amber-400/40 text-xs text-slate-200 transition-colors"
+                    >
+                      <span className="w-8 h-8 rounded-lg bg-sky-400/10 text-sky-400 flex items-center justify-center text-sm shrink-0">
+                        ✉️
+                      </span>
+                      <div>
+                        <div className="text-[10px] text-slate-400">Emailová podpora</div>
+                        <div className="font-bold text-white text-sm">info@marvol.sk</div>
+                      </div>
+                    </a>
+
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-slate-200">
+                      <span className="w-8 h-8 rounded-lg bg-emerald-400/10 text-emerald-400 flex items-center justify-center text-sm shrink-0">
+                        📍
+                      </span>
+                      <div>
+                        <div className="text-[10px] text-slate-400">Centrálny sklad a kancelária</div>
+                        <div className="font-bold text-white text-xs">Francúzskych partizánov 5683/47, Vrútky</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-7 border-t border-white/5 bg-slate-950/40 space-y-2 text-[11px] text-slate-400">
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span>Osobná technická obhliadka po celom Slovensku</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span>Zabezpečenie dotácie SIEA až do 4 600 €</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span>Odborná revízna správa OPOS § 24</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2: Lead Form */}
+            <div className="lg:col-span-7 glass-minimal rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border border-white/10 shadow-2xl flex flex-col justify-center">
+              {formSubmitted ? (
+                <div className="py-10 sm:py-12 text-center space-y-4">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl sm:text-3xl mx-auto font-bold">
+                    ✓
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">Ďakujeme za váš dopyt!</h3>
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                    Náš technický poradca z Marvol s.r.o. vás bude kontaktovať najneskôr do 24 hodín s návrhom riešenia.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleLeadSubmit} className="space-y-5 sm:space-y-6">
+                  
+                  {formError && (
+                    <div className="p-3.5 sm:p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+                      {formError}
+                    </div>
+                  )}
+
+                  {/* Category Pills */}
+                  <div>
+                    <label className="text-xs text-slate-400 font-semibold block mb-2">
+                      O aké riešenie máte záujem?
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {[
+                        { id: 'dom', label: 'Rodinný dom' },
+                        { id: 'firma', label: 'Firma / B2B' },
+                        { id: 'bateria', label: 'Batériové úložisko' },
+                        { id: 'cerpadlo', label: 'Tepelné čerpadlo' },
+                      ].map((cat) => (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          onClick={() => setLeadCategory(cat.id as any)}
+                          className={`min-h-[44px] py-2.5 px-2 rounded-xl text-xs font-semibold border transition-all text-center flex items-center justify-center ${
+                            leadCategory === cat.id
+                              ? 'border-amber-400 bg-amber-400/15 text-white shadow-sm'
+                              : 'border-white/5 bg-slate-900/60 text-slate-400 hover:text-white'
+                          }`}
+                        >
+                          {cat.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Inputs Grid (Minimum 16px text-base to prevent iOS Safari auto-zoom) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                    <div>
+                      <label className="text-xs text-slate-400 font-medium block mb-1">
+                        Meno a priezvisko *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Ján Novák"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-slate-400 font-medium block mb-1">
+                        Telefónne číslo *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+421 9XX XXX XXX"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                    <div>
+                      <label className="text-xs text-slate-400 font-medium block mb-1">
+                        Mesto / Obec inštalácie
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="napr. Martin, Žilina, Bratislava..."
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-slate-400 font-medium block mb-1">
+                        Poznámka alebo otázka (nepovinné)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="napr. šikmá škridlová strecha, ročná spotreba..."
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white text-base focus:outline-none focus:border-amber-400 transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* GDPR checkbox */}
+                  <label className="flex items-start gap-3 cursor-pointer pt-1 min-h-[44px]">
+                    <input
+                      type="checkbox"
+                      checked={gdpr}
+                      onChange={(e) => setGdpr(e.target.checked)}
+                      className="mt-0.5 w-5 h-5 rounded accent-amber-400 cursor-pointer shrink-0"
+                    />
+                    <span className="text-[11px] text-slate-400 leading-tight">
+                      Súhlasím so spracovaním osobných údajov pre účely vypracovania cenovej ponuky spoločnosťou Marvol s.r.o. podľa GDPR.
+                    </span>
+                  </label>
+
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    disabled={formSubmitting}
+                    className="w-full min-h-[50px] py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm sm:text-base tracking-wide transition-all shadow-lg hover:shadow-amber-500/20 disabled:opacity-50 cursor-pointer active:scale-[0.99]"
+                  >
+                    {formSubmitting ? 'Odosielam dopyt...' : 'Odoslať nezáväzný dopyt & získať prepočet'}
+                  </button>
+
+                  <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] text-slate-500 pt-1 text-center">
+                    <span>✓ 100% bezplatná obhliadka</span>
+                    <span>✓ Dotácia do 1 150 € / 4 600 €</span>
+                    <span>✓ Odpoveď do 24h</span>
+                  </div>
+
+                </form>
+              )}
+            </div>
+
           </div>
 
         </div>
