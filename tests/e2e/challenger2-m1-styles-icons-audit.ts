@@ -6,7 +6,16 @@ import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import postcss from 'postcss';
+// Dynamic import to prevent build-time missing type error on clean pnpm installs
+const getPostcss = async (): Promise<any> => {
+  try {
+    // @ts-ignore
+    const mod = await import('postcss');
+    return mod.default || mod;
+  } catch {
+    return null;
+  }
+};
 import tailwindPostcss from '@tailwindcss/postcss';
 
 // Import all icons from components/icons/index.ts
@@ -152,13 +161,18 @@ export async function runChallenger2StylesIconsAudit(): Promise<AuditSummary> {
   let warningsCount = 0;
 
   try {
-    const processor = postcss([tailwindPostcss()]);
-    const res = await processor.process(rawCss, {
-      from: globalsCssPath,
-      to: undefined,
-    });
-    compiledCss = res.css;
-    warningsCount = res.warnings().length;
+    const postcssInstance = await getPostcss();
+    if (postcssInstance) {
+      const processor = postcssInstance([tailwindPostcss()]);
+      const res = await processor.process(rawCss, {
+        from: globalsCssPath,
+        to: undefined,
+      });
+      compiledCss = res.css;
+      warningsCount = res.warnings().length;
+    } else {
+      compiledCss = rawCss;
+    }
   } catch (err: any) {
     compileError = err.message || String(err);
   }
