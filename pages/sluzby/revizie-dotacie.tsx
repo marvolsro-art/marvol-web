@@ -195,8 +195,8 @@ export default function RevizieDotacie() {
 
   return (
     <Layout
-      title="Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA | Marvol s.r.o."
-      description="Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €) a Zelená podnikom. Rýchlo a spoľahlivo."
+      title="Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA | Marvol"
+      description="Úradné revízne správy fotovoltiky (OPOS § 24) a bezplatné vybavenie štátnych dotácií SIEA Zelená domácnostiam a Zelená podnikom. Rýchlo a spoľahlivo."
       canonicalPath="/sluzby/revizie-dotacie"
       schema={jsonLdSchema}
       isSubpage={true}

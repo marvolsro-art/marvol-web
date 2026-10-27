@@ -195,8 +195,8 @@ export default function KonzultaciePoradenstvo() {
 
   return (
     <Layout
-      title="Energetické poradenstvo & Konzultácie fotovoltiky | Marvol s.r.o."
-      description="Nezávislé energetické konzultácie, analýza spotreby, audit návratnosti ROI a dotačné poradenstvo SIEA. Maximalizujte úspory a minimalizujte náklady s Marvol s.r.o."
+      title="Energetické poradenstvo & Konzultácie fotovoltiky | Marvol"
+      description="Nezávislé energetické poradenstvo, analýza spotreby, audit návratnosti a dotácie SIEA. Maximalizujte úspory energie a investujte bez rizika s Marvol."
       canonicalPath="/sluzby/konzultacie-poradenstvo"
       schema={jsonLdSchema}
       isSubpage={true}

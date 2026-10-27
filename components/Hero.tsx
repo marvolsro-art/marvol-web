@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
               <div className="flex items-center gap-2.5 bg-slate-900 p-3 rounded-xl text-xs font-medium text-slate-200">
                 <CurrencyEuroIcon className="w-5 h-5 text-amber-400 shrink-0" />
                 <div className="text-left">
-                  <strong className="block text-white font-semibold">Dotácia do 4 025 €</strong>
+                  <strong className="block text-white font-semibold">Dotácia do 4 600 €</strong>
                   <span className="text-slate-400 text-[11px]">Vybavenie SIEA zadarmo</span>
                 </div>
               </div>

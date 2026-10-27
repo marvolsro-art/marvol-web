@@ -171,8 +171,8 @@ export default function FotovoltikaPreDomacnosti() {
 
   return (
     <Layout
-      title="Fotovoltika pre rodinné domy | Dotácia Zelená domácnostiam | Marvol s.r.o."
-      description="Fotovoltické elektrárne pre rodinné domy na kľúč. Získajte dotáciu Zelená domácnostiam (575 €/kW, max. 1 150 €, Solidarita až 90 %). Projekt, montáž, revízia a pripojenie do siete bez starostí."
+      title="Fotovoltika pre rodinné domy | Dotácia SIEA | Marvol s.r.o."
+      description="Fotovoltika pre rodinné domy na kľúč. Získajte štátnu dotáciu SIEA do 1 150 € a znížte účty za elektrinu až o 80 %. Projekt, montáž a revízia bez starostí."
       canonicalPath="/fotovoltika-pre-domacnosti"
       schema={jsonLdSchema}
       isSubpage={true}

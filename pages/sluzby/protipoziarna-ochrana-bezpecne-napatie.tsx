@@ -195,8 +195,8 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
 
   return (
     <Layout
-      title="Protipožiarna ochrana fotovoltiky & Bezpečné napätie | Marvol s.r.o."
-      description="Maximálna požiarna bezpečnosť fotovoltiky: Rapid Shutdown, zníženie DC napätia pod 120V, AFDD detekcia elektrického oblúka a súlad s STN 92 0203. Chráňte svoj majetok."
+      title="Protipožiarna ochrana fotovoltiky & Rapid Shutdown | Marvol"
+      description="Požiarna bezpečnosť fotovoltiky: Rapid Shutdown, zníženie DC napätia pod 120 V, detekcia AFDD a súlad s STN 92 0203. Chráňte svoj dom a majetok."
       canonicalPath="/sluzby/protipoziarna-ochrana-bezpecne-napatie"
       schema={jsonLdSchema}
       isSubpage={true}

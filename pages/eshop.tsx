@@ -796,7 +796,7 @@ export default function EshopPage() {
   return (
     <Layout
       title="E-Shop Solárnych Komponentov & FV Sety | Marvol"
-      description="Veľkoobchodný a maloobchodný predaj fotovoltických panelov TOPCon, meničov Huawei a SolaX, LiFePO4 batérií a montážnych setov. Sklad vo Vrútkach, možnosť montáže na kľúč s dotáciou SIEA."
+      description="Veľkoobchod a maloobchod: fotovoltické panely TOPCon, striedače Huawei a SolaX, batérie LiFePO4 a montážne sety. Sklad Vrútky aj montáž na kľúč s dotáciou."
       canonicalPath="/eshop"
       schema={storeAndCatalogSchema}
       isSubpage={true}

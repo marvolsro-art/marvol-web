@@ -152,7 +152,7 @@ export default function MinimalistTestPage() {
           content="Moderný minimalistický pohľad na fotovoltiku, batériové úložiská a tepelné čerpadlá pre rodinné domy a firmy na Slovensku. Dotácie SIEA a inžiniering na kľúč."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="robots" content="noindex, follow" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       {/* Ambient background glows */}

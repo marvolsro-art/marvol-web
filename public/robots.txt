@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /test-2
 
 Sitemap: https://marvol.sk/sitemap.xml

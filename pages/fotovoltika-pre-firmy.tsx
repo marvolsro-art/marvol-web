@@ -135,7 +135,7 @@ export default function FotovoltikaPreFirmy() {
 
   return (
     <Layout
-      title="Fotovoltika pre firmy a priemysel | Zelená podnikom | Marvol s.r.o."
+      title="Fotovoltika pre firmy & Priemysel | Zelená podnikom | Marvol"
       description="Priemyselná a komerčná fotovoltika od 10 do 500+ kWp. Znížte prevádzkové náklady firmy, optimalizujte spotrebu a čerpajte dotácie z programu Zelená podnikom."
       canonicalPath="/fotovoltika-pre-firmy"
       schema={jsonLdSchema}
