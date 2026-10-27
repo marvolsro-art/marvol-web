@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { Check, Shield, Bolt, Car, Phone, Mail, ChevronDown } from '@/components/icons';
 
 export default function BaterioveUloziskaBess() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -180,15 +181,15 @@ export default function BaterioveUloziskaBess() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
               {/* Category Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-sky-400 " />
                 <span>Energetická sebestačnosť & Bezpečnosť 24/7</span>
               </div>
 
@@ -203,15 +204,15 @@ export default function BaterioveUloziskaBess() {
 
               {/* Quick Specs Pillars */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">&lt; 20 ms</div>
                   <div className="text-slate-400 text-xs mt-0.5">Bleskové UPS prepnutie</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">6 000+</div>
                   <div className="text-slate-400 text-xs mt-0.5">Cyklov LiFePO4 (15+ rokov)</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">11 / 22 kW</div>
                   <div className="text-slate-400 text-xs mt-0.5">Smart Wallbox s DLB</div>
                 </div>
@@ -221,13 +222,13 @@ export default function BaterioveUloziskaBess() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#riesenia-bess"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:opacity-95 shadow-xl shadow-amber-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
                 >
                   Prehľad batériových systémov
                 </a>
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 text-center transition-colors cursor-pointer"
                 >
                   Nezáväzný technický návrh
                 </a>
@@ -236,28 +237,28 @@ export default function BaterioveUloziskaBess() {
 
             {/* Visual Storage Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-sky-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-800 bg-slate-900">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/bateriove-uloziska/hero.jpg"
-                    alt="Ilustračná fotka batériového úložiska a smart EV Wallboxu Marvol"
+                    alt="Batériové úložisko BESS a smart EV Wallbox Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/20" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span>Ilustračné foto BESS &amp; Wallbox</span>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/90 border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 " />
+                    <span>BESS batériové úložisko</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-400 text-slate-950 font-bold text-xs rounded-full">
                     Blackout Ready
                   </div>
 
                   {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">LiFePO4 batérie &amp; Smart EV Wallbox</span>
                       <span className="text-emerald-400 font-bold">Záloha &lt; 20 ms</span>
@@ -269,21 +270,21 @@ export default function BaterioveUloziskaBess() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900 text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>6 000+ cyklov (15+ rokov)</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>11 kW / 22 kW smart nabíjanie</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>Škálovateľnosť 5 až 500 kWh</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>Automatický UPS záskok</span>
                   </div>
                 </div>
@@ -295,11 +296,11 @@ export default function BaterioveUloziskaBess() {
       </section>
 
       {/* Storage & Wallbox Categories Section */}
-      <section id="riesenia-bess" className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section id="riesenia-bess" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Modulárne systémy
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
@@ -337,13 +338,13 @@ export default function BaterioveUloziskaBess() {
                     {cat.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8 border-t border-slate-800 pt-4">
+                  <div className="space-y-2.5 mb-8 pt-4">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                       Kľúčové parametre:
                     </div>
                     {cat.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <span className="text-amber-400 font-bold shrink-0">✓</span>
+                        <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -353,7 +354,7 @@ export default function BaterioveUloziskaBess() {
                 <div>
                   <a
                     href="#dopyt"
-                    className="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center block text-sm transition-all border border-slate-700 cursor-pointer"
+                    className="w-full min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
                   >
                     Dopytovať toto riešenie
                   </a>
@@ -365,11 +366,11 @@ export default function BaterioveUloziskaBess() {
       </section>
 
       {/* Technology Deep Dive: Safety & UPS Microseconds */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-sky-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
+            <span className="text-sky-400 text-xs font-bold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
               Technologická prevaha
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -382,8 +383,8 @@ export default function BaterioveUloziskaBess() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-2xl font-black">
-                🛡️
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                <Shield className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-xl font-black text-white">Pokročilé BMS riadenie</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -392,8 +393,8 @@ export default function BaterioveUloziskaBess() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400 text-2xl font-black">
-                ⚡
+              <div className="w-12 h-12 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400">
+                <Bolt className="w-6 h-6 text-sky-400" />
               </div>
               <h3 className="text-xl font-black text-white">Mikrosekundový Full Backup</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -402,8 +403,8 @@ export default function BaterioveUloziskaBess() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-2xl font-black">
-                🚗
+              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400">
+                <Car className="w-6 h-6 text-emerald-400" />
               </div>
               <h3 className="text-xl font-black text-white">Solar-Only EV Charging</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -415,11 +416,11 @@ export default function BaterioveUloziskaBess() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -444,16 +445,10 @@ export default function BaterioveUloziskaBess() {
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
-                    <span
-                      className={`text-xl text-amber-400 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    >
-                      ▾
-                    </span>
+                    <ChevronDown className={`w-5 h-5 text-amber-400 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2">
                       {faq.a}
                     </div>
                   )}
@@ -470,7 +465,7 @@ export default function BaterioveUloziskaBess() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Konzultácia batériových riešení
               </span>
 
@@ -484,8 +479,8 @@ export default function BaterioveUloziskaBess() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    📞
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Phone className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Technická podpora & dopyty</div>
@@ -496,8 +491,8 @@ export default function BaterioveUloziskaBess() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    ✉️
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Mail className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">E-mailová konzultácia</div>
@@ -508,8 +503,8 @@ export default function BaterioveUloziskaBess() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    ⚡
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Bolt className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Certifikované montáže</div>

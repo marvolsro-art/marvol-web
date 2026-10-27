@@ -16,10 +16,12 @@ export interface LeadRequestBody {
   propertyType?: string;
   monthlyBill?: number;
   hasBattery?: boolean;
+  hasHeatPump?: boolean;
   hasEV?: boolean;
   recommendedKwp?: number;
   estimatedSavings?: number;
   netPrice?: number;
+  subsidy?: number;
 }
 
 export type LeadRecord = {
@@ -35,10 +37,12 @@ export type LeadRecord = {
   propertyType?: string;
   monthlyBill?: number;
   hasBattery?: boolean;
+  hasHeatPump?: boolean;
   hasEV?: boolean;
   recommendedKwp?: number;
   estimatedSavings?: number;
   netPrice?: number;
+  subsidy?: number;
 };
 
 export type ResponseData = {
@@ -77,10 +81,12 @@ export default async function handler(
       propertyType,
       monthlyBill,
       hasBattery,
+      hasHeatPump,
       hasEV,
       recommendedKwp,
       estimatedSavings,
       netPrice,
+      subsidy,
     } = body;
 
     // 1. Honeypot Bot Trap: If hidden spam field is populated, trap bot with 200 OK without saving
@@ -139,10 +145,12 @@ export default async function handler(
       propertyType: propertyType ? String(propertyType).slice(0, 50) : undefined,
       monthlyBill: typeof monthlyBill === 'number' && !isNaN(monthlyBill) ? monthlyBill : undefined,
       hasBattery: typeof hasBattery === 'boolean' ? hasBattery : undefined,
+      hasHeatPump: typeof hasHeatPump === 'boolean' ? hasHeatPump : undefined,
       hasEV: typeof hasEV === 'boolean' ? hasEV : undefined,
       recommendedKwp: typeof recommendedKwp === 'number' && !isNaN(recommendedKwp) ? recommendedKwp : undefined,
       estimatedSavings: typeof estimatedSavings === 'number' && !isNaN(estimatedSavings) ? estimatedSavings : undefined,
       netPrice: typeof netPrice === 'number' && !isNaN(netPrice) ? netPrice : undefined,
+      subsidy: typeof subsidy === 'number' && !isNaN(subsidy) ? subsidy : undefined,
     };
 
     // Store lead locally in data/leads.json to guarantee 0% data loss
@@ -177,7 +185,7 @@ export default async function handler(
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `⚡ **Nový Dopyt pre Marvol s.r.o.!**\n**Meno:** ${newLead.name}\n**Tel:** ${newLead.phone}\n**E-mail:** ${newLead.email || 'Nezadané'}\n**Lokalita:** ${newLead.city || 'Nezadané'}\n**Služba:** ${newLead.service || 'Nezadané'}\n**Zdroj:** ${newLead.source}\n**Výkon:** ${newLead.recommendedKwp || '-'} kWp | **Úspora:** ${newLead.estimatedSavings || '-'} €/rok\n**Investícia:** ${newLead.netPrice || '-'} €`,
+            content: `**Nový Dopyt pre Marvol s.r.o.!**\n**Meno:** ${newLead.name}\n**Tel:** ${newLead.phone}\n**E-mail:** ${newLead.email || 'Nezadané'}\n**Lokalita:** ${newLead.city || 'Nezadané'}\n**Služba:** ${newLead.service || 'Nezadané'}\n**Zdroj:** ${newLead.source}\n**Výkon:** ${newLead.recommendedKwp || '-'} kWp | **Úspora:** ${newLead.estimatedSavings || '-'} €/rok\n**Investícia:** ${newLead.netPrice || '-'} € | **Dotácia:** ${newLead.subsidy !== undefined ? `${newLead.subsidy} €` : '-'}\n**Tepelné čerpadlo:** ${newLead.hasHeatPump ? 'Áno' : 'Nie'}`,
           }),
         });
       } catch (err) {

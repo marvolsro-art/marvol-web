@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, LockClosedIcon } from '@/components/icons';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800">
+    <footer data-ui="footer" className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
@@ -15,7 +16,7 @@ export const Footer: React.FC = () => {
                 <img
                   src="/logos/logo-marvol.svg"
                   alt="Marvol s.r.o."
-                  className="h-10 sm:h-11 w-auto max-w-[190px] object-contain drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
+                  className="h-10 sm:h-11 w-auto max-w-[190px] object-contain"
                 />
               </Link>
             </div>
@@ -42,7 +43,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Fotovoltika & E-shop */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Fotovoltika &amp; E-shop</h4>
+            <h4 className="text-xs font-bold uppercase text-white">Fotovoltika &amp; E-shop</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link href="/fotovoltika-pre-domacnosti" className="hover:text-amber-400 transition-colors">
@@ -85,7 +86,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Odborné služby */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Odborné služby</h4>
+            <h4 className="text-xs font-bold uppercase text-white">Odborné služby</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link href="/sluzby/navrh-projektu" className="hover:text-amber-400 transition-colors">
@@ -122,14 +123,14 @@ export const Footer: React.FC = () => {
 
           {/* Col 4: Kontakt & Certifikácie */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Kontakt &amp; Právne info</h4>
+            <h4 className="text-xs font-bold uppercase text-white">Kontakt &amp; Právne info</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
                   className="text-white font-bold hover:text-amber-400 transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-amber-400">📞</span>
+                  <PhoneIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>{COMPANY_DETAILS.contact.phone}</span>
                 </a>
               </li>
@@ -138,7 +139,7 @@ export const Footer: React.FC = () => {
                   href={`mailto:${COMPANY_DETAILS.contact.email}`}
                   className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-amber-400">✉️</span>
+                  <MailIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>{COMPANY_DETAILS.contact.email}</span>
                 </a>
               </li>
@@ -149,7 +150,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5"
                 >
-                  <span>💬</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                   <span>WhatsApp konzultácia</span>
                 </a>
               </li>
@@ -158,21 +159,22 @@ export const Footer: React.FC = () => {
                   href="/kontakt"
                   className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-amber-400">📍</span>
+                  <MapPinIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>Kontakt &amp; Sídlo spoločnosti</span>
                 </Link>
               </li>
               <li className="pt-1">
-                <Link href="/ochrana-osobnych-udajov" className="text-amber-400 hover:underline">
-                  🔒 Ochrana osobných údajov (GDPR)
+                <Link href="/ochrana-osobnych-udajov" className="text-amber-400 hover:underline flex items-center gap-1.5">
+                  <LockClosedIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Ochrana osobných údajov (GDPR)</span>
                 </Link>
               </li>
               <li className="pt-2 text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
-                <span>✓</span>
+                <CheckIcon className="w-3 h-3 text-emerald-400 shrink-0" />
                 <span>Zelená domácnostiam (SIEA oprávnený zhotoviteľ)</span>
               </li>
               <li className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
-                <span>✓</span>
+                <CheckIcon className="w-3 h-3 text-emerald-400 shrink-0" />
                 <span>Zelená podnikom (SIEA dotácie pre firmy)</span>
               </li>
             </ul>

@@ -443,8 +443,9 @@ export const tier4Tests: TestCase[] = [
         return { status: 'FAIL', message: 'pages/eshop.tsx does not exist.' };
       }
       const eshopCode = readFile('pages/eshop.tsx');
-      if (!eshopCode.includes('4 025') && !eshopCode.includes('4025')) {
-        return { status: 'FAIL', message: 'State subsidy cap (€4,025) not highlighted in /eshop turnkey section.' };
+      const hasSubsidy = ['1 150', '1150', '4 600', '4600', '4 025', '4025'].some(s => eshopCode.includes(s));
+      if (!hasSubsidy) {
+        return { status: 'FAIL', message: 'SIEA state subsidy guidance (€1,150 / €4,600 / €4,025) not highlighted in /eshop turnkey section.' };
       }
       if (!eshopCode.includes('Huawei SUN2000-10KTL-M1')) {
         return { status: 'FAIL', message: 'Huawei hybrid inverter model missing in /eshop catalog.' };
@@ -487,6 +488,134 @@ export const tier4Tests: TestCase[] = [
       return {
         status: 'PASS',
         message: `Scenario 8 completed: Turnkey subsidy installation inquiry registered with leadId ${body.leadId}`,
+      };
+    },
+  },
+
+  // =========================================================================
+  // SCENARIO 9: Complete Residential Homeowner Journey
+  // =========================================================================
+  {
+    id: 'T4-SC-09',
+    tier: 4,
+    category: 'End-to-End User Journey',
+    name: 'Journey 9: Homeowner Solar & BESS Configuration Flow',
+    description: 'Residential homeowner visits /fotovoltika-pre-domacnosti, configures 140 €/mo bill with BESS storage, and submits lead inquiry.',
+    run: async () => {
+      // 1. Verify subpage content & structure
+      if (!fileExists('pages/fotovoltika-pre-domacnosti.tsx')) {
+        return { status: 'FAIL', message: 'pages/fotovoltika-pre-domacnosti.tsx not found.' };
+      }
+      const pageCode = readFile('pages/fotovoltika-pre-domacnosti.tsx');
+      if (!pageCode.includes('Zelená domácnostiam') || !pageCode.includes('LeadForm')) {
+        return { status: 'FAIL', message: 'Residential page missing subsidy or LeadForm integration.' };
+      }
+
+      // 2. Submit realistic homeowner lead inquiry
+      const customerName = `Stanislav Kováč (Scenario 9 - ${Date.now()})`;
+      const req = createMockRequest({
+        method: 'POST',
+        body: {
+          name: customerName,
+          phone: '+421 905 111 222',
+          email: 'stanislav.kovac@gmail.com',
+          city: 'Martin - Priekopa',
+          service: 'fotovoltika-dom',
+          propertyType: 'home',
+          monthlyBill: 140,
+          hasBattery: true,
+          hasEV: false,
+          recommendedKwp: 8.8,
+          estimatedSavings: 1310,
+          netPrice: 9240,
+          message: 'Mám záujem o 8.8 kWp systém s batériou pre rodinný dom a vybavenie dotácie SIEA Zelená domácnostiam.',
+          source: 'residential_journey_calculator',
+        },
+      });
+
+      const { res, getResponse } = createMockResponse();
+      await leadHandler(req, res);
+      const output = getResponse();
+      const body = output.body as { success?: boolean; leadId?: string };
+
+      if (output.statusCode !== 200 || !body?.success || !body?.leadId) {
+        return { status: 'FAIL', message: `Scenario 9 lead submission failed: ${JSON.stringify(output.body)}` };
+      }
+
+      // 3. Verify lead persistence
+      const leadsFile = path.join(ROOT_DIR, 'data', 'leads.json');
+      const leadsData = fs.readFileSync(leadsFile, 'utf8');
+      if (!leadsData.includes(customerName) || !leadsData.includes('residential_journey_calculator')) {
+        return { status: 'FAIL', message: 'Scenario 9 lead not found in data/leads.json.' };
+      }
+
+      return {
+        status: 'PASS',
+        message: `Scenario 9 completed: Homeowner PV+BESS inquiry registered with leadId ${body.leadId}`,
+      };
+    },
+  },
+
+  // =========================================================================
+  // SCENARIO 10: Complete Commercial Factory Turnkey Consultation Journey
+  // =========================================================================
+  {
+    id: 'T4-SC-10',
+    tier: 4,
+    category: 'End-to-End User Journey',
+    name: 'Journey 10: Commercial Factory Turnkey Solar Consultation',
+    description: 'Factory plant director visits /fotovoltika-pre-firmy, evaluates peak shaving and B2B scheme, submits commercial consultation lead.',
+    run: async () => {
+      // 1. Verify commercial subpage content & structure
+      if (!fileExists('pages/fotovoltika-pre-firmy.tsx')) {
+        return { status: 'FAIL', message: 'pages/fotovoltika-pre-firmy.tsx not found.' };
+      }
+      const pageCode = readFile('pages/fotovoltika-pre-firmy.tsx');
+      if (!pageCode.includes('Zelená podnikom') || !pageCode.includes('LeadForm')) {
+        return { status: 'FAIL', message: 'Commercial page missing B2B subsidy scheme or LeadForm.' };
+      }
+
+      // 2. Submit realistic commercial B2B lead inquiry
+      const companyContact = `Ing. Peter Vavro - PlastForm s.r.o. (Scenario 10 - ${Date.now()})`;
+      const req = createMockRequest({
+        method: 'POST',
+        body: {
+          name: companyContact,
+          phone: '+421 908 777 666',
+          email: 'vavro@plastform.sk',
+          city: 'Ružomberok',
+          service: 'fotovoltika-firma',
+          propertyType: 'business',
+          monthlyBill: 1500,
+          hasBattery: true,
+          hasEV: true,
+          recommendedKwp: 95.0,
+          estimatedSavings: 14040,
+          netPrice: 79000,
+          message: 'Požadujeme kompletný návrh 95 kWp FVE na trapézovú strechu výrobnej haly s akumuláciou na zníženie 15-minútových maxím (peak shaving) a B2B dotačným auditom.',
+          source: 'commercial_firmy_journey',
+        },
+      });
+
+      const { res, getResponse } = createMockResponse();
+      await leadHandler(req, res);
+      const output = getResponse();
+      const body = output.body as { success?: boolean; leadId?: string };
+
+      if (output.statusCode !== 200 || !body?.success || !body?.leadId) {
+        return { status: 'FAIL', message: `Scenario 10 commercial submission failed: ${JSON.stringify(output.body)}` };
+      }
+
+      // 3. Verify lead persistence
+      const leadsFile = path.join(ROOT_DIR, 'data', 'leads.json');
+      const leadsData = fs.readFileSync(leadsFile, 'utf8');
+      if (!leadsData.includes(companyContact) || !leadsData.includes('commercial_firmy_journey')) {
+        return { status: 'FAIL', message: 'Scenario 10 lead not persisted in data/leads.json.' };
+      }
+
+      return {
+        status: 'PASS',
+        message: `Scenario 10 completed: Commercial turnkey solar inquiry registered with leadId ${body.leadId}`,
       };
     },
   },

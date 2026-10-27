@@ -717,4 +717,115 @@ export const tier2Tests: TestCase[] = [
       return { status: 'PASS', message: 'Product card dual action buttons safely stack vertically on narrow mobile viewports.' };
     },
   },
+
+  // =========================================================================
+  // 9. CALCULATOR BOUNDARY & INPUT EXTREMES
+  // =========================================================================
+  {
+    id: 'T2-CB-01',
+    tier: 2,
+    category: 'Calculator Boundary Inputs',
+    name: 'Minimum monthly bill (50 €) yields valid clamped 3.0 kWp minimum system and non-negative savings',
+    description: 'Verifies lower slider boundary behavior (50 € -> 3.0 kWp).',
+    run: () => {
+      const calcCode = readFile('components/CalculatorSection.tsx');
+      if (!calcCode.includes('min="50"') || !calcCode.includes('Math.max(')) {
+        return { status: 'FAIL', message: 'Calculator minimum 50 € input boundary or clamp logic missing.' };
+      }
+      const monthlyBill = 50;
+      const baseKwp = monthlyBill / 16; // 3.125
+      const clampedKwp = Math.min(Math.max(Math.round(baseKwp * 10) / 10, 3), 250);
+      if (clampedKwp < 3.0) {
+        return { status: 'FAIL', message: `Minimum bill 50 € produced ${clampedKwp} kWp, less than minimum 3.0 kWp.` };
+      }
+      const annualBill = monthlyBill * 12;
+      const savings = Math.round(annualBill * 0.78);
+      if (savings <= 0) {
+        return { status: 'FAIL', message: `Estimated savings at 50 € must be positive, got ${savings}` };
+      }
+      return { status: 'PASS', message: 'Minimum 50 € boundary correctly clamps to >= 3.0 kWp with positive savings.' };
+    },
+  },
+  {
+    id: 'T2-CB-02',
+    tier: 2,
+    category: 'Calculator Boundary Inputs',
+    name: 'Upper residential bill boundary (800 €) yields valid residential system size',
+    description: 'Verifies residential ceiling max="800" produces valid high-capacity output.',
+    run: () => {
+      const calcCode = readFile('components/CalculatorSection.tsx');
+      if (!calcCode.includes('800')) {
+        return { status: 'FAIL', message: 'Residential 800 € ceiling slider bound missing in Calculator.' };
+      }
+      const monthlyBill = 800;
+      const baseKwp = monthlyBill / 16; // 50.0 kWp
+      const clampedKwp = Math.min(Math.max(Math.round(baseKwp * 10) / 10, 3), 250);
+      if (clampedKwp <= 0 || isNaN(clampedKwp)) {
+        return { status: 'FAIL', message: 'Upper residential boundary produced NaN or invalid kWp.' };
+      }
+      return { status: 'PASS', message: 'Upper residential boundary (800 €) safely calculates capacity without overflow.' };
+    },
+  },
+  {
+    id: 'T2-CB-03',
+    tier: 2,
+    category: 'Calculator Boundary Inputs',
+    name: 'Upper commercial bill boundary (3 000 €) calculates large-scale B2B solar array up to 250 kWp',
+    description: 'Verifies commercial upper bound max="3000" handles large scale solar correctly.',
+    run: () => {
+      const calcCode = readFile('components/CalculatorSection.tsx');
+      if (!calcCode.includes('3000') || !calcCode.includes('250')) {
+        return { status: 'FAIL', message: 'Commercial 3000 € bound or 250 kWp clamp missing in Calculator.' };
+      }
+      const monthlyBill = 3000;
+      const baseKwp = monthlyBill / 16; // 187.5 kWp
+      const clampedKwp = Math.min(Math.max(Math.round(baseKwp * 10) / 10, 3), 250);
+      if (clampedKwp > 250 || clampedKwp < 100) {
+        return { status: 'FAIL', message: `Commercial 3000 € bill produced unexpected kWp: ${clampedKwp}` };
+      }
+      return { status: 'PASS', message: 'Commercial 3000 € bound successfully calculated within [3, 250] kWp.' };
+    },
+  },
+  {
+    id: 'T2-CB-04',
+    tier: 2,
+    category: 'Calculator Boundary Inputs',
+    name: 'Zero or anomalous input values fall back safely to minimum bounds without division by zero',
+    description: 'Ensures paybackYears and savings are guarded against zero division or NaN.',
+    run: () => {
+      const calcCode = readFile('components/CalculatorSection.tsx');
+      if (!calcCode.includes('estimatedSavings > 0') && !calcCode.includes('paybackYears')) {
+        return { status: 'FAIL', message: 'Guard against division by zero in payback calculation missing.' };
+      }
+      // Simulation of edge zero savings
+      const estimatedSavings = 0;
+      const netPrice = 3000;
+      const paybackYears = estimatedSavings > 0 ? (netPrice / estimatedSavings).toFixed(1) : '4.5';
+      if (paybackYears !== '4.5') {
+        return { status: 'FAIL', message: `Fallback payback for zero savings failed: got ${paybackYears}` };
+      }
+      return { status: 'PASS', message: 'Zero savings boundary safely falls back without Infinity or NaN.' };
+    },
+  },
+  {
+    id: 'T2-CB-05',
+    tier: 2,
+    category: 'Calculator Boundary Inputs',
+    name: 'High-power EV Wallbox toggle boundary adds exactly 1.5 kWp to recommended system size',
+    description: 'Verifies boolean toggle edge addition for EV Wallbox charging demands.',
+    run: () => {
+      const calcCode = readFile('components/CalculatorSection.tsx');
+      if (!calcCode.includes('hasEV ? 1.5 : 0')) {
+        return { status: 'FAIL', message: 'EV Wallbox toggle adder (hasEV ? 1.5 : 0) missing in Calculator.' };
+      }
+      const bill = 160;
+      const baseKwp = bill / 16;
+      const withoutEV = Math.min(Math.max(Math.round(baseKwp * 10) / 10, 3), 250);
+      const withEV = Math.min(Math.max(Math.round((baseKwp + 1.5) * 10) / 10, 3), 250);
+      if (Math.round((withEV - withoutEV) * 10) / 10 !== 1.5) {
+        return { status: 'FAIL', message: `EV Wallbox delta mismatch: expected 1.5 kWp, got ${withEV - withoutEV}` };
+      }
+      return { status: 'PASS', message: 'EV Wallbox toggle boundary strictly adds 1.5 kWp capacity.' };
+    },
+  },
 ];

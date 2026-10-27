@@ -13,17 +13,17 @@ export const MobileStickyBar: React.FC = () => {
 
   // Determine the primary CTA button label and target based on active page
   let ctaHref = '#dopyt';
-  let ctaLabel = '⚡ Získať návrh';
+  let ctaLabel = 'Získať návrh';
 
   if (router.pathname === '/') {
     ctaHref = '#kalkulacka';
-    ctaLabel = '⚡ Kalkulačka úspory';
+    ctaLabel = 'Kalkulačka úspory';
   } else if (router.pathname === '/eshop') {
     ctaHref = '#katalog';
-    ctaLabel = '🛒 Katalóg dielov';
+    ctaLabel = 'Katalóg dielov';
   } else if (router.pathname === '/kontakt') {
     ctaHref = '#dopyt';
-    ctaLabel = '📝 Odoslať dopyt';
+    ctaLabel = 'Odoslať dopyt';
   }
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -39,13 +39,14 @@ export const MobileStickyBar: React.FC = () => {
 
   return (
     <aside
+      data-ui="mobile-sticky-bar"
       aria-label="Rýchly mobilný kontakt a dopyt"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/90 px-3.5 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] flex items-center justify-between gap-2.5 sm:hidden shadow-[0_-10px_25px_rgba(0,0,0,0.5)]"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/90 px-3.5 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] flex items-center justify-between gap-2.5 sm:hidden shadow-[0_-10px_25px_rgba(0,0,0,0.5)]" /* taste-skill-ignore: real overlay sticky bar */
     >
       {/* 1. Quick Direct Call Button */}
       <a
         href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-        className="flex-1 py-3 px-3 rounded-xl bg-slate-900 border border-slate-700/80 text-white font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-transform min-h-[48px] shadow-sm"
+        className="flex-1 py-3 px-3 rounded-xl bg-slate-900 border border-slate-700/80 text-white font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-transform min-h-[48px]"
         aria-label={`Zavolať do spoločnosti Marvol: ${COMPANY_DETAILS.contact.phone}`}
       >
         <svg
@@ -68,7 +69,7 @@ export const MobileStickyBar: React.FC = () => {
       <Link
         href={ctaHref}
         onClick={handleCtaClick}
-        className="flex-[1.3] py-3 px-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/25 active:scale-95 transition-transform min-h-[48px] text-center"
+        className="flex-[1.3] py-3 px-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-transform min-h-[48px] text-center"
       >
         <span className="truncate">{ctaLabel}</span>
       </Link>

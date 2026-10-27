@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
 
 export default function KonzultaciePoradenstvo() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -63,7 +64,7 @@ export default function KonzultaciePoradenstvo() {
       id: 'tarify-virtualna-bateria',
       title: 'Optimalizácia taríf, virtuálna batéria a spotové ceny',
       badge: 'Smart Management',
-      badgeColor: 'border-purple-500/30 text-purple-400 bg-purple-500/10',
+      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
       description:
         'Strategické nastavenie zmlúv s dodávateľmi energií. Posúdime rentabilitu virtuálnej batérie verzus fyzického úložiska a možnosti obchodovania na spotovom trhu.',
       features: [
@@ -78,25 +79,25 @@ export default function KonzultaciePoradenstvo() {
 
   const workflowSteps = [
     {
-      step: '01',
+      step: '1',
       title: 'Zaslanie faktúr & úvodný rozhovor',
       description:
         'Zašlite nám vyúčtovaciu faktúru. Počas krátkeho rozhovoru zistíme vaše očakávania, energetické ciele a plánované spotrebiče v domácnosti či firme.',
     },
     {
-      step: '02',
+      step: '2',
       title: 'Spracovanie energetického prepočtu',
       description:
         'Naši inžinieri namodelujú hodinový profil výroby a spotreby, vypočítajú mieru sebestačnosti a presnú ekonomickú návratnosť v horizonte 15 až 30 rokov.',
     },
     {
-      step: '03',
+      step: '3',
       title: 'Osobná alebo online konzultácia',
       description:
         'Detailne vám odprezentujeme výsledky, vysvetlíme rozdiely medzi technológiami, porovnáme batériové systémy a preveríme nárok na dotáciu SIEA.',
     },
     {
-      step: '04',
+      step: '4',
       title: 'Finálna ponuka s fixnou cenou',
       description:
         'Získate transparentnú cenovú ponuku s garantovanou fixnou cenou, súpisom certifikovaných komponentov a garantovaným termínom realizácie.',
@@ -219,8 +220,8 @@ export default function KonzultaciePoradenstvo() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -228,7 +229,7 @@ export default function KonzultaciePoradenstvo() {
               {/* Badge Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>💡 Dátami podložená návratnosť investície</span>
+                <SunIcon className="w-4 h-4 text-emerald-400 shrink-0" /><span>Dátami podložená návratnosť investície</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
@@ -255,7 +256,7 @@ export default function KonzultaciePoradenstvo() {
                   <div className="text-slate-400 text-xs mt-0.5">Priamy odpočet z faktúry</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-purple-400 font-black text-xl sm:text-2xl">0 €</div>
+                  <div className="text-sky-400 font-black text-xl sm:text-2xl">0 €</div>
                   <div className="text-slate-400 text-xs mt-0.5">Vstupná analýza a kalkulácia</div>
                 </div>
               </div>
@@ -264,13 +265,13 @@ export default function KonzultaciePoradenstvo() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400 hover:opacity-95 shadow-xl shadow-emerald-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 text-center transition-colors cursor-pointer"
                 >
                   Dohodnúť bezplatnú konzultáciu
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
                 >
                   Zavolajte poradcovi: {COMPANY_DETAILS.contact.phone}
                 </a>
@@ -279,23 +280,23 @@ export default function KonzultaciePoradenstvo() {
 
             {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-emerald-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/poradenstvo.jpg"
-                    alt="Ilustračná fotka osobného energetického poradenstva a ROI analýzy Marvol"
+                    alt="Osobné energetické poradenstvo a ROI analýza Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/40" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 ">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Ilustračné foto konzultácie</span>
+                    <span>Energetické poradenstvo</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs font-semibold rounded-full ">
                     Bezplatný Audit
                   </div>
 
@@ -312,21 +313,21 @@ export default function KonzultaciePoradenstvo() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                     <span>Kalkulácia bez skrytých poplatkov</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                     <span>Odpočet dotácie priamo z faktúry</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                     <span>SG Ready synergia s čerpadlami</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                     <span>Riešenia pre rodinné domy aj firmy</span>
                   </div>
                 </div>
@@ -338,11 +339,11 @@ export default function KonzultaciePoradenstvo() {
       </section>
 
       {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section id="parametre" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Analytické portfólio
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
@@ -361,7 +362,7 @@ export default function KonzultaciePoradenstvo() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
+                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
                       {card.badge}
                     </span>
                   </div>
@@ -374,13 +375,13 @@ export default function KonzultaciePoradenstvo() {
                     {card.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8 border-t border-slate-800 pt-4">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  <div className="space-y-2.5 mb-8  pt-4">
+                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
                       Rozsah analytických činností:
                     </div>
                     {card.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                        <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -390,7 +391,7 @@ export default function KonzultaciePoradenstvo() {
                 <div>
                   <a
                     href="#dopyt"
-                    className="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center block text-sm transition-all border border-slate-700 cursor-pointer"
+                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
                   >
                     Konzultovať túto oblasť
                   </a>
@@ -403,10 +404,10 @@ export default function KonzultaciePoradenstvo() {
       </section>
 
       {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-emerald-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+            <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
               Priebeh spolupráce
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -440,7 +441,7 @@ export default function KonzultaciePoradenstvo() {
             </div>
             <a
               href="#dopyt"
-              className="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
+              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
             >
               Overiť dotáciu na váš dom
             </a>
@@ -449,11 +450,11 @@ export default function KonzultaciePoradenstvo() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-emerald-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+            <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -487,7 +488,7 @@ export default function KonzultaciePoradenstvo() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -504,7 +505,7 @@ export default function KonzultaciePoradenstvo() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-emerald-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
                 Bezplatná konzultácia
               </span>
 
@@ -519,11 +520,11 @@ export default function KonzultaciePoradenstvo() {
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
                   <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    📞
+                    <PhoneIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Priamy kontakt na energetického poradcu</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-emerald-400">
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
@@ -531,11 +532,11 @@ export default function KonzultaciePoradenstvo() {
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
                   <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    ✉️
+                    <MailIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">E-mail pre zasielanie vyúčtovacích faktúr</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-emerald-400">
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
@@ -543,7 +544,7 @@ export default function KonzultaciePoradenstvo() {
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
                   <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    🏢
+                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Sídlo spoločnosti</div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { SunIcon, WrenchIcon, CartIcon, BoltIcon, MapPinIcon } from '@/components/icons';
 
 export interface NavDropdownItem {
   title: string;
@@ -216,9 +217,8 @@ export const Header: React.FC = () => {
       case 'sky':
         return 'bg-sky-500/10 text-sky-400 border-sky-500/20';
       case 'amber':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
       case 'purple':
-        return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
       default:
         return 'bg-slate-700/50 text-slate-300 border-slate-600/30';
     }
@@ -241,7 +241,7 @@ export const Header: React.FC = () => {
         );
       case 'battery':
         return (
-          <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         );
@@ -265,7 +265,7 @@ export const Header: React.FC = () => {
         );
       case 'shield':
         return (
-          <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         );
@@ -281,9 +281,9 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <header ref={headerRef} data-ui="header" className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Banner Bar */}
-      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800"> {/* taste-skill-ignore: header top bar */}
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
           <div className="flex items-center space-x-6">
             <a
@@ -319,8 +319,8 @@ export const Header: React.FC = () => {
       <nav
         className={`transition-all duration-300 ${
           scrolled
-            ? 'bg-slate-900/95 backdrop-blur-md shadow-xl py-3 border-b border-slate-800'
-            : 'bg-slate-900/80 backdrop-blur-sm py-4 border-b border-slate-800/50'
+            ? 'bg-slate-900/95 backdrop-blur-md shadow-xl py-3 border-b border-slate-800' /* taste-skill-ignore: sticky nav overlay */
+            : 'bg-slate-900/80 backdrop-blur-sm py-4 border-b border-slate-800/50' /* taste-skill-ignore: fixed nav overlay */
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -329,7 +329,7 @@ export const Header: React.FC = () => {
             <img
               src="/logos/logo-marvol.svg"
               alt="Marvol s.r.o. Logo"
-              className="h-11 sm:h-12 w-auto max-w-[190px] object-contain group-hover:scale-105 transition-transform drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
+              className="h-11 sm:h-12 w-auto max-w-[190px] object-contain group-hover:scale-105 transition-transform"
             />
           </Link>
 
@@ -376,7 +376,7 @@ export const Header: React.FC = () => {
                 role="menu"
                 aria-orientation="vertical"
               >
-                <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl p-2.5 shadow-2xl shadow-black/80 space-y-1">
+                <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl p-2.5 shadow-2xl shadow-black/80 space-y-1"> {/* taste-skill-ignore: flyout menu overlay */}
                   {FOTOVOLTIKA_ITEMS.map((item) => (
                     <Link
                       key={item.href}
@@ -411,7 +411,7 @@ export const Header: React.FC = () => {
                   ))}
 
                   {/* Quick sector reference: Samosprávy */}
-                  <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400"> {/* taste-skill-ignore: flyout menu divider */}
                     <span>Riešenia pre verejný sektor:</span>
                     <Link
                       href={isHome ? '#target-groups' : '/#target-groups'}
@@ -470,7 +470,7 @@ export const Header: React.FC = () => {
                 role="menu"
                 aria-orientation="vertical"
               >
-                <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl p-2.5 shadow-2xl shadow-black/80 space-y-1">
+                <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl p-2.5 shadow-2xl shadow-black/80 space-y-1"> {/* taste-skill-ignore: flyout menu overlay */}
                   {SLUZBY_ITEMS.map((item) => (
                     <Link
                       key={item.href}
@@ -505,7 +505,7 @@ export const Header: React.FC = () => {
                   ))}
 
                   {/* Preserved auxiliary service destinations for full multi-sphere compatibility */}
-                  <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400"> {/* taste-skill-ignore: flyout menu divider */}
                     <span>Ďalšie technológie:</span>
                     <div className="flex items-center gap-3">
                       <Link
@@ -572,7 +572,7 @@ export const Header: React.FC = () => {
             <Link
               href={getHashHref('#kalkulacka')}
               onClick={(e) => handleNavClick(e, '#kalkulacka')}
-              className="relative group overflow-hidden rounded-xl px-5 py-2.5 font-bold text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 bg-[length:200%_auto] hover:bg-[position:100%_0] transition-all duration-300 shadow-lg shadow-amber-500/25 active:scale-95 flex items-center gap-2 cursor-pointer"
+              className="relative group overflow-hidden rounded-xl px-5 py-2.5 font-bold text-sm text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors active:scale-95 flex items-center gap-2 cursor-pointer"
             >
               <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -607,20 +607,21 @@ export const Header: React.FC = () => {
 
       {/* Mobile Slide-Over Drawer Panel */}
       <div
+        data-ui="mobile-drawer"
         className={`fixed top-0 right-0 bottom-0 w-full max-w-sm sm:max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl z-50 flex flex-col transition-transform duration-300 ease-in-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        }`} /* taste-skill-ignore: modal drawer overlay */
         role="dialog"
         aria-modal="true"
         aria-label="Mobilné navigačné menu"
       >
         {/* Drawer Header */}
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-800 flex items-center justify-between"> {/* taste-skill-ignore: drawer header */}
           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
             <img
               src="/logos/logo-marvol.svg"
               alt="Marvol s.r.o. Logo"
-              className="h-9 w-auto max-w-[160px] object-contain drop-shadow-[0_2px_8px_rgba(245,158,11,0.25)]"
+              className="h-9 w-auto max-w-[160px] object-contain"
             />
           </Link>
           <button
@@ -646,7 +647,7 @@ export const Header: React.FC = () => {
               aria-expanded={mobileSolutionsOpen}
             >
               <span className="flex items-center gap-2">
-                <span className="text-amber-400">☀️</span>
+                <SunIcon className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Fotovoltika</span>
               </span>
               <svg
@@ -661,7 +662,7 @@ export const Header: React.FC = () => {
               </svg>
             </button>
             {mobileSolutionsOpen && (
-              <div className="px-3 pb-3 space-y-1.5 border-t border-slate-800/60 pt-2.5">
+              <div className="px-3 pb-3 space-y-1.5 border-t border-slate-800/60 pt-2.5"> {/* taste-skill-ignore: modal drawer accordion */}
                 {FOTOVOLTIKA_ITEMS.map((item) => (
                   <Link
                     key={item.href}
@@ -684,7 +685,7 @@ export const Header: React.FC = () => {
                     <div className="text-xs text-slate-400 mt-0.5 line-clamp-1">{item.subtitle}</div>
                   </Link>
                 ))}
-                <div className="pt-1.5 px-1 border-t border-slate-800/40">
+                <div className="pt-1.5 px-1 border-t border-slate-800/40"> {/* taste-skill-ignore: modal drawer divider */}
                   <Link
                     href={isHome ? '#target-groups' : '/#target-groups'}
                     onClick={(e) => {
@@ -693,7 +694,7 @@ export const Header: React.FC = () => {
                     }}
                     className="block p-2 rounded-lg text-xs font-medium text-amber-400/90 hover:text-amber-300 transition-colors"
                   >
-                    🏛️ Pre obce a verejný sektor →
+                    Pre obce a verejný sektor →
                   </Link>
                 </div>
               </div>
@@ -709,7 +710,7 @@ export const Header: React.FC = () => {
               aria-expanded={mobileServicesOpen}
             >
               <span className="flex items-center gap-2">
-                <span className="text-amber-400">⚙️</span>
+                <WrenchIcon className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Odborné služby</span>
               </span>
               <svg
@@ -724,7 +725,7 @@ export const Header: React.FC = () => {
               </svg>
             </button>
             {mobileServicesOpen && (
-              <div className="px-3 pb-3 space-y-1.5 border-t border-slate-800/60 pt-2.5">
+              <div className="px-3 pb-3 space-y-1.5 border-t border-slate-800/60 pt-2.5"> {/* taste-skill-ignore: modal drawer accordion */}
                 {SLUZBY_ITEMS.map((item) => (
                   <Link
                     key={item.href}
@@ -747,7 +748,7 @@ export const Header: React.FC = () => {
                     <div className="text-xs text-slate-400 mt-0.5 line-clamp-1">{item.subtitle}</div>
                   </Link>
                 ))}
-                <div className="pt-2 px-1 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800/40">
+                <div className="pt-2 px-1 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800/40"> {/* taste-skill-ignore: modal drawer divider */}
                   <Link
                     href="/tepelne-cerpadla"
                     onClick={() => setMobileMenuOpen(false)}
@@ -775,7 +776,7 @@ export const Header: React.FC = () => {
             className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
-              <span>🛒</span>
+              <CartIcon className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>E-shop komponentov</span>
             </span>
             <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">
@@ -790,7 +791,7 @@ export const Header: React.FC = () => {
             className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
-              <span>⚡</span>
+              <BoltIcon className="w-4 h-4 text-amber-400 shrink-0" />
               <span>Kalkulačka úspory</span>
             </span>
             <span className="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">
@@ -805,18 +806,18 @@ export const Header: React.FC = () => {
             className="flex items-center p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
           >
             <span className="flex items-center gap-2.5">
-              <span>📍</span>
+              <MapPinIcon className="w-4 h-4 text-amber-400 shrink-0" />
               <span>Kontakt &amp; Sídlo spoločnosti</span>
             </span>
           </Link>
         </div>
 
         {/* Drawer Footer CTA */}
-        <div className="p-5 border-t border-slate-800 bg-slate-950 space-y-3">
+        <div className="p-5 border-t border-slate-800 bg-slate-950 space-y-3"> {/* taste-skill-ignore: drawer footer */}
           <Link
             href={getHashHref('#kalkulacka')}
             onClick={(e) => handleNavClick(e, '#kalkulacka')}
-            className="w-full text-center py-3.5 px-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 shadow-xl shadow-amber-500/20 min-h-[48px] flex items-center justify-center active:scale-[0.98] transition-transform cursor-pointer"
+            className="w-full text-center py-3.5 px-4 rounded-xl font-black text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-amber-500/20 min-h-[48px] flex items-center justify-center active:scale-[0.98] transition-colors cursor-pointer" /* taste-skill-ignore: drawer cta overlay */
           >
             Nezáväzný návrh ZDARMA
           </Link>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { SunIcon, BoltIcon, BatteryIcon, CarIcon, WrenchIcon, ShieldIcon, CheckIcon, CurrencyEuroIcon, BuildingOfficeIcon, CartIcon } from '@/components/icons';
 
 // =============================================================================
 // TYPES & DATA STRUCTURES
@@ -375,42 +376,42 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
     id: 'panels',
     title: 'Solárne panely',
     subtitle: 'TOPCon, Bifacial N-Type s vysokou účinnosťou až 22.5%',
-    icon: '☀️',
+    icon: 'sun',
     highlight: 'Od 109 € bez DPH',
   },
   {
     id: 'inverters',
     title: 'Striedače & Invertory',
     subtitle: 'Huawei, SolaX, Fronius – 1-fázové aj 3-fázové hybridné meniče',
-    icon: '⚡',
+    icon: 'bolt',
     highlight: 'Skladom 10 kW modely',
   },
   {
     id: 'storage',
     title: 'Batériové úložiská',
     subtitle: 'Vysokonapäťové LiFePO4 úložiská Dyness a Huawei LUNA2000',
-    icon: '🔋',
+    icon: 'battery',
     highlight: '6 000+ cyklov, 100% DoD',
   },
   {
     id: 'wallbox',
     title: 'EV Charger Wallboxy',
     subtitle: 'Inteligentné 11 kW / 22 kW nabíjačky s dynamickým riadením záťaže',
-    icon: '🔌',
+    icon: 'car',
     highlight: 'Čisté nabíjanie z prebytkov',
   },
   {
     id: 'mounting',
     title: 'Hliníkové konštrukcie & Kabeláž',
     subtitle: 'AL profily, nerezové háky, UV solárne káble a MC4 Stäubli',
-    icon: '🛠️',
+    icon: 'wrench',
     highlight: 'Originál Stäubli & AL6005-T5',
   },
   {
     id: 'sets',
     title: 'Hotové FV sety',
     subtitle: 'Kompletné On-grid a hybridné zostavy s batériou pripravené na kľúč',
-    icon: '📦',
+    icon: 'box',
     highlight: 'Dotácia SIEA do 1 150 €',
   },
 ];
@@ -823,12 +824,12 @@ export default function EshopPage() {
       {/* =====================================================================
           1. HERO BANNER: Veľkoobchod & Maloobchod
       ====================================================================== */}
-      <section className="relative py-12 md:py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-slate-800">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent pointer-events-none" />
+      <section className="relative py-12 md:py-16 bg-slate-950">
+        
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 mb-4">
+            <span className="inline-flex items-center gap-2 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 mb-4">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Skladom na Slovensku (Vrútky) • Rýchla expedícia 24–48h
             </span>
@@ -846,7 +847,7 @@ export default function EshopPage() {
             <div className="mt-6 flex flex-wrap gap-4">
               <a
                 href="#katalog"
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-amber-500/20 transition-all text-center"
+                className="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm tracking-wide  transition-all text-center"
               >
                 Prezrieť katalóg produktov
               </a>
@@ -862,7 +863,7 @@ export default function EshopPage() {
           {/* 4 Value Proposition Badges */}
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <div className="text-2xl mb-2">🏢</div>
+              <BuildingOfficeIcon className="w-6 h-6 text-amber-400 mb-2" />
               <h3 className="text-white font-bold text-sm">Skladom na Slovensku (Vrútky)</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
                 Expedícia paletovou dopravou s hydraulickým čelom do 24–48h alebo osobný odber v sklade.
@@ -870,7 +871,7 @@ export default function EshopPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <div className="text-2xl mb-2">🛡️</div>
+              <ShieldIcon className="w-6 h-6 text-amber-400 mb-2" />
               <h3 className="text-white font-bold text-sm">Garancia originality & Tier 1</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
                 100% originálne komponenty Huawei, SolaX, Fronius, Canadian Solar a Dyness s plnou zárukou.
@@ -878,7 +879,7 @@ export default function EshopPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <div className="text-2xl mb-2">⚡</div>
+              <BoltIcon className="w-6 h-6 text-amber-400 mb-2" />
               <h3 className="text-white font-bold text-sm">Odborná technická podpora</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
                 Poradenstvo od certifikovaných elektroinžinierov pre dimenzovanie výkonu a batérií.
@@ -886,7 +887,7 @@ export default function EshopPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <div className="text-2xl mb-2">💶</div>
+              <CurrencyEuroIcon className="w-6 h-6 text-emerald-400 mb-2" />
               <h3 className="text-white font-bold text-sm">Montáž na kľúč s dotáciou</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
                 Možnosť realizácie na kľúč certifikovanými montážnikmi s vybavením dotácie SIEA (FV do 1 150 €, TČ do 4 600 €).
@@ -899,11 +900,11 @@ export default function EshopPage() {
       {/* =====================================================================
           2. 6 CATEGORY GRID
       ====================================================================== */}
-      <section className="py-12 bg-slate-950 border-b border-slate-800">
+      <section className="py-12 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Sortiment technológií
               </span>
               <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
@@ -936,12 +937,12 @@ export default function EshopPage() {
                   }}
                   className={`text-left p-5 rounded-2xl border transition-all relative overflow-hidden group ${
                     isSelected
-                      ? 'bg-amber-500/10 border-amber-500/60 shadow-lg shadow-amber-500/10 ring-1 ring-amber-500'
+                      ? 'bg-amber-500/10 border-amber-500/60  ring-1 ring-amber-500'
                       : 'bg-slate-900/60 border-slate-800 hover:border-amber-400/40 hover:bg-slate-900/90'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl">{cat.icon}</span>
+                    {cat.icon === 'sun' ? <SunIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'bolt' ? <BoltIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'battery' ? <BatteryIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'car' ? <CarIcon className="w-7 h-7 text-sky-400" /> : cat.icon === 'wrench' ? <WrenchIcon className="w-7 h-7 text-slate-400" /> : <ShieldIcon className="w-7 h-7 text-emerald-400" />}
                     <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-800 text-slate-300 group-hover:bg-amber-400/20 group-hover:text-amber-400 transition-colors">
                       {count} {count === 1 ? 'produkt' : count >= 2 && count <= 4 ? 'produkty' : 'produktov'}
                     </span>
@@ -955,7 +956,7 @@ export default function EshopPage() {
                     {cat.subtitle}
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                  <div className="mt-4 pt-3  flex items-center justify-between text-xs">
                     <span className="text-amber-400/90 font-medium">{cat.highlight}</span>
                     <span className="text-slate-400 group-hover:text-white font-semibold flex items-center gap-1">
                       Filtrovať <span aria-hidden="true">&rarr;</span>
@@ -999,16 +1000,13 @@ export default function EshopPage() {
                     placeholder="Hľadať produkt, značku..."
                     className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors min-h-[44px]"
                   />
-                  <span className="absolute left-3 top-3 text-slate-500 text-sm">🔍</span>
+                  <span className="absolute left-3 top-3 text-slate-500 text-sm"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
                   {filters.searchQuery && (
                     <button
                       type="button"
                       onClick={() => setFilters((prev) => ({ ...prev, searchQuery: '' }))}
                       className="absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs min-h-[44px] min-w-[32px] flex items-center justify-center cursor-pointer"
-                      aria-label="Vymazať vyhľadávanie"
-                    >
-                      ✕
-                    </button>
+                      aria-label="Vymazať vyhľadávanie"><svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                   )}
                 </div>
               </div>
@@ -1018,7 +1016,7 @@ export default function EshopPage() {
             <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md space-y-3">
               {/* Category selector row */}
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2">
+                <span className="text-xs font-semibold text-slate-400 font-semibold mr-2">
                   Kategória:
                 </span>
                 <button
@@ -1026,7 +1024,7 @@ export default function EshopPage() {
                   onClick={() => setFilters((prev) => ({ ...prev, category: 'all' }))}
                   className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
                     filters.category === 'all'
-                      ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
+                      ? 'bg-amber-400 text-slate-950 font-bold '
                       : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
@@ -1041,7 +1039,7 @@ export default function EshopPage() {
                       onClick={() => setFilters((prev) => ({ ...prev, category: c.id }))}
                       className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
                         filters.category === c.id
-                          ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
+                          ? 'bg-amber-400 text-slate-950 font-bold '
                           : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
                       }`}
                     >
@@ -1052,10 +1050,10 @@ export default function EshopPage() {
               </div>
 
               {/* Secondary Filters Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 border-t border-slate-800/60">
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 ">
                 {/* Brand Filter */}
                 <div>
-                  <label htmlFor="filter-brand" className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label htmlFor="filter-brand" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
                     Značka výrobcu
                   </label>
                   <select
@@ -1076,7 +1074,7 @@ export default function EshopPage() {
 
                 {/* Phase Filter */}
                 <div>
-                  <label htmlFor="filter-phase" className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label htmlFor="filter-phase" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
                     Fázovanie
                   </label>
                   <select
@@ -1093,7 +1091,7 @@ export default function EshopPage() {
 
                 {/* Power / Capacity Filter */}
                 <div>
-                  <label htmlFor="filter-power" className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label htmlFor="filter-power" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
                     Výkon / Kapacita
                   </label>
                   <select
@@ -1117,7 +1115,7 @@ export default function EshopPage() {
                     onClick={resetFilters}
                     className="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
                   >
-                    <span>🔄</span> Resetovať filtre
+                    <svg className="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg> Resetovať filtre
                   </button>
                 </div>
               </div>
@@ -1129,7 +1127,7 @@ export default function EshopPage() {
           ==================================================================== */}
           {filteredProducts.length === 0 ? (
             <div className="py-16 text-center rounded-2xl bg-slate-900/40 border border-slate-800 p-8 max-w-xl mx-auto">
-              <div className="text-4xl mb-3">🔍</div>
+              <div className="w-12 h-12 mx-auto text-slate-500 mb-3"><svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>
               <h3 className="text-lg font-bold text-white">Žiadne produkty nevyhovujú zvoleným filtrom</h3>
               <p className="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
                 Skúste upraviť kritériá vyhľadávania, zvoliť inú značku, zrušiť obmedzenie fázovania
@@ -1138,7 +1136,7 @@ export default function EshopPage() {
               <button
                 type="button"
                 onClick={resetFilters}
-                className="mt-6 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition-colors shadow-lg shadow-amber-400/20"
+                className="mt-6 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition-colors "
               >
                 Resetovať filtre
               </button>
@@ -1151,12 +1149,12 @@ export default function EshopPage() {
                 return (
                   <article
                     key={product.id}
-                    className="flex flex-col justify-between rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition-all p-5 shadow-lg relative group overflow-hidden"
+                    className="flex flex-col justify-between rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition-all p-5  relative group overflow-hidden"
                   >
                     {/* Top Badges & Category */}
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-md">
+                        <span className="text-[11px] font-bold font-semibold text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-md">
                           {product.brand}
                         </span>
                         {product.badge && (
@@ -1170,7 +1168,7 @@ export default function EshopPage() {
                       <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors leading-snug">
                         {product.name}
                       </h3>
-                      <div className="text-xs text-slate-400 mt-0.5 font-mono">
+                      <div className="text-xs text-slate-400 mt-0.5 font-semibold">
                         Model: {product.model}
                       </div>
 
@@ -1180,7 +1178,7 @@ export default function EshopPage() {
                       </p>
 
                       {/* Technical Specifications */}
-                      <div className="mt-4 pt-3 border-t border-slate-800/70 space-y-1.5 text-xs">
+                      <div className="mt-4 pt-3  space-y-1.5 text-xs">
                         {product.specs.map((spec, sIdx) => (
                           <div key={sIdx} className="flex justify-between items-center text-slate-300">
                             <span className="text-slate-400">{spec.label}:</span>
@@ -1190,19 +1188,19 @@ export default function EshopPage() {
                       </div>
 
                       {/* Stock & Warranty Status */}
-                      <div className="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-xs">
+                      <div className="mt-4 pt-3  flex items-center justify-between text-xs">
                         <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
                           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                           Skladom ({product.stockQty} ks)
                         </div>
                         <div className="text-slate-400 text-[11px]">
-                          🛡️ {product.warranty}
+                          <span className="inline-flex items-center gap-1"><ShieldIcon className="w-3.5 h-3.5 text-slate-400" /> {product.warranty}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Pricing & Dual Checkout Actions */}
-                    <div className="mt-5 pt-4 border-t border-slate-800">
+                    <div className="mt-5 pt-4 ">
                       {/* Dual Price Display */}
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
@@ -1224,9 +1222,9 @@ export default function EshopPage() {
                         <button
                           type="button"
                           onClick={() => handleTurnkeyClick(product)}
-                          className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs tracking-tight transition-all shadow-md shadow-amber-500/10 text-center flex items-center justify-center gap-1.5"
+                          className="w-full py-2.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs tracking-tight transition-all  text-center flex items-center justify-center gap-1.5"
                         >
-                          <span>🛠️</span> Kúpiť s kompletnou montážou na kľúč + dotácia
+                          <WrenchIcon className="w-4 h-4 text-slate-950 inline mr-1" /> Kúpiť s kompletnou montážou na kľúč + dotácia
                         </button>
 
                         {/* Option A: Buy Component Only (B2B / DIY Modal CTA) */}
@@ -1235,7 +1233,7 @@ export default function EshopPage() {
                           onClick={() => openMaterialModal(product)}
                           className="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 hover:border-slate-500 transition-all text-center flex items-center justify-center gap-1.5"
                         >
-                          <span>📦</span> Kúpiť samostatný materiál
+                          <CartIcon className="w-4 h-4 text-slate-300 inline mr-1" /> Kúpiť samostatný materiál
                         </button>
                       </div>
                     </div>
@@ -1250,13 +1248,13 @@ export default function EshopPage() {
       {/* =====================================================================
           4. LEAD FORM CONSULTATION & TURNKEY CONVERSION SECTION (Option B)
       ====================================================================== */}
-      <section id="dopyt-montaz" className="py-16 bg-slate-900/40 border-t border-slate-800">
+      <section id="dopyt-montaz" className="py-16 bg-slate-900/40 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Column: Turnkey Benefits & Selected Product Highlights */}
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Inštalácia na kľúč & Štátna dotácia
               </span>
 
@@ -1274,8 +1272,8 @@ export default function EshopPage() {
               {selectedTurnkeyProduct ? (
                 <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-slate-200 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                      <span>✓</span> Vybraný produkt pre montáž na kľúč:
+                    <span className="text-xs font-bold font-semibold text-amber-400 flex items-center gap-1.5">
+                      <CheckIcon className="w-4 h-4 text-amber-400 inline mr-1" /> Vybraný produkt pre montáž na kľúč:
                     </span>
                     <button
                       type="button"
@@ -1296,13 +1294,13 @@ export default function EshopPage() {
                     <span>Cena komponentu: {formatEuro(calculatePriceWithVat(selectedTurnkeyProduct.priceExVat))} s DPH</span>
                   </div>
 
-                  <div className="pt-2 border-t border-amber-500/20 text-xs text-amber-300 font-semibold flex items-center gap-2">
-                    <span>💶</span> Uplatniteľná dotácia SIEA zníži vašu investíciu na minimum (FV do 1 150 €, Solidarita až 90 %).
+                  <div className="pt-2  text-xs text-amber-300 font-semibold flex items-center gap-2">
+                    <CurrencyEuroIcon className="w-4 h-4 text-amber-400 inline mr-1" /> Uplatniteľná dotácia SIEA zníži vašu investíciu na minimum (FV do 1 150 €, Solidarita až 90 %).
                   </div>
                 </div>
               ) : (
                 <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 text-xs flex items-center gap-3">
-                  <span className="text-xl">💡</span>
+                  <span className="w-5 h-5 text-amber-400"><BoltIcon className="w-5 h-5 text-amber-400" /></span>
                   <span>
                     Kliknutím na tlačidlo <strong>„Kúpiť s kompletnou montážou na kľúč + dotácia“</strong> pri
                     ľubovoľnom produkte v katalógu vyššie sa model automaticky priradí k vášmu dopytu.
@@ -1313,15 +1311,15 @@ export default function EshopPage() {
               {/* Trust checklist */}
               <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                   <span><strong>Bezplatná obhliadka:</strong> Posúdime sklon strechy, tienenie a elektrickú prípojku.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                   <span><strong>100% garancia dotácie:</strong> Pomôžeme s online rezerváciou a schválením dotácie SIEA.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
                   <span><strong>Kompletná revízia OPOS:</strong> Oficiálna revízna správa potrebná pre distribúciu i poistenie domu.</span>
                 </div>
               </div>
@@ -1356,10 +1354,10 @@ export default function EshopPage() {
       {/* =====================================================================
           5. INTEGRATED E-SHOP EXPANSION ROADMAP (4 PILLARS)
       ====================================================================== */}
-      <section id="roadmap" className="py-16 bg-slate-950 border-t border-slate-800">
+      <section id="roadmap" className="py-16 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Strategický plán rozvoja 2026 – 2027
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">
@@ -1376,10 +1374,10 @@ export default function EshopPage() {
             <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
                     Pillar 1 • V príprave / Q1 2027
                   </span>
-                  <span className="text-2xl">💳</span>
+                  <CurrencyEuroIcon className="w-6 h-6 text-sky-400" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   Platobné brány & B2C Checkout
@@ -1388,7 +1386,7 @@ export default function EshopPage() {
                   Integrácia bezpečných instantných platobných brán pre okamžitú úhradu objednávok kartou
                   alebo bankovým prevodom bez oneskorenia.
                 </p>
-                <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-400">
+                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-400 font-bold">•</span>
                     <span><strong>Podporované metódy:</strong> Stripe, Shoptet Pay, Apple Pay, Google Pay, Comgate</span>
@@ -1403,7 +1401,7 @@ export default function EshopPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-6 pt-3 border-t border-slate-800/80 text-xs text-slate-500">
+              <div className="mt-6 pt-3  text-xs text-slate-500">
                 Fáza: Implementácia API a zabezpečenia PCI-DSS
               </div>
             </div>
@@ -1412,10 +1410,10 @@ export default function EshopPage() {
             <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     Pillar 2 • Architektúra schválená
                   </span>
-                  <span className="text-2xl">👔</span>
+                  <BuildingOfficeIcon className="w-6 h-6 text-amber-400" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   B2B Inštalatérsky portál
@@ -1424,7 +1422,7 @@ export default function EshopPage() {
                   Špecializovaný portál pre certifikovaných elektroinštalatérov a montážne firmy s registráciou
                   na IČO, veľkoobchodnými maržami a projektovým košíkom.
                 </p>
-                <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-400">
+                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-400 font-bold">•</span>
                     <span><strong>IČO registrácia:</strong> Overenie živnosti a priradenie partnerského rabatu (Tier 1–3)</span>
@@ -1439,7 +1437,7 @@ export default function EshopPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-6 pt-3 border-t border-slate-800/80 text-xs text-slate-500">
+              <div className="mt-6 pt-3  text-xs text-slate-500">
                 Fáza: Vývoj autentifikácie a správcovských rabatových hladín
               </div>
             </div>
@@ -1448,10 +1446,10 @@ export default function EshopPage() {
             <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
                     Pillar 3 • Vo vývoji
                   </span>
-                  <span className="text-2xl">🔄</span>
+                  <BoltIcon className="w-6 h-6 text-emerald-400" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   WMS & ERP Integrácia
@@ -1460,7 +1458,7 @@ export default function EshopPage() {
                   Obojsmerné API prepojenie s podnikovými systémami pre synchronizáciu skladu v reálnom čase
                   a automatické priraďovanie sériových čísel meničov a batérií.
                 </p>
-                <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-400">
+                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-400 font-bold">•</span>
                     <span><strong>Podporované ERP:</strong> Helios Orange, Pohoda, Money S3, SuperFaktura API</span>
@@ -1475,7 +1473,7 @@ export default function EshopPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-6 pt-3 border-t border-slate-800/80 text-xs text-slate-500">
+              <div className="mt-6 pt-3  text-xs text-slate-500">
                 Fáza: Testovanie REST API webhookov s účtovným softvérom
               </div>
             </div>
@@ -1484,10 +1482,10 @@ export default function EshopPage() {
             <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     Pillar 4 • Aktívne v prevádzke
                   </span>
-                  <span className="text-2xl">🚛</span>
+                  <CarIcon className="w-6 h-6 text-emerald-400" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   Nadrozmerná FV Logistika
@@ -1496,7 +1494,7 @@ export default function EshopPage() {
                   Zmluvná paletová preprava fotovoltických panelov so 100% poistením krehkého skla
                   a vykladaním hydraulickým čelom priamo na stavenisku po celej SR a ČR.
                 </p>
-                <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-400">
+                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-400 font-bold">•</span>
                     <span><strong>Partneri prepravy:</strong> Raben, Gebrüder Weiss, Toptrans</span>
@@ -1511,7 +1509,7 @@ export default function EshopPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-6 pt-3 border-t border-slate-800/80 text-xs text-slate-500">
+              <div className="mt-6 pt-3  text-xs text-slate-500">
                 Fáza: Aktívna prevádzka s denným dispečingom
               </div>
             </div>
@@ -1522,10 +1520,10 @@ export default function EshopPage() {
       {/* =====================================================================
           6. FAQS SECTION
       ====================================================================== */}
-      <section className="py-16 bg-slate-900/30 border-t border-slate-800">
+      <section className="py-16 bg-slate-900/30 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
@@ -1552,7 +1550,7 @@ export default function EshopPage() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed  pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -1573,26 +1571,21 @@ export default function EshopPage() {
           aria-labelledby="material-modal-title"
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
         >
-          <div className="relative w-full max-w-lg rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl p-6 text-slate-100 my-8">
+          <div className="relative w-full max-w-lg rounded-2xl bg-slate-900 border border-slate-700  p-6 text-slate-100 my-8">
             {/* Close button */}
             <button
               type="button"
               onClick={closeMaterialModal}
               className="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-11 h-11 min-h-[44px] min-w-[44px] rounded-full bg-slate-800 flex items-center justify-center transition-colors cursor-pointer"
-              aria-label="Zavrieť okno"
-            >
-              ✕
-            </button>
+              aria-label="Zavrieť okno"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
 
             {modalSuccessLeadId ? (
               <div className="text-center py-6 space-y-4">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 text-3xl mx-auto flex items-center justify-center">
-                  ✓
-                </div>
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 text-3xl mx-auto flex items-center justify-center"><CheckIcon className="w-8 h-8 text-emerald-400" /></div>
                 <h3 className="text-xl font-bold text-white">Ďakujeme za váš dopyt!</h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                   Váš dopyt na samostatný materiál bol úspešne zaevidovaný pod číslom{' '}
-                  <strong className="text-amber-400 font-mono">{modalSuccessLeadId}</strong>.
+                  <strong className="text-amber-400 font-semibold">{modalSuccessLeadId}</strong>.
                   Náš skladový dispečing preverí dostupnosť a do 24 hodín vám zašle potvrdenie
                   s kalkuláciou prepravy.
                 </p>
@@ -1607,13 +1600,13 @@ export default function EshopPage() {
             ) : (
               <form onSubmit={handleMaterialModalSubmit} className="space-y-4">
                 <div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded">
+                  <span className="text-[11px] font-extrabold font-semibold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded">
                     Dopyt na samostatný materiál
                   </span>
                   <h3 id="material-modal-title" className="text-lg font-bold text-white mt-1">
                     {materialModalProduct.name}
                   </h3>
-                  <div className="text-xs text-slate-400 font-mono mt-0.5">
+                  <div className="text-xs text-slate-400 font-semibold mt-0.5">
                     Model: {materialModalProduct.model}
                   </div>
                 </div>
@@ -1765,7 +1758,7 @@ export default function EshopPage() {
                         onChange={() => setModalDelivery('pallet')}
                         className="text-amber-400 focus:ring-amber-400 h-4 w-4"
                       />
-                      <span>🚛 Paletová doprava s hydraulickým čelom (SR 24–48h)</span>
+                      <span className="flex items-center gap-1.5"><CarIcon className="w-4 h-4 text-amber-400 shrink-0" /> Paletová doprava s hydraulickým čelom (SR 24–48h)</span>
                     </label>
                     <label className="flex items-center gap-2 p-2.5 min-h-[44px] rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
                       <input
@@ -1775,7 +1768,7 @@ export default function EshopPage() {
                         onChange={() => setModalDelivery('pickup')}
                         className="text-amber-400 focus:ring-amber-400 h-4 w-4"
                       />
-                      <span>🏢 Osobný odber v centrálnom sklade Vrútky (zdarma)</span>
+                      <span className="flex items-center gap-1.5"><BuildingOfficeIcon className="w-4 h-4 text-amber-400 shrink-0" /> Osobný odber v centrálnom sklade Vrútky (zdarma)</span>
                     </label>
                   </div>
                 </div>
@@ -1863,7 +1856,7 @@ export default function EshopPage() {
                   <button
                     type="submit"
                     disabled={modalSubmitting}
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs tracking-wide transition-all shadow-lg shadow-amber-500/20 disabled:opacity-50"
+                    className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs tracking-wide transition-all  disabled:opacity-50"
                   >
                     {modalSubmitting
                       ? 'Odosielam dopyt...'

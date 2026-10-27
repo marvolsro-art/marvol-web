@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import {
+  HomeIcon,
+  BuildingOfficeIcon,
+  BuildingColumnsIcon,
+  BoltIcon,
+  CheckIcon,
+} from '@/components/icons';
 
 interface ReferenceProject {
   location: string;
   region: string;
-  type: string;
+  type: 'domacnost' | 'firma' | 'samosprava';
   specs: string;
   description: string;
   badge: string;
+  image: string;
 }
 
 export const ReferencesSection: React.FC = () => {
@@ -15,43 +23,48 @@ export const ReferencesSection: React.FC = () => {
   const projects: ReferenceProject[] = [
     {
       location: 'Žilina - Višňové',
-      region: 'Žilina',
+      region: 'Žilinský kraj',
       type: 'domacnost',
       specs: '6,4 kWp + 10 kW Menič + 10 kWh Batéria',
       description: 'Inštalácia 6,4 kWp fotovoltického systému s batériou a 10 kW asymetrickým meničom. Menič zvládne dodať na jednu fázu až 3,3 kW pre maximálnu úsporu bez odberu zo siete.',
-      badge: 'Rodinný dom'
+      badge: 'Rodinný dom',
+      image: '/images/fotovoltika-domacnosti/hero.jpg',
     },
     {
       location: 'Martin - EUROTOOLS s.r.o.',
-      region: 'Martin',
+      region: 'Martinský okres',
       type: 'firma',
       specs: '50 kWp Fotovoltika + Elektroinštalácia',
       description: 'Pre priemyselný objekt spoločnosti EUROTOOLS s.r.o. v Martine sme zrealizovali kompletnú elektroinštaláciu, výrobu rozvádzačov a solárnu elektráreň.',
-      badge: 'Priemyselný objekt'
+      badge: 'Priemyselná hala',
+      image: '/images/fotovoltika-firmy/hero.jpg',
     },
     {
-      location: 'Tuchyňa - Ilava',
-      region: 'Ilava',
+      location: 'Senec - Rodinný dom',
+      region: 'Bratislavský kraj',
       type: 'domacnost',
       specs: '10 kWp + 22 Panelov (Juh)',
-      description: 'Pre rodinný dom v obci Tuchyňa pri Ilave sme zrealizovali fotovoltickú elektráreň s výkonom 10 kW s orientáciou na juh a prípravou na batériové úložisko.',
-      badge: 'Rodinný dom'
+      description: 'Pre rodinný dom sme zrealizovali fotovoltickú elektráreň s výkonom 10 kW s orientáciou na juh a prípravou na batériové úložisko v technickej miestnosti.',
+      badge: 'Hybridný systém',
+      image: '/images/fotovoltika-domacnosti/hybrid-system.jpg',
     },
     {
       location: 'Ľubochňa - Unilabs s.r.o.',
       region: 'Ružomberok',
       type: 'firma',
-      specs: 'Batériové úložisko BESS 2x60 kWh',
+      specs: 'Batériové úložisko BESS 2×60 kWh',
       description: 'Inštalácia masívneho batériového úložiska BESS, ktoré nahradilo hlučný dieselový agregát ako záložný zdroj. Ekologické a tiché riešenie s nízkymi prevádzkovými nákladmi.',
-      badge: 'Priemyselná batéria BESS'
+      badge: 'Priemyselná batéria BESS',
+      image: '/images/bateriove-uloziska/hero.jpg',
     },
     {
-      location: 'Košice',
-      region: 'Košice',
+      location: 'Košice - Rodinný dom + EV',
+      region: 'Košický kraj',
       type: 'domacnost',
-      specs: '10 kWp + Wallbox + Batériové úložisko 10 kWh',
+      specs: '10 kWp + Wallbox + Batéria 10 kWh',
       description: 'Fotovoltika s orientáciou JV/JZ s integrovaným inteligentným wallboxom pre nabíjanie elektromobilu priamo z nadbytočnej slnečnej energie.',
-      badge: 'Rodinný dom + EV'
+      badge: 'Dom + EV Wallbox',
+      image: '/images/tepelne-cerpadla/hero.jpg',
     },
     {
       location: 'Obec Malinová',
@@ -59,19 +72,20 @@ export const ReferencesSection: React.FC = () => {
       type: 'samosprava',
       specs: 'Fotovoltika 30 kWp pre obecnú budovu',
       description: 'Kompletná realizácia solárnej elektrárne pre obecnú budovu vrátane projektovej dokumentácie, elektroinštalácie, rozvádzača a zapojenia do siete.',
-      badge: 'Samospráva'
-    }
+      badge: 'Samospráva',
+      image: '/images/fotovoltika-firmy/industrial-inverter.jpg',
+    },
   ];
 
-  const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.type === filter);
+  const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="referencie" className="py-24 bg-slate-900 text-white relative border-b border-slate-800">
+    <section id="referencie" className="py-24 bg-slate-900 text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <span className="text-sm font-semibold text-amber-400 px-3 py-1 rounded-full bg-amber-400/10">
             Realizácie po celom Slovensku
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white">
@@ -85,43 +99,46 @@ export const ReferencesSection: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 pt-6">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px] flex items-center justify-center cursor-pointer ${
                 filter === 'all'
-                  ? 'bg-amber-400 text-slate-950 border-amber-400'
-                  : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
+                  ? 'bg-amber-400 text-slate-950 font-bold'
+                  : 'bg-slate-950 text-slate-300 hover:text-white'
               }`}
             >
               Všetky realizácie
             </button>
             <button
               onClick={() => setFilter('domacnost')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px] flex items-center gap-2 justify-center cursor-pointer ${
                 filter === 'domacnost'
-                  ? 'bg-amber-400 text-slate-950 border-amber-400'
-                  : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
+                  ? 'bg-amber-400 text-slate-950 font-bold'
+                  : 'bg-slate-950 text-slate-300 hover:text-white'
               }`}
             >
-              🏡 Rodinné domy
+              <HomeIcon className="w-4 h-4" />
+              <span>Rodinné domy</span>
             </button>
             <button
               onClick={() => setFilter('firma')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px] flex items-center gap-2 justify-center cursor-pointer ${
                 filter === 'firma'
-                  ? 'bg-amber-400 text-slate-950 border-amber-400'
-                  : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
+                  ? 'bg-amber-400 text-slate-950 font-bold'
+                  : 'bg-slate-950 text-slate-300 hover:text-white'
               }`}
             >
-              🏢 Firmy & Priemysel
+              <BuildingOfficeIcon className="w-4 h-4" />
+              <span>Firmy & Priemysel</span>
             </button>
             <button
               onClick={() => setFilter('samosprava')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border min-h-[44px] flex items-center justify-center cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px] flex items-center gap-2 justify-center cursor-pointer ${
                 filter === 'samosprava'
-                  ? 'bg-amber-400 text-slate-950 border-amber-400'
-                  : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-700'
+                  ? 'bg-amber-400 text-slate-950 font-bold'
+                  : 'bg-slate-950 text-slate-300 hover:text-white'
               }`}
             >
-              🏛️ Samosprávy
+              <BuildingColumnsIcon className="w-4 h-4" />
+              <span>Samosprávy</span>
             </button>
           </div>
         </div>
@@ -131,32 +148,50 @@ export const ReferencesSection: React.FC = () => {
           {filteredProjects.map((project, idx) => (
             <div
               key={idx}
-              className="bg-slate-950 border border-slate-800 hover:border-amber-400/50 rounded-2xl p-6 flex flex-col justify-between space-y-4 transition-all duration-300 hover:-translate-y-1 shadow-xl"
+              className="bg-slate-950/80 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:bg-slate-950 transition-colors group"
             >
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="bg-slate-800 text-amber-400 text-[11px] font-extrabold px-3 py-1 rounded-full border border-slate-700">
+                {/* Authentic 16:9 Photography */}
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+                  <img
+                    src={project.image}
+                    alt={project.location}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-2.5 left-2.5 bg-slate-950/85 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-md">
                     {project.badge}
-                  </span>
-                  <span className="text-xs text-slate-500 font-semibold">{project.region}</span>
+                  </div>
+                  <div className="absolute top-2.5 right-2.5 text-xs text-slate-300 bg-slate-950/85 px-2.5 py-1 rounded-md">
+                    {project.region}
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
                   {project.location}
                 </h3>
 
-                <p className="text-xs font-extrabold text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20">
-                  ⚡ {project.specs}
-                </p>
+                <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 bg-amber-400/10 p-2.5 rounded-xl">
+                  <BoltIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>{project.specs}</span>
+                </div>
 
                 <p className="text-xs text-slate-300 leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>Realizované s garanciou</span>
-                <span className="text-emerald-400 font-bold">100% Funkčné</span>
+              <div className="pt-3 flex items-center justify-between text-xs text-slate-400 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Garancia funkčnosti</span>
+                </span>
+                <a
+                  href="#kalkulacka"
+                  className="font-semibold text-amber-400 hover:text-amber-300 transition-colors min-h-[44px] flex items-center"
+                >
+                  Mám záujem →
+                </a>
               </div>
             </div>
           ))}

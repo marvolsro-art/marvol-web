@@ -120,3 +120,58 @@ Integrity mode: development
 - [ ] `/eshop` page renders cleanly with category filters, product mockups, and B2B/B2C CTA buttons
 - [ ] All service subpages under `/sluzby/*` render with HTTP 200 OK
 - [ ] `public/sitemap.xml` contains all subpages and `/eshop`
+
+## 2026-10-26T20:21:36Z
+
+Kompletný moderný redesign webu Marvol s.r.o. na vetve `preview` s interaktívnymi prvkami, plynulými animáciami a jasnou vizuálnou prezentáciou fotovoltiky, batériových systémov BESS a tepelných čerpadiel pre laikov aj firemných klientov. Zachováva existujúci obsah, pridáva predajné nástroje (solárna kalkulačka) a aplikuje štandardy `design-taste-frontend` (anti-slop, typografia, reálne fotky).
+
+Working directory: /Users/matejmachej/Desktop/Marvol
+Integrity mode: development
+
+## Requirements
+
+### R1. Komplexný moderný redesign hlavnej stránky a podstránok
+- Aplikovať prémiový art-direction štýl z `design-taste-frontend`: eliminovať generický "AI-template" vzhľad (zbaviť sa prebytočných 1px rámčekov, fialových gradientov, emoji v UI a preplnených mikro-štítkov podľa `lint.mjs`).
+- Prepracovať hlavnú stránku (`pages/index.tsx`) aj kľúčové podstránky:
+  1. Domácnosti (`pages/fotovoltika-pre-domacnosti.tsx`)
+  2. Firmy (`pages/fotovoltika-pre-firmy.tsx`)
+  3. Batériové úložiská (`pages/bateriove-uloziska-bess.tsx`)
+  4. Tepelné čerpadlá (`pages/tepelne-cerpadla.tsx`)
+  5. Elektroinštalácie & Revízie (`pages/elektroinstalacie-revizie.tsx`)
+  6. E-shop layout (`pages/eshop.tsx`)
+  7. Kontakt (`pages/kontakt.tsx`)
+  8. Služby (`pages/sluzby/*`)
+- Zabezpečiť plynulú navigáciu (`components/Header.tsx`, `components/Footer.tsx`, mobilný panel).
+
+### R2. Okamžitá vizuálna zrozumiteľnosť pre laika (Fotografie & Diagramy)
+- Do každého hero bloku a kľúčovej sekcie zakomponovať reálne tematické fotografie z `public/images/` (rodinné domy, priemyselné strechy, batériové racky, tepelné čerpadlá, práca v rozvádzači).
+- Každý segment musí vizuálne okamžite komunikovať, čo Marvol robí (pred / po montáži, komponenty, 3D návrh, revízia).
+
+### R3. Interaktívne predajné prvky a kalkulačka úspor
+- Implementovať intuitívnu solárnu kalkulačku s okamžitou spätnou väzbou (výpočet kWp, odhad ročnej úspory v €, výška štátnej dotácie SIEA až do 1 150 € / 4 600 € a návratnosť v rokoch).
+- Vizuálne prepínače (s batériou / bez batérie, tepelné čerpadlo, EV Wallbox) s dynamickým zobrazením obsahu zostavy.
+- Plynulý prechod na nezáväzný dopyt s predfillovanými údajmi.
+
+### R4. Plynulé animácie a interaktívne mikroskopické interakcie
+- Plynulé fade/slide prechody prvkov pri scrollovaní.
+- Interaktívne tabs, hover efekty kariet a akordeóny v FAQ bez skákania layoutu (zero cumulative layout shift).
+- Mobilná optimalizácia: dotykové ciele min. 44–48 px, ochrana pred iOS zoomom pri formulároch (16px fonty).
+
+### R5. Izolácia vo vetve preview & nulová defektovosť
+- Všetky úpravy vykonávať výlučne vo vetve `preview`. Produkčná vetva `main` zostáva nedotknutá.
+- Commit a push zmien do `origin/preview`.
+- Zero-defect kontrola kvality: `npx tsc --noEmit` musí prejsť s 0 chybami.
+
+## Acceptance Criteria
+
+### Vizuálna a funkčná kvalita
+- [ ] Všetky stránky a podstránky renderujú s HTTP 200 na vetve `preview`
+- [ ] Hlavná stránka a podstránky obsahujú relevantné fotografie z `public/images/`
+- [ ] Interaktívna kalkulačka okamžite reaguje na zmenu mesačnej platby a prepínače technológií
+- [ ] Formuláre správne odosielajú dopyt na `/api/lead` s GDPR súhlasom
+- [ ] Mobilné zobrazenie (320px – 430px) je bez horizontálneho scrollu a s min. 44px dotykovými prvkami
+
+### Technická integrita a typová bezpečnosť
+- [ ] `npx tsc --noEmit` končí s 0 chybami
+- [ ] Vetva `main` nie je modifikovaná; všetky commity sú na vetve `preview`
+- [ ] Zmeny sú pushnuté na `origin/preview` pre Vercel preview deployment

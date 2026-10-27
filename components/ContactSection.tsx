@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, ShieldIcon } from '@/components/icons';
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -52,12 +53,12 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="kontakt" className="py-24 bg-hero-pattern text-white relative border-b border-slate-800 scroll-mt-20">
+    <section id="kontakt" className="py-24 bg-hero-pattern text-white relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
             Kontaktujte Nás
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white">
@@ -71,10 +72,10 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Contact Info Column */}
-          <div className="lg:col-span-5 bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-8 shadow-2xl">
+          <div data-ui="contact-info" className="lg:col-span-5 bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-8">
             
-            <div className="space-y-3 border-b border-slate-800 pb-6">
-              <span className="text-amber-400 font-extrabold text-xs uppercase tracking-widest">Oficiálne údaje spoločnosti</span>
+            <div className="space-y-3 pb-6">
+              <span className="text-amber-400 font-bold text-xs">Oficiálne údaje spoločnosti</span>
               <h3 className="text-2xl font-black text-white">Marvol s. r. o.</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Váš špecializovaný partner pre fotovoltické elektrárne, batériové úložiská, tepelné čerpadlá a elektroinštalácie na kľúč po celom Slovensku.
@@ -85,10 +86,10 @@ export const ContactSection: React.FC = () => {
               {/* Phone */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl shrink-0">
-                  📞
+                  <PhoneIcon className="w-5 h-5 text-amber-400 shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Infolinka & Obchod</p>
+                  <p className="text-xs text-slate-400 font-bold">Infolinka & Obchod</p>
                   <a href="tel:+421948123456" className="text-lg font-black text-white hover:text-amber-400 transition-colors">
                     +421 948 123 456
                   </a>
@@ -99,10 +100,10 @@ export const ContactSection: React.FC = () => {
               {/* Email */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-xl shrink-0">
-                  ✉️
+                  <MailIcon className="w-5 h-5 text-sky-400 shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">E-mailová adresa</p>
+                  <p className="text-xs text-slate-400 font-bold">E-mailová adresa</p>
                   <a href="mailto:info@marvol.sk" className="text-base font-bold text-white hover:text-amber-400 transition-colors">
                     info@marvol.sk
                   </a>
@@ -113,10 +114,10 @@ export const ContactSection: React.FC = () => {
               {/* Company Address */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl shrink-0">
-                  📍
+                  <MapPinIcon className="w-5 h-5 text-emerald-400 shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Sídlo & Registrácia</p>
+                  <p className="text-xs text-slate-400 font-bold">Sídlo & Registrácia</p>
                   <p className="text-sm font-bold text-white">Chotárna 3394/6, 038 61 Vrútky</p>
                   <p className="text-xs text-slate-400 mt-0.5">IČO: 53 060 091 | DIČ: 2121255961</p>
                   <p className="text-[11px] text-slate-500">OR OS Žilina, odd. Sro, vl. č. 74765/L</p>
@@ -126,7 +127,7 @@ export const ContactSection: React.FC = () => {
 
             {/* State subsidies badge */}
             <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 text-xs text-slate-300">
-              <span className="text-2xl">🌱</span>
+              <ShieldIcon className="w-6 h-6 text-emerald-400 shrink-0" />
               <div>
                 <p className="font-bold text-emerald-400">Oprávnený zhotoviteľ dotácií</p>
                 <p className="text-[11px] text-slate-400">Zelená domácnostiam & Zelená podnikom</p>
@@ -136,11 +137,11 @@ export const ContactSection: React.FC = () => {
           </div>
 
           {/* Contact Form Column */}
-          <div className="lg:col-span-7 bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl">
+          <div data-ui="contact-form" className="lg:col-span-7 bg-slate-900 border border-slate-800 p-8 rounded-3xl">
             {submitted ? (
               <div className="bg-emerald-500/10 border border-emerald-500/30 p-8 rounded-2xl text-center space-y-4">
                 <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-slate-950 font-black text-2xl mx-auto">
-                  ✓
+                  <CheckIcon className="w-8 h-8 text-slate-950" />
                 </div>
                 <h3 className="text-2xl font-black text-white">Správa bola úspešne odoslaná!</h3>
                 <p className="text-slate-300 text-sm">
@@ -161,7 +162,7 @@ export const ContactSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold text-slate-400 mb-2">
                       Meno a Priezvisko *
                     </label>
                     <input
@@ -175,7 +176,7 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold text-slate-400 mb-2">
                       Telefónne číslo *
                     </label>
                     <input
@@ -191,7 +192,7 @@ export const ContactSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold text-slate-400 mb-2">
                       E-mailová adresa *
                     </label>
                     <input
@@ -205,7 +206,7 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <label className="block text-xs font-bold text-slate-400 mb-2">
                       Požadovaná služba
                     </label>
                     <select
@@ -223,7 +224,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  <label className="block text-xs font-bold text-slate-400 mb-2">
                     Poznámka / Detaily nehnuteľnosti
                   </label>
                   <textarea
@@ -256,7 +257,7 @@ export const ContactSection: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:opacity-95 transition-all text-base shadow-xl shadow-amber-500/25 disabled:opacity-50"
+                  className="w-full py-4 rounded-xl font-black text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-base disabled:opacity-50"
                 >
                   {submitting ? 'Odosielam dopyt...' : 'Odoslať dopyt na obhliadku zdarma'}
                 </button>

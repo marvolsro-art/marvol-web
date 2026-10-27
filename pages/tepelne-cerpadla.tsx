@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { Check, HeatPump, Sun, Bolt, CurrencyEuro, Phone, Mail, ChevronDown } from '@/components/icons';
 
 export default function TepelneCerpadla() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -41,7 +42,7 @@ export default function TepelneCerpadla() {
       description: 'Univerzálny výkon pre štandardné rodinné domy aj čiastočne zrekonštruované staršie stavby. Zabezpečí komfortné vykurovanie, chladenie aj ohrev TÚV.',
       features: [
         'Celoročná prevádzka s garantovaným vykurovaním až do -25 °C',
-        'All-in-One vnútorná veža s integrovaným 190–250 l nerezovým bojlerom',
+        'Integrovaná vnútorná hydroveža s integrovaným 190–250 l nerezovým bojlerom',
         'Vstavaná záložná elektrická špirála 6–9 kW',
         'Ekvitermická regulácia podľa vonkajšej teploty',
         'Diaľkové ovládanie cez mobilnú aplikáciu odkiaľkoľvek',
@@ -184,15 +185,15 @@ export default function TepelneCerpadla() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
               {/* Subsidy Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400 " />
                 <span>Dotácia Zelená domácnostiam až do {COMPANY_DETAILS.subsidies.maxHeatPumpSubsidy}</span>
               </div>
 
@@ -207,15 +208,15 @@ export default function TepelneCerpadla() {
 
               {/* Quick Pillars */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">A+++</div>
                   <div className="text-slate-400 text-xs mt-0.5">Najvyššia energetická trieda</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">COP 5.05</div>
                   <div className="text-slate-400 text-xs mt-0.5">1 kW elektriny = 5 kW tepla</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">SG Ready</div>
                   <div className="text-slate-400 text-xs mt-0.5">Hybridné solárne prepojenie</div>
                 </div>
@@ -225,13 +226,13 @@ export default function TepelneCerpadla() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#modely-tc"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:opacity-95 shadow-xl shadow-amber-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
                 >
                   Prehľad modelov & výkonov
                 </a>
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 text-center transition-colors cursor-pointer"
                 >
                   Kalkulácia tepelných strát zdarma
                 </a>
@@ -240,28 +241,28 @@ export default function TepelneCerpadla() {
 
             {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-emerald-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-800 bg-slate-900">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/tepelne-cerpadla/hero.jpg"
-                    alt="Ilustračná fotka inštalácie moderného tepelného čerpadla vzduch-voda Marvol"
+                    alt="Inštalácia moderného tepelného čerpadla vzduch-voda Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/20" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Ilustračné foto inštalácie TČ</span>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/90 border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 " />
+                    <span>Tepelné čerpadlo v prevádzke</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-bold text-xs rounded-full">
                     A+++ Účinnosť
                   </div>
 
                   {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">Monoblok / Split Vzduch-Voda</span>
                       <span className="text-emerald-400 font-bold">COP až 5.05</span>
@@ -273,21 +274,21 @@ export default function TepelneCerpadla() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900 text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>Dotácia do {COMPANY_DETAILS.subsidies.maxHeatPumpSubsidy}</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>SG Ready solárna synergia</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>Mimoriadne tichý chod (od 28 dB)</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-emerald-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                     <span>Záručný servis a revízie chladiva</span>
                   </div>
                 </div>
@@ -299,11 +300,11 @@ export default function TepelneCerpadla() {
       </section>
 
       {/* Heat Pump Models Section */}
-      <section id="modely-tc" className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section id="modely-tc" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Kategórie výkonov
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
@@ -318,14 +319,14 @@ export default function TepelneCerpadla() {
             {heatPumpTiers.map((tier) => (
               <div
                 key={tier.id}
-                className={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 relative ${
+                className={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative ${
                   tier.popular
-                    ? 'bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-amber-500/60 shadow-2xl shadow-amber-500/10 scale-[1.02]'
+                    ? 'bg-slate-900 border-2 border-amber-400 scale-[1.01]'
                     : 'bg-slate-900/60 border border-slate-800 hover:border-slate-700'
                 }`}
               >
                 {tier.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-md">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-amber-400 text-slate-950 font-bold text-xs rounded-full">
                     Najobľúbenejší výkon
                   </div>
                 )}
@@ -354,13 +355,13 @@ export default function TepelneCerpadla() {
                     {tier.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8 border-t border-slate-800 pt-4">
+                  <div className="space-y-2.5 mb-8 pt-4">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                       Výbava a parametre:
                     </div>
                     {tier.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <span className="text-amber-400 font-bold shrink-0">✓</span>
+                        <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -370,9 +371,9 @@ export default function TepelneCerpadla() {
                 <div>
                   <a
                     href="#dopyt"
-                    className={`w-full py-3.5 px-4 rounded-xl font-bold text-center block text-sm transition-all cursor-pointer ${
+                    className={`w-full min-h-[48px] py-3.5 px-4 rounded-xl font-bold text-center flex items-center justify-center text-sm transition-colors cursor-pointer ${
                       tier.popular
-                        ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-black shadow-lg shadow-amber-400/20'
+                        ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold'
                         : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
                     }`}
                   >
@@ -385,12 +386,12 @@ export default function TepelneCerpadla() {
         </div>
       </section>
 
-      {/* PV + Heat Pump Hybrid Synergy Deep Dive */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      {/* PV + Heat Pump Hybrid Integration Deep Dive */}
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-emerald-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+            <span className="text-emerald-400 text-xs font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
               Dokonalá kombinácia
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -403,8 +404,8 @@ export default function TepelneCerpadla() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-2xl font-black">
-                ♨️
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                <HeatPump className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Zásobník vody ako tepelná batéria</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -413,8 +414,8 @@ export default function TepelneCerpadla() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400 text-2xl font-black">
-                ❄️
+              <div className="w-12 h-12 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400">
+                <HeatPump className="w-6 h-6 text-sky-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Bezplatné letné chladenie</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -423,8 +424,8 @@ export default function TepelneCerpadla() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-2xl font-black">
-                💰
+              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400">
+                <CurrencyEuro className="w-6 h-6 text-emerald-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Dvojitá štátna dotácia</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -436,11 +437,11 @@ export default function TepelneCerpadla() {
       </section>
 
       {/* Step-by-Step Installation Process */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Proces inštalácie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -453,7 +454,7 @@ export default function TepelneCerpadla() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-              <div className="text-3xl font-black text-emerald-400/40 mb-2">01</div>
+              <div className="text-3xl font-black text-emerald-400/40 mb-2">1</div>
               <h4 className="text-lg font-bold text-white mb-2">Obhliadka & Výpočet</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Posúdime tepelnú izoláciu domu, stav radiátorov či podlahovky a určíme presný potrebný výkon čerpadla.
@@ -461,7 +462,7 @@ export default function TepelneCerpadla() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-              <div className="text-3xl font-black text-emerald-400/40 mb-2">02</div>
+              <div className="text-3xl font-black text-emerald-400/40 mb-2">2</div>
               <h4 className="text-lg font-bold text-white mb-2">Projekt & Dotácia</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Navrhneme hydraulickú schému, zabezpečíme online rezerváciu dotácie v portáli SIEA a pripravíme komponenty.
@@ -469,7 +470,7 @@ export default function TepelneCerpadla() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-              <div className="text-3xl font-black text-emerald-400/40 mb-2">03</div>
+              <div className="text-3xl font-black text-emerald-400/40 mb-2">3</div>
               <h4 className="text-lg font-bold text-white mb-2">Hydraulická montáž</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Osadenie vonkajšej jednotky na antivibračný podstavec, zapojenie hydroboxu a akumulačnej nádrže v kotolni.
@@ -477,7 +478,7 @@ export default function TepelneCerpadla() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-              <div className="text-3xl font-black text-emerald-400/40 mb-2">04</div>
+              <div className="text-3xl font-black text-emerald-400/40 mb-2">4</div>
               <h4 className="text-lg font-bold text-white mb-2">Spustenie & Skúšky</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Vákuovanie chladivového okruhu, napustenie upravenou vodou, odvzdušnenie, nastavenie ekvitermiky a zaškolenie.
@@ -488,11 +489,11 @@ export default function TepelneCerpadla() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -517,16 +518,10 @@ export default function TepelneCerpadla() {
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
-                    <span
-                      className={`text-xl text-amber-400 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    >
-                      ▾
-                    </span>
+                    <ChevronDown className={`w-5 h-5 text-amber-400 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2">
                       {faq.a}
                     </div>
                   )}
@@ -543,7 +538,7 @@ export default function TepelneCerpadla() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-emerald-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              <span className="text-emerald-400 text-xs font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
                 Návrh vykurovania zdarma
               </span>
 
@@ -557,8 +552,8 @@ export default function TepelneCerpadla() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    📞
+                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shrink-0">
+                    <Phone className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Poradenstvo k vykurovaniu</div>
@@ -569,8 +564,8 @@ export default function TepelneCerpadla() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    ✉️
+                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shrink-0">
+                    <Mail className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">E-mailový dopyt</div>
@@ -581,8 +576,8 @@ export default function TepelneCerpadla() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    🏷️
+                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shrink-0">
+                    <CurrencyEuro className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Dotácia Zelená domácnostiam</div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { StarIcon } from '@/components/icons';
 
 export const TestimonialsSection: React.FC = () => {
   const reviews = [
@@ -41,12 +42,12 @@ export const TestimonialsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
+    <section className="py-24 bg-slate-950 text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
             Skúsenosti klientov
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white">
@@ -62,13 +63,14 @@ export const TestimonialsSection: React.FC = () => {
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 flex flex-col justify-between shadow-xl"
+              data-ui="testimonial-card"
+              className="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 flex flex-col justify-between"
             >
               <div className="space-y-3">
                 {/* Rating Stars */}
                 <div className="flex items-center gap-1 text-amber-400 text-sm">
                   {[...Array(rev.rating)].map((_, i) => (
-                    <span key={i}>★</span>
+                    <StarIcon key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                   ))}
                   <span className="text-xs text-slate-500 font-semibold ml-2">Overená recenzia</span>
                 </div>
@@ -78,7 +80,7 @@ export const TestimonialsSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+              <div className="pt-4 flex items-center justify-between">
                 <div>
                   <p className="font-bold text-white text-sm">{rev.name}</p>
                   <p className="text-[10px] text-slate-500">{rev.date}</p>

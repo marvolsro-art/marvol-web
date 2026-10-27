@@ -1,153 +1,187 @@
 import React from 'react';
+import Link from 'next/link';
+import {
+  SunIcon,
+  ShieldIcon,
+  WrenchIcon,
+  CurrencyEuroIcon,
+  HomeIcon,
+  BuildingOfficeIcon,
+  BatteryIcon,
+  HeatPumpIcon,
+} from '@/components/icons';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="fotovoltika" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-hero-pattern overflow-hidden text-white border-b border-slate-800">
-      {/* Glow Effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/15 blur-[120px] rounded-full pointer-events-none"></div>
-      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-sky-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+    <section id="fotovoltika" className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 bg-hero-pattern overflow-hidden text-white">
+      {/* Ambient Glow Effects (Anti-slop subtle illumination) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-sky-500/5 blur-[140px] rounded-full pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          {/* Main Hero Copy */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+          {/* Main Hero Copy & CTAs */}
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
             
-            {/* Top Tagline / Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700/80 text-amber-400 text-xs sm:text-sm font-semibold shadow-lg">
-              <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-ping"></span>
-              <span>Špecialisti na fotovoltiku na kľúč & energetické riešenia</span>
+            {/* Top Tagline Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-amber-400 text-xs sm:text-sm font-semibold">
+              <SunIcon className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>Certifikovaný špecialista na fotovoltiku a energetické riešenia</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
-              Energetická sebestačnosť pre váš <span className="text-gradient-amber">domov, firmu aj obec</span>
+            {/* Main Headline (max 2-line display hierarchy) */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.12]">
+              Kompletné fotovoltické riešenia na kľúč <span className="text-amber-400">pre domy aj firmy</span>
             </h1>
 
-            {/* Subheading */}
-            <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> vám navrhne a kompletne zrealizuje fotovoltický systém s garanciou výnosnosti. Znížte náklady na elektrinu až o 80% s využitím štátnych dotácií.
+            {/* Subheading (>= 16px body copy) */}
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> zabezpečuje profesionálny návrh, autorizovanú montáž a servis fotovoltických systémov, batériových úložísk BESS a tepelných čerpadiel. Znížte náklady na energie až o 80 % s využitím štátnych dotácií SIEA.
             </p>
 
-            {/* Guarantees Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-lg mx-auto lg:mx-0">
-              <div className="flex items-center gap-2.5 bg-slate-900/60 border border-slate-800 p-2.5 rounded-xl text-xs font-medium text-slate-300">
-                <svg className="w-5 h-5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Vybavenie dotácie zadarmo</span>
+            {/* Value Triggers (Guarantees & Compliance) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 max-w-xl mx-auto lg:mx-0">
+              <div className="flex items-center gap-2.5 bg-slate-900 p-3 rounded-xl text-xs font-medium text-slate-200">
+                <CurrencyEuroIcon className="w-5 h-5 text-amber-400 shrink-0" />
+                <div className="text-left">
+                  <strong className="block text-white font-semibold">Dotácia do 4 025 €</strong>
+                  <span className="text-slate-400 text-[11px]">Vybavenie SIEA zadarmo</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5 bg-slate-900/60 border border-slate-800 p-2.5 rounded-xl text-xs font-medium text-slate-300">
-                <svg className="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Montáž do 14 dní</span>
+              <div className="flex items-center gap-2.5 bg-slate-900 p-3 rounded-xl text-xs font-medium text-slate-200">
+                <ShieldIcon className="w-5 h-5 text-emerald-400 shrink-0" />
+                <div className="text-left">
+                  <strong className="block text-white font-semibold">Záruka 25 rokov</strong>
+                  <span className="text-slate-400 text-[11px]">Lineárna garancia výkonu</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5 bg-slate-900/60 border border-slate-800 p-2.5 rounded-xl text-xs font-medium text-slate-300 col-span-2 sm:col-span-1">
-                <svg className="w-5 h-5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                </svg>
-                <span>Záruka 25 rokov</span>
+              <div className="flex items-center gap-2.5 bg-slate-900 p-3 rounded-xl text-xs font-medium text-slate-200">
+                <WrenchIcon className="w-5 h-5 text-sky-400 shrink-0" />
+                <div className="text-left">
+                  <strong className="block text-white font-semibold">Vlastní montážnici</strong>
+                  <span className="text-slate-400 text-[11px]">Certifikát MH SR & revízia</span>
+                </div>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            {/* Dual CTAs (>= 48px touch targets) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
               <a
                 href="#kalkulacka"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 bg-[length:200%_auto] hover:bg-[position:100%_0] transition-all duration-300 shadow-xl shadow-amber-500/20 text-center flex items-center justify-center gap-2 group"
+                className="px-7 py-3.5 sm:py-4 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-center flex items-center justify-center gap-2 min-h-[48px] tap-target-48 group"
               >
-                <span>Kalkulačka úspory & Návrh</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <span>Nezáväzná kalkulácia úspor</span>
+                <svg className="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </a>
 
               <a
-                href="#sluzby"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-slate-200 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 transition-all text-center flex items-center justify-center gap-2"
+                href="#referencie"
+                className="px-7 py-3.5 sm:py-4 rounded-xl font-semibold text-slate-200 bg-slate-900/90 hover:bg-slate-800 hover:text-white border border-slate-700/80 transition-colors text-center flex items-center justify-center gap-2 min-h-[48px] tap-target-48"
               >
-                <span>Preskúmať služby</span>
+                <span>Naše realizácie</span>
               </a>
             </div>
 
-            {/* Social Proof / Stats */}
-            <div className="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-amber-400">350+</p>
-                <p className="text-xs text-slate-400 mt-1">Úspešných inštalácií</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">až 85%</p>
-                <p className="text-xs text-slate-400 mt-1">Úspora na elektrine</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-emerald-400">100%</p>
-                <p className="text-xs text-slate-400 mt-1">Úspešnosť dotácií</p>
+            {/* Quick Navigation Jump Pills to Primary Subpages */}
+            <div className="pt-6 space-y-2">
+              <p className="text-sm font-semibold text-slate-400 text-center lg:text-left">
+                Rýchly výber riešenia:
+              </p>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <Link
+                  href="/fotovoltika-pre-domacnosti"
+                  className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/50 text-slate-300 hover:text-white text-xs font-medium transition-colors min-h-[48px] tap-target-48"
+                >
+                  <HomeIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Rodinné domy</span>
+                </Link>
+
+                <Link
+                  href="/fotovoltika-pre-firmy"
+                  className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-sky-400/50 text-slate-300 hover:text-white text-xs font-medium transition-colors min-h-[48px] tap-target-48"
+                >
+                  <BuildingOfficeIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                  <span>Firmy &amp; priemysel</span>
+                </Link>
+
+                <Link
+                  href="/bateriove-uloziska-bess"
+                  className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-emerald-400/50 text-slate-300 hover:text-white text-xs font-medium transition-colors min-h-[48px] tap-target-48"
+                >
+                  <BatteryIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Batériové úložiská BESS</span>
+                </Link>
+
+                <Link
+                  href="/tepelne-cerpadla"
+                  className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/50 text-slate-300 hover:text-white text-xs font-medium transition-colors min-h-[48px] tap-target-48"
+                >
+                  <HeatPumpIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Tepelné čerpadlá</span>
+                </Link>
               </div>
             </div>
 
           </div>
 
-          {/* Hero Visual Card / Interactive Preview */}
+          {/* Authentic 16:9 Photography Card (Replacing Fake UI Card) */}
           <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-sky-500 rounded-2xl blur-lg opacity-30"></div>
-              
-              <div className="relative bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold">
-                      ⚡
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white text-base">Modelová úspora</h3>
-                      <p className="text-xs text-slate-400">Fotovoltika 10 kWp + Batéria 10 kWh</p>
-                    </div>
-                  </div>
-                  <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-500/20">
-                    A+ Energetická trieda
-                  </span>
-                </div>
+            <div className="relative mx-auto max-w-lg lg:max-w-none w-full">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group">
+                
+                {/* 16:9 Widescreen Photo Frame */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
+                  <img
+                    src="/images/fotovoltika-domacnosti/hero.jpg"
+                    alt="Reálna inštalácia fotovoltiky pre rodinný dom od Marvol s.r.o."
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                    width={1376}
+                    height={768}
+                  />
+                  <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
-                {/* Metrics Breakdown */}
-                <div className="space-y-4">
-                  <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                    <span className="text-slate-400 text-sm">Pôvodné ročné náklady:</span>
-                    <span className="text-slate-300 font-bold text-sm line-through">2 400 € / rok</span>
+                  {/* Authentic Status Badges Overlay */}
+                  <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-slate-950/90 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span>Reálna inštalácia Marvol</span>
                   </div>
 
-                  <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                    <span className="text-slate-400 text-sm">Nové náklady s fotovoltikou:</span>
-                    <span className="text-emerald-400 font-extrabold text-sm">480 € / rok</span>
+                  <div className="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-xs">
+                    <span>N-Type TOPCon</span>
                   </div>
 
-                  <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-4 rounded-xl border border-amber-500/30 flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-amber-400 font-bold">Čistá ročná úspora</p>
-                      <p className="text-2xl font-black text-amber-400 mt-0.5">1 920 €</p>
+                  {/* Bottom Image Overlay Description */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 text-xs text-slate-300">
+                    <div className="flex items-center justify-between font-semibold text-white">
+                      <span>Rodinný dom s LiFePO4 úložiskom</span>
+                      <span className="text-emerald-400 font-bold">Úspora až 80 %</span>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-400">Návratnosť investície</p>
-                      <p className="text-sm font-bold text-white">cca 3.5 - 4.5 roka</p>
-                    </div>
+                    <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">
+                      Kompletná fotovoltická elektráreň s vybavením dotácie Zelená domácnostiam.
+                    </p>
                   </div>
                 </div>
 
-                {/* Subsidies notice in card */}
-                <div className="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50 flex items-center gap-3 text-xs text-slate-300">
-                  <svg className="w-5 h-5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na fotovoltike až <strong>1 150 €</strong> (tepelné čerpadlá až <strong>4 600 €</strong>, Solidarita <strong>90 %</strong>).</span>
+                {/* Real Verified Milestones Bar (Replacing Fake Calculator Numbers) */}
+                <div className="p-4 bg-slate-950 grid grid-cols-3 gap-3 text-center">
+                  <div>
+                    <p className="text-xl sm:text-2xl font-black text-amber-400">350+</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">Inštalácií</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-black text-white">až 80 %</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">Úspora nákladov</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-black text-emerald-400">100 %</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">Schválenie SIEA</p>
+                  </div>
                 </div>
 
-                <a
-                  href="#kalkulacka"
-                  className="block w-full py-3.5 text-center font-bold text-sm rounded-xl text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors shadow-lg"
-                >
-                  Vypočítať presnú úsporu pre môj dom
-                </a>
               </div>
             </div>
           </div>

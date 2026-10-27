@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
       </Head>
       <Header />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-24 text-slate-300 space-y-8 flex-1 w-full overflow-x-hidden">
-        <h1 className="text-3xl sm:text-4xl font-black text-white border-b border-slate-800 pb-4">
+        <h1 className="text-3xl sm:text-4xl font-black text-white pb-4">
           Zásady ochrany osobných údajov (GDPR)
         </h1>
 

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, MapPinIcon, BuildingOfficeIcon } from '@/components/icons';
 
 export default function KontaktPage() {
   const router = useRouter();
@@ -137,7 +138,7 @@ export default function KontaktPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             {/* Nationwide Coverage Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold font-semibold mb-6">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Pôsobnosť po celom Slovensku • Bezplatná osobná obhliadka</span>
             </div>
@@ -167,25 +168,25 @@ export default function KontaktPage() {
                 <span className="text-slate-400 text-xs">Vybavenie na kľúč</span>
               </div>
               <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
-                <span className="text-purple-400 font-bold block text-sm sm:text-base">100% Záruka</span>
+                <span className="text-emerald-400 font-bold block text-sm sm:text-base">100% Záruka</span>
                 <span className="text-slate-400 text-xs">Oprávnený zhotoviteľ</span>
               </div>
             </div>
 
             {/* Office & Showroom Visual Banner */}
-            <div className="mt-10 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 shadow-2xl relative group">
+            <div className="mt-10 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60  relative group">
               <div className="relative aspect-[21/9] sm:aspect-[24/9] min-h-[220px] overflow-hidden">
                 <img
                   src="/images/kontakt/hero.jpg"
-                  alt="Ilustračná fotka zákazníckeho centra a showroomu technológií Marvol"
+                  alt="Zákaznícke centrum a showroom technológií Marvol"
                   className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute inset-0 bg-slate-950/40" />
                 
-                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 ">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <span>Ilustračné foto zákazníckeho centra</span>
+                  <span>Zákaznícke centrum a showroom</span>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
@@ -198,7 +199,7 @@ export default function KontaktPage() {
                     </p>
                   </div>
                   <div className="shrink-0 flex items-center gap-2">
-                    <span className="px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs shadow-lg">
+                    <span className="px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs ">
                       {COMPANY_DETAILS.seat.city}
                     </span>
                   </div>
@@ -218,10 +219,10 @@ export default function KontaktPage() {
             <div className="lg:col-span-5 space-y-6">
               
               {/* Direct channels card */}
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-2xl">
+              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7 backdrop-blur-xl ">
                 <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2.5">
                   <span className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-sm">
-                    ⚡
+                    <BoltIcon className="w-4 h-4 text-amber-400 inline" />
                   </span>
                   <span>Priame kontaktné kanály</span>
                 </h2>
@@ -229,7 +230,7 @@ export default function KontaktPage() {
                 <div className="space-y-4">
                   {/* Infolinka */}
                   <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-amber-500/30 transition-colors">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1 flex items-center justify-between">
+                    <div className="text-xs font-bold font-semibold text-slate-400 mb-1 flex items-center justify-between">
                       <span>Infolinka &amp; Technická podpora</span>
                       <span className="text-emerald-400 font-medium lowercase text-[11px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                         {COMPANY_DETAILS.contact.businessHours.shortDisplay}
@@ -237,9 +238,9 @@ export default function KontaktPage() {
                     </div>
                     <a
                       href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                      className="text-lg sm:text-xl font-black text-white hover:text-amber-400 transition-colors flex items-center gap-2"
+                      className="text-lg sm:text-xl font-black text-white hover:text-amber-400 transition-colors inline-flex items-center min-h-[48px] py-2 gap-2"
                     >
-                      <span className="text-amber-400">📞</span>
+                      <span className="text-amber-400"><PhoneIcon className="w-4 h-4 text-amber-400 inline" /></span>
                       <span>{COMPANY_DETAILS.contact.phone}</span>
                     </a>
                     <p className="text-xs text-slate-400 mt-1">
@@ -249,14 +250,14 @@ export default function KontaktPage() {
 
                   {/* Email */}
                   <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-amber-500/30 transition-colors">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <div className="text-xs font-bold font-semibold text-slate-400 mb-1">
                       Elektronická pošta
                     </div>
                     <a
                       href={`mailto:${COMPANY_DETAILS.contact.email}`}
-                      className="text-base sm:text-lg font-bold text-white hover:text-amber-400 transition-colors flex items-center gap-2"
+                      className="text-base sm:text-lg font-bold text-white hover:text-amber-400 transition-colors inline-flex items-center min-h-[48px] py-2 gap-2"
                     >
-                      <span className="text-amber-400">✉️</span>
+                      <span className="text-amber-400"><MailIcon className="w-4 h-4 text-amber-400 inline" /></span>
                       <span>{COMPANY_DETAILS.contact.email}</span>
                     </a>
                     <p className="text-xs text-slate-400 mt-1">
@@ -266,16 +267,16 @@ export default function KontaktPage() {
 
                   {/* WhatsApp */}
                   <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-emerald-500/30 transition-colors">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <div className="text-xs font-bold font-semibold text-slate-400 mb-1">
                       Okamžitý chat &amp; Fotodokumentácia strechy
                     </div>
                     <a
                       href={COMPANY_DETAILS.contact.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 font-bold text-emerald-400 hover:text-emerald-300 transition-colors text-base"
+                      className="inline-flex items-center gap-2 font-bold text-emerald-400 hover:text-emerald-300 transition-colors text-base min-h-[48px] py-2"
                     >
-                      <span>💬</span>
+                      <span><PhoneIcon className="w-4 h-4 text-emerald-400 inline" /></span>
                       <span>Napísať na WhatsApp</span>
                       <span className="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold">
                         Online
@@ -288,18 +289,18 @@ export default function KontaktPage() {
 
                   {/* Physical Address */}
                   <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 hover:border-amber-500/30 transition-colors">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <div className="text-xs font-bold font-semibold text-slate-400 mb-1">
                       Sídlo a korešpondenčná adresa
                     </div>
                     <div className="text-sm font-semibold text-white flex items-start gap-2">
-                      <span className="text-amber-400 mt-0.5">📍</span>
+                      <span className="text-amber-400 mt-0.5"><MapPinIcon className="w-4 h-4 text-amber-400 inline" /></span>
                       <span>{COMPANY_DETAILS.seat.fullAddress}</span>
                     </div>
                     <a
                       href={COMPANY_DETAILS.map.googleMapsDirectLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-amber-400 hover:text-amber-300 underline font-medium mt-2 inline-block"
+                      className="text-xs text-amber-400 hover:text-amber-300 underline font-medium mt-2 inline-flex items-center min-h-[48px] py-2"
                     >
                       Otvoriť trasu v Google Maps →
                     </a>
@@ -309,45 +310,45 @@ export default function KontaktPage() {
               </div>
 
               {/* Statutory Card (§ 3a Obchodného zákonníka & § 4 zákona o DPH) */}
-              <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-xl">
+              <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-7 ">
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
-                    <span className="text-amber-400">⚖️</span>
+                  <h3 className="text-sm font-bold font-semibold text-white flex items-center gap-2">
+                    <span className="text-amber-400"><ShieldIcon className="w-4 h-4 text-amber-400 inline" /></span>
                     <span>Zákonné identifikačné údaje</span>
                   </h3>
-                  <span className="text-[10px] text-slate-400 font-mono bg-slate-800/60 px-2 py-0.5 rounded border border-slate-700/50">
+                  <span className="text-[10px] text-slate-400 font-semibold bg-slate-800/60 px-2 py-0.5 rounded border border-slate-700/50">
                     § 3a Obch. zák.
                   </span>
                 </div>
 
                 <div className="text-xs space-y-2.5 text-slate-300">
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">Obchodné meno:</span>
                     <span className="font-bold text-white text-right">{COMPANY_DETAILS.legalName}</span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">Sídlo:</span>
                     <span className="text-right">{COMPANY_DETAILS.seat.street}, {COMPANY_DETAILS.seat.zip} {COMPANY_DETAILS.seat.city}</span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">IČO:</span>
-                    <span className="font-mono font-bold text-white text-right">
+                    <span className="font-semibold font-bold text-white text-right">
                       {COMPANY_DETAILS.tax.ico || '53 060 091'}
                     </span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">DIČ:</span>
-                    <span className="font-mono text-white text-right">
+                    <span className="font-semibold text-white text-right">
                       {COMPANY_DETAILS.tax.dic || '2121255961'}
                     </span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">IČ DPH:</span>
-                    <span className="font-mono font-bold text-amber-400 text-right">
+                    <span className="font-semibold font-bold text-amber-400 text-right">
                       {COMPANY_DETAILS.tax.icDph || 'SK2121255961'} <span className="text-[10px] font-normal text-slate-400">(§ 4 zákona o DPH)</span>
                     </span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1.5 ">
                     <span className="text-slate-400">Registrácia:</span>
                     <span className="text-right text-[11px] max-w-[220px]">
                       Mestský súd Žilina (pôvodne Okresný súd Žilina), oddiel: Sro, vložka č. 74765/L
@@ -365,15 +366,15 @@ export default function KontaktPage() {
               {/* Interactive Google Maps embed */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between px-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                    <span>📍</span>
+                  <span className="text-xs font-bold font-semibold text-slate-400 flex items-center gap-1.5">
+                    <span><MapPinIcon className="w-4 h-4 text-amber-400 inline" /></span>
                     <span>Mapa sídla spoločnosti</span>
                   </span>
                   <a
                     href={COMPANY_DETAILS.map.googleMapsDirectLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] text-amber-400 hover:underline"
+                    className="text-[11px] text-amber-400 hover:underline inline-flex items-center min-h-[48px] px-2"
                   >
                     Zväčšiť mapu
                   </a>
@@ -383,16 +384,16 @@ export default function KontaktPage() {
                   src="https://maps.google.com/maps?q=Chot%C3%A1rna+3394%2F6,+038+61+Vr%C3%BAtky,+Slovakia&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="320"
-                  className="rounded-2xl border border-slate-800 shadow-2xl"
+                  className="rounded-2xl border border-slate-800 "
                   loading="lazy"
                   title="Sídlo spoločnosti Marvol s.r.o."
                 />
               </div>
 
               {/* Nationwide coverage card */}
-              <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/20 border border-slate-800 rounded-2xl p-5 text-xs text-slate-300 space-y-2">
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-xs text-slate-300 space-y-2">
                 <div className="flex items-center gap-2 text-white font-bold text-sm">
-                  <span className="text-amber-400">🇸🇰</span>
+                  <span className="text-amber-400"></span>
                   <span>Celoslovenská montážna sieť</span>
                 </div>
                 <p className="leading-relaxed text-slate-400">
@@ -400,14 +401,14 @@ export default function KontaktPage() {
                   realizujú montáže, revízie a bezplatné obhliadky vo všetkých krajoch SR:
                 </p>
                 <div className="grid grid-cols-2 gap-1.5 text-[11px] text-slate-300 pt-1">
-                  <span className="flex items-center gap-1">✓ Žilinský kraj</span>
-                  <span className="flex items-center gap-1">✓ Bratislavský kraj</span>
-                  <span className="flex items-center gap-1">✓ Trenčiansky kraj</span>
-                  <span className="flex items-center gap-1">✓ Trnavský kraj</span>
-                  <span className="flex items-center gap-1">✓ Nitriansky kraj</span>
-                  <span className="flex items-center gap-1">✓ Banskobystrický kraj</span>
-                  <span className="flex items-center gap-1">✓ Prešovský kraj</span>
-                  <span className="flex items-center gap-1">✓ Košický kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Žilinský kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Bratislavský kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Trenčiansky kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Trnavský kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Nitriansky kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Banskobystrický kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Prešovský kraj</span>
+                  <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0 inline" /> Košický kraj</span>
                 </div>
                 <p className="text-[11px] text-emerald-400 font-semibold pt-1">
                   Nezáväzná osobná obhliadka technikom je bezplatná po celom Slovensku bez príplatkov za dopravu.
@@ -429,8 +430,8 @@ export default function KontaktPage() {
 
                 {/* Trust guarantee banner below form */}
                 <div className="mt-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 space-y-3">
-                  <div className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                    <span className="text-amber-400">🛡️</span>
+                  <div className="text-xs font-bold font-semibold text-slate-300 flex items-center gap-2">
+                    <span className="text-amber-400"><ShieldIcon className="w-4 h-4 text-amber-400 inline" /></span>
                     <span>Čo garantujeme pri každom dopyte:</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -462,10 +463,10 @@ export default function KontaktPage() {
       </section>
 
       {/* Mini-FAQ Section with 3 High-Converting Q&As */}
-      <section className="py-16 bg-slate-900/50 border-t border-slate-800">
+      <section className="py-16 bg-slate-900/50 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            <span className="text-xs font-bold font-semibold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
               Časté otázky pred kontaktovaním
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-3">
@@ -487,11 +488,11 @@ export default function KontaktPage() {
                   <button
                     type="button"
                     onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-white hover:text-amber-400 transition-colors focus:outline-none cursor-pointer"
+                    className="w-full min-h-[48px] p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-white hover:text-amber-400 transition-colors focus:outline-none cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <span className="text-base sm:text-lg flex items-center gap-3">
-                      <span className="text-amber-400 text-sm">0{idx + 1}.</span>
+                      <span className="text-amber-400 text-sm">{idx + 1}.</span>
                       <span>{faq.q}</span>
                     </span>
                     <span
@@ -504,7 +505,7 @@ export default function KontaktPage() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-slate-300 leading-relaxed border-t border-slate-800/80 pt-4">
+                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-slate-300 leading-relaxed  pt-4">
                       {faq.a}
                     </div>
                   )}
@@ -514,7 +515,7 @@ export default function KontaktPage() {
           </div>
 
           {/* Quick Call Out Banner */}
-          <div className="mt-12 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-12 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-lg font-bold text-white">Potrebujete okamžitú odpoveď?</h3>
               <p className="text-xs sm:text-sm text-slate-300 mt-1">
@@ -524,18 +525,18 @@ export default function KontaktPage() {
             <div className="flex flex-wrap items-center gap-3 shrink-0">
               <a
                 href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                className="px-5 py-3 rounded-xl bg-amber-400 text-slate-950 font-bold text-sm hover:bg-amber-300 transition-colors shadow-lg shadow-amber-500/20 flex items-center gap-2"
+                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-sm hover:bg-amber-300 transition-colors gap-2 cursor-pointer"
               >
-                <span>📞</span>
+                <span><PhoneIcon className="w-4 h-4 text-slate-950 inline" /></span>
                 <span>{COMPANY_DETAILS.contact.phone}</span>
               </a>
               <a
                 href={COMPANY_DETAILS.contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-colors shadow-lg shadow-emerald-600/20 flex items-center gap-2"
+                className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-colors gap-2 cursor-pointer"
               >
-                <span>💬</span>
+                <span><PhoneIcon className="w-4 h-4 text-white inline" /></span>
                 <span>WhatsApp</span>
               </a>
             </div>

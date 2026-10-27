@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { Check, BuildingColumns, CurrencyEuro, Bolt, BuildingOffice, Phone, Mail, ClipboardIcon as Clipboard, ChevronDown } from '@/components/icons';
 
 export default function FotovoltikaPreFirmy() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -159,15 +160,15 @@ export default function FotovoltikaPreFirmy() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
               {/* B2B Subsidy Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-sky-400 " />
                 <span>Program Zelená podnikom: Dotácia 35% – 50% oprávnených nákladov</span>
               </div>
 
@@ -182,15 +183,15 @@ export default function FotovoltikaPreFirmy() {
 
               {/* B2B Key Metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">0 € TPS/TSS</div>
                   <div className="text-slate-400 text-xs mt-0.5">Zákon č. 309/2009 Z.z.</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">3 – 5 rokov</div>
                   <div className="text-slate-400 text-xs mt-0.5">Typická návratnosť FVE</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">ESG & CO₂</div>
                   <div className="text-slate-400 text-xs mt-0.5">Zelený audit & certifikácia</div>
                 </div>
@@ -200,13 +201,13 @@ export default function FotovoltikaPreFirmy() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:opacity-95 shadow-xl shadow-amber-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
                 >
                   Vyžiadať energetický audit & ponuku
                 </a>
                 <a
                   href="#referencie-b2b"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 text-center transition-colors cursor-pointer"
                 >
                   Prípadové štúdie firiem
                 </a>
@@ -215,28 +216,28 @@ export default function FotovoltikaPreFirmy() {
 
             {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-sky-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-800 bg-slate-900">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/fotovoltika-firmy/hero.jpg"
-                    alt="Ilustračná fotka inštalácie priemyselnej fotovoltiky pre haly a firmy Marvol"
+                    alt="Priemyselná inštalácia fotovoltiky pre firmy a haly Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/20" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-500/40 text-sky-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                    <span>Ilustračné foto B2B inštalácie</span>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/90 border border-sky-500/40 text-sky-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-sky-400 " />
+                    <span>Priemyselná FVE inštalácia</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-sky-500 text-slate-950 font-bold text-xs rounded-full">
                     Lokálny Zdroj
                   </div>
 
                   {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">Ploché strechy výrobných & logistických hál</span>
                       <span className="text-sky-400 font-bold">Bez poplatkov TPS/TSS</span>
@@ -248,21 +249,21 @@ export default function FotovoltikaPreFirmy() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900 text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-sky-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-sky-400 shrink-0 inline-block" />
                     <span>Návratnosť od 3 rokov</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-sky-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-sky-400 shrink-0 inline-block" />
                     <span>Dotácia Zelená podnikom</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-sky-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-sky-400 shrink-0 inline-block" />
                     <span>VN/NN inžiniering</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-sky-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-sky-400 shrink-0 inline-block" />
                     <span>Dispečerský dohľad 24/7</span>
                   </div>
                 </div>
@@ -274,11 +275,11 @@ export default function FotovoltikaPreFirmy() {
       </section>
 
       {/* Lokálny zdroj & Zelená podnikom Section */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Legislatíva & Dotácie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -292,8 +293,8 @@ export default function FotovoltikaPreFirmy() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Lokálny Zdroj Card */}
             <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl font-black">
-                ⚖️
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <BuildingColumns className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-2xl font-black text-white">Zákon č. 309/2009 Z. z. – Lokálny zdroj</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
@@ -302,15 +303,15 @@ export default function FotovoltikaPreFirmy() {
               
               <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-start gap-2.5">
-                  <span className="text-amber-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                   <span><strong>Oslobodenie od TPS a TSS:</strong> Neplatíte tarifu za prevádzkovanie systému ani systémové služby na vlastnú spotrebu.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-amber-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                   <span><strong>Zjednodušený proces pripojenia:</strong> Prednostné schvaľovanie v distribučných spoločnostiach SSD, ZSD a VSD.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-amber-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                   <span><strong>Bezplatný prenos prebytkov:</strong> Možnosť legálnej dodávky nespotrebovanej energie do siete alebo akumulácie do batériového úložiska.</span>
                 </div>
               </div>
@@ -318,8 +319,8 @@ export default function FotovoltikaPreFirmy() {
 
             {/* Zelená podnikom Card */}
             <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-black">
-                💶
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <CurrencyEuro className="w-6 h-6 text-emerald-400" />
               </div>
               <h3 className="text-2xl font-black text-white">Dotácia Zelená podnikom (SIEA)</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
@@ -328,15 +329,15 @@ export default function FotovoltikaPreFirmy() {
               
               <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                   <span><strong>Financovanie 35% až 50%:</strong> Výrazné skrátenie návratnosti investície na 2 až 3,5 roka.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                   <span><strong>Povinný energetický audit:</strong> Náš certifikovaný audítor vypracuje audit presne podľa metodiky SIEA.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 font-bold">✓</span>
+                  <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
                   <span><strong>Podpora fotovoltiky aj batérií (BESS):</strong> Dotáciu je možné uplatniť na panely, meniče aj veľkokapacitné batérie.</span>
                 </div>
               </div>
@@ -346,11 +347,11 @@ export default function FotovoltikaPreFirmy() {
       </section>
 
       {/* Case Studies / References */}
-      <section id="referencie-b2b" className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section id="referencie-b2b" className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-sky-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
+            <span className="text-sky-400 text-xs font-bold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
               Skutočné výsledky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -384,7 +385,7 @@ export default function FotovoltikaPreFirmy() {
                     {study.type}
                   </div>
 
-                  <div className="space-y-2 py-3 border-y border-slate-800 text-xs text-slate-300">
+                  <div className="space-y-2 py-3  text-xs text-slate-300">
                     <div className="flex justify-between">
                       <span className="text-slate-500">Typ inštalácie:</span>
                       <span className="text-right text-white font-medium">{study.roofType}</span>
@@ -407,7 +408,7 @@ export default function FotovoltikaPreFirmy() {
                 <div className="pt-6">
                   <a
                     href="#dopyt"
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-center block text-white transition-colors"
+                    className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-sm font-bold text-center flex items-center justify-center text-white transition-colors"
                   >
                     Navrhnúť podobné riešenie
                   </a>
@@ -417,23 +418,23 @@ export default function FotovoltikaPreFirmy() {
           </div>
 
           {/* Industrial Inverter & Switchboard Showcase */}
-          <div className="mt-14 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-8 backdrop-blur-xl">
+          <div className="mt-14 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+              <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden border border-slate-800">
                 <div className="aspect-[16/9] overflow-hidden relative">
                   <img
                     src="/images/fotovoltika-firmy/industrial-inverter.jpg"
-                    alt="Ilustračná fotka priemyselnej rozvodne a komerčných striedačov FVE Marvol"
+                    alt="Priemyselná rozvodňa a komerčné striedače FVE Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-sky-500/40 text-sky-400 font-medium text-xs">
-                    ⚡ Ilustračné foto priemyselnej rozvodne FVE
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/90 border border-sky-500/40 text-sky-400 font-medium text-xs">
+                    Priemyselná rozvodňa FVE
                   </div>
                 </div>
               </div>
               <div className="lg:col-span-5 space-y-4">
-                <span className="text-sky-400 text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded bg-sky-400/10 border border-sky-400/20">
+                <span className="text-sky-400 text-xs font-bold px-2.5 py-1 rounded bg-sky-400/10 border border-sky-400/20">
                   Priemyselná spoľahlivosť
                 </span>
                 <h3 className="text-2xl font-black text-white">
@@ -460,11 +461,11 @@ export default function FotovoltikaPreFirmy() {
       </section>
 
       {/* Engineering Capabilities & Step-by-Step Workflow */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Firemný proces
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -477,7 +478,7 @@ export default function FotovoltikaPreFirmy() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
-              <div className="text-3xl font-black text-sky-400/40">01</div>
+              <div className="text-3xl font-black text-sky-400/40">1</div>
               <h4 className="text-base font-bold text-white">Analýza diagramu</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Preskúmame vaše 15-minútové odberové maximá a navrhneme presný výkon bez zbytočných prebytkov.
@@ -485,7 +486,7 @@ export default function FotovoltikaPreFirmy() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
-              <div className="text-3xl font-black text-sky-400/40">02</div>
+              <div className="text-3xl font-black text-sky-400/40">2</div>
               <h4 className="text-base font-bold text-white">Statika & Projekt</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Statické posúdenie strechy, požiarna ochrana (rapid shutdown) a projekt pre distribučnú spoločnosť.
@@ -493,7 +494,7 @@ export default function FotovoltikaPreFirmy() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
-              <div className="text-3xl font-black text-sky-400/40">03</div>
+              <div className="text-3xl font-black text-sky-400/40">3</div>
               <h4 className="text-base font-bold text-white">Audit & Dotácia</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Vypracovanie energetického auditu a podanie kompletnej žiadosti o grant Zelená podnikom.
@@ -501,7 +502,7 @@ export default function FotovoltikaPreFirmy() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
-              <div className="text-3xl font-black text-sky-400/40">04</div>
+              <div className="text-3xl font-black text-sky-400/40">4</div>
               <h4 className="text-base font-bold text-white">Čistá inštalácia</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Profesionálna montáž balastných či trapézových systémov a prepojenie na VN/NN rozvádzače haly.
@@ -509,7 +510,7 @@ export default function FotovoltikaPreFirmy() {
             </div>
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
-              <div className="text-3xl font-black text-sky-400/40">05</div>
+              <div className="text-3xl font-black text-sky-400/40">5</div>
               <h4 className="text-base font-bold text-white">Revízia & SLA</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Oficiálna revízna správa OPOS, kolaudácia, zapojenie do dispečingu a 24/7 monitoring s rýchlym servisom.
@@ -520,11 +521,11 @@ export default function FotovoltikaPreFirmy() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               B2B Otázky a Odpovede
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -549,16 +550,10 @@ export default function FotovoltikaPreFirmy() {
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
-                    <span
-                      className={`text-xl text-amber-400 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    >
-                      ▾
-                    </span>
+                    <ChevronDown className={`w-5 h-5 text-amber-400 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2">
                       {faq.a}
                     </div>
                   )}
@@ -575,7 +570,7 @@ export default function FotovoltikaPreFirmy() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-sky-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
+              <span className="text-sky-400 text-xs font-bold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
                 B2B Konzultácia & Audit
               </span>
 
@@ -589,8 +584,8 @@ export default function FotovoltikaPreFirmy() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    📞
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
+                    <Phone className="w-4 h-4 text-sky-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Priama B2B infolinka</div>
@@ -601,8 +596,8 @@ export default function FotovoltikaPreFirmy() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    ✉️
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
+                    <Mail className="w-4 h-4 text-sky-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Komerčné dopyty & projekty</div>
@@ -613,8 +608,8 @@ export default function FotovoltikaPreFirmy() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    📋
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
+                    <Clipboard className="w-4 h-4 text-sky-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Právna forma & IČO</div>

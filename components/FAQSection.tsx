@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PhoneIcon } from '@/components/icons';
 
 export const FAQSection: React.FC = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -18,7 +19,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: 'Funguje fotovoltický systém aj v zime a počas zamračených dní?',
-      a: 'Áno. Solárne fotovoltické panely vyrábajú elektrinu z denného svetla (difúzneho žiarenia), nie iba zo priameho slnečného svitu. Hoci je zimný výkon nižší ako v lete, systém naďalej aktívne znižuje vaše účty za elektrinu.'
+      a: 'Áno. Solárne fotovoltické panely vyrábajú elektrinu z denného svetla (difúzneho žiarenia), nie iba zo priameho slneného svitu. Hoci je zimný výkon nižší ako v lete, systém naďalej aktívne znižuje vaše účty za elektrinu.'
     },
     {
       q: 'Aký je rozdiel medzi On-Grid, Hybridným a Off-Grid systémom?',
@@ -31,12 +32,12 @@ export const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-slate-900 text-white relative border-b border-slate-800">
+    <section id="faq" className="py-24 bg-slate-900 text-white relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4">
-          <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
             Otázky a Odpovede
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white">
@@ -54,6 +55,7 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={idx}
+                data-ui="faq-item"
                 className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden transition-colors"
               >
                 <button
@@ -67,7 +69,7 @@ export const FAQSection: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-slate-900/60 pt-4">
+                  <div className="px-6 pb-6 text-sm text-slate-300 leading-relaxed pt-4">
                     {faq.a}
                   </div>
                 )}
@@ -77,14 +79,15 @@ export const FAQSection: React.FC = () => {
         </div>
 
         {/* CTA Banner at FAQ bottom */}
-        <div className="mt-12 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-sky-500/10 border border-amber-500/20 rounded-2xl p-6 text-center space-y-3">
+        <div className="mt-12 bg-slate-950 border border-amber-500/20 rounded-2xl p-6 text-center space-y-3">
           <h3 className="text-lg font-bold text-white">Nenašli ste odpoveď na vašu otázku?</h3>
           <p className="text-xs text-slate-300">Naši energetickí poradcovia vám radi bezplatne odpovedia na akúkoľvek otázku.</p>
           <a
             href="tel:+421948123456"
-            className="inline-flex items-center justify-center gap-2 bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs hover:bg-amber-300 transition-colors shadow-md min-h-[44px]"
+            className="inline-flex items-center justify-center gap-2 bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs hover:bg-amber-300 transition-colors min-h-[44px]"
           >
-            📞 Zavolať expertovi: +421 948 123 456
+            <PhoneIcon className="w-4 h-4 text-slate-950 shrink-0" />
+            <span>Zavolať expertovi: +421 948 123 456</span>
           </a>
         </div>
 

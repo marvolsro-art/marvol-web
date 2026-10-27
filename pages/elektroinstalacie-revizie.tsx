@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { Check, FileText, Bolt, Shield, BuildingOffice, Phone, Mail, ClipboardIcon as Clipboard, ChevronDown } from '@/components/icons';
 
 export default function ElektroinstalacieRevizie() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -62,7 +63,7 @@ export default function ElektroinstalacieRevizie() {
       id: 'opos-revizie',
       title: 'Odborné prehliadky a skúšky (OPOS)',
       badge: 'Vyhláška 508/2009 Z. z.',
-      badgeColor: 'border-purple-500/30 text-purple-400 bg-purple-500/10',
+      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
       description: 'Oficiálne úradné revízne správy od certifikovaných revíznych technikov (§ 24) pre stavebné úrady, distribúciu (SSD/ZSD/VSD), poisťovne a inšpektorát práce.',
       features: [
         'Východiskové revízie potrebné ku kolaudácii rodinných domov a hál',
@@ -189,15 +190,15 @@ export default function ElektroinstalacieRevizie() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
               {/* Decree Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-bold tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-amber-400 " />
                 <span>Vyhláška MPSVR SR č. 508/2009 Z. z. & STN normy</span>
               </div>
 
@@ -212,15 +213,15 @@ export default function ElektroinstalacieRevizie() {
 
               {/* Quick Spec Metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-purple-400 font-black text-xl sm:text-2xl">§ 24</div>
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
+                  <div className="text-amber-400 font-black text-xl sm:text-2xl">§ 24</div>
                   <div className="text-slate-400 text-xs mt-0.5">Revízny technik el. zar.</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">CE & Atest</div>
                   <div className="text-slate-400 text-xs mt-0.5">Výroba rozvádzačov na kľúč</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">100% Platnosť</div>
                   <div className="text-slate-400 text-xs mt-0.5">Pre kolaudáciu a úrady</div>
                 </div>
@@ -230,13 +231,13 @@ export default function ElektroinstalacieRevizie() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#sluzby-elektro"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:opacity-95 shadow-xl shadow-amber-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
                 >
                   Prehľad elektro služieb
                 </a>
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 text-center transition-colors cursor-pointer"
                 >
                   Objednať revíziu / inštaláciu
                 </a>
@@ -245,31 +246,31 @@ export default function ElektroinstalacieRevizie() {
 
             {/* Visual Value Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-purple-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-800 bg-slate-900">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/elektroinstalacie/hero.jpg"
-                    alt="Ilustračná fotka odbornej elektroinštalácie a zapojenia rozvádzača Marvol"
+                    alt="Odborná elektroinštalácia a zapojenie rozvádzača Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/20" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-purple-500/40 text-purple-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                    <span>Ilustračné foto zapojenia rozvádzača</span>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/90 border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 " />
+                    <span>Certifikované zapojenie rozvádzača</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-400 text-slate-950 font-bold text-xs rounded-full">
                     § 24 OPOS
                   </div>
 
                   {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">Certifikované rozvádzače &amp; revízie</span>
-                      <span className="text-purple-400 font-bold">100% Kolaudácia</span>
+                      <span className="text-amber-400 font-bold">100% Kolaudácia</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
                       Precízne zapojenie podľa STN noriem, kalibrované merania a okamžité odstránenie závad.
@@ -278,21 +279,21 @@ export default function ElektroinstalacieRevizie() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900 text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                     <span>Východiskové aj periodické správy</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                     <span>Meranie bleskozvodov a zemnenia</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                     <span>Termovízna kontrola spojov FLIR</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                     <span>Platnosť pre SSD, ZSD aj VSD</span>
                   </div>
                 </div>
@@ -304,11 +305,11 @@ export default function ElektroinstalacieRevizie() {
       </section>
 
       {/* Service Offerings Grid */}
-      <section id="sluzby-elektro" className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section id="sluzby-elektro" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Komplexné portfólio
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
@@ -340,13 +341,13 @@ export default function ElektroinstalacieRevizie() {
                     {service.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8 border-t border-slate-800 pt-4">
+                  <div className="space-y-2.5 mb-8 pt-4">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                       Rozsah činností:
                     </div>
                     {service.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <span className="text-amber-400 font-bold shrink-0">✓</span>
+                        <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -356,7 +357,7 @@ export default function ElektroinstalacieRevizie() {
                 <div>
                   <a
                     href="#dopyt"
-                    className="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center block text-sm transition-all border border-slate-700 cursor-pointer"
+                    className="w-full min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
                   >
                     Dopytovať túto službu
                   </a>
@@ -368,11 +369,11 @@ export default function ElektroinstalacieRevizie() {
       </section>
 
       {/* Legislation & Standards Section */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-400/10 border border-purple-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Právne garancie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -385,8 +386,8 @@ export default function ElektroinstalacieRevizie() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center text-purple-400 text-2xl font-black">
-                📜
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                <FileText className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Vyhláška č. 508/2009 Z. z.</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -395,8 +396,8 @@ export default function ElektroinstalacieRevizie() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-2xl font-black">
-                ⚡
+              <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                <Bolt className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Súbor noriem STN 33 2000</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -405,8 +406,8 @@ export default function ElektroinstalacieRevizie() {
             </div>
 
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-2xl font-black">
-                🛡️
+              <div className="w-12 h-12 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400">
+                <Shield className="w-6 h-6 text-emerald-400" />
               </div>
               <h3 className="text-xl font-bold text-white">Norma STN EN 62305</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
@@ -418,11 +419,11 @@ export default function ElektroinstalacieRevizie() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -447,16 +448,10 @@ export default function ElektroinstalacieRevizie() {
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
-                    <span
-                      className={`text-xl text-amber-400 transition-transform duration-200 shrink-0 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    >
-                      ▾
-                    </span>
+                    <ChevronDown className={`w-5 h-5 text-amber-400 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2">
                       {faq.a}
                     </div>
                   )}
@@ -473,7 +468,7 @@ export default function ElektroinstalacieRevizie() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+              <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Objednávka elektro prác & revízií
               </span>
 
@@ -487,8 +482,8 @@ export default function ElektroinstalacieRevizie() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    📞
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Phone className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Priamy kontakt na technika</div>
@@ -499,8 +494,8 @@ export default function ElektroinstalacieRevizie() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    ✉️
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Mail className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">E-mail pre projektovú dokumentáciu</div>
@@ -511,8 +506,8 @@ export default function ElektroinstalacieRevizie() {
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    📋
+                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                    <Clipboard className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Odborná spôsobilosť</div>

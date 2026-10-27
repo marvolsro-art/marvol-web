@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
 
 export default function RevizieDotacie() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
@@ -63,7 +64,7 @@ export default function RevizieDotacie() {
       id: 'dotacie-zelena-podnikom',
       title: 'Dotácie Zelená podnikom pre firmy a prevádzky',
       badge: 'Dotácie pre podniky',
-      badgeColor: 'border-purple-500/30 text-purple-400 bg-purple-500/10',
+      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
       description:
         'Financovanie zelených investícií pre podniky a prevádzky. Pomôžeme vám získať nenávratný finančný príspevok na zníženie energetickej náročnosti výroby.',
       features: [
@@ -78,25 +79,25 @@ export default function RevizieDotacie() {
 
   const workflowSteps = [
     {
-      step: '01',
+      step: '1',
       title: 'Fyzická obhliadka & merania revíznym technikom',
       description:
         'Revízny technik dorazí na miesto a špičkovým kalibrovaným prístrojom Metrel/Megger premeria impedanciu slučiek, izolačný stav a vybavenie chráničov.',
     },
     {
-      step: '02',
+      step: '2',
       title: 'Spracovanie revíznej správy OPOS',
       description:
         'Vyhodnotíme namerané hodnoty, zapíšeme parametre do úradného tlačiva a správu autorizujeme podpisom a pečiatkou revízneho technika podľa § 24.',
     },
     {
-      step: '03',
+      step: '3',
       title: 'Nahratie podkladov do portálu SIEA',
       description:
         'Pre potreby dotácie nahráme revíznu správu, fotodokumentáciu výrobného štítku a faktúry priamo do dotačného systému SIEA.',
     },
     {
-      step: '04',
+      step: '4',
       title: 'Odovzdanie správy & odpočet dotácie',
       description:
         'Dostanete originál revíznej správy pre distribútora (SSD/ZSD/VSD) i poisťovňu, pričom dotáciu vám odpočítame priamo z faktúry.',
@@ -219,21 +220,21 @@ export default function RevizieDotacie() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 border-b border-slate-800/80">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-8 pb-20 ">
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
               {/* Badge Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                <span>📋 Revízny technik § 24 & Dotácie SIEA do {COMPANY_DETAILS.subsidies.maxHomeSubsidy}</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-bold tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                <FileTextIcon className="w-4 h-4 text-sky-400 shrink-0" /><span>Revízny technik § 24 a dotácie SIEA do {COMPANY_DETAILS.subsidies.maxHomeSubsidy}</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                 Úradné revízie fotovoltiky (OPOS) <br className="hidden sm:block" />
-                <span className="text-purple-400">a kompletný dotačný servis SIEA</span>
+                <span className="text-sky-400">a kompletný dotačný servis SIEA</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
@@ -243,7 +244,7 @@ export default function RevizieDotacie() {
               {/* 4 Key Metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-purple-400 font-black text-xl sm:text-2xl">§ 24</div>
+                  <div className="text-sky-400 font-black text-xl sm:text-2xl">§ 24</div>
                   <div className="text-slate-400 text-xs mt-0.5">Revízny technik el. zar.</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
@@ -264,13 +265,13 @@ export default function RevizieDotacie() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-black text-slate-950 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-400 hover:opacity-95 shadow-xl shadow-purple-500/20 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-sky-400 hover:bg-sky-300 text-center transition-colors cursor-pointer"
                 >
                   Objednať revíziu alebo dotáciu
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center px-7 py-4 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
                 >
                   Kontaktovať revízora: {COMPANY_DETAILS.contact.phone}
                 </a>
@@ -279,23 +280,23 @@ export default function RevizieDotacie() {
 
             {/* Hero Feature Card with Illustrative Photo */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-purple-500/10 bg-slate-900/90 backdrop-blur-xl">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/revizie-dotacie.jpg"
-                    alt="Ilustračná fotka odbornej revízie OPOS a merania fotovoltiky Marvol"
+                    alt="Odborná revízia OPOS a merania fotovoltiky Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/40" />
                   
                   {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-purple-500/40 text-purple-400 font-semibold text-xs flex items-center gap-1.5 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                    <span>Ilustračné foto revízie OPOS</span>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-500/40 text-sky-400 font-semibold text-xs flex items-center gap-1.5 ">
+                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                    <span>Odborná revízia OPOS</span>
                   </div>
                   
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-full shadow-lg">
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-sky-500 text-white font-black text-xs font-semibold rounded-full ">
                     § 24 MPSVR SR
                   </div>
 
@@ -303,7 +304,7 @@ export default function RevizieDotacie() {
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">Kalibrované meranie &amp; vybavenie dotácie</span>
-                      <span className="text-purple-400 font-bold">100% Platnosť</span>
+                      <span className="text-sky-400 font-bold">100% Platnosť</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
                       Úradné revízne správy pre distribúciu (SSD/ZSD/VSD), poisťovne a preplatenie dotácie SIEA.
@@ -312,21 +313,21 @@ export default function RevizieDotacie() {
                 </div>
 
                 {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
                     <span>Meranie izolačných stavov a slučky</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
                     <span>Dotácia odpočítaná priamo z ceny</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
                     <span>Termovízia hot-spotov FLIR</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <span className="text-purple-400 font-bold">✓</span>
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
                     <span>Okamžité odstránenie závad</span>
                   </div>
                 </div>
@@ -338,11 +339,11 @@ export default function RevizieDotacie() {
       </section>
 
       {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section id="parametre" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-400/10 border border-purple-400/20">
+            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
               Revízne a dotačné služby
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
@@ -361,7 +362,7 @@ export default function RevizieDotacie() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
+                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
                       {card.badge}
                     </span>
                   </div>
@@ -374,13 +375,13 @@ export default function RevizieDotacie() {
                     {card.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8 border-t border-slate-800 pt-4">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  <div className="space-y-2.5 mb-8  pt-4">
+                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
                       Rozsah revíznych a dotačných prác:
                     </div>
                     {card.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <span className="text-purple-400 font-bold shrink-0">✓</span>
+                        <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -390,7 +391,7 @@ export default function RevizieDotacie() {
                 <div>
                   <a
                     href="#dopyt"
-                    className="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center block text-sm transition-all border border-slate-700 cursor-pointer"
+                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
                   >
                     Objednať túto službu
                   </a>
@@ -403,10 +404,10 @@ export default function RevizieDotacie() {
       </section>
 
       {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-400/10 border border-purple-400/20">
+            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
               Proces vybavenia
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -420,7 +421,7 @@ export default function RevizieDotacie() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {workflowSteps.map((step) => (
               <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-purple-400/30 mb-2">{step.step}</div>
+                <div className="text-4xl font-black text-sky-400/30 mb-2">{step.step}</div>
                 <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
                 <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                   {step.description}
@@ -429,9 +430,9 @@ export default function RevizieDotacie() {
             ))}
           </div>
 
-          <div className="mt-12 bg-purple-500/10 border border-purple-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="mt-12 bg-sky-500/10 border border-sky-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1">
-              <div className="text-purple-400 font-bold text-base sm:text-lg">
+              <div className="text-sky-400 font-bold text-base sm:text-lg">
                 Východisková revízna správa v cene inštalácií na kľúč
               </div>
               <div className="text-slate-300 text-xs sm:text-sm">
@@ -440,7 +441,7 @@ export default function RevizieDotacie() {
             </div>
             <a
               href="#dopyt"
-              className="px-6 py-3.5 bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
+              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
             >
               Objednať revízneho technika
             </a>
@@ -449,11 +450,11 @@ export default function RevizieDotacie() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+      <section className="py-20 bg-slate-950 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-4">
-            <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-400/10 border border-purple-400/20">
+            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -474,12 +475,12 @@ export default function RevizieDotacie() {
                 >
                   <button
                     onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-purple-400 transition-colors focus:outline-none cursor-pointer"
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-sky-400 transition-colors focus:outline-none cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
                     <span
-                      className={`text-xl text-purple-400 transition-transform duration-200 shrink-0 ${
+                      className={`text-xl text-sky-400 transition-transform duration-200 shrink-0 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     >
@@ -487,7 +488,7 @@ export default function RevizieDotacie() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-slate-800/60 pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -504,7 +505,7 @@ export default function RevizieDotacie() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-purple-400 text-xs uppercase font-extrabold tracking-widest px-3 py-1 rounded-full bg-purple-400/10 border border-purple-400/20">
+              <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
                 Objednávka revízie & dotácie
               </span>
 
@@ -518,32 +519,32 @@ export default function RevizieDotacie() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    📞
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
+                    <PhoneIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Priamy kontakt na revízneho technika § 24</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-purple-400">
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-sky-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    ✉️
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
+                    <MailIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">E-mail pre revízie a dotačnú agendu</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-purple-400">
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-sky-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-bold shrink-0">
-                    🏢
+                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
+                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Sídlo spoločnosti</div>
