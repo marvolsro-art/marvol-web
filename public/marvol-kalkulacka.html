@@ -787,7 +787,7 @@
       totalCost += pCostTotal;
       items.push({
         name: (panelType === 'aiko_460') ? "AIKO Neostar All-Black N-Type ABC 460 Wp" : "Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp",
-        desc: "Bifaciálne monokryštalické články s účinnosťou >22%, lineárna záruka výkonu 25 rokov",
+        module: "Fotovoltický panel",
         qty: panelCount, unit: "ks", unitPrice: panelCost * margin, total: pCostTotal * margin
       });
       checklist.push({ name: "Fotovoltické panely " + panelWp + " Wp", qty: panelCount, unit: "ks", note: "Overiť neporušenosť skla a sériové čísla" });
@@ -812,7 +812,7 @@
       totalCost += invObj.cost;
       items.push({
         name: invObj.name,
-        desc: "Trojfázový inteligentný striedač, integrovaný Wi-Fi dongle, manažment tokov a certifikácia pre distribučnú sieť",
+        module: "Striedač",
         qty: 1, unit: "ks", unitPrice: invObj.cost * margin, total: invObj.cost * margin
       });
       checklist.push({ name: invObj.name, qty: 1, unit: "ks", note: "Vrátane montážneho závesu a Wi-Fi antény" });
@@ -838,7 +838,7 @@
         totalCost += batObj.cost;
         items.push({
           name: batObj.name,
-          desc: "Vysokonapäťová LiFePO4 technológia, životnosť 8 000+ cyklov, modulárne rozšíriteľná",
+          module: "Batéria",
           qty: 1, unit: "kpl", unitPrice: batObj.cost * margin, total: batObj.cost * margin
         });
         checklist.push({ name: batObj.name, qty: 1, unit: "kpl", note: "Skontrolovať silové káble BMS a dátovú zbernicu" });
@@ -858,7 +858,7 @@
       totalCost += roofCostTotal;
       items.push({
         name: roofObj.name,
-        desc: "Certifikovaný nosný systém z eloxovaného hliníka a nerezovej ocele A2 s odolnosťou voči vetru a snehu",
+        module: "Konštrukcia",
         qty: 1, unit: "kpl", unitPrice: roofCostTotal * margin, total: roofCostTotal * margin
       });
       checklist.push({ name: "AL profily 4m (" + roofObj.name + ")", qty: Math.ceil(panelCount * 0.7), unit: "ks" });
@@ -869,7 +869,7 @@
       totalCost += 40.00;
       items.push({
         name: "Spojovací a kotviaci materiál (A2 nerez / hliník)",
-        desc: "Krajné a stredové úchyty panelov s EPDM tesnením, nerezové skrutky A2",
+        module: "Kotviaci materiál",
         qty: 1, unit: "kpl", unitPrice: 40 * margin, total: 40 * margin
       });
 
@@ -878,7 +878,7 @@
         totalCost += 280.00;
         items.push({
           name: "Bezpečnostný TIGO KIT a STOP tlačidlo pre hasičov",
-          desc: "Núdzové beznapäťové odpojenie panelov na úrovni strechy podľa požiarnych predpisov",
+          module: "Bezpečnostný systém",
           qty: 1, unit: "kpl", unitPrice: 280 * margin, total: 280 * margin
         });
         checklist.push({ name: "TIGO KIT vysielač + STOP tlačidlo núdzového vypnutia", qty: 1, unit: "kpl" });
@@ -890,7 +890,7 @@
         totalCost += optCostTotal;
         items.push({
           name: "Výkonové optimizéry panelov s modulom Rapid Shutdown",
-          desc: "Eliminácia vplyvu čiastočného tienenia a detailný monitoring modulov",
+          module: "Optimizér",
           qty: optCount, unit: "ks", unitPrice: 30 * margin, total: optCostTotal * margin
         });
         checklist.push({ name: "Optimizéry panelov", qty: optCount, unit: "ks" });
@@ -900,7 +900,7 @@
       totalCost += 340.00;
       items.push({
         name: "Inteligentný Smartmeter DTSU666, AC + DC rozvodnica a istenie ETI",
-        desc: "Prepäťové ochrany T1+T2 1000V, DC poistkové odpínače, prúdový chránič typ A, obojsmerné meranie",
+        module: "Rozvádzač a istenie",
         qty: 1, unit: "kpl", unitPrice: 340 * margin, total: 340 * margin
       });
       checklist.push({ name: "Smartmeter DTSU666 trojfázový vrátane CT meracích cievok", qty: 1, unit: "ks" });
@@ -912,14 +912,14 @@
         totalCost += 80.00;
         items.push({
           name: "Záložný okruh EPS — Núdzová zásuvka pri meniči",
-          desc: "Napájanie kritických spotrebičov počas výpadku distribučnej siete",
+          module: "Záložný systém (EPS)",
           qty: 1, unit: "kpl", unitPrice: 80 * margin, total: 80 * margin
         });
       } else if (backupType === 'board') {
         totalCost += 200.00;
         items.push({
           name: "Plný automatický EPS BACK-UP pre vybrané okruhy domu (5-10 okruhov)",
-          desc: "Prepínač sietí, oddelenie fáz v hlavnom rozvádzači, okamžitý prechod na ostrovný režim",
+          module: "Záložný systém (EPS)",
           qty: 1, unit: "kpl", unitPrice: 200 * margin, total: 200 * margin
         });
       }
@@ -929,7 +929,7 @@
         totalCost += 250.00;
         items.push({
           name: "Hlavná uzemňovacia sústava (HUS) a ekvipotenciálne pospájanie",
-          desc: "Pospájanie konštrukcie a rozvádzačov na uzemňovaciu sústavu objektu",
+          module: "Uzemnenie (HUS)",
           qty: 1, unit: "kpl", unitPrice: 250 * margin, total: 250 * margin
         });
       }
@@ -939,14 +939,14 @@
         totalCost += 500.00;
         items.push({
           name: "Úprava bleskozvodovej sústavy a revízia bleskozvodu",
-          desc: "Dodržanie bezpečnej vzdialenosti 's' od panelov a úradná revízna správa bleskozvodu",
+          module: "Bleskozvod",
           qty: 1, unit: "kpl", unitPrice: 500 * margin, total: 500 * margin
         });
       } else if (lightningType === 'new') {
         totalCost += 1500.00;
         items.push({
           name: "Kompletné vybudovanie novej bleskozvodovej sústavy vrátane revízie",
-          desc: "Zvodová sústava, meranie prechodového odporu a úradná revízna správa",
+          module: "Bleskozvod",
           qty: 1, unit: "kpl", unitPrice: 1500 * margin, total: 1500 * margin
         });
       }
@@ -956,7 +956,7 @@
         totalCost += 54.00;
         items.push({
           name: "Inteligentné zopínanie bojlera z fotovoltických pretokov (Dry Contact)",
-          desc: "Stykač 25A, istenie a automatické ohrievanie TÚV len z prebytkov energie",
+          module: "Riadenie pretokov",
           qty: 1, unit: "kpl", unitPrice: 54 * margin, total: 54 * margin
         });
       }
@@ -966,7 +966,7 @@
       totalCost += cableCost;
       items.push({
         name: "Elektroinštalačná kabeláž AC + DC a chráničky s UV ochranou",
-        desc: "Solárne vodiče H1Z2Z2-K 6mm² (" + dcLen + "m), silový kábel CYKY-J 5x (" + acLen + "m), UV chráničky FXP",
+        module: "Kabeláž",
         qty: 1, unit: "kpl", unitPrice: cableCost * margin, total: cableCost * margin
       });
       checklist.push({ name: "Solárny kábel H1Z2Z2-K 6mm² (červený + čierny)", qty: dcLen * 2, unit: "m" });
@@ -979,7 +979,7 @@
       totalCost += mountLabor;
       items.push({
         name: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
-        desc: "Kotvenie nosného systému, montáž FV modulov, prepojenie DC stringov, prechod cez strechu",
+        module: "Montážne práce",
         qty: 1, unit: "kpl", unitPrice: mountLabor * margin, total: mountLabor * margin
       });
 
@@ -987,7 +987,7 @@
       totalCost += 330.60;
       items.push({
         name: "Elektroinštalačné práce, osadenie meniča a oživenie systému",
-        desc: "Inštalácia rozvádzačov, trasovanie káblov, zapojenie do domového rozvádzača, konfigurácia monitoringu",
+        module: "Elektroinštalačné práce",
         qty: 1, unit: "kpl", unitPrice: 330.60 * margin, total: 330.60 * margin
       });
 
@@ -995,7 +995,7 @@
       totalCost += 250.00;
       items.push({
         name: "Úradná revízna správa, projektová schéma a kompletná administratíva",
-        desc: "Odborná prehliadka a skúška (OPaOS), jednopólová schéma, prihlásenie do distribučnej siete, podklady pre SIEA dotáciu",
+        module: "Revízia a administratíva",
         qty: 1, unit: "kpl", unitPrice: 250 * margin, total: 250 * margin
       });
 
@@ -1005,7 +1005,7 @@
         totalCost += transCost;
         items.push({
           name: "Doprava materiálu a montážnej skupiny (" + distanceKm + " km)",
-          desc: "Doprava z centrály Žilina/Vrútky na miesto inštalácie a vykládka komponentov",
+          module: "Doprava",
           qty: distanceKm, unit: "km", unitPrice: 0.50 * margin, total: transCost * margin
         });
       }
@@ -1073,7 +1073,9 @@
           <td style="color: #94a3b8; font-family: monospace;">${idx + 1}</td>
           <td>
             <strong>${it.name}</strong>
-            <div style="font-size: 8.5px; color: #64748b;">${it.desc}</div>
+            <div style="font-size: 8.5px; color: #64748b; font-weight: 500; margin-top: 1px;">
+              Modul: <span style="color: #059669; font-weight: 700;">${it.module}</span>
+            </div>
           </td>
           <td style="text-align: center; font-weight: 700;">${it.qty}</td>
           <td style="text-align: center; color: #64748b;">${it.unit}</td>

@@ -264,7 +264,7 @@ export interface QuoteCalculationResult {
 
   itemsBreakdown: {
     title: string;
-    description: string;
+    category: string;
     quantity: number;
     unit: string;
     unitPriceEur: number;
@@ -303,7 +303,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += panelsCost;
   items.push({
     title: panel.name,
-    description: `Špičková účinnosť >22%, monokryštalické články s predĺženou zárukou 15/25 rokov`,
+    category: "Fotovoltický panel",
     quantity: inputs.panelCount,
     unit: "ks",
     unitPriceEur: Number((panel.costPrice * margin).toFixed(2)),
@@ -316,7 +316,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += inverterCost;
   items.push({
     title: inverter.name,
-    description: `Trojfázový inteligentný invertor s účinnosťou 98.4%, integrovaný Wi-Fi monitoring a manažment tokov`,
+    category: "Striedač",
     quantity: 1,
     unit: "ks",
     unitPriceEur: Number(inverterSell.toFixed(2)),
@@ -330,7 +330,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += batCost;
     items.push({
       title: battery.name,
-      description: `Vysokonapäťová LiFePO4 technológia, životnosť 8 000+ cyklov (15 rokov), modulárna rozšíriteľnosť`,
+      category: "Batéria",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number(batSell.toFixed(2)),
@@ -344,7 +344,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += roofCost;
   items.push({
     title: roof.name,
-    description: `Certifikovaný hliníkovo-nerezový nosný systém, statická odolnosť voči vetru a snehu`,
+    category: "Konštrukcia",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number(roofSell.toFixed(2)),
@@ -356,7 +356,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += fastenersCost;
   items.push({
     title: "Spojovací a kotviaci materiál (A2 nerez / hliník)",
-    description: "Špeciálne EPDM tesnenia, nerezové skrutky A2, koncovky a stredové príchytky",
+    category: "Kotviaci materiál",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((fastenersCost * margin).toFixed(2)),
@@ -369,7 +369,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += tigoCost;
     items.push({
       title: "Bezpečnostný TIGO KIT a STOP tlačidlo pre hasičov",
-      description: "Núdzové odpojenie jednosmerného napätia na úrovni strechy podľa platných STN / požiarnych predpisov",
+      category: "Bezpečnostný systém",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((tigoCost * margin).toFixed(2)),
@@ -382,7 +382,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += optCost;
     items.push({
       title: "Výkonové optimizéry panelov s modulom Rapid Shutdown",
-      description: "Eliminácia vplyvu čiastočného tienenia a monitoring jednotlivých panelov",
+      category: "Optimizér",
       quantity: inputs.optimizerCount,
       unit: "ks",
       unitPriceEur: Number((30.00 * margin).toFixed(2)),
@@ -395,7 +395,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += switchboardCost;
   items.push({
     title: "Inteligentný Smartmeter DTSU666, AC + DC rozvodnica a istenie ETI",
-    description: "Prepäťové ochrany T1+T2, poistkové odpínače, prúdový chránič typ A, obojsmerné meranie",
+    category: "Rozvádzač a istenie",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((switchboardCost * margin).toFixed(2)),
@@ -408,7 +408,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += epsCost;
     items.push({
       title: "Záložný okruh EPS — Núdzová zásuvka pri meniči",
-      description: "Napájanie kritických spotrebičov počas výpadku distribučnej siete",
+      category: "Záložný systém (EPS)",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((epsCost * margin).toFixed(2)),
@@ -419,7 +419,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += epsCost;
     items.push({
       title: "Plný automatický EPS BACK-UP pre vybrané okruhy domu (5-10 okruhov)",
-      description: "Prepínač sietí, oddelenie fáz v hlavnom rozvádzači, okamžitý prechod na ostrovný režim",
+      category: "Záložný systém (EPS)",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((epsCost * margin).toFixed(2)),
@@ -433,7 +433,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += husCost;
     items.push({
       title: "Hlavná uzemňovacia sústava (HUS) a pospájanie",
-      description: "Vybudovanie a ekvipotenciálne pospájanie konštrukcie a rozvádzačov na uzemnenie",
+      category: "Uzemnenie (HUS)",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((husCost * margin).toFixed(2)),
@@ -447,7 +447,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += lpCost;
     items.push({
       title: "Úprava bleskozvodovej sústavy a revízia bleskozvodu",
-      description: "Ochranné iskrištia, dodržanie bezpečnej vzdialenosti 's' a revízna správa bleskozvodu",
+      category: "Bleskozvod",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((lpCost * margin).toFixed(2)),
@@ -458,7 +458,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += lpCost;
     items.push({
       title: "Kompletné vybudovanie novej bleskozvodovej sústavy vrátane revízie",
-      description: "Zvodová sústava, uzemňovacie tyče, meranie prechodového odporu a úradná revízia",
+      category: "Bleskozvod",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((lpCost * margin).toFixed(2)),
@@ -472,7 +472,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += dcCost;
     items.push({
       title: "Inteligentné zopínanie bojlera z fotovoltických pretokov (Dry Contact)",
-      description: "Stykač 25A, ističové istenie a automatické ohrievanie TÚV len zo solárnych prebytkov",
+      category: "Riadenie pretokov",
       quantity: 1,
       unit: "kpl",
       unitPriceEur: Number((dcCost * margin).toFixed(2)),
@@ -487,7 +487,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += totalCableCost;
   items.push({
     title: "Elektroinštalačná kabeláž AC + DC a chráničky s UV ochranou",
-    description: `Solárne vodiče H1Z2Z2-K 6mm² (${inputs.dcCableMeters}m), silový kábel CYKY-J 5x (${inputs.acCableMeters}m), UV stabilné chráničky FXP`,
+    category: "Kabeláž",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((totalCableCost * margin).toFixed(2)),
@@ -499,7 +499,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += mountingLaborCost;
   items.push({
     title: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
-    description: "Kotvenie nosného systému, montáž FV modulov, prepojenie DC stringov, prechod cez strechu",
+    category: "Montážne práce",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((mountingLaborCost * margin).toFixed(2)),
@@ -511,7 +511,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += electricalLaborCost;
   items.push({
     title: "Elektroinštalačné práce, osadenie meniča a oživenie systému",
-    description: "Inštalácia rozvádzačov, trasovanie káblov, zapojenie do hlavného domového rozvádzača, konfigurácia monitoringu",
+    category: "Elektroinštalačné práce",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((electricalLaborCost * margin).toFixed(2)),
@@ -523,7 +523,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   totalCost += adminAndInspectionCost;
   items.push({
     title: "Úradná revízna správa, projektová schéma a kompletná administratíva",
-    description: "Odborná prehliadka a skúška (OPaOS), jednopólová schéma, prihlásenie do distribučnej sústavy (SSD/ZSD/VSD), podklady pre SIEA dotáciu",
+    category: "Revízia a administratíva",
     quantity: 1,
     unit: "kpl",
     unitPriceEur: Number((adminAndInspectionCost * margin).toFixed(2)),
@@ -536,7 +536,7 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     totalCost += transportCost;
     items.push({
       title: `Doprava materiálu a montážnej skupiny (${inputs.distanceKm} km)`,
-      description: "Doprava z centrály Žilina/Vrútky na miesto inštalácie a vykládka komponentov",
+      category: "Doprava",
       quantity: inputs.distanceKm,
       unit: "km",
       unitPriceEur: Number((0.50 * margin).toFixed(2)),

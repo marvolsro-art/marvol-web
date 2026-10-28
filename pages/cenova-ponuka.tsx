@@ -947,7 +947,9 @@ export default function CenovaPonukaPage() {
                         <td className="py-1.5 px-2 text-slate-400 font-mono text-[9px]">{idx + 1}</td>
                         <td className="py-1.5 px-2">
                           <div className="font-bold text-slate-900 leading-tight">{item.title}</div>
-                          <div className="text-[9px] text-slate-500 leading-tight mt-0.5">{item.description}</div>
+                          <div className="text-[9px] text-slate-500 font-medium mt-0.5">
+                            Modul: <span className="text-emerald-700 font-semibold">{item.category}</span>
+                          </div>
                         </td>
                         <td className="py-1.5 px-2 text-center font-bold text-slate-800">{item.quantity}</td>
                         <td className="py-1.5 px-2 text-center text-slate-500">{item.unit}</td>
