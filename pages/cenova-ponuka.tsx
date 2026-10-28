@@ -899,7 +899,7 @@ export default function CenovaPonukaPage() {
                   <div className="text-slate-500 text-[10px] mt-1 flex flex-col gap-0.5">
                     <span>Mobil: <strong className="text-slate-700">{selectedRep.phone}</strong></span>
                     <span>E-mail: <strong className="text-slate-700">{selectedRep.email}</strong></span>
-                    <span>Garancia inštalácie: <strong className="text-emerald-700">do 14 dní od zmluvy</strong></span>
+                    <span>Garancia inštalácie: <strong className="text-emerald-700">do 30 dní od zmluvy</strong></span>
                   </div>
                 </div>
               </div>
@@ -1024,7 +1024,7 @@ export default function CenovaPonukaPage() {
                   <div className="text-[8px] text-slate-500 uppercase tracking-tight font-bold">Záruka na menič / batériu</div>
                 </div>
                 <div className="p-2 border border-slate-200 rounded-lg bg-white">
-                  <div className="text-[11px] font-black text-emerald-800">DO 14 DNÍ</div>
+                  <div className="text-[11px] font-black text-emerald-800">DO 30 DNÍ</div>
                   <div className="text-[8px] text-slate-500 uppercase tracking-tight font-bold">Garantovaný termín montáže</div>
                 </div>
                 <div className="p-2 border border-slate-200 rounded-lg bg-white">
