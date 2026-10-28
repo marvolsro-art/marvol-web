@@ -133,6 +133,69 @@ export default function CenovaPonukaPage() {
   const selectedRep = SALES_REPS.find(r => r.id === inputs.salesRepId) || SALES_REPS[0];
   const calculation = calculateQuote(inputs);
 
+  // Stav manuálne upravených položiek v náhľade (null = predvolené podľa konfigurácie)
+  const [itemsOverride, setItemsOverride] = useState<{
+    id: string;
+    title: string;
+    category: string;
+    quantity: number;
+    unit: string;
+    unitPriceEur: number;
+  }[] | null>(null);
+
+  // Aktuálne položky zobrazené v náhľade
+  const previewItems = itemsOverride || calculation.itemsBreakdown.map((it, idx) => ({
+    id: `cat-${idx}`,
+    title: it.title,
+    category: it.category,
+    quantity: it.quantity,
+    unit: it.unit,
+    unitPriceEur: it.unitPriceEur
+  }));
+
+  const handleUpdateItem = (id: string, field: "title" | "quantity" | "unit" | "unitPriceEur", val: any) => {
+    const updated = previewItems.map(it => {
+      if (it.id === id) {
+        return { ...it, [field]: val };
+      }
+      return it;
+    });
+    setItemsOverride(updated);
+  };
+
+  const handleAddItem = () => {
+    const newItem = {
+      id: `custom-${Date.now()}`,
+      title: "Vlastná doplnková položka / materiál",
+      category: "Doplnkové práce",
+      quantity: 1,
+      unit: "kpl",
+      unitPriceEur: 0
+    };
+    setItemsOverride([...previewItems, newItem]);
+  };
+
+  const handleDeleteItem = (id: string) => {
+    const updated = previewItems.filter(it => it.id !== id);
+    setItemsOverride(updated);
+  };
+
+  const handleResetItems = () => {
+    setItemsOverride(null);
+  };
+
+  // Prepočty cien podľa skutočných položiek v náhľade
+  const effectiveSellingWithoutVat = Number(
+    previewItems.reduce((acc, it) => acc + (it.quantity * it.unitPriceEur), 0).toFixed(2)
+  );
+  const effectiveVatAmount = Number((effectiveSellingWithoutVat * inputs.vatRate).toFixed(2));
+  const effectiveSellingWithVat = Number((effectiveSellingWithoutVat + effectiveVatAmount).toFixed(2));
+  const effectiveSubsidy = inputs.applySubsidy ? calculation.subsidyAmount : 0;
+  const effectiveFinalPrice = Number(Math.max(0, effectiveSellingWithVat - effectiveSubsidy).toFixed(2));
+  const effectivePricePerWp = calculation.installedPowerKwp > 0
+    ? Number((effectiveFinalPrice / (calculation.installedPowerKwp * 1000)).toFixed(2))
+    : 0;
+
   // Filtrované meniče podľa značky
   const filteredInverters = INVERTERS.filter(i =>
     selectedInverterBrand === "Všetky" ? true : i.brand === selectedInverterBrand
@@ -259,12 +322,12 @@ export default function CenovaPonukaPage() {
               <div className="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
                 <div className="text-right">
                   <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Predajná cena s DPH</div>
-                  <div className="text-xl font-extrabold text-slate-900">{calculation.sellingPriceWithVat.toLocaleString("sk-SK")} €</div>
+                  <div className="text-xl font-extrabold text-slate-900">{effectiveSellingWithVat.toLocaleString("sk-SK")} €</div>
                 </div>
                 <div className="h-8 w-px bg-slate-200" />
                 <div className="text-right">
                   <div className="text-xs text-emerald-600 uppercase tracking-wider font-semibold">Po dotácii SIEA</div>
-                  <div className="text-xl font-extrabold text-emerald-600">{calculation.finalPriceAfterSubsidyWithVat.toLocaleString("sk-SK")} €</div>
+                  <div className="text-xl font-extrabold text-emerald-600">{effectiveFinalPrice.toLocaleString("sk-SK")} €</div>
                 </div>
               </div>
             </div>
@@ -931,21 +994,21 @@ export default function CenovaPonukaPage() {
                     </div>
                     <div className="flex justify-between text-slate-300">
                       <span>Cena diela bez DPH:</span>
-                      <span className="font-bold text-white font-mono">{calculation.sellingPriceWithoutVat.toLocaleString("sk-SK")} €</span>
+                      <span className="font-bold text-white font-mono">{effectiveSellingWithoutVat.toLocaleString("sk-SK")} €</span>
                     </div>
                     <div className="flex justify-between text-slate-300">
                       <span>DPH (23 %):</span>
-                      <span className="font-bold text-white font-mono">{calculation.vatAmount.toLocaleString("sk-SK")} €</span>
+                      <span className="font-bold text-white font-mono">{effectiveVatAmount.toLocaleString("sk-SK")} €</span>
                     </div>
                     <div className="flex justify-between text-slate-200 pt-2 border-t border-slate-800 font-semibold">
                       <span>Cena spolu s DPH:</span>
-                      <span className="font-bold text-white font-mono text-base">{calculation.sellingPriceWithVat.toLocaleString("sk-SK")} €</span>
+                      <span className="font-bold text-white font-mono text-base">{effectiveSellingWithVat.toLocaleString("sk-SK")} €</span>
                     </div>
 
                     {inputs.applySubsidy && (
                       <div className="flex justify-between text-amber-400 font-semibold">
                         <span>Štátna dotácia SIEA:</span>
-                        <span className="font-bold font-mono">- {calculation.subsidyAmount.toLocaleString("sk-SK")} €</span>
+                        <span className="font-bold font-mono">- {effectiveSubsidy.toLocaleString("sk-SK")} €</span>
                       </div>
                     )}
                   </div>
@@ -954,10 +1017,10 @@ export default function CenovaPonukaPage() {
                   <div className="bg-emerald-950/70 border border-emerald-500/30 rounded-2xl p-4 text-center space-y-1">
                     <span className="text-xs text-emerald-300 font-medium">Finálna investícia pre klienta:</span>
                     <div className="text-3xl font-black text-emerald-400 tracking-tight font-mono">
-                      {calculation.finalPriceAfterSubsidyWithVat.toLocaleString("sk-SK")} €
+                      {effectiveFinalPrice.toLocaleString("sk-SK")} €
                     </div>
                     <span className="text-[11px] text-emerald-400/80 block">
-                      s DPH po odpočítaní možnej dotácie ({calculation.pricePerWpWithSubsidy} €/Wp)
+                      s DPH po odpočítaní možnej dotácie ({effectivePricePerWp} €/Wp)
                     </span>
                   </div>
 
@@ -1137,42 +1200,125 @@ export default function CenovaPonukaPage() {
                 </div>
               </div>
 
-              {/* 4. ROZPIS POLOŽIEK DIELA NA KĽÚČ (Len skutočne vybraté komponenty!) */}
+              {/* 4. ROZPIS POLOŽIEK DIELA NA KĽÚČ (Plne editovateľný v náhľade) */}
               <div className="mb-5">
-                <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-900 mb-2 flex items-center justify-between border-b border-slate-200 pb-1">
-                  <span>Položková špecifikácia fotovoltického systému na kľúč</span>
-                  <span className="text-[9px] font-normal text-slate-500 font-sans normal-case">Kompletná dodávka, inštalácia, revízia a zapojenie</span>
-                </h4>
+                <div className="flex items-center justify-between border-b border-slate-200 pb-1 mb-2">
+                  <h4 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                    <span>Položková špecifikácia fotovoltického systému na kľúč</span>
+                    <span className="text-[9px] font-normal text-slate-500 font-sans normal-case hidden sm:inline">
+                      (Kompletná dodávka, inštalácia, revízia a zapojenie)
+                    </span>
+                  </h4>
+                  <div className="print:hidden flex items-center gap-2">
+                    {itemsOverride && (
+                      <span className="text-[9px] text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md font-medium">
+                        Ručne upravené položky
+                      </span>
+                    )}
+                  </div>
+                </div>
 
                 <table className="w-full text-left border-collapse text-[10px]">
                   <thead>
                     <tr className="border-b border-slate-300 text-slate-600 bg-slate-50">
-                      <th className="py-1.5 px-2 font-bold w-7">P.č.</th>
+                      <th className="py-1.5 px-2 font-bold w-6">P.č.</th>
                       <th className="py-1.5 px-2 font-bold">Názov materiálu a poskytovaných prác</th>
-                      <th className="py-1.5 px-2 font-bold text-center w-12">Množ.</th>
+                      <th className="py-1.5 px-2 font-bold text-center w-14">Množ.</th>
                       <th className="py-1.5 px-2 font-bold text-center w-10">MJ</th>
-                      <th className="py-1.5 px-2 font-bold text-right w-20">Cena / MJ</th>
+                      <th className="py-1.5 px-2 font-bold text-right w-24">Cena / MJ</th>
                       <th className="py-1.5 px-2 font-bold text-right w-24">Spolu bez DPH</th>
+                      <th className="py-1.5 px-1 w-6 print:hidden"></th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {calculation.itemsBreakdown.map((item, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
-                        <td className="py-1.5 px-2 text-slate-400 font-mono text-[9px]">{idx + 1}</td>
-                        <td className="py-1.5 px-2">
-                          <div className="font-bold text-slate-900 leading-tight">{item.title}</div>
-                          <div className="text-[9px] text-slate-500 font-medium mt-0.5">
+                    {previewItems.map((item, idx) => (
+                      <tr key={item.id} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
+                        <td className="py-1 px-2 text-slate-400 font-mono text-[9px]">{idx + 1}</td>
+                        <td className="py-1 px-2">
+                          <input
+                            type="text"
+                            value={item.title}
+                            onChange={e => handleUpdateItem(item.id, "title", e.target.value)}
+                            title="Kliknite pre úpravu textu položky"
+                            className="w-full font-bold text-slate-900 text-[10px] leading-tight bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
+                          />
+                          <div className="text-[9px] text-slate-500 font-medium px-1">
                             Modul: <span className="text-emerald-700 font-semibold">{item.category}</span>
                           </div>
                         </td>
-                        <td className="py-1.5 px-2 text-center font-bold text-slate-800">{item.quantity}</td>
-                        <td className="py-1.5 px-2 text-center text-slate-500">{item.unit}</td>
-                        <td className="py-1.5 px-2 text-right font-mono text-slate-600">{item.unitPriceEur.toFixed(2)} €</td>
-                        <td className="py-1.5 px-2 text-right font-mono font-bold text-slate-900">{item.totalPriceEur.toFixed(2)} €</td>
+                        <td className="py-1 px-2 text-center">
+                          <input
+                            type="number"
+                            min="0"
+                            step="1"
+                            value={item.quantity}
+                            onChange={e => handleUpdateItem(item.id, "quantity", parseFloat(e.target.value) || 0)}
+                            title="Kliknite pre úpravu množstva"
+                            className="w-12 text-center font-bold text-slate-800 text-[10px] bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none font-mono print:border-none print:p-0 print:m-0 print:bg-transparent"
+                          />
+                        </td>
+                        <td className="py-1 px-2 text-center text-slate-500">
+                          <input
+                            type="text"
+                            value={item.unit}
+                            onChange={e => handleUpdateItem(item.id, "unit", e.target.value)}
+                            className="w-8 text-center text-slate-500 text-[10px] bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
+                          />
+                        </td>
+                        <td className="py-1 px-2 text-right">
+                          <div className="flex items-center justify-end">
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={item.unitPriceEur}
+                              onChange={e => handleUpdateItem(item.id, "unitPriceEur", parseFloat(e.target.value) || 0)}
+                              title="Kliknite pre úpravu ceny za MJ"
+                              className="w-20 text-right font-mono text-slate-700 text-[10px] bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
+                            />
+                            <span className="font-mono text-slate-500 text-[9px] ml-0.5">€</span>
+                          </div>
+                        </td>
+                        <td className="py-1 px-2 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
+                          {(item.quantity * item.unitPriceEur).toFixed(2)} €
+                        </td>
+                        <td className="py-1 px-1 text-center print:hidden">
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteItem(item.id)}
+                            className="w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-red-600 hover:bg-red-50 text-xs font-bold transition-colors"
+                            title="Odstrániť túto položku z ponuky"
+                          >
+                            ×
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+
+                {/* Tlačidlá pridania / obnovy položiek (skryté pri tlači) */}
+                <div className="print:hidden mt-2.5 flex items-center justify-between text-xs">
+                  <button
+                    type="button"
+                    onClick={handleAddItem}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold transition-colors shadow-sm"
+                  >
+                    <span className="text-sm font-black">+</span>
+                    <span>Pridať vlastnú položku / prácu</span>
+                  </button>
+                  {itemsOverride && (
+                    <button
+                      type="button"
+                      onClick={handleResetItems}
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 font-medium transition-colors"
+                      title="Vrátiť položky a ceny do predvoleného stavu podľa konfigurátora"
+                    >
+                      <span>↺</span>
+                      <span>Obnoviť pôvodné hodnoty</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* 5. FINANČNÝ SÚČET & ŠTÁTNA DOTÁCIA (HERO BLOK) */}
@@ -1181,15 +1327,15 @@ export default function CenovaPonukaPage() {
                   <div className="space-y-1.5 text-[10px]">
                     <div className="flex justify-between text-slate-600">
                       <span>Celková cena diela bez DPH:</span>
-                      <span className="font-bold font-mono text-slate-900">{calculation.sellingPriceWithoutVat.toFixed(2)} €</span>
+                      <span className="font-bold font-mono text-slate-900">{effectiveSellingWithoutVat.toFixed(2)} €</span>
                     </div>
                     <div className="flex justify-between text-slate-600">
                       <span>Zákonná DPH (23 %):</span>
-                      <span className="font-bold font-mono text-slate-900">{calculation.vatAmount.toFixed(2)} €</span>
+                      <span className="font-bold font-mono text-slate-900">{effectiveVatAmount.toFixed(2)} €</span>
                     </div>
                     <div className="flex justify-between text-slate-900 font-extrabold text-[11px] pt-1 border-t border-slate-200">
                       <span>Celková cena diela s DPH:</span>
-                      <span className="font-mono text-slate-950">{calculation.sellingPriceWithVat.toFixed(2)} €</span>
+                      <span className="font-mono text-slate-950">{effectiveSellingWithVat.toFixed(2)} €</span>
                     </div>
 
                     {inputs.applySubsidy && (
@@ -1197,7 +1343,7 @@ export default function CenovaPonukaPage() {
                         <span>
                           Štátna podpora SIEA ({inputs.isOrkoRegion ? "Oblasť ORKO 575 €/kW" : "Základ 500 €/kW"}):
                         </span>
-                        <span className="font-mono">- {calculation.subsidyAmount.toFixed(2)} €</span>
+                        <span className="font-mono">- {effectiveSubsidy.toFixed(2)} €</span>
                       </div>
                     )}
                   </div>
@@ -1208,10 +1354,10 @@ export default function CenovaPonukaPage() {
                       Konečná investícia pre klienta:
                     </span>
                     <div className="text-2xl font-black text-emerald-800 font-mono tracking-tight my-0.5">
-                      {calculation.finalPriceAfterSubsidyWithVat.toFixed(2)} €
+                      {effectiveFinalPrice.toFixed(2)} €
                     </div>
                     <span className="text-[9px] text-emerald-700 font-medium">
-                      Cena s DPH po odpočítaní štátnej dotácie ({calculation.pricePerWpWithSubsidy} € / Wp)
+                      Cena s DPH po odpočítaní štátnej dotácie ({effectivePricePerWp} € / Wp)
                     </span>
                   </div>
                 </div>
@@ -1326,7 +1472,15 @@ export default function CenovaPonukaPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {calculation.installationChecklist.map((item, idx) => (
+                  {[
+                    ...calculation.installationChecklist,
+                    ...previewItems.filter(it => it.id.startsWith("custom-")).map(it => ({
+                      material: it.title,
+                      qty: it.quantity,
+                      unit: it.unit,
+                      note: "Manuálne pridaná položka"
+                    }))
+                  ].map((item, idx) => (
                     <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
                       <td className="py-2 px-3 text-center">
                         <div className="w-4 h-4 border-2 border-slate-300 rounded mx-auto" />

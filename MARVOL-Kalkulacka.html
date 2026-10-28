@@ -125,10 +125,96 @@
     .guar-item { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 4px; }
     .signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 15px; padding-top: 10px; border-top: 1px solid #e2e8f0; }
 
+    /* INLINE EDIT INPUTS V NÁHĽADE */
+    .inline-edit-input {
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: 4px;
+      padding: 2px 4px;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      outline: none;
+      transition: all 0.15s ease-in-out;
+    }
+    .inline-edit-input:hover {
+      border-color: #cbd5e1;
+      background: #ffffff;
+    }
+    .inline-edit-input:focus {
+      border-color: #059669;
+      background: #ffffff;
+      box-shadow: 0 0 0 2px rgba(5,150,105,0.15);
+    }
+    .btn-row-del {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .btn-row-del:hover {
+      color: #dc2626;
+      background: #fee2e2;
+    }
+    .btn-add-item {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .btn-add-item:hover {
+      background: #d1fae5;
+    }
+    .btn-reset-items {
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .btn-reset-items:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
     /* PRINT CSS RULES */
     @media print {
       body { background: #ffffff !important; }
       .app-header, .print-hide { display: none !important; }
+      .inline-edit-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .btn-row-del, .preview-actions-bar {
+        display: none !important;
+      }
       .a4-page {
         margin: 0 !important; padding: 0 !important; border: none !important;
         box-shadow: none !important; width: 100% !important; max-width: 100% !important;
@@ -652,9 +738,15 @@
       </div>
     </div>
 
-    <!-- ROZPIS POLOŽIEK DIELA (LEN SKUTOČNE MONTOPVANÉ!) -->
-    <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0f172a; margin-top: 15px; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px;">
-      Položková špecifikácia fotovoltického riešenia na kľúč
+    <!-- ROZPIS POLOŽIEK DIELA (LEN SKUTOČNE MONTOVANÉ!) -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 15px; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px;">
+      <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0f172a;">
+        Položková špecifikácia fotovoltického riešenia na kľúč
+      </div>
+      <div class="print-hide preview-actions-bar" style="display: flex; gap: 6px;">
+        <button type="button" class="btn-add-item" onclick="addPreviewItem()">+ Pridať položku / prácu</button>
+        <button type="button" id="btn-reset-preview" class="btn-reset-items" style="display: none;" onclick="resetPreviewItems()" title="Vrátiť položky do pôvodného stavu">↺ Obnoviť pôvodné</button>
+      </div>
     </div>
 
     <table class="a4-table">
@@ -666,6 +758,7 @@
           <th style="width: 40px; text-align: center;">MJ</th>
           <th style="width: 75px; text-align: right;">Cena / MJ</th>
           <th style="width: 85px; text-align: right;">Spolu bez DPH</th>
+          <th class="print-hide" style="width: 25px; text-align: center;"></th>
         </tr>
       </thead>
       <tbody id="p-items-body">
@@ -1237,42 +1330,204 @@
       document.getElementById('p-inv-short').innerText = invObj.short;
       document.getElementById('p-payback').innerText = paybackYears + " roka";
 
-      // Vykreslenie položiek v A4 tabuľke
+      // Uloženie do stavu pre náhľad a montážny list
+      lastGeneratedItems = items.map((it, idx) => ({ id: 'gen-' + idx, ...it }));
+      lastCalculatedMeta = { vatRate, subsidy, applySubsidy, totalPowerWp, mwh };
+      lastChecklist = checklist;
+
+      document.getElementById('chk-kwp').innerText = kwp + " kWp";
+      document.getElementById('chk-quote-no').innerText = quoteNo;
+
+      if (!currentPreviewItems) {
+        renderPreviewItems();
+      }
+      updatePreviewTotals();
+
+      document.title = getSafePdfTitle();
+    }
+
+    let currentPreviewItems = null;
+    let lastGeneratedItems = [];
+    let lastCalculatedMeta = {
+      vatRate: 0.23,
+      subsidy: 0,
+      applySubsidy: true,
+      totalPowerWp: 0,
+      mwh: 10
+    };
+    let lastChecklist = [];
+
+    function renderPreviewItems() {
+      const itemsToRender = currentPreviewItems || lastGeneratedItems;
       const tbody = document.getElementById('p-items-body');
+      if (!tbody) return;
       tbody.innerHTML = '';
-      items.forEach((it, idx) => {
+      itemsToRender.forEach((it, idx) => {
+        const safeName = (it.name || '').replace(/"/g, '&quot;');
+        const safeUnit = (it.unit || 'ks').replace(/"/g, '&quot;');
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td style="color: #94a3b8; font-family: monospace;">${idx + 1}</td>
+          <td style="color: #94a3b8; font-family: monospace; font-size: 9px; vertical-align: middle;">${idx + 1}</td>
           <td>
-            <strong>${it.name}</strong>
-            <div style="font-size: 8.5px; color: #64748b; font-weight: 500; margin-top: 1px;">
+            <input type="text" class="inline-edit-input" style="width: 100%; font-weight: 700; color: #0f172a; font-size: 10px;" value="${safeName}" oninput="updatePreviewItem(${idx}, 'name', this.value)" title="Kliknite pre úpravu textu položky">
+            <div style="font-size: 8.5px; color: #64748b; font-weight: 500; margin-top: 1px; padding-left: 4px;">
               Modul: <span style="color: #059669; font-weight: 700;">${it.module}</span>
             </div>
           </td>
-          <td style="text-align: center; font-weight: 700;">${it.qty}</td>
-          <td style="text-align: center; color: #64748b;">${it.unit}</td>
-          <td style="text-align: right; font-family: monospace;">${it.unitPrice.toFixed(2)} €</td>
-          <td style="text-align: right; font-family: monospace; font-weight: 700;">${it.total.toFixed(2)} €</td>
+          <td style="text-align: center; vertical-align: middle;">
+            <input type="number" min="0" step="1" class="inline-edit-input" style="width: 48px; text-align: center; font-weight: 700; font-family: monospace;" value="${it.qty}" oninput="updatePreviewItem(${idx}, 'qty', this.value)" title="Kliknite pre úpravu množstva">
+          </td>
+          <td style="text-align: center; vertical-align: middle;">
+            <input type="text" class="inline-edit-input" style="width: 36px; text-align: center; color: #64748b;" value="${safeUnit}" oninput="updatePreviewItem(${idx}, 'unit', this.value)">
+          </td>
+          <td style="text-align: right; vertical-align: middle;">
+            <div style="display: flex; align-items: center; justify-content: flex-end;">
+              <input type="number" min="0" step="0.01" class="inline-edit-input" style="width: 65px; text-align: right; font-family: monospace;" value="${it.unitPrice.toFixed(2)}" oninput="updatePreviewItem(${idx}, 'unitPrice', this.value)" title="Kliknite pre úpravu ceny za MJ">
+              <span style="font-family: monospace; color: #64748b; font-size: 9px; margin-left: 2px;">€</span>
+            </div>
+          </td>
+          <td style="text-align: right; font-family: monospace; font-weight: 700; vertical-align: middle; white-space: nowrap;" id="row-total-${idx}">
+            ${(it.qty * it.unitPrice).toFixed(2)} €
+          </td>
+          <td class="print-hide" style="text-align: center; vertical-align: middle;">
+            <button type="button" class="btn-row-del" onclick="deletePreviewItem(${idx})" title="Odstrániť položku z ponuky">×</button>
+          </td>
         `;
         tbody.appendChild(row);
       });
 
-      // Sumár v A4
-      document.getElementById('p-tot-without-vat').innerText = sellingWithoutVat.toFixed(2) + " €";
-      document.getElementById('p-tot-vat').innerText = vatAmount.toFixed(2) + " €";
-      document.getElementById('p-tot-with-vat').innerText = sellingWithVat.toFixed(2) + " €";
-      document.getElementById('p-tot-subsidy').innerText = "- " + subsidy.toFixed(2) + " €";
-      document.getElementById('p-subsidy-row').style.display = applySubsidy ? 'flex' : 'none';
-      document.getElementById('p-tot-final').innerText = finalPrice.toFixed(2) + " €";
-      document.getElementById('p-tot-per-wp').innerText = "s DPH po odpočítaní dotácie (" + pricePerWp + " € / Wp)";
+      const resetBtn = document.getElementById('btn-reset-preview');
+      if (resetBtn) {
+        resetBtn.style.display = currentPreviewItems ? 'inline-flex' : 'none';
+      }
+    }
 
-      // 8. Aktualizácia Montážneho listu
-      document.getElementById('chk-kwp').innerText = kwp + " kWp";
-      document.getElementById('chk-quote-no').innerText = quoteNo;
+    function addPreviewItem() {
+      if (!currentPreviewItems) {
+        currentPreviewItems = JSON.parse(JSON.stringify(lastGeneratedItems));
+      }
+      currentPreviewItems.push({
+        id: 'custom-' + Date.now(),
+        name: 'Vlastná doplnková položka / služba',
+        module: 'Doplnkové práce / materiál',
+        qty: 1,
+        unit: 'kpl',
+        unitPrice: 100.00,
+        total: 100.00,
+        isCustom: true
+      });
+      renderPreviewItems();
+      updatePreviewTotals();
+    }
+
+    function updatePreviewItem(idx, field, value) {
+      if (!currentPreviewItems) {
+        currentPreviewItems = JSON.parse(JSON.stringify(lastGeneratedItems));
+      }
+      if (!currentPreviewItems[idx]) return;
+
+      if (field === 'name') {
+        currentPreviewItems[idx].name = value;
+      } else if (field === 'unit') {
+        currentPreviewItems[idx].unit = value;
+      } else if (field === 'qty') {
+        const q = parseFloat(value) || 0;
+        currentPreviewItems[idx].qty = q;
+        currentPreviewItems[idx].total = q * currentPreviewItems[idx].unitPrice;
+      } else if (field === 'unitPrice') {
+        const p = parseFloat(value) || 0;
+        currentPreviewItems[idx].unitPrice = p;
+        currentPreviewItems[idx].total = currentPreviewItems[idx].qty * p;
+      }
+
+      const totalCell = document.getElementById('row-total-' + idx);
+      if (totalCell) {
+        totalCell.innerText = currentPreviewItems[idx].total.toFixed(2) + ' €';
+      }
+
+      const resetBtn = document.getElementById('btn-reset-preview');
+      if (resetBtn) resetBtn.style.display = 'inline-flex';
+
+      updatePreviewTotals();
+    }
+
+    function deletePreviewItem(idx) {
+      if (!currentPreviewItems) {
+        currentPreviewItems = JSON.parse(JSON.stringify(lastGeneratedItems));
+      }
+      currentPreviewItems.splice(idx, 1);
+      renderPreviewItems();
+      updatePreviewTotals();
+    }
+
+    function resetPreviewItems() {
+      currentPreviewItems = null;
+      renderPreviewItems();
+      updatePreviewTotals();
+    }
+
+    function updatePreviewTotals() {
+      const items = currentPreviewItems || lastGeneratedItems;
+      const sellingWithoutVat = items.reduce((acc, it) => acc + (it.qty * it.unitPrice), 0);
+      const vatAmount = sellingWithoutVat * lastCalculatedMeta.vatRate;
+      const sellingWithVat = sellingWithoutVat + vatAmount;
+      const subsidy = lastCalculatedMeta.applySubsidy ? lastCalculatedMeta.subsidy : 0;
+      const finalPrice = Math.max(0, sellingWithVat - subsidy);
+      const pricePerWp = lastCalculatedMeta.totalPowerWp > 0 ? (finalPrice / lastCalculatedMeta.totalPowerWp).toFixed(2) : '0.00';
+      const mwhNum = parseFloat(lastCalculatedMeta.mwh) || 1;
+      const paybackYears = ((finalPrice / (mwhNum * 1000 * 0.18))).toFixed(1);
+
+      // Aktualizácia A4 Preview
+      const elWithoutVat = document.getElementById('p-tot-without-vat');
+      if (elWithoutVat) elWithoutVat.innerText = sellingWithoutVat.toFixed(2) + " €";
+      const elVat = document.getElementById('p-tot-vat');
+      if (elVat) elVat.innerText = vatAmount.toFixed(2) + " €";
+      const elWithVat = document.getElementById('p-tot-with-vat');
+      if (elWithVat) elWithVat.innerText = sellingWithVat.toFixed(2) + " €";
+      const elSubsidy = document.getElementById('p-tot-subsidy');
+      if (elSubsidy) elSubsidy.innerText = "- " + subsidy.toFixed(2) + " €";
+      const elSubRow = document.getElementById('p-subsidy-row');
+      if (elSubRow) elSubRow.style.display = lastCalculatedMeta.applySubsidy ? 'flex' : 'none';
+      const elFinal = document.getElementById('p-tot-final');
+      if (elFinal) elFinal.innerText = finalPrice.toFixed(2) + " €";
+      const elPerWp = document.getElementById('p-tot-per-wp');
+      if (elPerWp) elPerWp.innerText = "s DPH po odpočítaní dotácie (" + pricePerWp + " € / Wp)";
+      const elPayback = document.getElementById('p-payback');
+      if (elPayback) elPayback.innerText = paybackYears + " roka";
+
+      // Aktualizácia sticky panelu na záložke Vstupy
+      const sumWithout = document.getElementById('sum-without-vat');
+      if (sumWithout) sumWithout.innerText = sellingWithoutVat.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+      const sumVat = document.getElementById('sum-vat');
+      if (sumVat) sumVat.innerText = vatAmount.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+      const sumWith = document.getElementById('sum-with-vat');
+      if (sumWith) sumWith.innerText = sellingWithVat.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+      const sumFinal = document.getElementById('sum-final');
+      if (sumFinal) sumFinal.innerText = finalPrice.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+      const sumPerWp = document.getElementById('sum-per-wp');
+      if (sumPerWp) sumPerWp.innerText = pricePerWp + " € / Wp s DPH";
+
+      renderChecklist();
+    }
+
+    function renderChecklist() {
       const chkTbody = document.getElementById('chk-items-body');
+      if (!chkTbody) return;
       chkTbody.innerHTML = '';
-      checklist.forEach(it => {
+      const allChecklistItems = [...lastChecklist];
+      if (currentPreviewItems) {
+        currentPreviewItems.forEach(it => {
+          if (it.isCustom) {
+            allChecklistItems.push({
+              name: it.name,
+              qty: it.qty,
+              unit: it.unit,
+              note: "Vlastná doplnková položka z náhľadu"
+            });
+          }
+        });
+      }
+      allChecklistItems.forEach(it => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td style="text-align: center;"><input type="checkbox" style="width: 16px; height: 16px;"></td>
@@ -1283,8 +1538,6 @@
         `;
         chkTbody.appendChild(row);
       });
-
-      document.title = getSafePdfTitle();
     }
 
     // Inicializácia pri otvorení
