@@ -592,6 +592,15 @@
               <input type="number" id="annualKwh" class="form-control" value="7500" oninput="recalculate()">
             </div>
           </div>
+
+          <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <label class="form-label" style="font-size: 11px; color: #334155; font-weight: 700; white-space: nowrap;">Manuálne zadaná výška dotácie (€):</label>
+              <input type="number" id="customSubsidyAmount" class="form-control" placeholder="Automaticky" step="50" min="0" oninput="recalculate()" style="font-family: monospace; font-weight: 700; color: #b45309; max-width: 150px;">
+              <button type="button" id="btn-reset-subsidy" style="display: none; padding: 6px 10px; font-size: 11px; font-weight: 600; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer;" onclick="resetSubsidyToAuto()">↺ Auto</button>
+            </div>
+            <span style="font-size: 10.5px; color: #94a3b8;">* Nechajte prázdne pre auto-výpočet (500 / 575 €/kW).</span>
+          </div>
         </div>
       </div>
 
@@ -781,9 +790,13 @@
           <strong>Cena diela s DPH:</strong>
           <strong style="font-family: monospace;" id="p-tot-with-vat">9 080.46 €</strong>
         </div>
-        <div style="display: flex; justify-content: space-between; color: #b45309; font-weight: 700;" id="p-subsidy-row">
-          <span>Podpora SIEA (Zelená domácnostiam):</span>
-          <span style="font-family: monospace;" id="p-tot-subsidy">- 1 150.00 €</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; color: #b45309; font-weight: 700;" id="p-subsidy-row">
+          <span id="p-subsidy-label">Podpora SIEA (Zelená domácnostiam):</span>
+          <div style="display: flex; align-items: center;">
+            <span style="font-family: monospace; margin-right: 2px;">-</span>
+            <input type="number" id="p-subsidy-input" min="0" step="50" class="inline-edit-input" style="width: 75px; text-align: right; font-family: monospace; font-weight: 700; color: #b45309; font-size: 10px;" oninput="updatePreviewSubsidy(this.value)" title="Kliknite pre manuálnu úpravu výšky dotácie priamo v náhľade">
+            <span style="font-family: monospace; margin-left: 2px;">€</span>
+          </div>
         </div>
       </div>
 
@@ -1282,13 +1295,28 @@
       const sellingWithVat = sellingWithoutVat + vatAmount;
 
       // 5. Dotácia
+      const customSubInput = document.getElementById('customSubsidyAmount');
+      const customSubRaw = customSubInput ? customSubInput.value.trim() : "";
+      const customSubVal = parseFloat(customSubRaw);
+      const isCustomSub = !isNaN(customSubVal) && customSubVal >= 0 && customSubRaw !== "";
+
       let subsidy = 0;
       if (applySubsidy) {
-        const ratePerKw = isOrko ? 575 : 500;
-        const maxKw = annualKwh >= 3500 ? 3 : 2;
-        const supportedKw = Math.min(parseFloat(kwp), maxKw);
-        subsidy = supportedKw * ratePerKw;
+        if (isCustomSub) {
+          subsidy = customSubVal;
+        } else {
+          const ratePerKw = isOrko ? 575 : 500;
+          const maxKw = annualKwh >= 3500 ? 3 : 2;
+          const supportedKw = Math.min(parseFloat(kwp), maxKw);
+          subsidy = supportedKw * ratePerKw;
+        }
       }
+
+      const resetSubBtn = document.getElementById('btn-reset-subsidy');
+      if (resetSubBtn) {
+        resetSubBtn.style.display = isCustomSub ? 'inline-block' : 'none';
+      }
+
       const finalPrice = Math.max(0, sellingWithVat - subsidy);
       const pricePerWp = totalPowerWp > 0 ? (finalPrice / totalPowerWp).toFixed(2) : 0;
       const paybackYears = ((finalPrice / (parseFloat(mwh) * 1000 * 0.18))).toFixed(1);
@@ -1484,10 +1512,17 @@
       if (elVat) elVat.innerText = vatAmount.toFixed(2) + " €";
       const elWithVat = document.getElementById('p-tot-with-vat');
       if (elWithVat) elWithVat.innerText = sellingWithVat.toFixed(2) + " €";
-      const elSubsidy = document.getElementById('p-tot-subsidy');
-      if (elSubsidy) elSubsidy.innerText = "- " + subsidy.toFixed(2) + " €";
+      const elSubsidy = document.getElementById('p-subsidy-input');
+      if (elSubsidy && document.activeElement !== elSubsidy) {
+        elSubsidy.value = subsidy.toFixed(2);
+      }
       const elSubRow = document.getElementById('p-subsidy-row');
       if (elSubRow) elSubRow.style.display = lastCalculatedMeta.applySubsidy ? 'flex' : 'none';
+      const elSubLabel = document.getElementById('p-subsidy-label');
+      if (elSubLabel) {
+        const customSubRaw = document.getElementById('customSubsidyAmount')?.value.trim() || "";
+        elSubLabel.innerText = customSubRaw !== "" ? "Podpora SIEA (Manuálne zadaná):" : "Podpora SIEA (Zelená domácnostiam):";
+      }
       const elFinal = document.getElementById('p-tot-final');
       if (elFinal) elFinal.innerText = finalPrice.toFixed(2) + " €";
       const elPerWp = document.getElementById('p-tot-per-wp');
@@ -1538,6 +1573,22 @@
         `;
         chkTbody.appendChild(row);
       });
+    }
+
+    function updatePreviewSubsidy(val) {
+      const customSubInput = document.getElementById('customSubsidyAmount');
+      if (customSubInput) {
+        customSubInput.value = val;
+      }
+      recalculate();
+    }
+
+    function resetSubsidyToAuto() {
+      const customSubInput = document.getElementById('customSubsidyAmount');
+      if (customSubInput) {
+        customSubInput.value = "";
+      }
+      recalculate();
     }
 
     // Inicializácia pri otvorení

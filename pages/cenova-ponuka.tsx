@@ -91,6 +91,7 @@ export default function CenovaPonukaPage() {
     isOrkoRegion: true, // Rosina je ORKO
     subsidyTier: "standard",
     annualConsumptionKwh: 7500,
+    customSubsidyAmount: undefined,
 
     // Obchodné parametre
     marginMultiplier: 1.5,
@@ -195,6 +196,10 @@ export default function CenovaPonukaPage() {
   const effectivePricePerWp = calculation.installedPowerKwp > 0
     ? Number((effectiveFinalPrice / (calculation.installedPowerKwp * 1000)).toFixed(2))
     : 0;
+  const annualSavingsEur = calculation.expectedAnnualProductionMwh * 1000 * 0.18;
+  const effectivePaybackYears = annualSavingsEur > 0
+    ? Number((effectiveFinalPrice / annualSavingsEur).toFixed(1))
+    : calculation.estimatedPaybackYears;
 
   // Filtrované meniče podľa značky
   const filteredInverters = INVERTERS.filter(i =>
@@ -972,6 +977,43 @@ export default function CenovaPonukaPage() {
                       />
                     </div>
                   </div>
+
+                  {/* Vlastná manuálna výška dotácie */}
+                  <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <label htmlFor="custom-subsidy-input" className="text-xs font-bold text-slate-700 whitespace-nowrap">
+                        Manuálne zadaná výška dotácie (€):
+                      </label>
+                      <div className="flex items-center gap-1.5">
+                        <input
+                          id="custom-subsidy-input"
+                          type="number"
+                          step="50"
+                          min="0"
+                          placeholder="Automatický výpočet"
+                          value={inputs.customSubsidyAmount ?? ""}
+                          onChange={e => setInputs({
+                            ...inputs,
+                            customSubsidyAmount: e.target.value === "" ? undefined : parseFloat(e.target.value) || 0
+                          })}
+                          className="w-44 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-mono font-bold text-amber-900 placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        />
+                        {inputs.customSubsidyAmount !== undefined && (
+                          <button
+                            type="button"
+                            onClick={() => setInputs({ ...inputs, customSubsidyAmount: undefined })}
+                            className="px-2 py-1 text-xs text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors"
+                            title="Vrátiť na automatický výpočet dotácie"
+                          >
+                            ↺ Auto
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                    <span className="text-[11px] text-slate-400">
+                      * Prázdne = auto výpočet (500 / 575 €/kW). Zadaním sumy sa prepíše výsledná dotácia.
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -1195,7 +1237,7 @@ export default function CenovaPonukaPage() {
 
                 <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-2.5 text-center">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-amber-800 block">Návratnosť investície</span>
-                  <div className="text-lg font-black text-amber-900 font-mono mt-0.5">{calculation.estimatedPaybackYears} roka</div>
+                  <div className="text-lg font-black text-amber-900 font-mono mt-0.5">{effectivePaybackYears} roka</div>
                   <span className="text-[9px] text-amber-700">so štátnou dotáciou</span>
                 </div>
               </div>
@@ -1339,11 +1381,26 @@ export default function CenovaPonukaPage() {
                     </div>
 
                     {inputs.applySubsidy && (
-                      <div className="flex justify-between text-amber-700 font-bold pt-1">
+                      <div className="flex justify-between items-center text-amber-800 font-bold pt-1">
                         <span>
-                          Štátna podpora SIEA ({inputs.isOrkoRegion ? "Oblasť ORKO 575 €/kW" : "Základ 500 €/kW"}):
+                          Štátna podpora SIEA ({inputs.customSubsidyAmount !== undefined ? "Manuálne zadaná" : inputs.isOrkoRegion ? "Oblasť ORKO 575 €/kW" : "Základ 500 €/kW"}):
                         </span>
-                        <span className="font-mono">- {effectiveSubsidy.toFixed(2)} €</span>
+                        <div className="flex items-center">
+                          <span className="font-mono text-[10px] mr-0.5">-</span>
+                          <input
+                            type="number"
+                            min="0"
+                            step="50"
+                            value={inputs.customSubsidyAmount !== undefined ? inputs.customSubsidyAmount : effectiveSubsidy}
+                            onChange={e => setInputs({
+                              ...inputs,
+                              customSubsidyAmount: e.target.value === "" ? undefined : parseFloat(e.target.value) || 0
+                            })}
+                            title="Kliknite pre manuálnu úpravu výšky dotácie"
+                            className="w-20 text-right font-mono font-bold text-amber-800 text-[10px] bg-transparent border border-transparent hover:border-amber-300 focus:border-amber-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
+                          />
+                          <span className="font-mono text-amber-800 text-[9px] ml-0.5">€</span>
+                        </div>
                       </div>
                     )}
                   </div>

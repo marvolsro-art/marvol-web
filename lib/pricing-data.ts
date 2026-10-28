@@ -237,6 +237,7 @@ export interface QuoteInputs {
   isOrkoRegion: boolean;
   subsidyTier: "standard" | "solidarity"; // standard (500/575) vs solidarita (900)
   annualConsumptionKwh: number;
+  customSubsidyAmount?: number; // Manuálne zadaná výška dotácie (€)
 
   // Obchodné parametre
   marginMultiplier: number; // Štandard 1.5
@@ -604,7 +605,9 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   // --- DOTÁCIA ---
   let subsidyAmount = 0;
   if (inputs.applySubsidy) {
-    if (inputs.subsidyTier === "solidarity") {
+    if (inputs.customSubsidyAmount !== undefined && !isNaN(inputs.customSubsidyAmount) && inputs.customSubsidyAmount >= 0) {
+      subsidyAmount = inputs.customSubsidyAmount;
+    } else if (inputs.subsidyTier === "solidarity") {
       // Zelená solidarita: 900 €/kW (max 2 kW = 1 800 €)
       subsidyAmount = Math.min(installedPowerKwp, 2) * 900;
     } else {
