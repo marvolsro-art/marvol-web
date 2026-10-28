@@ -1,4 +1,4 @@
-import React, { useState, useId } from "react";
+import React, { useState, useEffect, useId } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import {
@@ -123,6 +123,16 @@ export default function CenovaPonukaPage() {
     selectedInverterBrand === "Všetky" ? true : i.brand === selectedInverterBrand
   );
 
+  useEffect(() => {
+    const handleBeforePrint = () => {
+      if (activeTab === "config") {
+        setActiveTab("preview");
+      }
+    };
+    window.addEventListener("beforeprint", handleBeforePrint);
+    return () => window.removeEventListener("beforeprint", handleBeforePrint);
+  }, [activeTab]);
+
   const handlePrint = () => {
     window.print();
   };
@@ -193,19 +203,21 @@ export default function CenovaPonukaPage() {
               </button>
             </div>
 
-            {/* AKČNÉ TLAČIDLÁ */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                <span>Tlačiť / Stiahnuť PDF</span>
-              </button>
-            </div>
+            {/* AKČNÉ TLAČIDLÁ (Iba v náhľade A4 alebo montážnom liste) */}
+            {activeTab !== "config" && (
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                  </svg>
+                  <span>Tlačiť / Stiahnuť PDF</span>
+                </button>
+              </div>
+            )}
           </div>
         </header>
 
@@ -775,24 +787,15 @@ export default function CenovaPonukaPage() {
                     </div>
                   </div>
 
-                  {/* TLAČIDLÁ NA ZOBRAZENIE NÁHĽADU */}
-                  <div className="space-y-2 pt-2">
+                  {/* PRECHOD DO NÁHĽADU A4 */}
+                  <div className="pt-2">
                     <button
                       type="button"
                       onClick={() => setActiveTab("preview")}
-                      className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all text-center"
+                      className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all text-center flex items-center justify-center gap-2 group"
                     >
-                      Zobraziť A4 ponuku pre zákazníka →
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handlePrint}
-                      className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition-all text-center flex items-center justify-center gap-2"
-                    >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                      </svg>
-                      Okamžitá tlač / PDF
+                      <span>Zobraziť A4 ponuku pre zákazníka</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </button>
                   </div>
                 </div>
@@ -804,8 +807,7 @@ export default function CenovaPonukaPage() {
         {/* ============================================================== */}
         {/* 2. NÁHĽAD PRE ZÁKAZNÍKA (Oficiálny A4 formát pripravený na tlač) */}
         {/* ============================================================== */}
-        {(activeTab === "preview" || typeof window === "undefined") && (
-          <div className={`${activeTab === "config" ? "hidden print:block" : "block"} max-w-[210mm] mx-auto my-6 print:my-0 print:max-w-none`}>
+        <div className={`${activeTab === "preview" ? "block" : "hidden print:block"} max-w-[210mm] mx-auto my-6 print:my-0 print:max-w-none`}>
             {/* INFORMAČNÁ LIŠTA (iba na obrazovke) */}
             <div className="print:hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-4 mb-4 flex items-center justify-between text-sm text-emerald-900 shadow-sm">
               <div className="flex items-center gap-2">
@@ -1062,7 +1064,6 @@ export default function CenovaPonukaPage() {
               </div>
             </div>
           </div>
-        )}
 
         {/* ============================================================== */}
         {/* 3. MONTÁŽNA ŽIADANKA PRE TECHNIKOV (Sklad & Montážna čata)      */}

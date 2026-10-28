@@ -155,7 +155,7 @@
       <button class="tab-btn" id="btn-tab-checklist" onclick="switchTab('checklist')">📋 Montážny list</button>
     </div>
 
-    <button class="btn-print" onclick="window.print()">
+    <button class="btn-print" id="header-print-btn" style="display: none;" onclick="window.print()">
       🖨️ Tlačiť / Uložiť PDF
     </button>
   </header>
@@ -481,12 +481,9 @@
             </div>
           </div>
 
-          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="margin-top: 20px;">
             <button class="btn-print" style="width: 100%; justify-content: center; padding: 12px;" onclick="switchTab('preview')">
               Zobraziť A4 ponuku pre klienta →
-            </button>
-            <button class="tab-btn" style="width: 100%; border: 1px solid #334155; color: #ffffff; padding: 10px;" onclick="window.print()">
-              🖨️ Tlačiť / Uložiť PDF
             </button>
           </div>
         </div>
@@ -731,7 +728,19 @@
       document.getElementById('btn-tab-config').className = (tabName === 'config') ? 'tab-btn active' : 'tab-btn';
       document.getElementById('btn-tab-preview').className = (tabName === 'preview') ? 'tab-btn active' : 'tab-btn';
       document.getElementById('btn-tab-checklist').className = (tabName === 'checklist') ? 'tab-btn active' : 'tab-btn';
+
+      const printBtn = document.getElementById('header-print-btn');
+      if (printBtn) {
+        printBtn.style.display = (tabName === 'config') ? 'none' : 'inline-flex';
+      }
     }
+
+    // Bezpečnostná poistka proti tlači prázdnej strany
+    window.addEventListener('beforeprint', () => {
+      if (document.getElementById('tab-config').style.display !== 'none') {
+        switchTab('preview');
+      }
+    });
 
     function recalculate() {
       // 1. Zber vstupov
