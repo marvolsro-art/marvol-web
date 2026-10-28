@@ -334,8 +334,15 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
 
           </div>
 
-          {/* Results & Lead Form Column */}
-          <div className="lg:col-span-6 bg-slate-900 border border-slate-800/80 rounded-3xl p-6 sm:p-8 space-y-7">
+          {/* Results & Lead Form Column with Ambient Backlight ("Podsvietenie") */}
+          <div className="lg:col-span-6 relative group">
+            {/* Ambient Backlight Glow ("Podsvietenie okna") */}
+            <div
+              className="absolute -inset-1 sm:-inset-1.5 bg-gradient-to-r from-amber-500/25 via-sky-500/20 to-emerald-500/25 rounded-3xl blur-xl opacity-35 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
+              aria-hidden="true"
+            />
+
+            <div className="relative bg-slate-900 border border-slate-800/80 rounded-3xl p-6 sm:p-8 space-y-7 shadow-md">
             
             {/* Calculation Summary KPIs */}
             <div className="space-y-4">
@@ -346,21 +353,21 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {/* 1. Recommended Power */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                <div className="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
                   <p className="text-xs text-slate-400 font-medium">Odporúčaný výkon</p>
                   <p className="text-xl sm:text-2xl font-black text-white mt-1">{recommendedKwp} kWp</p>
                   <p className="text-[10px] text-slate-500 mt-0.5">cca {Math.round(recommendedKwp * 2.2)} panelov</p>
                 </div>
 
-                {/* 2. Annual Savings */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                {/* 2. Annual Savings (Illuminated Emerald Window) */}
+                <div className="bg-slate-950/80 p-4 rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-slate-950 to-slate-950 shadow-sm">
                   <p className="text-xs text-slate-400 font-medium">Ročná úspora</p>
                   <p className="text-xl sm:text-2xl font-black text-emerald-400 mt-1">{estimatedSavings} € / rok</p>
                   <p className="text-[10px] text-slate-500 mt-0.5">úspora až {Math.round(selfConsumptionRate * 100)} %</p>
                 </div>
 
-                {/* 3. State Subsidy */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                {/* 3. State Subsidy (Illuminated Amber Window) */}
+                <div className="bg-slate-950/80 p-4 rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-slate-950 to-slate-950 shadow-sm">
                   <p className="text-xs text-slate-400 font-medium">Štátna dotácia SIEA</p>
                   <p className="text-xl sm:text-2xl font-black text-amber-400 mt-1">
                     {estimatedSubsidy > 0 ? `${estimatedSubsidy} €` : (propertyType === 'home' ? '0 €' : 'Zelená podnikom')}
@@ -372,15 +379,15 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                   </p>
                 </div>
 
-                {/* 4. Payback Period */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                {/* 4. Payback Period (Illuminated Sky Window) */}
+                <div className="bg-slate-950/80 p-4 rounded-2xl border border-sky-500/30 bg-gradient-to-br from-sky-500/10 via-slate-950 to-slate-950 shadow-sm">
                   <p className="text-xs text-slate-400 font-medium">Odhadovaná návratnosť</p>
                   <p className="text-xl sm:text-2xl font-black text-sky-400 mt-1">{paybackYears} roka</p>
                   <p className="text-[10px] text-slate-500 mt-0.5">životnosť 30+ rokov</p>
                 </div>
 
-                {/* 5. Net Price After Subsidy */}
-                <div className="bg-amber-400/10 p-4 rounded-2xl border border-amber-400/30 col-span-2 sm:col-span-2">
+                {/* 5. Net Price After Subsidy (Illuminated Highlight Window) */}
+                <div className="bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-transparent p-4 rounded-2xl border border-amber-500/40 col-span-2 sm:col-span-2 shadow-sm">
                   <p className="text-xs font-semibold text-amber-400">Odhadovaná investícia po štátnej dotácii</p>
                   <p className="text-2xl font-black text-white mt-0.5">od {netPrice.toLocaleString('sk-SK')} €</p>
                   <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže na kľúč, meniča, revízie a vybavenia dotácie SIEA</p>
@@ -644,8 +651,8 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 </form>
               )}
             </div>
-
           </div>
+        </div>
 
         </div>
       </div>
