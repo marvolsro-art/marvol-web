@@ -10,14 +10,7 @@ export interface SalesRep {
 }
 
 export const SALES_REPS: SalesRep[] = [
-  { id: "vibransky", name: "Ing. Jaroslav Vibranský", title: "Obchodno-technický manažér", phone: "+421 907 497 466", email: "vibransky@marvol.sk" },
-  { id: "volna", name: "Marek Volna", title: "Konateľ spoločnosti", phone: "+421 908 403 042", email: "marek.volna@marvol.sk" },
-  { id: "svoboda", name: "Ing. Jaroslav Svoboda", title: "Energetický konzultant", phone: "+421 917 176 800", email: "svoboda@marvol.sk" },
-  { id: "m_urban", name: "Ing. Michal Urban", title: "Projektový manažér", phone: "+421 903 607 476", email: "urban@marvol.sk" },
-  { id: "b_urban", name: "Ing. Boris Urban", title: "Technický špecialista", phone: "+421 903 465 224", email: "boris.urban@marvol.sk" },
-  { id: "kucharcik", name: "Mgr. Jozef Kucharčík", title: "Obchodný zástupca", phone: "+421 904 999 466", email: "kucharcik@marvol.sk" },
-  { id: "chvojka", name: "Samuel Chvojka", title: "Technický audítor", phone: "+421 905 339 720", email: "chvojka@marvol.sk" },
-  { id: "astrabova", name: "PaedDr. Jana Astrabová", title: "Klientsky servis & dotácie", phone: "+421 905 557 438", email: "astrabova@marvol.sk" }
+  { id: "volna", name: "Marek Volna", title: "Konateľ spoločnosti", phone: "+421 908 403 042", email: "marek.volna@marvol.sk" }
 ];
 
 export interface ProductItem {

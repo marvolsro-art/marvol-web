@@ -172,11 +172,7 @@
             <div class="form-group">
               <label class="form-label">Obchodný zástupca MARVOL</label>
               <select id="salesRep" class="form-control" onchange="recalculate()">
-                <option value="vibransky" selected>Ing. Jaroslav Vibranský (+421 907 497 466)</option>
-                <option value="volna">Marek Volna (+421 908 403 042)</option>
-                <option value="svoboda">Ing. Jaroslav Svoboda (+421 917 176 800)</option>
-                <option value="m_urban">Ing. Michal Urban (+421 903 607 476)</option>
-                <option value="kucharcik">Mgr. Jozef Kucharčík (+421 904 999 466)</option>
+                <option value="volna" selected>Marek Volna (+421 908 403 042)</option>
               </select>
             </div>
             <div class="form-group">
@@ -541,10 +537,10 @@
 
       <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px;">
         <span style="font-size: 8.5px; text-transform: uppercase; font-weight: 800; color: #94a3b8;">Obchodný špecialista MARVOL:</span>
-        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 2px;" id="p-rep-name">Ing. Jaroslav Vibranský</div>
-        <div style="font-size: 10px; color: #059669; font-weight: 600;">Obchodno-technický manažér</div>
+        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 2px;" id="p-rep-name">Marek Volna</div>
+        <div style="font-size: 10px; color: #059669; font-weight: 600;">Konateľ spoločnosti</div>
         <div style="font-size: 10px; color: #64748b; margin-top: 4px;">
-          Mobil: <strong id="p-rep-phone">+421 907 497 466</strong> | Garancia montáže: <strong style="color: #059669;">do 14 dní</strong>
+          Mobil: <strong id="p-rep-phone">+421 908 403 042</strong> | Garancia montáže: <strong style="color: #059669;">do 14 dní</strong>
         </div>
       </div>
     </div>
@@ -653,7 +649,7 @@
       <div>
         <span style="font-size: 8.5px; text-transform: uppercase; font-weight: 700; color: #94a3b8;">Za zhotoviteľa MARVOL s.r.o.:</span>
         <div style="height: 40px; border-bottom: 1px dashed #cbd5e1; display: flex; align-items: flex-end; font-style: italic; font-size: 11px;" id="p-sig-rep">
-          Ing. Jaroslav Vibranský
+          Marek Volna
         </div>
         <span style="font-size: 8px; color: #94a3b8; margin-top: 2px; display: block;">Dátum a pečiatka zhotoviteľa</span>
       </div>
@@ -739,7 +735,7 @@
       // 1. Zber vstupov
       const repSelect = document.getElementById('salesRep');
       const repName = repSelect.options[repSelect.selectedIndex].text.split(' (')[0];
-      const repPhone = repSelect.options[repSelect.selectedIndex].text.match(/\\(([^)]+)\\)/)?.[1] || "+421 907 497 466";
+      const repPhone = repSelect.options[repSelect.selectedIndex].text.match(/\\(([^)]+)\\)/)?.[1] || "+421 908 403 042";
 
       const quoteNo = document.getElementById('quoteNumber').value || "MV-2026-1028";
       const quoteDate = document.getElementById('quoteDate').value || new Date().toISOString().split('T')[0];
