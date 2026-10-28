@@ -322,7 +322,7 @@
               </select>
               <div style="margin-top: 6px;">
                 <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena/panel (€ bez DPH):</label>
-                <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+                <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
               </div>
             </div>
             <div class="form-group">
@@ -337,7 +337,7 @@
               </select>
               <div style="margin-top: 6px;">
                 <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena konštrukcie na 1 panel (€):</label>
-                <input type="number" id="customRoofPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+                <input type="number" id="customRoofPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
               </div>
             </div>
           </div>
@@ -396,7 +396,7 @@
               </select>
               <div style="margin-top: 6px;">
                 <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena striedača (€ bez DPH):</label>
-                <input type="number" id="customInverterPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+                <input type="number" id="customInverterPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
               </div>
             </div>
 
@@ -427,7 +427,7 @@
               </select>
               <div style="margin-top: 6px;">
                 <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena batérie (€ bez DPH):</label>
-                <input type="number" id="customBatteryPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+                <input type="number" id="customBatteryPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
               </div>
             </div>
           </div>
@@ -516,19 +516,19 @@
           <div class="field-grid">
             <div class="form-group">
               <label class="form-label">Montáž na streche (€ bez DPH)</label>
-              <input type="number" id="customMountLabor" class="form-control" placeholder="Automaticky" step="1" oninput="recalculate()">
+              <input type="number" id="customMountLabor" class="form-control" placeholder="Automaticky" step="1" oninput="recalculate()" onblur="formatInputPriceBlur(this)">
             </div>
             <div class="form-group">
               <label class="form-label">Elektroinštalácia & oživenie (€)</label>
-              <input type="number" id="customElectricalLabor" class="form-control" placeholder="Cenník (~495 €)" step="1" oninput="recalculate()">
+              <input type="number" id="customElectricalLabor" class="form-control" placeholder="Cenník (~495 €)" step="1" oninput="recalculate()" onblur="formatInputPriceBlur(this)">
             </div>
             <div class="form-group">
               <label class="form-label">Revízia a administratíva (€)</label>
-              <input type="number" id="customAdminPrice" class="form-control" placeholder="Cenník (~375 €)" step="1" oninput="recalculate()">
+              <input type="number" id="customAdminPrice" class="form-control" placeholder="Cenník (~375 €)" step="1" oninput="recalculate()" onblur="formatInputPriceBlur(this)">
             </div>
             <div class="form-group">
               <label class="form-label">Sadzba dopravy (€/km)</label>
-              <input type="number" id="customTransportRate" class="form-control" placeholder="0.50 €/km" step="0.05" oninput="recalculate()">
+              <input type="number" id="customTransportRate" class="form-control" placeholder="0.50 €/km" step="0.05" oninput="recalculate()" onblur="formatInputPriceBlur(this)">
             </div>
           </div>
 
@@ -544,7 +544,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Cena / MJ (€ bez DPH)</label>
-                <input type="number" id="customItemPrice" class="form-control" placeholder="0.00" step="0.5" oninput="recalculate()">
+                <input type="number" id="customItemPrice" class="form-control" placeholder="0.00" step="0.5" oninput="recalculate()" onblur="formatInputPriceBlur(this)">
               </div>
               <div class="form-group">
                 <label class="form-label">Množstvo</label>
@@ -596,7 +596,7 @@
           <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <label class="form-label" style="font-size: 11px; color: #334155; font-weight: 700; white-space: nowrap;">Manuálne zadaná výška dotácie (€):</label>
-              <input type="number" id="customSubsidyAmount" class="form-control" placeholder="Automaticky" step="50" min="0" oninput="recalculate()" style="font-family: monospace; font-weight: 700; color: #b45309; max-width: 150px;">
+              <input type="number" id="customSubsidyAmount" class="form-control" placeholder="Automaticky" step="50" min="0" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-family: monospace; font-weight: 700; color: #b45309; max-width: 150px;">
               <button type="button" id="btn-reset-subsidy" style="display: none; padding: 6px 10px; font-size: 11px; font-weight: 600; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer;" onclick="resetSubsidyToAuto()">↺ Auto</button>
             </div>
             <span style="font-size: 10.5px; color: #94a3b8;">* Nechajte prázdne pre auto-výpočet (500 / 575 €/kW).</span>
@@ -794,7 +794,7 @@
           <span id="p-subsidy-label">Podpora SIEA (Zelená domácnostiam):</span>
           <div style="display: flex; align-items: center;">
             <span style="font-family: monospace; margin-right: 2px;">-</span>
-            <input type="number" id="p-subsidy-input" min="0" step="50" class="inline-edit-input" style="width: 75px; text-align: right; font-family: monospace; font-weight: 700; color: #b45309; font-size: 10px;" oninput="updatePreviewSubsidy(this.value)" title="Kliknite pre manuálnu úpravu výšky dotácie priamo v náhľade">
+            <input type="number" id="p-subsidy-input" min="0" step="50" class="inline-edit-input" style="width: 75px; text-align: right; font-family: monospace; font-weight: 700; color: #b45309; font-size: 10px;" oninput="updatePreviewSubsidy(this.value)" onblur="formatSubsidyBlur(this)" title="Kliknite pre manuálnu úpravu výšky dotácie priamo v náhľade">
             <span style="font-family: monospace; margin-left: 2px;">€</span>
           </div>
         </div>
@@ -1403,14 +1403,14 @@
             </div>
           </td>
           <td style="text-align: center; vertical-align: middle;">
-            <input type="number" min="0" step="1" class="inline-edit-input" style="width: 48px; text-align: center; font-weight: 700; font-family: monospace;" value="${it.qty}" oninput="updatePreviewItem(${idx}, 'qty', this.value)" title="Kliknite pre úpravu množstva">
+            <input type="number" min="0" step="1" class="inline-edit-input" style="width: 48px; text-align: center; font-weight: 700; font-family: monospace;" value="${it.qty}" oninput="updatePreviewItem(${idx}, 'qty', this.value)" onblur="formatPreviewQtyBlur(${idx}, this)" title="Kliknite pre úpravu množstva">
           </td>
           <td style="text-align: center; vertical-align: middle;">
             <input type="text" class="inline-edit-input" style="width: 36px; text-align: center; color: #64748b;" value="${safeUnit}" oninput="updatePreviewItem(${idx}, 'unit', this.value)">
           </td>
           <td style="text-align: right; vertical-align: middle;">
             <div style="display: flex; align-items: center; justify-content: flex-end;">
-              <input type="number" min="0" step="0.01" class="inline-edit-input" style="width: 65px; text-align: right; font-family: monospace;" value="${it.unitPrice.toFixed(2)}" oninput="updatePreviewItem(${idx}, 'unitPrice', this.value)" title="Kliknite pre úpravu ceny za MJ">
+              <input type="number" min="0" step="0.01" class="inline-edit-input" style="width: 65px; text-align: right; font-family: monospace;" value="${it.unitPrice.toFixed(2)}" oninput="updatePreviewItem(${idx}, 'unitPrice', this.value)" onblur="formatPreviewPriceBlur(${idx}, this)" title="Kliknite pre úpravu ceny za MJ">
               <span style="font-family: monospace; color: #64748b; font-size: 9px; margin-left: 2px;">€</span>
             </div>
           </td>
@@ -1589,6 +1589,60 @@
         customSubInput.value = "";
       }
       recalculate();
+    }
+
+    function formatPreviewPriceBlur(idx, input) {
+      if (!currentPreviewItems) {
+        currentPreviewItems = JSON.parse(JSON.stringify(lastGeneratedItems));
+      }
+      const num = parseFloat(input.value);
+      const formatted = (!isNaN(num) && num >= 0) ? num.toFixed(2) : "0.00";
+      input.value = formatted;
+      if (currentPreviewItems && currentPreviewItems[idx]) {
+        currentPreviewItems[idx].unitPrice = parseFloat(formatted);
+        currentPreviewItems[idx].total = currentPreviewItems[idx].qty * parseFloat(formatted);
+        const totalCell = document.getElementById('row-total-' + idx);
+        if (totalCell) totalCell.innerText = currentPreviewItems[idx].total.toFixed(2) + ' €';
+      }
+      updatePreviewTotals();
+    }
+
+    function formatPreviewQtyBlur(idx, input) {
+      if (!currentPreviewItems) {
+        currentPreviewItems = JSON.parse(JSON.stringify(lastGeneratedItems));
+      }
+      const num = parseFloat(input.value);
+      const formatted = (!isNaN(num) && num >= 0) ? num : 1;
+      input.value = formatted;
+      if (currentPreviewItems && currentPreviewItems[idx]) {
+        currentPreviewItems[idx].qty = formatted;
+        currentPreviewItems[idx].total = formatted * currentPreviewItems[idx].unitPrice;
+        const totalCell = document.getElementById('row-total-' + idx);
+        if (totalCell) totalCell.innerText = currentPreviewItems[idx].total.toFixed(2) + ' €';
+      }
+      updatePreviewTotals();
+    }
+
+    function formatSubsidyBlur(input) {
+      if (input && input.value && input.value.trim() !== "") {
+        const num = parseFloat(input.value);
+        if (!isNaN(num) && num >= 0) {
+          input.value = num.toFixed(2);
+          const customSubInput = document.getElementById('customSubsidyAmount');
+          if (customSubInput) customSubInput.value = num.toFixed(2);
+        }
+      }
+      recalculate();
+    }
+
+    function formatInputPriceBlur(input) {
+      if (input && input.value && input.value.trim() !== "") {
+        const num = parseFloat(input.value);
+        if (!isNaN(num) && num >= 0) {
+          input.value = num.toFixed(2);
+          recalculate();
+        }
+      }
     }
 
     // Inicializácia pri otvorení

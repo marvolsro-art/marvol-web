@@ -237,7 +237,7 @@ export interface QuoteInputs {
   isOrkoRegion: boolean;
   subsidyTier: "standard" | "solidarity"; // standard (500/575) vs solidarita (900)
   annualConsumptionKwh: number;
-  customSubsidyAmount?: number; // Manuálne zadaná výška dotácie (€)
+  customSubsidyAmount?: number | string; // Manuálne zadaná výška dotácie (€)
 
   // Obchodné parametre
   marginMultiplier: number; // Štandard 1.5
@@ -246,19 +246,19 @@ export interface QuoteInputs {
 
   // Ručné nastavenie cien a prác (voliteľné rozšírenie)
   priceInputMode?: "cost" | "selling"; // "cost" = nákupná cena s maržou, "selling" = priama predajná cena
-  customPanelPrice?: number; // Cena za 1 panel bez DPH
-  customRoofPrice?: number; // Cena konštrukcie na 1 panel bez DPH
-  customInverterPrice?: number; // Cena meniča bez DPH
-  customBatteryPrice?: number; // Cena batérie bez DPH
-  customMountingLabor?: number; // Cena za montážne práce bez DPH
-  customElectricalLabor?: number; // Cena za elektroinštalačné práce bez DPH
-  customInspectionAdminPrice?: number; // Cena za revíziu a administratívu bez DPH
-  customTransportRate?: number; // Sadzba dopravy (€/km)
+  customPanelPrice?: number | string; // Cena za 1 panel bez DPH
+  customRoofPrice?: number | string; // Cena konštrukcie na 1 panel bez DPH
+  customInverterPrice?: number | string; // Cena meniča bez DPH
+  customBatteryPrice?: number | string; // Cena batérie bez DPH
+  customMountingLabor?: number | string; // Cena za montážne práce bez DPH
+  customElectricalLabor?: number | string; // Cena za elektroinštalačné práce bez DPH
+  customInspectionAdminPrice?: number | string; // Cena za revíziu a administratívu bez DPH
+  customTransportRate?: number | string; // Sadzba dopravy (€/km)
 
   // Vlastná doplnková položka (materiál / extra práce)
   customItemName?: string;
-  customItemPrice?: number;
-  customItemQty?: number;
+  customItemPrice?: number | string;
+  customItemQty?: number | string;
   customItemUnit?: string;
 }
 
@@ -315,12 +315,13 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   const isSellingMode = inputs.priceInputMode === "selling";
 
   // Pomocný výpočet pre vlastné ceny (nákupná vs predajná cena)
-  const resolvePrice = (customVal: number | undefined, defaultCost: number): { cost: number; sell: number } => {
-    if (customVal !== undefined && customVal > 0) {
+  const resolvePrice = (customVal: number | string | undefined, defaultCost: number): { cost: number; sell: number } => {
+    const num = typeof customVal === "number" ? customVal : (customVal ? parseFloat(String(customVal)) : undefined);
+    if (num !== undefined && !isNaN(num) && num > 0) {
       if (isSellingMode) {
-        return { cost: customVal / margin, sell: customVal };
+        return { cost: num / margin, sell: num };
       } else {
-        return { cost: customVal, sell: customVal * margin };
+        return { cost: num, sell: num * margin };
       }
     }
     return { cost: defaultCost, sell: defaultCost * margin };
@@ -565,7 +566,8 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
 
   // 16. Doprava
   if (inputs.distanceKm && inputs.distanceKm > 0) {
-    const rateKm = inputs.customTransportRate && inputs.customTransportRate > 0 ? inputs.customTransportRate : 0.50;
+    const parsedTransport = inputs.customTransportRate !== undefined ? parseFloat(String(inputs.customTransportRate)) : undefined;
+    const rateKm = parsedTransport && !isNaN(parsedTransport) && parsedTransport > 0 ? parsedTransport : 0.50;
     const transUnit = resolvePrice(rateKm, 0.50);
     const transportCost = inputs.distanceKm * transUnit.cost;
     const transportSell = inputs.distanceKm * transUnit.sell;
@@ -581,9 +583,10 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   }
 
   // 17. Vlastná doplnková položka (ak je zadaná)
-  if (inputs.customItemName && inputs.customItemName.trim() && inputs.customItemPrice && inputs.customItemPrice > 0) {
-    const customQty = inputs.customItemQty && inputs.customItemQty > 0 ? inputs.customItemQty : 1;
-    const customPrice = resolvePrice(inputs.customItemPrice, inputs.customItemPrice);
+  const parsedItemPrice = inputs.customItemPrice !== undefined ? parseFloat(String(inputs.customItemPrice)) : undefined;
+  if (inputs.customItemName && inputs.customItemName.trim() && parsedItemPrice && parsedItemPrice > 0) {
+    const customQty = inputs.customItemQty ? (parseInt(String(inputs.customItemQty), 10) || 1) : 1;
+    const customPrice = resolvePrice(parsedItemPrice, parsedItemPrice);
     const itemCost = customQty * customPrice.cost;
     const itemSell = customQty * customPrice.sell;
     totalCost += itemCost;
@@ -605,8 +608,9 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   // --- DOTÁCIA ---
   let subsidyAmount = 0;
   if (inputs.applySubsidy) {
-    if (inputs.customSubsidyAmount !== undefined && !isNaN(inputs.customSubsidyAmount) && inputs.customSubsidyAmount >= 0) {
-      subsidyAmount = inputs.customSubsidyAmount;
+    const parsedSub = inputs.customSubsidyAmount !== undefined ? parseFloat(String(inputs.customSubsidyAmount)) : undefined;
+    if (parsedSub !== undefined && !isNaN(parsedSub) && parsedSub >= 0) {
+      subsidyAmount = parsedSub;
     } else if (inputs.subsidyTier === "solidarity") {
       // Zelená solidarita: 900 €/kW (max 2 kW = 1 800 €)
       subsidyAmount = Math.min(installedPowerKwp, 2) * 900;

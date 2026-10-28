@@ -139,9 +139,9 @@ export default function CenovaPonukaPage() {
     id: string;
     title: string;
     category: string;
-    quantity: number;
+    quantity: number | string;
     unit: string;
-    unitPriceEur: number;
+    unitPriceEur: number | string;
   }[] | null>(null);
 
   // Aktuálne položky zobrazené v náhľade
@@ -151,7 +151,7 @@ export default function CenovaPonukaPage() {
     category: it.category,
     quantity: it.quantity,
     unit: it.unit,
-    unitPriceEur: it.unitPriceEur
+    unitPriceEur: it.unitPriceEur.toFixed(2)
   }));
 
   const handleUpdateItem = (id: string, field: "title" | "quantity" | "unit" | "unitPriceEur", val: any) => {
@@ -164,6 +164,16 @@ export default function CenovaPonukaPage() {
     setItemsOverride(updated);
   };
 
+  const handlePriceBlur = (field: keyof QuoteInputs) => {
+    const currentVal = inputs[field];
+    if (currentVal !== undefined && currentVal !== null && currentVal !== "") {
+      const num = parseFloat(String(currentVal));
+      if (!isNaN(num)) {
+        setInputs(prev => ({ ...prev, [field]: num.toFixed(2) }));
+      }
+    }
+  };
+
   const handleAddItem = () => {
     const newItem = {
       id: `custom-${Date.now()}`,
@@ -171,7 +181,7 @@ export default function CenovaPonukaPage() {
       category: "Doplnkové práce",
       quantity: 1,
       unit: "kpl",
-      unitPriceEur: 0
+      unitPriceEur: "0.00"
     };
     setItemsOverride([...previewItems, newItem]);
   };
@@ -187,7 +197,7 @@ export default function CenovaPonukaPage() {
 
   // Prepočty cien podľa skutočných položiek v náhľade
   const effectiveSellingWithoutVat = Number(
-    previewItems.reduce((acc, it) => acc + (it.quantity * it.unitPriceEur), 0).toFixed(2)
+    previewItems.reduce((acc, it) => acc + (Number(it.quantity || 0) * Number(it.unitPriceEur || 0)), 0).toFixed(2)
   );
   const effectiveVatAmount = Number((effectiveSellingWithoutVat * inputs.vatRate).toFixed(2));
   const effectiveSellingWithVat = Number((effectiveSellingWithoutVat + effectiveVatAmount).toFixed(2));
@@ -512,7 +522,8 @@ export default function CenovaPonukaPage() {
                           step="0.01"
                           placeholder="Katalógová"
                           value={inputs.customPanelPrice ?? ""}
-                          onChange={e => setInputs({ ...inputs, customPanelPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          onChange={e => setInputs({ ...inputs, customPanelPrice: e.target.value })}
+                          onBlur={() => handlePriceBlur("customPanelPrice")}
                           className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
                         />
                       </div>
@@ -539,7 +550,8 @@ export default function CenovaPonukaPage() {
                           step="0.01"
                           placeholder="Katalógová"
                           value={inputs.customRoofPrice ?? ""}
-                          onChange={e => setInputs({ ...inputs, customRoofPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          onChange={e => setInputs({ ...inputs, customRoofPrice: e.target.value })}
+                          onBlur={() => handlePriceBlur("customRoofPrice")}
                           className="w-24 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
                         />
                       </div>
@@ -623,7 +635,8 @@ export default function CenovaPonukaPage() {
                           step="0.01"
                           placeholder="Katalógová"
                           value={inputs.customInverterPrice ?? ""}
-                          onChange={e => setInputs({ ...inputs, customInverterPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          onChange={e => setInputs({ ...inputs, customInverterPrice: e.target.value })}
+                          onBlur={() => handlePriceBlur("customInverterPrice")}
                           className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
                         />
                       </div>
@@ -650,7 +663,8 @@ export default function CenovaPonukaPage() {
                           step="0.01"
                           placeholder="Katalógová"
                           value={inputs.customBatteryPrice ?? ""}
-                          onChange={e => setInputs({ ...inputs, customBatteryPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          onChange={e => setInputs({ ...inputs, customBatteryPrice: e.target.value })}
+                          onBlur={() => handlePriceBlur("customBatteryPrice")}
                           className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
                         />
                       </div>
@@ -831,7 +845,8 @@ export default function CenovaPonukaPage() {
                         step="1"
                         placeholder="Automaticky"
                         value={inputs.customMountingLabor ?? ""}
-                        onChange={e => setInputs({ ...inputs, customMountingLabor: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        onChange={e => setInputs({ ...inputs, customMountingLabor: e.target.value })}
+                        onBlur={() => handlePriceBlur("customMountingLabor")}
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
                       />
                     </div>
@@ -842,7 +857,8 @@ export default function CenovaPonukaPage() {
                         step="1"
                         placeholder="Cenník (~495 €)"
                         value={inputs.customElectricalLabor ?? ""}
-                        onChange={e => setInputs({ ...inputs, customElectricalLabor: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        onChange={e => setInputs({ ...inputs, customElectricalLabor: e.target.value })}
+                        onBlur={() => handlePriceBlur("customElectricalLabor")}
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
                       />
                     </div>
@@ -853,7 +869,8 @@ export default function CenovaPonukaPage() {
                         step="1"
                         placeholder="Cenník (~375 €)"
                         value={inputs.customInspectionAdminPrice ?? ""}
-                        onChange={e => setInputs({ ...inputs, customInspectionAdminPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        onChange={e => setInputs({ ...inputs, customInspectionAdminPrice: e.target.value })}
+                        onBlur={() => handlePriceBlur("customInspectionAdminPrice")}
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
                       />
                     </div>
@@ -864,7 +881,8 @@ export default function CenovaPonukaPage() {
                         step="0.05"
                         placeholder="0.50 €/km"
                         value={inputs.customTransportRate ?? ""}
-                        onChange={e => setInputs({ ...inputs, customTransportRate: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        onChange={e => setInputs({ ...inputs, customTransportRate: e.target.value })}
+                        onBlur={() => handlePriceBlur("customTransportRate")}
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
                       />
                     </div>
@@ -893,7 +911,8 @@ export default function CenovaPonukaPage() {
                           step="0.5"
                           placeholder="0.00"
                           value={inputs.customItemPrice ?? ""}
-                          onChange={e => setInputs({ ...inputs, customItemPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          onChange={e => setInputs({ ...inputs, customItemPrice: e.target.value })}
+                          onBlur={() => handlePriceBlur("customItemPrice")}
                           className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
                         />
                       </div>
@@ -994,8 +1013,9 @@ export default function CenovaPonukaPage() {
                           value={inputs.customSubsidyAmount ?? ""}
                           onChange={e => setInputs({
                             ...inputs,
-                            customSubsidyAmount: e.target.value === "" ? undefined : parseFloat(e.target.value) || 0
+                            customSubsidyAmount: e.target.value === "" ? undefined : e.target.value
                           })}
+                          onBlur={() => handlePriceBlur("customSubsidyAmount")}
                           className="w-44 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-mono font-bold text-amber-900 placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                         />
                         {inputs.customSubsidyAmount !== undefined && (
@@ -1294,7 +1314,11 @@ export default function CenovaPonukaPage() {
                             min="0"
                             step="1"
                             value={item.quantity}
-                            onChange={e => handleUpdateItem(item.id, "quantity", parseFloat(e.target.value) || 0)}
+                            onChange={e => handleUpdateItem(item.id, "quantity", e.target.value)}
+                            onBlur={e => {
+                              const num = parseFloat(e.target.value);
+                              handleUpdateItem(item.id, "quantity", !isNaN(num) && num >= 0 ? num : 1);
+                            }}
                             title="Kliknite pre úpravu množstva"
                             className="w-12 text-center font-bold text-slate-800 text-[10px] bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none font-mono print:border-none print:p-0 print:m-0 print:bg-transparent"
                           />
@@ -1314,7 +1338,11 @@ export default function CenovaPonukaPage() {
                               min="0"
                               step="0.01"
                               value={item.unitPriceEur}
-                              onChange={e => handleUpdateItem(item.id, "unitPriceEur", parseFloat(e.target.value) || 0)}
+                              onChange={e => handleUpdateItem(item.id, "unitPriceEur", e.target.value)}
+                              onBlur={e => {
+                                const num = parseFloat(e.target.value);
+                                handleUpdateItem(item.id, "unitPriceEur", !isNaN(num) ? num.toFixed(2) : "0.00");
+                              }}
                               title="Kliknite pre úpravu ceny za MJ"
                               className="w-20 text-right font-mono text-slate-700 text-[10px] bg-transparent border border-transparent hover:border-slate-300 focus:border-emerald-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
                             />
@@ -1322,7 +1350,7 @@ export default function CenovaPonukaPage() {
                           </div>
                         </td>
                         <td className="py-1 px-2 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
-                          {(item.quantity * item.unitPriceEur).toFixed(2)} €
+                          {(Number(item.quantity || 0) * Number(item.unitPriceEur || 0)).toFixed(2)} €
                         </td>
                         <td className="py-1 px-1 text-center print:hidden">
                           <button
@@ -1391,11 +1419,26 @@ export default function CenovaPonukaPage() {
                             type="number"
                             min="0"
                             step="50"
-                            value={inputs.customSubsidyAmount !== undefined ? inputs.customSubsidyAmount : effectiveSubsidy}
+                            value={
+                              inputs.customSubsidyAmount !== undefined
+                                ? inputs.customSubsidyAmount
+                                : effectiveSubsidy.toFixed(2)
+                            }
                             onChange={e => setInputs({
                               ...inputs,
-                              customSubsidyAmount: e.target.value === "" ? undefined : parseFloat(e.target.value) || 0
+                              customSubsidyAmount: e.target.value
                             })}
+                            onBlur={e => {
+                              if (e.target.value === "") {
+                                setInputs({ ...inputs, customSubsidyAmount: undefined });
+                              } else {
+                                const num = parseFloat(e.target.value);
+                                setInputs({
+                                  ...inputs,
+                                  customSubsidyAmount: !isNaN(num) && num >= 0 ? num.toFixed(2) : undefined
+                                });
+                              }
+                            }}
                             title="Kliknite pre manuálnu úpravu výšky dotácie"
                             className="w-20 text-right font-mono font-bold text-amber-800 text-[10px] bg-transparent border border-transparent hover:border-amber-300 focus:border-amber-500 focus:bg-white rounded px-1 py-0.5 outline-none print:border-none print:p-0 print:m-0 print:bg-transparent"
                           />
