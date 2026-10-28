@@ -140,10 +140,12 @@ export default function CenovaPonukaPage() {
         <header className="print:hidden sticky top-0 z-50 bg-slate-900 border-b border-slate-800 text-white shadow-md">
           <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-2 group">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-bold text-emerald-400">
-                  M
-                </div>
+              <Link href="/" className="flex items-center gap-3 group">
+                <img
+                  src="/logos/marvol-logo.jpg"
+                  alt="MARVOL s.r.o."
+                  className="h-8 w-auto object-contain bg-white px-2 py-1 rounded-lg shadow-sm"
+                />
                 <div>
                   <span className="font-extrabold tracking-tight text-white group-hover:text-emerald-400 transition-colors">MARVOL</span>
                   <span className="text-xs text-slate-400 block -mt-1 font-mono">Generátor cenových ponúk</span>
@@ -835,16 +837,22 @@ export default function CenovaPonukaPage() {
               {/* 1. HLAVIČKA DOKUMENTU */}
               <div className="flex items-start justify-between border-b-2 border-emerald-600 pb-5">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-black tracking-tight text-slate-950">MARVOL</span>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded uppercase tracking-wider">
-                      s.r.o.
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/logos/marvol-logo.jpg"
+                      alt="MARVOL s.r.o."
+                      className="h-12 w-auto object-contain"
+                    />
+                    <div>
+                      <span className="text-xs font-bold text-slate-800 tracking-tight block">
+                        MARVOL s.r.o.
+                      </span>
+                      <p className="text-[10px] text-emerald-800 font-semibold leading-tight">
+                        Fotovoltika & Energetické riešenia na kľúč
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[10px] text-slate-500 font-medium mt-0.5">
-                    Kompletné fotovoltické a energetické riešenia na kľúč
-                  </p>
-                  <p className="text-[9px] text-slate-400 mt-1 font-mono">
+                  <p className="text-[9px] text-slate-400 mt-2 font-mono">
                     IČO: 53 060 091 | DIČ: 2121255961 | Chotárna 3394/6, 038 61 Vrútky
                   </p>
                 </div>
