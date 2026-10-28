@@ -123,24 +123,28 @@ export default function CenovaPonukaPage() {
     selectedInverterBrand === "Všetky" ? true : i.brand === selectedInverterBrand
   );
 
+  const pdfFileName = `Cenová kalkulácia - ${inputs.clientName?.trim() || "Zákazník"} - ${inputs.quoteNumber?.trim() || "Ponuka"}`.replace(/[\/\\?%*:|"<>]/g, "-");
+
   useEffect(() => {
     const handleBeforePrint = () => {
+      document.title = pdfFileName;
       if (activeTab === "config") {
         setActiveTab("preview");
       }
     };
     window.addEventListener("beforeprint", handleBeforePrint);
     return () => window.removeEventListener("beforeprint", handleBeforePrint);
-  }, [activeTab]);
+  }, [activeTab, pdfFileName]);
 
   const handlePrint = () => {
+    document.title = pdfFileName;
     window.print();
   };
 
   return (
     <>
       <Head>
-        <title>{`Cenová ponuka ${inputs.quoteNumber} — MARVOL s.r.o.`}</title>
+        <title>{pdfFileName}</title>
         <meta name="description" content="Originálny generátor a cenová ponuka fotovoltického systému MARVOL s.r.o." />
         <meta name="robots" content="noindex, nofollow" />
       </Head>

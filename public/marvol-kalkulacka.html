@@ -155,7 +155,7 @@
       <button class="tab-btn" id="btn-tab-checklist" onclick="switchTab('checklist')">📋 Montážny list</button>
     </div>
 
-    <button class="btn-print" id="header-print-btn" style="display: none;" onclick="window.print()">
+    <button class="btn-print" id="header-print-btn" style="display: none;" onclick="printDocument()">
       🖨️ Tlačiť / Uložiť PDF
     </button>
   </header>
@@ -720,6 +720,17 @@
       recalculate();
     }
 
+    function getSafePdfTitle() {
+      const clientName = (document.getElementById('clientName')?.value || "Zákazník").trim();
+      const quoteNo = (document.getElementById('quoteNumber')?.value || "Ponuka").trim();
+      return `Cenová kalkulácia - ${clientName} - ${quoteNo}`.replace(/[\/\\?%*:|"<>]/g, "-");
+    }
+
+    function printDocument() {
+      document.title = getSafePdfTitle();
+      window.print();
+    }
+
     function switchTab(tabName) {
       document.getElementById('tab-config').style.display = (tabName === 'config') ? 'block' : 'none';
       document.getElementById('tab-preview').style.display = (tabName === 'preview') ? 'block' : 'none';
@@ -733,13 +744,18 @@
       if (printBtn) {
         printBtn.style.display = (tabName === 'config') ? 'none' : 'inline-flex';
       }
+
+      if (tabName === 'preview') {
+        document.title = getSafePdfTitle();
+      }
     }
 
-    // Bezpečnostná poistka proti tlači prázdnej strany
+    // Bezpečnostná poistka proti tlači prázdnej strany a nastavenie názvu stiahnutého súboru
     window.addEventListener('beforeprint', () => {
       if (document.getElementById('tab-config').style.display !== 'none') {
         switchTab('preview');
       }
+      document.title = getSafePdfTitle();
     });
 
     function recalculate() {
@@ -1121,6 +1137,8 @@
         `;
         chkTbody.appendChild(row);
       });
+
+      document.title = getSafePdfTitle();
     }
 
     // Inicializácia pri otvorení
