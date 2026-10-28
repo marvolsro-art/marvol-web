@@ -234,6 +234,10 @@
                 <option value="tier1_455" selected>Tier-1 N-Type TOPCon 455 Wp (Canadian Solar / DAH / AIKO)</option>
                 <option value="aiko_460">AIKO Neostar All-Black ABC 460 Wp (Prémiový čierny)</option>
               </select>
+              <div style="margin-top: 6px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena/panel (€ bez DPH):</label>
+                <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label">Konštrukčný systém</label>
@@ -245,6 +249,10 @@
                 <option value="zemna">Zemná konštrukcia (Terén)</option>
                 <option value="fasada">Fasádny montážny systém</option>
               </select>
+              <div style="margin-top: 6px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena konštrukcie na 1 panel (€):</label>
+                <input type="number" id="customRoofPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+              </div>
             </div>
           </div>
 
@@ -300,6 +308,10 @@
                   <option value="deye_10k">Deye SUN-10K-SG01HP3-EU (10 kW HV)</option>
                 </optgroup>
               </select>
+              <div style="margin-top: 6px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena striedača (€ bez DPH):</label>
+                <input type="number" id="customInverterPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+              </div>
             </div>
 
             <div class="form-group">
@@ -327,6 +339,10 @@
                   <option value="huawei_10">Huawei LUNA2000 10.0 kWh</option>
                 </optgroup>
               </select>
+              <div style="margin-top: 6px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena batérie (€ bez DPH):</label>
+                <input type="number" id="customBatteryPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+              </div>
             </div>
           </div>
 
@@ -394,10 +410,78 @@
           </div>
         </div>
 
-        <!-- KARTA 5: DOTÁCIA SIEA -->
+        <!-- KARTA 5: PRÁCE, MONTÁŽ & VLASTNÉ POLOŽKY -->
         <div class="card">
           <div class="card-title">
-            <span>5. Štátna Dotácia Zelená Domácnostiam</span>
+            <span>5. Práce, Montáž & Ručné Zadanie Cien</span>
+            <div style="font-size: 11px; text-transform: none; display: flex; align-items: center; gap: 6px;">
+              <label style="font-weight: 600; color: #475569;">Režim cien:</label>
+              <select id="priceInputMode" class="form-control" style="padding: 2px 8px; font-size: 11px;" onchange="recalculate()">
+                <option value="selling" selected>Priama predajná cena pre klienta</option>
+                <option value="cost">Nákupná cena + marža (1.5x)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="font-size: 11px; color: #64748b; margin-bottom: 12px;">
+            Ručná úprava cien prác, revízie, dopravy alebo pridanie vlastnej doplnkovej položky. Nechajte prázdne pre automatický výpočet podľa cenníka.
+          </div>
+
+          <div class="field-grid">
+            <div class="form-group">
+              <label class="form-label">Montáž na streche (€ bez DPH)</label>
+              <input type="number" id="customMountLabor" class="form-control" placeholder="Automaticky" step="1" oninput="recalculate()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Elektroinštalácia & oživenie (€)</label>
+              <input type="number" id="customElectricalLabor" class="form-control" placeholder="Cenník (~495 €)" step="1" oninput="recalculate()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Revízia a administratíva (€)</label>
+              <input type="number" id="customAdminPrice" class="form-control" placeholder="Cenník (~375 €)" step="1" oninput="recalculate()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sadzba dopravy (€/km)</label>
+              <input type="number" id="customTransportRate" class="form-control" placeholder="0.50 €/km" step="0.05" oninput="recalculate()">
+            </div>
+          </div>
+
+          <!-- Doplnková položka -->
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed #e2e8f0;">
+            <div style="font-size: 11px; font-weight: 800; color: #334155; text-transform: uppercase; margin-bottom: 8px;">
+              Vlastná doplnková položka (extra materiál / práca)
+            </div>
+            <div class="field-grid" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label">Názov položky</label>
+                <input type="text" id="customItemName" class="form-control" placeholder="Napr. Výkopové práce pre kábel 20m" oninput="recalculate()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cena / MJ (€ bez DPH)</label>
+                <input type="number" id="customItemPrice" class="form-control" placeholder="0.00" step="0.5" oninput="recalculate()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Množstvo</label>
+                <input type="number" id="customItemQty" class="form-control" value="1" min="1" step="1" oninput="recalculate()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">MJ</label>
+                <select id="customItemUnit" class="form-control" onchange="recalculate()">
+                  <option value="kpl" selected>kpl</option>
+                  <option value="ks">ks</option>
+                  <option value="m">m</option>
+                  <option value="hod">hod</option>
+                  <option value="bm">bm</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTA 6: DOTÁCIA SIEA -->
+        <div class="card">
+          <div class="card-title">
+            <span>6. Štátna Dotácia Zelená Domácnostiam</span>
             <span id="badge-subsidy" style="color: #b45309; font-family: monospace;">1 150.00 €</span>
           </div>
           <div class="field-grid">
@@ -794,8 +878,36 @@
       const isOrko = document.getElementById('isOrko').checked;
       const annualKwh = parseInt(document.getElementById('annualKwh').value, 10) || 7500;
 
+      // Ručné nastavenia cien
+      const priceInputMode = document.getElementById('priceInputMode')?.value || "selling";
+      const customPanelPrice = parseFloat(document.getElementById('customPanelPrice')?.value);
+      const customRoofPrice = parseFloat(document.getElementById('customRoofPrice')?.value);
+      const customInverterPrice = parseFloat(document.getElementById('customInverterPrice')?.value);
+      const customBatteryPrice = parseFloat(document.getElementById('customBatteryPrice')?.value);
+      const customMountLabor = parseFloat(document.getElementById('customMountLabor')?.value);
+      const customElectricalLabor = parseFloat(document.getElementById('customElectricalLabor')?.value);
+      const customAdminPrice = parseFloat(document.getElementById('customAdminPrice')?.value);
+      const customTransportRate = parseFloat(document.getElementById('customTransportRate')?.value);
+
+      const customItemName = document.getElementById('customItemName')?.value?.trim() || "";
+      const customItemPrice = parseFloat(document.getElementById('customItemPrice')?.value);
+      const customItemQty = parseInt(document.getElementById('customItemQty')?.value, 10) || 1;
+      const customItemUnit = document.getElementById('customItemUnit')?.value?.trim() || "kpl";
+
       const margin = 1.5;
       const vatRate = 0.23;
+      const isSellingMode = (priceInputMode === "selling");
+
+      function resolvePrice(customVal, defaultCost) {
+        if (!isNaN(customVal) && customVal > 0) {
+          if (isSellingMode) {
+            return { cost: customVal / margin, sell: customVal };
+          } else {
+            return { cost: customVal, sell: customVal * margin };
+          }
+        }
+        return { cost: defaultCost, sell: defaultCost * margin };
+      }
 
       // 2. Výpočet výkonu
       const panelWp = (panelType === 'aiko_460') ? 460 : 455;
@@ -809,13 +921,15 @@
       const checklist = [];
 
       // A) Panely
-      const panelCost = (panelType === 'aiko_460') ? 66.00 : 59.15;
-      const pCostTotal = panelCount * panelCost;
+      const defaultPanelCost = (panelType === 'aiko_460') ? 66.00 : 59.15;
+      const pPrice = resolvePrice(customPanelPrice, defaultPanelCost);
+      const pCostTotal = panelCount * pPrice.cost;
+      const pSellTotal = panelCount * pPrice.sell;
       totalCost += pCostTotal;
       items.push({
         name: (panelType === 'aiko_460') ? "AIKO Neostar All-Black N-Type ABC 460 Wp" : "Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp",
         module: "Fotovoltický panel",
-        qty: panelCount, unit: "ks", unitPrice: panelCost * margin, total: pCostTotal * margin
+        qty: panelCount, unit: "ks", unitPrice: pPrice.sell, total: pSellTotal
       });
       checklist.push({ name: "Fotovoltické panely " + panelWp + " Wp", qty: panelCount, unit: "ks", note: "Overiť neporušenosť skla a sériové čísla" });
 
@@ -836,11 +950,12 @@
         deye_10k: { name: "HYBRIDNÝ MENIČ DEYE SUN-10K-SG01HP3-EU (HV)", cost: 1138.32, short: "Deye 10 kW" }
       };
       const invObj = invertersCostMap[inverterModel] || invertersCostMap.solinteg_10k;
-      totalCost += invObj.cost;
+      const invPrice = resolvePrice(customInverterPrice, invObj.cost);
+      totalCost += invPrice.cost;
       items.push({
         name: invObj.name,
         module: "Striedač",
-        qty: 1, unit: "ks", unitPrice: invObj.cost * margin, total: invObj.cost * margin
+        qty: 1, unit: "ks", unitPrice: invPrice.sell, total: invPrice.sell
       });
       checklist.push({ name: invObj.name, qty: 1, unit: "ks", note: "Vrátane montážneho závesu a Wi-Fi antény" });
 
@@ -861,14 +976,15 @@
         huawei_10: { name: "Huawei LUNA2000 S1 10.0 kWh", cost: 3388.44, kwh: 10.0 }
       };
       const batObj = batCostMap[batteryModel] || batCostMap.none;
-      if (batObj.cost > 0) {
-        totalCost += batObj.cost;
+      if (batObj.cost > 0 || (!isNaN(customBatteryPrice) && customBatteryPrice > 0)) {
+        const batPrice = resolvePrice(customBatteryPrice, batObj.cost);
+        totalCost += batPrice.cost;
         items.push({
-          name: batObj.name,
+          name: batObj.name || "Batériové úložisko",
           module: "Batéria",
-          qty: 1, unit: "kpl", unitPrice: batObj.cost * margin, total: batObj.cost * margin
+          qty: 1, unit: "kpl", unitPrice: batPrice.sell, total: batPrice.sell
         });
-        checklist.push({ name: batObj.name, qty: 1, unit: "kpl", note: "Skontrolovať silové káble BMS a dátovú zbernicu" });
+        checklist.push({ name: batObj.name || "Batériové úložisko", qty: 1, unit: "kpl", note: "Skontrolovať silové káble BMS a dátovú zbernicu" });
       }
 
       // D) Konštrukcia
@@ -881,12 +997,14 @@
         fasada: { name: "Fasádny montážny systém", cost: 95.00 }
       };
       const roofObj = roofCostMap[roofStructure] || roofCostMap.rovna_vz;
-      const roofCostTotal = panelCount * roofObj.cost;
+      const roofPrice = resolvePrice(customRoofPrice, roofObj.cost);
+      const roofCostTotal = panelCount * roofPrice.cost;
+      const roofSellTotal = panelCount * roofPrice.sell;
       totalCost += roofCostTotal;
       items.push({
         name: roofObj.name,
         module: "Konštrukcia",
-        qty: 1, unit: "kpl", unitPrice: roofCostTotal * margin, total: roofCostTotal * margin
+        qty: 1, unit: "kpl", unitPrice: roofSellTotal, total: roofSellTotal
       });
       checklist.push({ name: "AL profily 4m (" + roofObj.name + ")", qty: Math.ceil(panelCount * 0.7), unit: "ks" });
       checklist.push({ name: "Spojky AL profilov + nerezové skrutky", qty: Math.ceil(panelCount * 0.6), unit: "ks" });
@@ -1002,43 +1120,71 @@
       checklist.push({ name: "UV stabilná chránička Ø 32mm", qty: Math.ceil(dcLen * 0.7), unit: "m" });
 
       // N) Montážne práce
-      const mountLabor = totalPowerWp * 0.075;
-      totalCost += mountLabor;
+      const autoMountLabor = totalPowerWp * 0.075;
+      const mountPrice = resolvePrice(customMountLabor, autoMountLabor);
+      totalCost += mountPrice.cost;
       items.push({
         name: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
         module: "Montážne práce",
-        qty: 1, unit: "kpl", unitPrice: mountLabor * margin, total: mountLabor * margin
+        qty: 1, unit: "kpl", unitPrice: mountPrice.sell, total: mountPrice.sell
       });
 
       // O) Elektroinštalačné práce
-      totalCost += 330.60;
+      const elecPrice = resolvePrice(customElectricalLabor, 330.60);
+      totalCost += elecPrice.cost;
       items.push({
         name: "Elektroinštalačné práce, osadenie meniča a oživenie systému",
         module: "Elektroinštalačné práce",
-        qty: 1, unit: "kpl", unitPrice: 330.60 * margin, total: 330.60 * margin
+        qty: 1, unit: "kpl", unitPrice: elecPrice.sell, total: elecPrice.sell
       });
 
       // P) Revízia a administratíva
-      totalCost += 250.00;
+      const adminPrice = resolvePrice(customAdminPrice, 250.00);
+      totalCost += adminPrice.cost;
       items.push({
         name: "Úradná revízna správa, projektová schéma a kompletná administratíva",
         module: "Revízia a administratíva",
-        qty: 1, unit: "kpl", unitPrice: 250 * margin, total: 250 * margin
+        qty: 1, unit: "kpl", unitPrice: adminPrice.sell, total: adminPrice.sell
       });
 
       // Q) Doprava
       if (distanceKm > 0) {
-        const transCost = distanceKm * 0.50;
+        const ratePerKm = (!isNaN(customTransportRate) && customTransportRate > 0) ? customTransportRate : 0.50;
+        const transPrice = resolvePrice(ratePerKm, 0.50);
+        const transCost = distanceKm * transPrice.cost;
+        const transSell = distanceKm * transPrice.sell;
         totalCost += transCost;
         items.push({
           name: "Doprava materiálu a montážnej skupiny (" + distanceKm + " km)",
           module: "Doprava",
-          qty: distanceKm, unit: "km", unitPrice: 0.50 * margin, total: transCost * margin
+          qty: distanceKm, unit: "km", unitPrice: transPrice.sell, total: transSell
+        });
+      }
+
+      // R) Vlastná doplnková položka
+      if (customItemName && !isNaN(customItemPrice) && customItemPrice > 0) {
+        const itemPrice = resolvePrice(customItemPrice, customItemPrice);
+        const itemCost = customItemQty * itemPrice.cost;
+        const itemSell = customItemQty * itemPrice.sell;
+        totalCost += itemCost;
+        items.push({
+          name: customItemName,
+          module: "Doplnkové práce / materiál",
+          qty: customItemQty,
+          unit: customItemUnit,
+          unitPrice: itemPrice.sell,
+          total: itemSell
+        });
+        checklist.push({
+          name: customItemName,
+          qty: customItemQty,
+          unit: customItemUnit,
+          note: "Špecifická požiadavka zákazníka / extra položka"
         });
       }
 
       // 4. Súčty
-      const sellingWithoutVat = totalCost * margin;
+      const sellingWithoutVat = items.reduce((acc, it) => acc + it.total, 0);
       const vatAmount = sellingWithoutVat * vatRate;
       const sellingWithVat = sellingWithoutVat + vatAmount;
 

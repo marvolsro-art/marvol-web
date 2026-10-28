@@ -95,7 +95,22 @@ export default function CenovaPonukaPage() {
     // Obchodné parametre
     marginMultiplier: 1.5,
     vatRate: 0.23,
-    salesRepCommissionPct: 10
+    salesRepCommissionPct: 10,
+
+    // Ručné nastavenie cien a prác (voliteľné)
+    priceInputMode: "selling",
+    customPanelPrice: undefined,
+    customRoofPrice: undefined,
+    customInverterPrice: undefined,
+    customBatteryPrice: undefined,
+    customMountingLabor: undefined,
+    customElectricalLabor: undefined,
+    customInspectionAdminPrice: undefined,
+    customTransportRate: undefined,
+    customItemName: "",
+    customItemPrice: undefined,
+    customItemQty: 1,
+    customItemUnit: "kpl"
   });
 
   // Automatické nastavenie ORKO podľa mesta
@@ -422,6 +437,17 @@ export default function CenovaPonukaPage() {
                           <option key={p.id} value={p.id}>{p.name}</option>
                         ))}
                       </select>
+                      <div className="mt-2 flex items-center gap-2">
+                        <label className="text-[11px] font-medium text-slate-500 whitespace-nowrap">Vlastná cena/panel (€ bez DPH):</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="Katalógová"
+                          value={inputs.customPanelPrice ?? ""}
+                          onChange={e => setInputs({ ...inputs, customPanelPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -438,6 +464,17 @@ export default function CenovaPonukaPage() {
                           <option key={r.id} value={r.id}>{r.name}</option>
                         ))}
                       </select>
+                      <div className="mt-2 flex items-center gap-2">
+                        <label className="text-[11px] font-medium text-slate-500 whitespace-nowrap">Vlastná cena/panel (€):</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="Katalógová"
+                          value={inputs.customRoofPrice ?? ""}
+                          onChange={e => setInputs({ ...inputs, customRoofPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          className="w-24 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
+                        />
+                      </div>
                     </div>
                     <div>
                       <label htmlFor={roofPitchId} className="block text-xs font-semibold text-slate-600 mb-1">Sklon strechy (°)</label>
@@ -511,6 +548,17 @@ export default function CenovaPonukaPage() {
                           <option key={i.id} value={i.id}>{i.name}</option>
                         ))}
                       </select>
+                      <div className="mt-2 flex items-center gap-2">
+                        <label className="text-[11px] font-medium text-slate-500 whitespace-nowrap">Vlastná cena meniča (€ bez DPH):</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="Katalógová"
+                          value={inputs.customInverterPrice ?? ""}
+                          onChange={e => setInputs({ ...inputs, customInverterPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
+                        />
+                      </div>
                     </div>
 
                     <div>
@@ -527,6 +575,17 @@ export default function CenovaPonukaPage() {
                           </option>
                         ))}
                       </select>
+                      <div className="mt-2 flex items-center gap-2">
+                        <label className="text-[11px] font-medium text-slate-500 whitespace-nowrap">Vlastná cena batérie (€ bez DPH):</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          placeholder="Katalógová"
+                          value={inputs.customBatteryPrice ?? ""}
+                          onChange={e => setInputs({ ...inputs, customBatteryPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          className="w-28 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -658,11 +717,152 @@ export default function CenovaPonukaPage() {
                   </div>
                 </div>
 
-                {/* BLOK 5: DOTÁCIA SIEA */}
+                {/* BLOK 5: PRÁCE, MONTÁŽ & VLASTNÉ DOPLNKOVÉ POLOŽKY */}
+                <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                    <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">5</span>
+                      Práce, montáž & Ručné zadanie cien
+                    </h2>
+                    {/* Prepínač režimu cien */}
+                    <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+                      <button
+                        type="button"
+                        onClick={() => setInputs({ ...inputs, priceInputMode: "selling" })}
+                        className={`px-2.5 py-1 rounded-lg transition-all ${
+                          inputs.priceInputMode !== "cost"
+                            ? "bg-white text-emerald-700 shadow-sm"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Priama predajná cena
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setInputs({ ...inputs, priceInputMode: "cost" })}
+                        className={`px-2.5 py-1 rounded-lg transition-all ${
+                          inputs.priceInputMode === "cost"
+                            ? "bg-white text-emerald-700 shadow-sm"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Nákupná cena + marža ({inputs.marginMultiplier}x)
+                      </button>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-500">
+                    Ak potrebujete upraviť cenu montáže, elektroinštalácie, revízie alebo dopravy, zadajte sumu nižšie. Prázdne pole = automatický výpočet podľa cenníka.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">Montáž na streche (€ bez DPH)</label>
+                      <input
+                        type="number"
+                        step="1"
+                        placeholder="Automaticky"
+                        value={inputs.customMountingLabor ?? ""}
+                        onChange={e => setInputs({ ...inputs, customMountingLabor: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">Elektroinštalácia & oživenie (€)</label>
+                      <input
+                        type="number"
+                        step="1"
+                        placeholder="Cenník (~495 €)"
+                        value={inputs.customElectricalLabor ?? ""}
+                        onChange={e => setInputs({ ...inputs, customElectricalLabor: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">Revízia a administratíva (€)</label>
+                      <input
+                        type="number"
+                        step="1"
+                        placeholder="Cenník (~375 €)"
+                        value={inputs.customInspectionAdminPrice ?? ""}
+                        onChange={e => setInputs({ ...inputs, customInspectionAdminPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">Sadzba dopravy (€/km)</label>
+                      <input
+                        type="number"
+                        step="0.05"
+                        placeholder="0.50 €/km"
+                        value={inputs.customTransportRate ?? ""}
+                        onChange={e => setInputs({ ...inputs, customTransportRate: e.target.value ? parseFloat(e.target.value) : undefined })}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Doplnková položka (materiál / atypická práca) */}
+                  <div className="pt-2 border-t border-slate-100">
+                    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">
+                      Vlastná doplnková položka (extra materiál / práca)
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                      <div className="sm:col-span-6">
+                        <label className="block text-[11px] font-semibold text-slate-500 mb-1">Názov položky</label>
+                        <input
+                          type="text"
+                          placeholder="Napr. Výkopové práce pre káblovú trasu 20m, strieška, atď."
+                          value={inputs.customItemName ?? ""}
+                          onChange={e => setInputs({ ...inputs, customItemName: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm"
+                        />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-[11px] font-semibold text-slate-500 mb-1">Cena / MJ (€ bez DPH)</label>
+                        <input
+                          type="number"
+                          step="0.5"
+                          placeholder="0.00"
+                          value={inputs.customItemPrice ?? ""}
+                          onChange={e => setInputs({ ...inputs, customItemPrice: e.target.value ? parseFloat(e.target.value) : undefined })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono"
+                        />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-[11px] font-semibold text-slate-500 mb-1">Množstvo</label>
+                        <input
+                          type="number"
+                          step="1"
+                          min="1"
+                          value={inputs.customItemQty ?? 1}
+                          onChange={e => setInputs({ ...inputs, customItemQty: parseInt(e.target.value, 10) || 1 })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono text-center"
+                        />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-[11px] font-semibold text-slate-500 mb-1">Merná jednotka</label>
+                        <select
+                          value={inputs.customItemUnit ?? "kpl"}
+                          onChange={e => setInputs({ ...inputs, customItemUnit: e.target.value })}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm"
+                        >
+                          <option value="kpl">kpl</option>
+                          <option value="ks">ks</option>
+                          <option value="m">m</option>
+                          <option value="hod">hod</option>
+                          <option value="bm">bm</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BLOK 6: DOTÁCIA SIEA */}
                 <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
                   <h2 className="text-base font-bold text-slate-900 flex items-center justify-between border-b border-slate-100 pb-3">
                     <span className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">5</span>
+                      <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">6</span>
                       Štátna dotácia Zelená domácnostiam
                     </span>
                     <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">

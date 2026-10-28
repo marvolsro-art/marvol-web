@@ -242,6 +242,23 @@ export interface QuoteInputs {
   marginMultiplier: number; // Štandard 1.5
   vatRate: number; // 0.23 (23%)
   salesRepCommissionPct: number; // 10%
+
+  // Ručné nastavenie cien a prác (voliteľné rozšírenie)
+  priceInputMode?: "cost" | "selling"; // "cost" = nákupná cena s maržou, "selling" = priama predajná cena
+  customPanelPrice?: number; // Cena za 1 panel bez DPH
+  customRoofPrice?: number; // Cena konštrukcie na 1 panel bez DPH
+  customInverterPrice?: number; // Cena meniča bez DPH
+  customBatteryPrice?: number; // Cena batérie bez DPH
+  customMountingLabor?: number; // Cena za montážne práce bez DPH
+  customElectricalLabor?: number; // Cena za elektroinštalačné práce bez DPH
+  customInspectionAdminPrice?: number; // Cena za revíziu a administratívu bez DPH
+  customTransportRate?: number; // Sadzba dopravy (€/km)
+
+  // Vlastná doplnková položka (materiál / extra práce)
+  customItemName?: string;
+  customItemPrice?: number;
+  customItemQty?: number;
+  customItemUnit?: string;
 }
 
 export interface QuoteCalculationResult {
@@ -294,53 +311,67 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   const panelActiveAreaM2 = Number((inputs.panelCount * 2.1).toFixed(1));
 
   // --- NÁKLADY ---
+  const isSellingMode = inputs.priceInputMode === "selling";
+
+  // Pomocný výpočet pre vlastné ceny (nákupná vs predajná cena)
+  const resolvePrice = (customVal: number | undefined, defaultCost: number): { cost: number; sell: number } => {
+    if (customVal !== undefined && customVal > 0) {
+      if (isSellingMode) {
+        return { cost: customVal / margin, sell: customVal };
+      } else {
+        return { cost: customVal, sell: customVal * margin };
+      }
+    }
+    return { cost: defaultCost, sell: defaultCost * margin };
+  };
+
   let totalCost = 0;
   const items: QuoteCalculationResult["itemsBreakdown"] = [];
 
   // 1. Panely
-  const panelsCost = inputs.panelCount * panel.costPrice;
-  const panelsSell = panelsCost * margin;
+  const panelPrice = resolvePrice(inputs.customPanelPrice, panel.costPrice);
+  const panelsCost = inputs.panelCount * panelPrice.cost;
+  const panelsSell = inputs.panelCount * panelPrice.sell;
   totalCost += panelsCost;
   items.push({
     title: panel.name,
     category: "Fotovoltický panel",
     quantity: inputs.panelCount,
     unit: "ks",
-    unitPriceEur: Number((panel.costPrice * margin).toFixed(2)),
+    unitPriceEur: Number(panelPrice.sell.toFixed(2)),
     totalPriceEur: Number(panelsSell.toFixed(2))
   });
 
   // 2. Menič
-  const inverterCost = inverter.costPrice;
-  const inverterSell = inverterCost * margin;
-  totalCost += inverterCost;
+  const invPrice = resolvePrice(inputs.customInverterPrice, inverter.costPrice);
+  totalCost += invPrice.cost;
   items.push({
     title: inverter.name,
     category: "Striedač",
     quantity: 1,
     unit: "ks",
-    unitPriceEur: Number(inverterSell.toFixed(2)),
-    totalPriceEur: Number(inverterSell.toFixed(2))
+    unitPriceEur: Number(invPrice.sell.toFixed(2)),
+    totalPriceEur: Number(invPrice.sell.toFixed(2))
   });
 
   // 3. Batériové úložisko (ak je zvolené)
   if (battery.capacityKwh && battery.capacityKwh > 0) {
-    const batCost = battery.costPrice;
-    const batSell = batCost * margin;
-    totalCost += batCost;
+    const batPrice = resolvePrice(inputs.customBatteryPrice, battery.costPrice);
+    totalCost += batPrice.cost;
     items.push({
       title: battery.name,
       category: "Batéria",
       quantity: 1,
       unit: "kpl",
-      unitPriceEur: Number(batSell.toFixed(2)),
-      totalPriceEur: Number(batSell.toFixed(2))
+      unitPriceEur: Number(batPrice.sell.toFixed(2)),
+      totalPriceEur: Number(batPrice.sell.toFixed(2))
     });
   }
 
   // 4. Konštrukčný systém
-  const roofCost = inputs.panelCount * roof.costPerPanel;
-  const roofSell = roofCost * margin;
+  const roofPrice = resolvePrice(inputs.customRoofPrice, roof.costPerPanel);
+  const roofCost = inputs.panelCount * roofPrice.cost;
+  const roofSell = inputs.panelCount * roofPrice.sell;
   totalCost += roofCost;
   items.push({
     title: roof.name,
@@ -495,57 +526,78 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
   });
 
   // 13. Montážne práce
-  const mountingLaborCost = totalPowerWp * 0.075;
-  totalCost += mountingLaborCost;
+  const autoMountCost = totalPowerWp * 0.075;
+  const mountPrice = resolvePrice(inputs.customMountingLabor, autoMountCost);
+  totalCost += mountPrice.cost;
   items.push({
     title: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
     category: "Montážne práce",
     quantity: 1,
     unit: "kpl",
-    unitPriceEur: Number((mountingLaborCost * margin).toFixed(2)),
-    totalPriceEur: Number((mountingLaborCost * margin).toFixed(2))
+    unitPriceEur: Number(mountPrice.sell.toFixed(2)),
+    totalPriceEur: Number(mountPrice.sell.toFixed(2))
   });
 
   // 14. Elektroinštalačné práce
-  const electricalLaborCost = 330.60;
-  totalCost += electricalLaborCost;
+  const elecPrice = resolvePrice(inputs.customElectricalLabor, 330.60);
+  totalCost += elecPrice.cost;
   items.push({
     title: "Elektroinštalačné práce, osadenie meniča a oživenie systému",
     category: "Elektroinštalačné práce",
     quantity: 1,
     unit: "kpl",
-    unitPriceEur: Number((electricalLaborCost * margin).toFixed(2)),
-    totalPriceEur: Number((electricalLaborCost * margin).toFixed(2))
+    unitPriceEur: Number(elecPrice.sell.toFixed(2)),
+    totalPriceEur: Number(elecPrice.sell.toFixed(2))
   });
 
   // 15. Revízia a administratíva
-  const adminAndInspectionCost = 250.00; // 150 revízia + 100 administratíva/jednopólová schéma
-  totalCost += adminAndInspectionCost;
+  const adminPrice = resolvePrice(inputs.customInspectionAdminPrice, 250.00);
+  totalCost += adminPrice.cost;
   items.push({
     title: "Úradná revízna správa, projektová schéma a kompletná administratíva",
     category: "Revízia a administratíva",
     quantity: 1,
     unit: "kpl",
-    unitPriceEur: Number((adminAndInspectionCost * margin).toFixed(2)),
-    totalPriceEur: Number((adminAndInspectionCost * margin).toFixed(2))
+    unitPriceEur: Number(adminPrice.sell.toFixed(2)),
+    totalPriceEur: Number(adminPrice.sell.toFixed(2))
   });
 
   // 16. Doprava
   if (inputs.distanceKm && inputs.distanceKm > 0) {
-    const transportCost = inputs.distanceKm * 0.50;
+    const rateKm = inputs.customTransportRate && inputs.customTransportRate > 0 ? inputs.customTransportRate : 0.50;
+    const transUnit = resolvePrice(rateKm, 0.50);
+    const transportCost = inputs.distanceKm * transUnit.cost;
+    const transportSell = inputs.distanceKm * transUnit.sell;
     totalCost += transportCost;
     items.push({
       title: `Doprava materiálu a montážnej skupiny (${inputs.distanceKm} km)`,
       category: "Doprava",
       quantity: inputs.distanceKm,
       unit: "km",
-      unitPriceEur: Number((0.50 * margin).toFixed(2)),
-      totalPriceEur: Number((transportCost * margin).toFixed(2))
+      unitPriceEur: Number(transUnit.sell.toFixed(2)),
+      totalPriceEur: Number(transportSell.toFixed(2))
+    });
+  }
+
+  // 17. Vlastná doplnková položka (ak je zadaná)
+  if (inputs.customItemName && inputs.customItemName.trim() && inputs.customItemPrice && inputs.customItemPrice > 0) {
+    const customQty = inputs.customItemQty && inputs.customItemQty > 0 ? inputs.customItemQty : 1;
+    const customPrice = resolvePrice(inputs.customItemPrice, inputs.customItemPrice);
+    const itemCost = customQty * customPrice.cost;
+    const itemSell = customQty * customPrice.sell;
+    totalCost += itemCost;
+    items.push({
+      title: inputs.customItemName.trim(),
+      category: "Doplnkové práce / materiál",
+      quantity: customQty,
+      unit: inputs.customItemUnit?.trim() || "kpl",
+      unitPriceEur: Number(customPrice.sell.toFixed(2)),
+      totalPriceEur: Number(itemSell.toFixed(2))
     });
   }
 
   // --- SÚČTY ---
-  const sellingPriceWithoutVat = Number((totalCost * margin).toFixed(2));
+  const sellingPriceWithoutVat = Number(items.reduce((acc, it) => acc + it.totalPriceEur, 0).toFixed(2));
   const vatAmount = Number((sellingPriceWithoutVat * vat).toFixed(2));
   const sellingPriceWithVat = Number((sellingPriceWithoutVat + vatAmount).toFixed(2));
 
@@ -600,6 +652,9 @@ export function calculateQuote(inputs: QuoteInputs): QuoteCalculationResult {
     { material: "UV stabilná chránička Ø 32mm", qty: Math.ceil(inputs.dcCableMeters * 0.7), unit: "m" },
     ...(inputs.hasTigoStop ? [
       { material: "TIGO KIT vysielač + STOP tlačidlo núdzového vypnutia", qty: 1, unit: "kpl" }
+    ] : []),
+    ...(inputs.customItemName && inputs.customItemName.trim() ? [
+      { material: inputs.customItemName.trim(), qty: inputs.customItemQty || 1, unit: inputs.customItemUnit?.trim() || "kpl", note: "Špecifická požiadavka / extra položka" }
     ] : [])
   ];
 
