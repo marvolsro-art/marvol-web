@@ -3,10 +3,23 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
+import {
+  SunIcon,
+  BoltIcon,
+  ShieldIcon,
+  FileTextIcon,
+  CheckIcon,
+  PhoneIcon,
+  MailIcon,
+  BuildingOfficeIcon,
+  CurrencyEuroIcon,
+  HandshakeIcon,
+  AlertCircleIcon
+} from '@/components/icons';
 
 export default function KonzultaciePoradenstvo() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [activeProfile, setActiveProfile] = useState<'dom_tc' | 'dom_bez_tc' | 'firma'>('dom_tc');
 
   const breadcrumbs = [
     { name: 'Domov', href: '/' },
@@ -14,95 +27,55 @@ export default function KonzultaciePoradenstvo() {
     { name: 'Konzultácie a energetické poradenstvo', href: '/sluzby/konzultacie-poradenstvo' },
   ];
 
-  const parameterCards = [
-    {
-      id: 'energeticky-audit',
-      title: 'Energetický audit a profilácia spotreby',
-      badge: '15-min diagramy IMS',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
-      description:
-        'Podrobný rozbor vašich účtov za elektrinu a diagramov spotreby. Identifikujeme skryté straty a presne dimenzujeme systém bez zbytočného preplácania.',
-      features: [
-        'Detailná analýza odberového diagramu alebo ročných vyúčtovacích faktúr',
-        'Identifikácia bázového zaťaženia domu či firmy (stály odber počas noci a víkendov)',
-        'Analýza výkonových špičiek a odporúčanie na zníženie rezervovanej kapacity (MRK)',
-        'Odhalenie neefektívnych spotrebičov a tepelných či energetických únikov',
-        'Návrh vyváženého systému bez zbytočného a drahého predimenzovania',
+  const profileData = {
+    dom_tc: {
+      title: 'Rodinný dom s tepelným čerpadlom & klimatizáciou',
+      annualKwh: '7 500 – 12 000 kWh / rok',
+      recommendedSystem: '8 až 10 kWp + 10 až 14 kWh LiFePO4 batéria',
+      selfConsumption: '75 – 85 %',
+      annualSaving: '1 400 – 2 100 € / rok',
+      payback: '5.2 roka (s dotáciou SIEA)',
+      flow: [
+        { label: 'Priama spotreba počas dňa (TČ, spotrebiče)', pct: '45 %', color: 'bg-amber-400' },
+        { label: 'Ukladanie do domácej batérie na noc', pct: '35 %', color: 'bg-emerald-400' },
+        { label: 'Ohrev TÚV z fotovoltických prebytkov', pct: '15 %', color: 'bg-sky-400' },
+        { label: 'Prebytok dodaný do distribučnej siete', pct: '5 %', color: 'bg-slate-500' },
       ],
+      insight: 'Tepelné čerpadlo v kombinácii so solárnym meničom (funkcia SG Ready) dokáže prehrievať zásobník vody na vyššiu teplotu počas slnečných hodín úplne zadarmo.'
     },
-    {
-      id: 'financny-model-roi',
-      title: 'Finančný model a kalkulácia návratnosti ROI',
-      badge: 'Reálna matematika úspor',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Matematicky podložená kalkulácia úspor očistená od marketingových sľubov. Počítame s reálnym vývojom cien silovej elektriny, distribúcie i degradáciou panelov.',
-      features: [
-        'Transparentný prepočet ročnej finančnej úspory v eurách s uvážením rastu cien energií',
-        'Výpočet doby návratnosti (Payback Period) a čistej súčasnej hodnoty projektu (NPV)',
-        'Porovnanie ekonomiky čisto fotovoltického systému vs. hybridného systému s batériou',
-        'Započítanie ročnej degradácie fotovoltických panelov (iba 0,4% ročne pri N-Type TOPCon)',
-        'Výpočet mernej ceny vyrobenej elektriny (LCOE) počas garantovanej 30-ročnej životnosti',
+    dom_bez_tc: {
+      title: 'Štandardný rodinný dom (plyn / tuhé palivo)',
+      annualKwh: '3 500 – 5 500 kWh / rok',
+      recommendedSystem: '4.5 až 6.5 kWp + 7 kWh LiFePO4 batéria',
+      selfConsumption: '70 – 80 %',
+      annualSaving: '750 – 1 100 € / rok',
+      payback: '5.8 roka (s dotáciou SIEA)',
+      flow: [
+        { label: 'Priama spotreba domových spotrebičov', pct: '40 %', color: 'bg-amber-400' },
+        { label: 'Ukladanie do batérie pre večerný špičkový odber', pct: '35 %', color: 'bg-emerald-400' },
+        { label: 'Smart zopínanie bojlera (Dry Contact)', pct: '15 %', color: 'bg-sky-400' },
+        { label: 'Dodávka do siete / virtuálna batéria', pct: '10 %', color: 'bg-slate-500' },
       ],
+      insight: 'Pre dom bez tepelného čerpadla je kľúčová kompaktná batéria (7–10 kWh), ktorá pokryje rannú a večernú špičku, kedy rodina trávi čas doma.'
     },
-    {
-      id: 'dotacny-manazment-siea',
-      title: 'Kompletný dotačný manažment SIEA na kľúč',
-      badge: 'Dotácia SIEA',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-      description:
-        'Oficiálny zhotoviteľ v programe Zelená domácnostiam a Zelená podnikom. Získajte maximálny štátny príspevok odpočítaný priamo z faktúry bez zbytočnej byrokracie.',
-      features: [
-        'Bezplatné preverenie splnenia dotačných podmienok na liste vlastníctva nehnuteľnosti',
-        'Výber optimálneho programu (Zelená domácnostiam, Zelená solidarita až 90%, Zelená podnikom)',
-        'Kompletná registrácia a garancia online rezervácie dotácie v portáli SIEA',
-        'Odpočítanie dotácie priamo z realizačnej faktúry (nečakáte mesiace na peniaze od štátu)',
-        '100% garancia správnosti dotačných podkladov a dokumentácie bez rizika prepadnutia',
+    firma: {
+      title: 'Firma, sklad, výrobná prevádzka alebo kancelárie',
+      annualKwh: '25 000 – 150 000+ kWh / rok',
+      recommendedSystem: '20 až 100+ kWp (Lokálny zdroj / Zero Export)',
+      selfConsumption: '85 – 95 %',
+      annualSaving: '4 500 – 25 000+ € / rok',
+      payback: '3.5 až 4.8 roka (bez dotácie)',
+      flow: [
+        { label: 'Priama spotreba výrobných strojov a chladenia', pct: '70 %', color: 'bg-amber-400' },
+        { label: 'BESS priemyselné úložisko (vykrývanie maxím)', pct: '18 %', color: 'bg-emerald-400' },
+        { label: 'Nabíjanie firemnej flotily elektromobilov', pct: '10 %', color: 'bg-sky-400' },
+        { label: 'Dodávka do distribučnej siete', pct: '2 %', color: 'bg-slate-500' },
       ],
-    },
-    {
-      id: 'tarify-virtualna-bateria',
-      title: 'Optimalizácia taríf, virtuálna batéria a spotové ceny',
-      badge: 'Smart Management',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Strategické nastavenie zmlúv s dodávateľmi energií. Posúdime rentabilitu virtuálnej batérie verzus fyzického úložiska a možnosti obchodovania na spotovom trhu.',
-      features: [
-        'Nezávislé porovnanie ponúk dodávateľov na slovenskom trhu (ZSE, SSE, VSE, SPP, Magna Energia)',
-        'Posúdenie výhodnosti virtuálnej batérie verzus fyzického LiFePO4 batériového úložiska',
-        'Nastavenie stratégií dynamického nákupu a predaja elektriny na spotovom trhu OKTE',
-        'Prepojenie fotovoltiky s tepelným čerpadlom (SG Ready) a inteligentným ohrevom TÚV',
-        'Inteligentné riadenie nabíjania elektromobilu z vlastných fotovoltických prebytkov',
-      ],
-    },
-  ];
+      insight: 'Firmy majú najrýchlejšiu návratnosť na trhu, pretože najväčšiu spotrebu majú cez deň počas pracovnej doby (pondelok–piatok), kedy slnko svieti najintenzívnejšie.'
+    }
+  };
 
-  const workflowSteps = [
-    {
-      step: '1',
-      title: 'Zaslanie faktúr & úvodný rozhovor',
-      description:
-        'Zašlite nám vyúčtovaciu faktúru. Počas krátkeho rozhovoru zistíme vaše očakávania, energetické ciele a plánované spotrebiče v domácnosti či firme.',
-    },
-    {
-      step: '2',
-      title: 'Spracovanie energetického prepočtu',
-      description:
-        'Naši inžinieri namodelujú hodinový profil výroby a spotreby, vypočítajú mieru sebestačnosti a presnú ekonomickú návratnosť v horizonte 15 až 30 rokov.',
-    },
-    {
-      step: '3',
-      title: 'Osobná alebo online konzultácia',
-      description:
-        'Detailne vám odprezentujeme výsledky, vysvetlíme rozdiely medzi technológiami, porovnáme batériové systémy a preveríme nárok na dotáciu SIEA.',
-    },
-    {
-      step: '4',
-      title: 'Finálna ponuka s fixnou cenou',
-      description:
-        'Získate transparentnú cenovú ponuku s garantovanou fixnou cenou, súpisom certifikovaných komponentov a garantovaným termínom realizácie.',
-    },
-  ];
+  const current = profileData[activeProfile];
 
   const faqs = [
     {
@@ -118,12 +91,12 @@ export default function KonzultaciePoradenstvo() {
       a: 'Virtuálna batéria vyzerá lákavo z dôvodu nízkej počiatočnej investície, avšak pri spätnom odbere zaplatíte distribučné poplatky a poplatky za systémové služby (cca 50 až 60% ceny elektriny) a navyše nefunguje pri výpadku prúdu. Fyzická LiFePO4 batéria uchováva 100% energie úplne zadarmo a funguje ako plnohodnotné UPS zálohovanie pri výpadku distribučnej siete.',
     },
     {
-      q: 'Aké podmienky musím splniť pre získanie dotácie Zelená domácnostiam?',
-      a: 'Nehnuteľnosť musí byť na liste vlastníctva evidovaná ako rodinný dom a nesmie byť vo vlastníctve právnickej osoby ani využívaná na komerčné účely v prevažujúcej miere. Celý proces preverenia splnenia podmienok aj samotnú administratívu vybavíme kompletne za vás.',
+      q: 'Ako funguje štátna dotácia Zelená domácnostiam a Zelená podnikom?',
+      a: 'Ako registrovaný zhotoviteľ SIEA prevezmeme celú administratívu. Preveríme nárok na liste vlastníctva, zaregistrujeme poukážku v portáli SIEA a sumu dotácie (až do výšky 4 025 € podľa programu) vám odpočítame priamo z realizačnej faktúry. Na peniaze od štátu teda nečakáte.',
     },
     {
-      q: 'Poskytujete konzultácie aj pre bytové domy a firmy?',
-      a: 'Áno, špecializujeme sa na komerčné energetické audity, fotovoltiku pre výrobné podniky, logistické haly, bytové domy i čerpanie dotačného programu Zelená podnikom. Pripravíme analýzu 15-minútových odberových diagramov a posúdenie rezervovanej kapacity.',
+      q: 'Má zmysel fotovoltika pri nízkej ročnej spotrebe (napr. do 2 500 kWh)?',
+      a: 'Pri nízkej spotrebe je dôležité systém nepredimenzovať. Namiesto veľkej 10 kWp elektrárne vám navrhneme menší optimalizovaný systém (3 až 4 kWp) s priamym ohrevom vody, ktorý má nízke vstupné náklady a vďaka dotácii SIEA rýchlu návratnosť.',
     },
   ];
 
@@ -155,16 +128,14 @@ export default function KonzultaciePoradenstvo() {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': 'https://marvol.sk/sluzby/konzultacie-poradenstvo#service',
-      name: 'Energetické poradenstvo & Konzultácie fotovoltiky',
-      serviceType: 'Energetické audity, analýza spotreby a dotácie SIEA',
+      name: 'Energetické poradenstvo a analýza návratnosti fotovoltiky',
+      serviceType: 'Energetický audit, optimalizácia taríf a dotácie SIEA',
       description:
-        'Nezávislé energetické konzultácie, analýza spotreby, audit návratnosti ROI a dotačné poradenstvo SIEA. Maximalizujte úspory a minimalizujte náklady s Marvol s.r.o.',
+        'Odborné energetické poradenstvo pre domácnosti a firmy. Nezávislá analýza faktúr, presný výpočet ROI, dotácie Zelená domácnostiam a porovnanie batérií.',
       provider: {
-        '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
-        name: COMPANY_DETAILS.legalName,
-        telephone: COMPANY_DETAILS.contact.phoneClean,
+        name: 'Marvol s.r.o.',
+        telephone: COMPANY_DETAILS.contact.phone,
         email: COMPANY_DETAILS.contact.email,
         address: {
           '@type': 'PostalAddress',
@@ -195,8 +166,8 @@ export default function KonzultaciePoradenstvo() {
 
   return (
     <Layout
-      title="Energetické poradenstvo & Konzultácie fotovoltiky | Marvol"
-      description="Nezávislé energetické poradenstvo, analýza spotreby, audit návratnosti a dotácie SIEA. Maximalizujte úspory energie a investujte bez rizika s Marvol."
+      title="Energetické poradenstvo & Konzultácie fotovoltiky | Marvol s.r.o."
+      description="Nezávislý energetický audit, analýza faktúr a presný výpočet návratnosti ROI. Porovnanie fyzickej vs. virtuálnej batérie a dotácie SIEA bez marketingových sľubov."
       canonicalPath="/sluzby/konzultacie-poradenstvo"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -219,116 +190,112 @@ export default function KonzultaciePoradenstvo() {
         </ol>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 ">
-        
+      {/* HERO SECTION: Financial Economics & Advisory Studio */}
+      <section className="relative overflow-hidden pt-8 pb-16 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
+            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              {/* Badge Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <SunIcon className="w-4 h-4 text-emerald-400 shrink-0" /><span>Dátami podložená návratnosť investície</span>
+                <CurrencyEuroIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Nezávislý energetický inžiniering</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                Energetické poradenstvo, <br className="hidden sm:block" />
-                <span className="text-emerald-400">analýza spotreby a dotácie SIEA</span>
+                Energetické poradenstvo <br className="hidden sm:block" />
+                <span className="text-emerald-400">&amp; reálna matematika úspor</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Neplaťte za elektrinu viac, ako musíte. Posúdime váš profil spotreby, navrhneme optimálny výkon fotovoltiky, vypočítame reálnu návratnosť a <strong className="text-white">zabezpečíme štátnu dotáciu Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €, Solidarita až 90 %)</strong> bez zbytočnej byrokracie.
+                Zbavíme vás marketingových mýtov a ukážeme presné čísla. Analyzujeme vaše vyúčtovacie faktúry, odhalíme skryté poplatky distribúcie a navrhneme systém, ktorý vám prinesie <strong className="text-white">najvyššiu finančnú návratnosť</strong> bez zbytočného preplácania.
               </p>
 
-              {/* 4 Key Metrics */}
+              {/* Advisory Metrics HUD */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">Až 80%</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Zníženie ročných výdavkov</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">0 €</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Vstupná analýza faktúr</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">4 – 6 r.</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Reálna návratnosť ROI</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">60 – 85 %</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Úspora na elektrine</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">SIEA Dotácia</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Priamy odpočet z faktúry</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">4 – 6 rokov</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Reálna návratnosť ROI</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">0 €</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Vstupná analýza a kalkulácia</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">100 %</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Administrácia SIEA</div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-3">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-400/20"
                 >
-                  Dohodnúť bezplatnú konzultáciu
+                  Požiadať o bezplatný audit
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-colors"
                 >
-                  Zavolajte poradcovi: {COMPANY_DETAILS.contact.phone}
+                  Konzultovať s energetikom
                 </a>
               </div>
             </div>
 
-            {/* Hero Feature Card with Illustrative Photo */}
+            {/* Right: Real Photography & Advisory Badge */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/poradenstvo.jpg"
-                    alt="Osobné energetické poradenstvo a ROI analýza Marvol"
+                    alt="Energetické poradenstvo a kalkulácia návratnosti Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-slate-950/40" />
-                  
-                  {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 ">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Energetické poradenstvo</span>
-                  </div>
-                  
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs font-semibold rounded-full ">
-                    Bezplatný Audit
+                    <span>Nezávislý energetický posudok</span>
                   </div>
 
-                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs rounded-full">
+                    Garantované SIEA
+                  </div>
+
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">Osobná analýza návratnosti &amp; úspor</span>
-                      <span className="text-emerald-400 font-bold">100% Nezávislé</span>
+                      <span className="font-bold text-white text-sm">Optimalizácia energetického profilu</span>
+                      <span className="text-emerald-400 font-bold font-mono">100% transparentnosť</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
-                      Vypracovanie modelového rozpočtu, výpočet úspory na 25 rokov a overenie nároku na dotáciu.
+                      Porovnanie spotových cien, virtuálnej batérie verzus fyzického úložiska BESS a plný dotačný manažment.
                     </p>
                   </div>
                 </div>
 
-                {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
+                <div className="p-4 bg-slate-900 grid grid-cols-2 gap-3 text-xs border-t border-slate-800">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>Kalkulácia bez skrytých poplatkov</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Analýza 15-minútových maxím</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>Odpočet dotácie priamo z faktúry</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Prepočet degradácie panelov</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>SG Ready synergia s čerpadlami</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Strategické nastavenie taríf</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>Riešenia pre rodinné domy aj firmy</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Dotácie SIEA bez byrokracie</span>
                   </div>
                 </div>
               </div>
@@ -338,130 +305,330 @@ export default function KonzultaciePoradenstvo() {
         </div>
       </section>
 
-      {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 ">
+      {/* SECTION 2: INTERACTIVE ENERGY PROFILE ALLOCATOR */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Analytické portfólio
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Modelovanie tokov energie
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Služby energetického poradenstva
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Kam smeruje vyrobená solárna energia?
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Od optimalizácie faktúr pre domácnosť až po komplexné audity a dotačný manažment pre podnikateľov.
+              Pozrite sa, ako vyzerá reálna bilancia spotreby a výroby pre váš typ nehnuteľnosti pri správnom inžinierskom návrhu.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {parameterCards.map((card) => (
-              <div
-                key={card.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors"
-              >
+          {/* Profile Switcher Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+            <button
+              onClick={() => setActiveProfile('dom_tc')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeProfile === 'dom_tc'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Dom s tepelným čerpadlom
+            </button>
+            <button
+              onClick={() => setActiveProfile('dom_bez_tc')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeProfile === 'dom_bez_tc'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Dom bez tepelného čerpadla
+            </button>
+            <button
+              onClick={() => setActiveProfile('firma')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeProfile === 'firma'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Firma &amp; Výrobná prevádzka
+            </button>
+          </div>
+
+          {/* Active Profile Energy Breakdown Card */}
+          <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              <div className="lg:col-span-7 space-y-6">
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
-                    </span>
+                  <h3 className="text-2xl font-black text-white">{current.title}</h3>
+                  <div className="text-xs text-slate-400 mt-1 font-mono">Typická spotreba: {current.annualKwh}</div>
+                </div>
+
+                {/* Flow Bar Segments */}
+                <div className="space-y-3">
+                  <div className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+                    Rozdelenie vyrobenej energie v priebehu dňa:
+                  </div>
+                  
+                  {/* Visual Multi-segment bar */}
+                  <div className="h-4 w-full bg-slate-800 rounded-full overflow-hidden flex shadow-inner">
+                    {current.flow.map((item, idx) => (
+                      <div
+                        key={idx}
+                        style={{ width: item.pct }}
+                        className={`${item.color} h-full transition-all duration-500`}
+                        title={`${item.label}: ${item.pct}`}
+                      />
+                    ))}
                   </div>
 
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {card.description}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8  pt-4">
-                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
-                      Rozsah analytických činností:
-                    </div>
-                    {card.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
-                        <span>{feat}</span>
+                  {/* Flow legend */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                    {current.flow.map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-300 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+                        <span className={`w-3 h-3 rounded-full ${item.color} shrink-0`} />
+                        <span className="font-bold font-mono text-white">{item.pct}</span>
+                        <span className="truncate">{item.label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <a
-                    href="#dopyt"
-                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
-                  >
-                    Konzultovať túto oblasť
-                  </a>
+                {/* Technical Insight Box */}
+                <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl text-xs text-emerald-200 leading-relaxed flex items-start gap-3">
+                  <BoltIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-white block mb-0.5">Inžiniersky tip Marvol:</strong>
+                    {current.insight}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
 
+              {/* Economic Summary Sidebar */}
+              <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
+                <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                  Ekonomický profil zostavy
+                </div>
+
+                <div className="space-y-3 divide-y divide-slate-800 text-xs sm:text-sm">
+                  <div className="flex justify-between py-2">
+                    <span className="text-slate-400">Odporúčaný výkon:</span>
+                    <strong className="text-white font-mono text-right">{current.recommendedSystem}</strong>
+                  </div>
+                  <div className="flex justify-between py-2">
+                    <span className="text-slate-400">Vlastné využitie energie:</span>
+                    <strong className="text-emerald-400 font-mono text-right">{current.selfConsumption}</strong>
+                  </div>
+                  <div className="flex justify-between py-2">
+                    <span className="text-slate-400">Odhadovaná ročná úspora:</span>
+                    <strong className="text-white font-mono text-right">{current.annualSaving}</strong>
+                  </div>
+                  <div className="flex justify-between py-2">
+                    <span className="text-slate-400">Predpokladaná návratnosť:</span>
+                    <strong className="text-amber-400 font-mono text-right">{current.payback}</strong>
+                  </div>
+                </div>
+
+                <a
+                  href="#dopyt"
+                  className="w-full inline-flex items-center justify-center py-3.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-400/20 cursor-pointer"
+                >
+                  Prepočítať moju nehnuteľnosť
+                </a>
+              </div>
+
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 ">
+      {/* SECTION 3: DEEP-DIVE COMPARISON: BATTERY VS VIRTUAL VS SPOT */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
-              Priebeh spolupráce
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Nezávislé porovnanie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Ako prebieha energetické poradenstvo
+              Fyzická batéria vs. Virtuálna batéria vs. Spotový trh
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Rýchla a vecná cesta k zníženiu nákladov na energiu bez zbytočného zdržiavania.
+              Pozrite sa na reálne čísla bez marketingových fráz dodávateľov energií.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-emerald-400/30 mb-2">{step.step}</div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* 1: Fyzická batéria BESS */}
+            <div className="bg-slate-900 border-2 border-emerald-500/50 rounded-2xl p-6 relative flex flex-col justify-between shadow-xl">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  NAJVYŠŠIA SEBESTAČNOSŤ
+                </span>
+                <h3 className="text-xl font-black text-white mt-2 mb-2">Fyzické LiFePO4 úložisko</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Energia zostáva vo vašom dome. Nabíjate cez deň zadarmo a čerpáte večer bez platenia distribúcie.
                 </p>
-              </div>
-            ))}
-          </div>
 
-          <div className="mt-12 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <div className="text-emerald-400 font-bold text-base sm:text-lg">
-                100% garancia odpočítania dotácie priamo z faktúry
+                <div className="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                  <div className="flex items-center gap-2 text-emerald-400 font-semibold">
+                    <CheckIcon className="w-4 h-4 shrink-0" />
+                    <span>0 € poplatky pri spätnom odbere</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-emerald-400 font-semibold">
+                    <CheckIcon className="w-4 h-4 shrink-0" />
+                    <span>Plnohodnotný Back-Up (funguje pri výpadku siete)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-emerald-400 font-semibold">
+                    <CheckIcon className="w-4 h-4 shrink-0" />
+                    <span>Životnosť 6 000+ cyklov (cca 15–20 rokov)</span>
+                  </div>
+                </div>
               </div>
-              <div className="text-slate-300 text-xs sm:text-sm">
-                Ako oprávnený zhotoviteľ SIEA garantujeme uplatnenie dotácie Zelená domácnostiam s priamou elektronickou rezerváciou bez rizika zamietnutia.
+
+              <div className="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <span className="text-white font-bold block mb-1">Verdikt Marvol:</span>
+                Najlepšia voľba pre rodinné domy s ročnou spotrebou nad 4 000 kWh a pre každého, kto vyžaduje energetickú nezávislosť.
               </div>
             </div>
-            <a
-              href="#dopyt"
-              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
-            >
-              Overiť dotáciu na váš dom
-            </a>
+
+            {/* 2: Virtuálna batéria */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  SKRYTÉ DISTRIBUČNÉ POPLATKY
+                </span>
+                <h3 className="text-xl font-black text-white mt-2 mb-2">Virtuálna batéria</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Služba od dodávateľov elektriny (ZSE, SSE, VSE, SPP). Ukladá virtuálnu silovú elektrinu do siete.
+                </p>
+
+                <div className="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                  <div className="flex items-center gap-2 text-red-400">
+                    <AlertCircleIcon className="w-4 h-4 shrink-0" />
+                    <span>Platíte plnú distribúciu a TPS pri odbere (~55 % ceny)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-red-400">
+                    <AlertCircleIcon className="w-4 h-4 shrink-0" />
+                    <span>NEFUNGUJE pri výpadku siete (ste bez prúdu)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-amber-400">
+                    <span>Mesačný poplatok za vedenie služby (2 – 5 €/mesiac)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <span className="text-white font-bold block mb-1">Verdikt Marvol:</span>
+                Vhodné ako dočasné nízkonákladové riešenie, avšak dlhodobá úspora je o polovicu nižšia ako pri fyzickej batérii.
+              </div>
+            </div>
+
+            {/* 3: Spotové obchodovanie */}
+            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                  DYNAMICKÉ CENY OKTE
+                </span>
+                <h3 className="text-xl font-black text-white mt-2 mb-2">Spotový trh &amp; Flexibilita</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Hodinové zúčtovanie cien na spotovom trhu. Možnosť nabíjať batériu v noci za záporné ceny a predávať v špičke.
+                </p>
+
+                <div className="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+                  <div className="flex items-center gap-2 text-sky-400 font-semibold">
+                    <CheckIcon className="w-4 h-4 shrink-0" />
+                    <span>Vysoký zisk pri inteligentnom riadení EMS</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-amber-400">
+                    <span>Vyžaduje Smart meter a riadenie striedača</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <span>Cenová volatilita v letných mesiacoch</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <span className="text-white font-bold block mb-1">Verdikt Marvol:</span>
+                Vynikajúca stratégia pre technologicky zdatné domácnosti a firmy s veľkou batériou riadenou automatizáciou.
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 ">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
-              Často kladené otázky
+      {/* SECTION 4: 4-STEP AUDIT ROADMAP */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Proces auditu
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Všetko o návratnosti, auditoch a dotáciách
+              Ako prebieha bezplatná konzultácia
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Rýchly postup, vďaka ktorému získate jasnú predstavu o návratnosti a technológii bez akéhokoľvek nátlaku.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+                KROK 1
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Zaslanie vyúčtovania</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Pošlite nám ročnú faktúru alebo informáciu o mesačných zálohách. Preveríme vašu sadzbu (DD1, DD2, DD5) a charakter odberu.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+                KROK 2
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Simulácia a výpočet ROI</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Vypočítame ročnú výrobu podľa GPS lokality, navrhneme optimálnu kapacitu batérie a vypracujeme finančný model návratnosti.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+                KROK 3
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Preverenie dotácie SIEA</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Skontrolujeme list vlastníctva a zabezpečíme maximálny možný štátny príspevok v programe Zelená domácnostiam alebo Zelená podnikom.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+                KROK 4
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Osobná konzultácia</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Prezentácia návrhu osobne u vás alebo online. Odpovieme na všetky technické otázky a pripravíme fixnú cenovú ponuku.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: FAQ ACCORDION */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Otázky a odpovede
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Všetko o návratnosti a konzultáciách
             </h2>
             <p className="text-slate-400 text-sm">
-              Máte otázky ohľadom virtuálnej batérie alebo štátnych príspevkov? Radi vám všetko objasníme.
+              Máte špecifickú otázku k vašim faktúram alebo možnostiam dotácie?
             </p>
           </div>
 
@@ -488,7 +655,7 @@ export default function KonzultaciePoradenstvo() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2 border-t border-slate-800/60">
                       {faq.a}
                     </div>
                   )}
@@ -499,72 +666,67 @@ export default function KonzultaciePoradenstvo() {
         </div>
       </section>
 
-      {/* Lead Form Consultation Section */}
+      {/* SECTION 6: LEAD FORM CONSULTATION */}
       <section id="dopyt" className="py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
-                Bezplatná konzultácia
+              <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+                100% Bezplatný audit spotreby
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                Dohodnite si bezplatnú energetickú konzultáciu
+                Nezáväzná energetická konzultácia
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Získajte nezávislé posúdenie vašej spotreby, kalkuláciu úspor a preverenie dotácie od našich špecialistov. Stačí vyplniť krátky formulár.
+                Vyplňte formulár a naši energetickí poradcovia pripravia prepočet ročných úspor a návratnosti pre vašu nehnuteľnosť.
               </p>
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    <PhoneIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <PhoneIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-400">Priamy kontakt na energetického poradcu</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-emerald-400 transition-colors">
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    <MailIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <MailIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">E-mail pre zasielanie vyúčtovacích faktúr</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-emerald-400 transition-colors">
+                    <div className="text-xs text-slate-400">Zasielanie faktúr a podkladov</div>
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
-                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <BuildingOfficeIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Sídlo spoločnosti</div>
+                    <div className="text-xs text-slate-400">Centrála MARVOL s.r.o.</div>
                     <span className="text-white font-medium">{COMPANY_DETAILS.seat.fullAddress}</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 space-y-1">
-                <div className="font-semibold text-slate-300">Záväzok energetickej nezávislosti:</div>
-                <div>Naše výpočty vychádzajú z reálnych klimatických údajov SHMÚ a presných technických parametrov komponentov. Žiadne skreslené dáta.</div>
               </div>
             </div>
 
             <div className="lg:col-span-6">
               <LeadForm
-                initialService="vseobecny-kontakt"
-                source="page_sluzby_konzultacie_poradenstvo"
-                title="Dohodnite si bezplatnú energetickú konzultáciu"
-                subtitle="Získajte nezávislé posúdenie vašej spotreby, kalkuláciu úspor a preverenie dotácie od našich špecialistov."
+                initialService="fotovoltika-dom"
+                source="page_sluzby_poradenstvo"
+                title="Dopyt na energetické poradenstvo"
+                subtitle="Zadajte svoje kontaktné údaje pre nezáväzný prepočet návratnosti."
                 showLocationField={true}
               />
             </div>

@@ -257,6 +257,123 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Specialized Inžiniering & Subpage Services Grid */}
+        <div className="mt-16 pt-12 border-t border-slate-900">
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+              Samostatné odborné činnosti
+            </span>
+            <h3 className="text-2xl font-black text-white">
+              Špecializovaný elektroinžiniering &amp; servis
+            </h3>
+            <p className="text-slate-400 text-xs sm:text-sm">
+              Potrebujete iba projekt, audit, požiarnu ochranu alebo úradnú revíziu? Poskytujeme aj samostatné služby.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <Link
+              href="/sluzby/navrh-projektu"
+              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/50 hover:bg-slate-900 transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono text-amber-400 font-bold bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20 inline-block mb-3">
+                  PV*SOL 3D
+                </span>
+                <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors mb-1.5">
+                  Návrh &amp; 3D simulácia
+                </h4>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Fotometrické modelovanie oslnenia a jednopólové schémy SLD pre SSD/ZSD/VSD.
+                </p>
+              </div>
+              <span className="text-xs text-amber-400 font-bold mt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Viac o návrhu →
+              </span>
+            </Link>
+
+            <Link
+              href="/sluzby/instalacia-montaz"
+              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/50 hover:bg-slate-900 transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono text-sky-400 font-bold bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20 inline-block mb-3">
+                  DO 30 DNÍ
+                </span>
+                <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors mb-1.5">
+                  Montáž &amp; Inštalácia
+                </h4>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Odborná montáž na všetky typy striech bez zatekania certifikovanými elektrikármi.
+                </p>
+              </div>
+              <span className="text-xs text-sky-400 font-bold mt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Viac o montáži →
+              </span>
+            </Link>
+
+            <Link
+              href="/sluzby/konzultacie-poradenstvo"
+              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/50 hover:bg-slate-900 transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20 inline-block mb-3">
+                  0 € AUDIT
+                </span>
+                <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors mb-1.5">
+                  Energetický audit &amp; ROI
+                </h4>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Analýza vyúčtovacích faktúr, výpočet reálnej návratnosti a batériových stratégií.
+                </p>
+              </div>
+              <span className="text-xs text-emerald-400 font-bold mt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Viac o audite →
+              </span>
+            </Link>
+
+            <Link
+              href="/sluzby/protipoziarna-ochrana-bezpecne-napatie"
+              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-red-400/50 hover:bg-slate-900 transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono text-red-400 font-bold bg-red-400/10 px-2 py-0.5 rounded border border-red-400/20 inline-block mb-3">
+                  RAPID SHUTDOWN
+                </span>
+                <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors mb-1.5">
+                  Požiarna ochrana &amp; HaZZ
+                </h4>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Beznapäťová strecha pod 30 V do 30 s pre bezpečný zásah hasičov vodou.
+                </p>
+              </div>
+              <span className="text-xs text-red-400 font-bold mt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Viac o bezpečnosti →
+              </span>
+            </Link>
+
+            <Link
+              href="/sluzby/revizie-dotacie"
+              className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-400/50 hover:bg-slate-900 transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20 inline-block mb-3">
+                  SIEA &amp; OPOS
+                </span>
+                <h4 className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors mb-1.5">
+                  Revízie &amp; Dotácie SIEA
+                </h4>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Úradné správy § 24, termovízia Fluke a odpočet dotácie priamo z faktúry.
+                </p>
+              </div>
+              <span className="text-xs text-emerald-400 font-bold mt-4 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Viac o revíziách →
+              </span>
+            </Link>
+          </div>
+        </div>
+
       </div>
     </section>
   );

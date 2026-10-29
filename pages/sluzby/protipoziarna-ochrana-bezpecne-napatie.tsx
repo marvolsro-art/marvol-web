@@ -3,10 +3,22 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
+import {
+  SunIcon,
+  BoltIcon,
+  ShieldIcon,
+  FileTextIcon,
+  CheckIcon,
+  PhoneIcon,
+  MailIcon,
+  BuildingOfficeIcon,
+  AlertCircleIcon,
+  ClockIcon
+} from '@/components/icons';
 
 export default function ProtipoziarnaOchranaBezpecneNapatie() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [activeScenario, setActiveScenario] = useState<'bežna' | 'marvol'>('marvol');
 
   const breadcrumbs = [
     { name: 'Domov', href: '/' },
@@ -14,94 +26,63 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
     { name: 'Protipožiarna ochrana & Bezpečné napätie', href: '/sluzby/protipoziarna-ochrana-bezpecne-napatie' },
   ];
 
-  const parameterCards = [
+  const safetyPillars = [
     {
-      id: 'rapid-shutdown',
-      title: 'Rapid Shutdown – Zníženie DC napätia na bezpečnú úroveň',
-      badge: 'Bezpečné malé napätie SELV',
+      step: '01',
+      title: 'TIGO Rapid Shutdown – Beznapäťová strecha do 30 sekúnd',
+      badge: 'Bezpečné dotykové napätie SELV',
+      badgeColor: 'border-red-500/30 text-red-400 bg-red-500/10',
+      description:
+        'Pod každý panel inštalujeme inteligentný odpájací modul. Pri vypnutí hlavného vypínača, výpadku siete alebo stlačení núdzového tlačidla Total Stop moduly zrazia napätie každého panelu na bezpečný 1 V. Celá strecha má okamžite menej ako 30 V DC, takže hasiči môžu bezpečne zasahovať vodným prúdom.',
+      points: [
+        'Zníženie napätia na streche pod 30 V DC celkovo do 30 sekúnd',
+        'Umožňuje hasičom hasiť objekt kompaktným vodným prúdom bez rizika úrazu prúdom',
+        'Fail-safe princíp: automatické rozpojenie pri výpadku AC napájania',
+        'Plný súlad s medzinárodnými normami NEC 690.12 a STN 33 2000-7-712'
+      ]
+    },
+    {
+      step: '02',
+      title: 'AFCI – AI Detekcia elektrického oblúka do 2,5 milisekundy',
+      badge: 'STN EN 63027 / AI Algoritmus',
       badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
       description:
-        'Okamžitá redukcia nebezpečného jednosmerného napätia na streche. Do 30 sekúnd klesne napätie každého panelu na úroveň bezpečnú pre zásah hasičov i servis.',
-      features: [
-        'Zníženie napätia na streche pod 120 V DC celkovo (menej ako 1 V na modul) do 30 sekúnd',
-        'Umožňuje hasičom bezpečne hasiť objekt vodným prúdom bez rizika zásahu elektrickým prúdom',
-        'Automatická aktivácia pri výpadku distribučnej siete alebo stlačení núdzového tlačidla',
-        'Eliminácia vysokého napätia (600–1000 V DC), ktoré na bežných paneloch trvalo pretrváva',
-        'Plný súlad s medzinárodnými normami NEC 690.12 a STN 33 2000-7-712',
-      ],
+        'Jednosmerný oblúk vzniká pri uvoľnení konektora alebo prehryznutí kábla hlodavcom. Má teplotu vyše 3 000 °C a sám nezhasne. Naše hybridné striedače využívajú umelú inteligenciu, ktorá vzorkuje frekvenčné spektrum prúdu a oblúk okamžite preruší do 2,5 ms – skôr než stihne vzniknúť plameň.',
+      points: [
+        'Kontinuálne digitálne vzorkovanie DC spektra na zbernici meniča',
+        'Bleskové rozpojenie obvodu do 2,5 ms pri prvom náznaku mikroskopického iskrenia',
+        'Spoľahlivá prevencia požiarov spôsobených zoxidovanými MC4 konektormi',
+        'Ochrana nehnuteľnosti pred prepálením strešnej krytiny a podkrovia'
+      ]
     },
     {
-      id: 'afci-afdd',
-      title: 'AFCI & AFDD – Inteligentná AI detekcia elektrického oblúka',
-      badge: 'STN EN 63027',
+      step: '03',
+      title: 'Hasičský bezpečnostný vypínač Total Stop',
+      badge: 'STN 92 0203 / HaZZ súlad',
       badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
       description:
-        'Digitálna ochrana pred vznikom požiaru. Pokročilé algoritmy v reálnom čase analyzujú spektrum prúdu a bleskovo prerušia obvod pri náznaku iskrenia.',
-      features: [
-        'Neustále digitálne vzorkovanie frekvenčného spektra jednosmerného prúdu na DC zbernici',
-        'Okamžité prerušenie obvodu pri detekcii mikroskopického iskrenia do 2,5 milisekundy',
-        'Prevencia vzniku plameňov pri uvoľnených, zvetraných alebo zoxidovaných MC4 konektoroch',
-        'Ochrana káblov pred prehriatím pri poškodení hlodavcami, kunami alebo mechanickým trením',
-        'Integrovaná funkcia v moderných inteligentných striedačoch najvyššej bezpečnostnej kategórie',
-      ],
+        'Motorický odpojovač inštalovaný čo najbližšie k vstupu solárnych káblov do budovy. Slúži na okamžité odrezanie budovy od solárneho generátora. Vybavený je certifikovaným červeným hríbovým tlačidlom Total Stop na ľahko dostupnom mieste označenom reflexnými piktogramami.',
+      points: [
+        'Motorický DC odpínač umiestnený pred vstupom káblov do interiéru',
+        'Núdzové tlačidlo Total Stop prístupné pre zasahujúce hasičské jednotky',
+        'Pružinový mechanizmus: automatické rozopnutie pri výpadku napájania',
+        'Možnosť prepojenia so systémom EPS (Elektronická požiarna signalizácia)'
+      ]
     },
     {
-      id: 'hasicsky-vypinac-total-stop',
-      title: 'Hasičský bezpečnostný vypínač & Total Stop',
-      badge: 'STN 92 0203 / Súlad HaZZ',
+      step: '04',
+      title: 'Certifikované Hilti protipožiarne prestupy EI 60 až EI 120',
+      badge: 'Hilti Firestop / LSOH bezhalogén',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
-        'Certifikovaný motorický odpojovač inštalovaný na vstupe DC káblov do budovy. Poskytuje okamžité odpojenie fotovoltiky v prípade požiaru alebo mimoriadnej udalosti.',
-      features: [
-        'Motorický odpínač DC vedenia inštalovaný čo najbližšie k prestupu do chráneného priestoru budovy',
-        'Núdzové tlačidlo (Total Stop / Central Stop) umiestnené na prístupnom mieste pre zásah HaZZ',
-        'Pružinový mechanizmus fail-safe: automatické rozpojenie kontaktov pri výpadku AC napájania',
-        'Prepojenie so systémami EPS (Elektronická požiarna signalizácia) v komerčných objektoch',
-        'Jasné reflexné výstražné označenie solárnej inštalácie podľa predpisov hasičského zboru',
-      ],
-    },
-    {
-      id: 'protipoziarne-prestupy',
-      title: 'Certifikované protipožiarne prestupy EI 60 až EI 120',
-      badge: 'Hilti Firestop / LSOH',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Odborné utesnenie káblových trás cez obvodové plášte, steny a stropy pomocou atestovaných požiarnych manžiet a intumescentných tmelov Hilti.',
-      features: [
-        'Dôkladné utesnenie všetkých strešných a stenových prestupov káblov intumescentnými tmelmi',
-        'Zamedzenie šírenia dymu, toxických splodín horenia a ohňa medzi jednotlivými požiarnymi úsekmi',
-        'Použitie výhradne bezhalogénových solárnych káblov s nízkou dymivosťou (LSOH / FRNC)',
-        'Dodržanie bezpečných odstupov fotovoltických panelov od požiarnych stien a odvodňovacích žľabov',
-        'Vystavenie protokolu o požiarnych prestupoch potrebného ku kolaudácii a pre poistné krytie',
-      ],
-    },
-  ];
-
-  const workflowSteps = [
-    {
-      step: '1',
-      title: 'Požiarny audit & analýza rizík',
-      description:
-        'Preveríme typ strešnej krytiny, prestupy do interiéru, požiarnu odolnosť krovu a prístupové trasy pre hasičskú techniku.',
-    },
-    {
-      step: '2',
-      title: 'Výber bezpečnostných technológií',
-      description:
-        'Navrhneme konfiguráciu modulov Rapid Shutdown na úrovni jednotlivých panelov, striedač s AI AFDD a umiestnenie hasičského tlačidla.',
-    },
-    {
-      step: '3',
-      title: 'Certifikovaná montáž prestupov',
-      description:
-        'Aplikujeme certifikované protipožiarne tmely a manžety Hilti na všetkých káblových trasách s požiarnou odolnosťou až EI 120.',
-    },
-    {
-      step: '4',
-      title: 'Funkčné preskúšanie & požiarny certifikát',
-      description:
-        'Vykonáme reálny test núdzového odpojenia pod záťažou, zmeriame pokles DC napätia a vystavíme protokol pre kolaudáciu a poisťovňu.',
-    },
+        'Káblové trasy prestupujúce cez strešný plášť, stropy a steny dôkladne utesňujeme certifikovanými intumescentnými tmelmi a manžetami Hilti. Pri pôsobení tepla materiál zväčší svoj objem a nepriedušne utesní otvor, čím zabráni šíreniu toxických splodín a ohňa medzi požiarnymi úsekmi.',
+      points: [
+        'Atestované požiarno-bezpečnostné manžety s odolnosťou 60 až 120 minút',
+        'Použitie bezhalogénových solárnych káblov s nízkou dymivosťou (LSOH / FRNC)',
+        'Nevyhnutný doklad ku kolaudácii a pre poistné krytie poisťovňou bez krátenia',
+        'Zamedzenie prieniku dymu do obytných miestností pri lokálnom požiari'
+      ]
+    }
   ];
 
   const faqs = [
@@ -155,16 +136,14 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': 'https://marvol.sk/sluzby/protipoziarna-ochrana-bezpecne-napatie#service',
       name: 'Protipožiarna ochrana fotovoltiky & Bezpečné napätie',
-      serviceType: 'Požiarna bezpečnosť fotovoltiky, Rapid Shutdown a AFDD',
+      serviceType: 'Požiarna bezpečnosť fotovoltických systémov a Rapid Shutdown',
       description:
-        'Maximálna požiarna bezpečnosť fotovoltiky: Rapid Shutdown, zníženie DC napätia pod 120V, AFDD detekcia elektrického oblúka a súlad s STN 92 0203. Chráňte svoj majetok.',
+        'Protipožiarna ochrana fotovoltiky podľa STN 33 2000-7-712 a STN 92 0203. Rapid Shutdown pod 30 V do 30 sekúnd, AI AFCI oblúková ochrana a Hilti prestupy.',
       provider: {
-        '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
-        name: COMPANY_DETAILS.legalName,
-        telephone: COMPANY_DETAILS.contact.phoneClean,
+        name: 'Marvol s.r.o.',
+        telephone: COMPANY_DETAILS.contact.phone,
         email: COMPANY_DETAILS.contact.email,
         address: {
           '@type': 'PostalAddress',
@@ -195,8 +174,8 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
 
   return (
     <Layout
-      title="Protipožiarna ochrana fotovoltiky & Rapid Shutdown | Marvol"
-      description="Požiarna bezpečnosť fotovoltiky: Rapid Shutdown, zníženie DC napätia pod 120 V, detekcia AFDD a súlad s STN 92 0203. Chráňte svoj dom a majetok."
+      title="Protipožiarna ochrana fotovoltiky & Rapid Shutdown | Marvol s.r.o."
+      description="Protipožiarna bezpečnosť fotovoltiky podľa STN 33 2000-7-712 a STN 92 0203. Rapid Shutdown pod 30 V do 30 sekúnd, AI AFCI oblúková ochrana a Hilti prestupy."
       canonicalPath="/sluzby/protipoziarna-ochrana-bezpecne-napatie"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -219,116 +198,115 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
         </ol>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 ">
-        
+      {/* HERO SECTION: High-Contrast Safety & Fire Protocol Theme */}
+      <section className="relative overflow-hidden pt-8 pb-16 bg-slate-950 border-b border-slate-800">
+        {/* Subtle Ambient Red Glow */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
+            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              {/* Badge Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
-                <ShieldIcon className="w-4 h-4 text-rose-400 shrink-0" /><span>Požiarna bezpečnosť STN 92 0203 a STN EN 62109</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs sm:text-sm font-bold tracking-wide">
+                <ShieldIcon className="w-4 h-4 text-red-400 shrink-0" />
+                <span>Požiarny štandard HaZZ &amp; STN 33 2000-7-712</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                Protipožiarna ochrana fotovoltiky <br className="hidden sm:block" />
-                <span className="text-rose-400">a technológia bezpečného napätia</span>
+                Protipožiarna ochrana <br className="hidden sm:block" />
+                <span className="text-red-400">a beznapäťová strecha do 30 s</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Chráňte svoju rodinu a nehnuteľnosť. Inštalujeme systémy <strong className="text-white">Rapid Shutdown na okamžité zníženie DC napätia pod 120 V</strong>, pokročilú AFDD detekciu elektrického oblúka a certifikované hasičské vypínače v plnom súlade s predpismi HaZZ SR.
+                Bežná fotovoltika vyrába nebezpečných 600 až 1 000 V DC aj keď v dome vypnete hlavný istič. Náš bezpečnostný systém okamžite zrazí napätie na streche pod 30 V, umožní <strong className="text-white">bezpečný zásah hasičov kompaktným prúdom vody</strong> a chráni vašu rodinu i majetok.
               </p>
 
-              {/* 4 Key Metrics */}
+              {/* Safety Metrics HUD */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-rose-400 font-black text-xl sm:text-2xl">&lt; 120 V</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Bezpečné napätie SELV</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-red-400 font-mono font-black text-xl sm:text-2xl">&lt; 30 V</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Bezpečné napätie SELV</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">&lt; 2,5 ms</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Čas odpojenia oblúka AFDD</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">&lt; 30 s</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Rapid Shutdown limit</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">EI 60–120</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Odolnosť prestupov Hilti</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">2,5 ms</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">AI AFCI detekcia oblúka</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">100%</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Súlad s predpismi HaZZ</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">EI 120</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Požiarna odolnosť Hilti</div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-3">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-rose-400 hover:bg-rose-300 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-black text-white bg-red-600 hover:bg-red-500 transition-colors shadow-lg shadow-red-600/30"
                 >
-                  Konzultovať požiarnu bezpečnosť
+                  Požiadať o požiarny audit
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-colors"
                 >
-                  Technická podpora: {COMPANY_DETAILS.contact.phone}
+                  Konzultácia s revíznym technikom
                 </a>
               </div>
             </div>
 
-            {/* Hero Feature Card with Illustrative Photo */}
+            {/* Right: Real Photography & Fire Safety Status Badge */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+              <div className="relative group rounded-3xl overflow-hidden border border-red-500/30 bg-slate-900 shadow-2xl">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/protipoziarna-ochrana.jpg"
-                    alt="Protipožiarny DC odpínač a Rapid Shutdown systému Marvol"
+                    alt="Protipožiarna ochrana a bezpečné napätie fotovoltiky Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-slate-950/40" />
-                  
-                  {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-rose-500/40 text-rose-400 font-semibold text-xs flex items-center gap-1.5 ">
-                    <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
-                    <span>Rapid Shutdown bezpečnosť</span>
-                  </div>
-                  
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-rose-500 text-white font-black text-xs font-semibold rounded-full ">
-                    STN 92 0203
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-red-500/40 text-red-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+                    <span>Certifikácia HaZZ / STN 92 0203</span>
                   </div>
 
-                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-red-600 text-white font-black text-xs rounded-full">
+                    Total Stop Ready
+                  </div>
+
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">DC Rapid Shutdown &amp; AFDD ochrana</span>
-                      <span className="text-rose-400 font-bold">Bezpečné &lt; 120 V</span>
+                      <span className="font-bold text-white text-sm">Odpájače TIGO na úrovni modulov</span>
+                      <span className="text-red-400 font-bold font-mono">100% ochrana</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
-                      Núdzový hasičský odpínač pre bezpečný zásah vodou a detekcia iskrenia pred vznikom požiaru.
+                      Po stlačení núdzového tlačidla klesne napätie každého panelu na 1 V. Hasiči môžu bez obáv striekať vodu na strechu.
                     </p>
                   </div>
                 </div>
 
-                {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
+                <div className="p-4 bg-slate-900 grid grid-cols-2 gap-3 text-xs border-t border-slate-800">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-rose-400 shrink-0 inline" />
-                    <span>Tlačidlo Total Stop pre hasičov</span>
+                    <CheckIcon className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>Moduly TIGO Rapid Shutdown</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-rose-400 shrink-0 inline" />
-                    <span>AFDD digitálna detekcia oblúka</span>
+                    <CheckIcon className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>AI AFCI oblúková ochrana</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-rose-400 shrink-0 inline" />
-                    <span>Protipožiarne prestupy EI90</span>
+                    <CheckIcon className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>Hasičský spínač Total Stop</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-rose-400 shrink-0 inline" />
-                    <span>Bezhalogénová LSOH kabeláž</span>
+                    <CheckIcon className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>Hilti požiarny tmel EI 120</span>
                   </div>
                 </div>
               </div>
@@ -338,130 +316,205 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
         </div>
       </section>
 
-      {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 ">
+      {/* SECTION 2: 4 OCHRANNÉ ŠTÍTY BEZPEČNOSTI (Pillar Architecture) */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-rose-400 text-xs font-semibold px-3 py-1 rounded-full bg-rose-400/10 border border-rose-400/20">
-              Bezpečnostné technológie
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+              4 Piliere bezpečnosti MARVOL
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Systémy požiarnej ochrany fotovoltiky
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Viacúrovňový požiarny štít vašej nehnuteľnosti
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Kombinácia aktívnych a pasívnych bezpečnostných prvkov, ktoré garantujú nekompromisnú ochranu vášho majetku a životov.
+              Kombinujeme hardvérové odpájače modulov, umelú inteligenciu v striedači a certifikované stavebné protipožiarne prestupy.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {parameterCards.map((card) => (
+            {safetyPillars.map((p) => (
               <div
-                key={card.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors"
+                key={p.step}
+                className="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors shadow-lg"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="text-2xl font-black font-mono text-red-400/40">
+                      {p.step}
+                    </span>
+                    <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${p.badgeColor}`}>
+                      {p.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {card.title}
+                  <h3 className="text-xl font-bold text-white mb-2.5">
+                    {p.title}
                   </h3>
 
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {card.description}
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    {p.description}
                   </p>
 
-                  <div className="space-y-2.5 mb-8  pt-4">
-                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
-                      Technické parametre & funkcie:
-                    </div>
-                    {card.features.map((feat, idx) => (
+                  <div className="space-y-2 border-t border-slate-800 pt-4">
+                    {p.points.map((pt, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckIcon className="w-4 h-4 text-rose-400 shrink-0" />
-                        <span>{feat}</span>
+                        <CheckIcon className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                        <span>{pt}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
+                <div className="pt-6 mt-6 border-t border-slate-850">
                   <a
                     href="#dopyt"
-                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl font-bold text-xs text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-colors cursor-pointer"
                   >
-                    Dopytovať požiarnu ochranu
+                    Dopytovať toto zabezpečenie →
                   </a>
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 ">
+      {/* SECTION 3: SIMULÁCIA NÚDZOVEJ SITUÁCIE (Interactive Disaster Scenario) */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-rose-400 text-xs font-semibold px-3 py-1 rounded-full bg-rose-400/10 border border-rose-400/20">
-              Bezpečnostný audit
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+              Scenár požiaru v reálnom čase
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Ako prebieha zabezpečenie fotovoltiky
+              Čo sa stane pri požiari susedného objektu alebo podkrovia?
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Systematický postup od obhliadky až po finálne preskúšanie a požiarny atest.
+              Porovnajte reakciu štandardnej fotovoltiky a certifikovaného bezpečnostného systému Marvol s.r.o.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-rose-400/30 mb-2">{step.step}</div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
-                </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left: Bežná inštalácia */}
+            <div className="bg-red-950/20 border-2 border-red-500/30 rounded-3xl p-6 sm:p-8 space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold">
+                  ✕
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Bežná fotovoltika (Bez Rapid Shutdown)</h3>
+                  <div className="text-xs text-red-400 font-mono">Vysoké riziko pre zásah hasičov</div>
+                </div>
               </div>
-            ))}
-          </div>
 
-          <div className="mt-12 bg-rose-500/10 border border-rose-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <div className="text-rose-400 font-bold text-base sm:text-lg">
-                Dodatočná montáž bezpečného napätia na existujúcu fotovoltiku
-              </div>
-              <div className="text-slate-300 text-xs sm:text-sm">
-                Máte staršiu fotovoltiku bez Rapid Shutdown a bojíte sa rizika požiaru? Zabezpečíme odbornú dodatočnú inštaláciu bezpečnostných odpájačov.
+              <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+                <div className="p-3 bg-red-950/40 rounded-xl border border-red-500/20">
+                  <strong className="text-red-300 block mb-1">1. Vypnutie hlavného ističa:</strong>
+                  V dome síce nejde prúd, ale solárne panely na streche naďalej vyrábajú 600 až 1 000 V DC. Káble v podkroví sú pod plným vysokým napätím.
+                </div>
+                <div className="p-3 bg-red-950/40 rounded-xl border border-red-500/20">
+                  <strong className="text-red-300 block mb-1">2. Zásah hasičskej jednotky HaZZ:</strong>
+                  Pre riziko smrteľného úrazu elektrickým prúdom hasiči nesmú striekať vodu na solárne panely zblízka. Strecha často kontrolovane dohorí.
+                </div>
+                <div className="p-3 bg-red-950/40 rounded-xl border border-red-500/20">
+                  <strong className="text-red-300 block mb-1">3. Likvidácia poistnej udalosti:</strong>
+                  Poisťovňa pri vyšetrovaní zistí absenciu hasičského spínača a necertifikované káblové prestupy, čo vedie ku kráteniu poistného plnenia.
+                </div>
               </div>
             </div>
-            <a
-              href="#dopyt"
-              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-rose-500 hover:bg-rose-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
-            >
-              Objednať požiarny audit
-            </a>
+
+            {/* Right: Marvol Bezpečný systém */}
+            <div className="bg-emerald-950/20 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl shadow-emerald-950/20">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Bezpečný systém MARVOL s.r.o.</h3>
+                  <div className="text-xs text-emerald-400 font-mono">Okamžitá beznapäťová zóna pre záchranu majetku</div>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+                <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/30">
+                  <strong className="text-emerald-300 block mb-1">1. Stlačenie Total Stop alebo výpadok siete:</strong>
+                  Moduly TIGO okamžite rozpoja obvod priamo na každom paneli. Napätie na celej streche do 30 sekúnd klesne pod 30 V DC (SELV).
+                </div>
+                <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/30">
+                  <strong className="text-emerald-300 block mb-1">2. Okamžité hasenie vodou:</strong>
+                  Hasiči vidia reflexné označenie Total Stop a vedomí si beznapäťového stavu môžu okamžite hasiť strechu i krov štandardným vodným prúdom.
+                </div>
+                <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/30">
+                  <strong className="text-emerald-300 block mb-1">3. 100% poistné plnenie:</strong>
+                  Všetky prestupy majú atest Hilti Firestop a revízna správa obsahuje protokol o požiarnom spínači. Poisťovňa plní bez námietok.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 ">
+      {/* SECTION 4: LEGISLATION & INSURANCE STANDARDS */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+              Právna a požiarna istota
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Súlad so slovenskými zákonmi a požiadavkami poisťovní
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Všetky komponenty a inštalačné postupy Marvol s.r.o. spĺňajú najprísnejšie slovenské elektrotechnické normy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 flex items-center justify-center font-bold mb-4 font-mono text-sm">
+                STN
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">STN 33 2000-7-712</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Požiadavky na fotovoltické napájacie systémy. Predpisuje koordináciu stupňov prepäťových ochrán T1+T2 a bezpečné uloženie DC káblov.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold mb-4 font-mono text-sm">
+                HaZZ
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">Vyhláška MV SR č. 94/2004 Z. z.</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Technické požiadavky na protipožiarnu bezpečnosť pri výstavbe a užívaní stavieb. Stanovuje pravidlá pre káblové prestupy a hasičské vypínače.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold mb-4 font-mono text-sm">
+                POISŤ
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">Poistné podmienky bez výluk</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Naša certifikovaná montáž s revíznou správou garantuje plné poistné krytie nehnuteľnosti bez rizika krátenia poistného plnenia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: FAQ ACCORDION */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-rose-400 text-xs font-semibold px-3 py-1 rounded-full bg-rose-400/10 border border-rose-400/20">
+          <div className="text-center mb-16 space-y-3">
+            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
               Často kladené otázky
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Všetko o požiarnej bezpečnosti solárnych systémov
+              Všetko o požiari a bezpečnosti fotovoltiky
             </h2>
             <p className="text-slate-400 text-sm">
-              Máte obavy z požiarnych rizík alebo otázky k hasičským predpisom? Radi vám odborne odpovieme.
+              Máte otázky k montáži Rapid Shutdown na existujúcu elektráreň alebo ku kolaudácii?
             </p>
           </div>
 
@@ -475,12 +528,12 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
                 >
                   <button
                     onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-rose-400 transition-colors focus:outline-none cursor-pointer"
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-red-400 transition-colors focus:outline-none cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
                     <span
-                      className={`text-xl text-rose-400 transition-transform duration-200 shrink-0 ${
+                      className={`text-xl text-red-400 transition-transform duration-200 shrink-0 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     >
@@ -488,7 +541,7 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2 border-t border-slate-800/60">
                       {faq.a}
                     </div>
                   )}
@@ -499,72 +552,67 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
         </div>
       </section>
 
-      {/* Lead Form Consultation Section */}
+      {/* SECTION 6: LEAD FORM CONSULTATION */}
       <section id="dopyt" className="py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-rose-400 text-xs font-semibold px-3 py-1 rounded-full bg-rose-400/10 border border-rose-400/20">
-                Bezpečnostná konzultácia
+              <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+                Požiarny audit &amp; Dodatočná montáž
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                Konzultácia požiarnej bezpečnosti a revízia
+                Zabezpečte svoju fotovoltiku proti požiaru
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Chcete mať 100% istotu, že vaša fotovoltika spĺňa všetky bezpečnostné normy STN a neohrozuje vašu nehnuteľnosť? Napíšte nám a naši revízni technici posúdia váš systém.
+                Máte novostavbu alebo chcete dovybaviť existujúcu fotovoltiku o Rapid Shutdown a požiarny spínač Total Stop? Vyplňte formulár a naši požiarni špecialisti pripravia návrh riešenia.
               </p>
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-rose-400/10 border border-rose-400/30 flex items-center justify-center text-rose-400 font-bold shrink-0">
-                    <PhoneIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold shrink-0">
+                    <PhoneIcon className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Priamy kontakt na špecialistu požiarnej ochrany</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-rose-400 transition-colors">
+                    <div className="text-xs text-slate-400">Požiarny a revízny technik MARVOL</div>
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-red-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-rose-400/10 border border-rose-400/30 flex items-center justify-center text-rose-400 font-bold shrink-0">
-                    <MailIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold shrink-0">
+                    <MailIcon className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">E-mail pre zasielanie technickej dokumentácie</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-rose-400 transition-colors">
+                    <div className="text-xs text-slate-400">Požiarna bezpečnosť a audit</div>
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-red-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-rose-400/10 border border-rose-400/30 flex items-center justify-center text-rose-400 font-bold shrink-0">
-                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold shrink-0">
+                    <BuildingOfficeIcon className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Sídlo spoločnosti</div>
+                    <div className="text-xs text-slate-400">Centrála MARVOL s.r.o.</div>
                     <span className="text-white font-medium">{COMPANY_DETAILS.seat.fullAddress}</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 space-y-1">
-                <div className="font-semibold text-slate-300">Bezpečnostný certifikát Marvol s.r.o.:</div>
-                <div>Všetky nami inštalované bezpečnostné prvky a protipožiarne prestupy sú certifikované a schválené pre bezpečný zásah Hasičského a záchranného zboru SR.</div>
               </div>
             </div>
 
             <div className="lg:col-span-6">
               <LeadForm
-                initialService="elektro"
-                source="page_sluzby_protipoziarna_ochrana"
-                title="Konzultácia požiarnej bezpečnosti a revízia"
-                subtitle="Chcete mať 100% istotu, že vaša fotovoltika spĺňa všetky bezpečnostné normy STN a neohrozuje vašu nehnuteľnosť? Napíšte nám."
+                initialService="fotovoltika-dom"
+                source="page_sluzby_protipoz_ochrana"
+                title="Dopyt na protipožiarnu ochranu"
+                subtitle="Odborný návrh Rapid Shutdown a požiarnych spínačov."
                 showLocationField={true}
               />
             </div>

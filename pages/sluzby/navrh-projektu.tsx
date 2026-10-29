@@ -3,10 +3,22 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
+import {
+  SunIcon,
+  BoltIcon,
+  ShieldIcon,
+  FileTextIcon,
+  CheckIcon,
+  PhoneIcon,
+  MailIcon,
+  BuildingOfficeIcon,
+  AlertCircleIcon,
+  ClockIcon
+} from '@/components/icons';
 
 export default function NavrhProjektu() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [activeCadTab, setActiveCadTab] = useState<'3d' | 'sld' | 'statika' | 'distribucia'>('3d');
 
   const breadcrumbs = [
     { name: 'Domov', href: '/' },
@@ -14,95 +26,74 @@ export default function NavrhProjektu() {
     { name: 'Návrh projektu & Projektovanie', href: '/sluzby/navrh-projektu' },
   ];
 
-  const parameterCards = [
+  const cadTabs = [
     {
-      id: '3d-simulacia',
-      title: '3D Modelovanie a analýza zatienenia',
-      badge: 'Fotometrická simulácia',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+      id: '3d',
+      label: '1. 3D Fotometria & Tiene',
+      title: 'Fotometrická simulácia oslnenia v PV*SOL Premium',
+      badge: '8 760 hodín simulácie ročne',
+      badgeColor: 'text-amber-400 bg-amber-400/10 border-amber-400/30',
       description:
-        'Digitálna dvojička vašej strechy s fotometrickou simuláciou slnečného svitu. Odhaľujeme mikrotieňovanie komínov, vikierov a stromov ešte pred položením jediného panelu.',
-      features: [
-        'Presný digitálny 3D model strechy s uvážením sklonu, azimutu a typu krytiny',
-        'Simulácia tieňov vrhaných komínmi, vikiermi, okolitými stromami a susednými stavbami',
-        'Výpočet optimálnych odstupov radov na plochých strechách (eliminácia vzájomného tienenia)',
-        'Porovnanie ziskovosti variantov zapojenia stringov vs. použitie výkonových optimizérov',
-        'Hodinová ročná krivka očakávanej výroby energie (PV*SOL / AutoCAD export)',
+        'Digitálne dvojča vašej strechy s presnosťou na centimetre. Simulujeme dráhu slnka počas celého roka, modelujeme tiene komínov, vikierov a susedných stromov.',
+      specs: [
+        { label: 'Ročná výroba', val: '1 120 kWh / kWp', note: 'lokalizované podľa GPS' },
+        { label: 'Presnosť simulácie', val: '98.5 %', note: 'odchýlka voči realite < 1.5%' },
+        { label: 'Analýza tienenia', val: 'Vypočítaná', note: 'rozdelenie na stringy a optimizéry' },
+        { label: 'Orientácia & Sklon', val: 'Optimalizované', note: 'maximalizácia priamej spotreby' },
       ],
+      output: 'Výstup: 3D vizualizácia rozmiestnenia panelov, diagram strát tienením a hodinová predikcia ročnej výroby energie.'
     },
     {
-      id: 'elektro-projekt-sld',
-      title: 'Elektrotechnický projekt & Jednopólové schémy (SLD)',
+      id: 'sld',
+      label: '2. Jednopólová schéma (SLD)',
+      title: 'Elektrotechnický projekt & istenie podľa STN',
       badge: 'STN 33 2000-7-712',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
+      badgeColor: 'text-sky-400 bg-sky-400/10 border-sky-400/30',
       description:
-        'Kompletný inžiniersky návrh elektrického zapojenia v súlade so slovenskými elektrotechnickými normami STN, zaručujúci maximálnu požiarnu i prevádzkovú bezpečnosť.',
-      features: [
-        'Detailné dimenzovanie prierezov solárnych káblov (Solárflex 4 mm² / 6 mm²) s úbytkom napätia < 1%',
-        'Návrh DC stringových rozvádzačov s poistkovými odpínačmi gPV a spoľahlivými DC odpojovačmi',
-        'Koordinácia stupňov prepäťových ochrán SPD Typ 1 + Typ 2 na DC aj AC strane',
-        'Schéma zapojenia inteligentného Smart Metra a hybridného striedača s batériovým úložiskom',
-        'Projekt prepojenia s domovým rozvádzačom, záložným okruhom (EPS/UPS) a podružnými okruhmi',
+        'Kompletný projekt elektrického zapojenia fotovoltického zdroja, hybridného meniča a batériového úložiska. Presné dimenzovanie káblových trás a selektivita ochrán.',
+      specs: [
+        { label: 'Káblové trasy', val: 'Solárflex 6 mm²', note: 'úbytok napätia na DC strane < 0.8%' },
+        { label: 'DC istenie', val: 'gPV 15A / 1000V', note: 'odpínače s poistkovými vložkami' },
+        { label: 'Prepäťové ochrany', val: 'SPD Typ 1 + 2', note: 'koordinovaná ochrana AC aj DC' },
+        { label: 'Záložný okruh', val: 'EPS / Back-Up', note: 'automatické prepnutie pri výpadku' },
       ],
+      output: 'Výstup: Oficiálna schéma skutočného vyhotovenia (SLD), dimenzovanie vodičov, rozvádzačov a zoznam komponentov pre revízneho technika.'
     },
     {
-      id: 'distribucna-sustava',
-      title: 'Projekt pripojenia do distribučnej sústavy',
-      badge: 'SSD / ZSD / VSD',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+      id: 'statika',
+      label: '3. Statika a zaťaženie krovu',
+      title: 'Statické a vetrové posúdenie nosnej konštrukcie',
+      badge: 'Eurokódy EN 1991',
+      badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
       description:
-        'Autorizovaná projektová dokumentácia pre prevádzkovateľov distribučných sústav. Garantujeme bezproblémové schválenie žiadosti o pripojenie mikrozdroja aj lokálneho zdroja.',
-      features: [
-        'Kompletná technická dokumentácia k žiadosti o pripojenie mikrozdroja (do 10,8 kW)',
-        'Projektová dokumentácia pre lokálny zdroj a komerčné inštalácie nad 10,8 kW',
-        'Posúdenie impedancie siete, skratových pomerov a spätného vplyvu na distribučnú sústavu',
-        'Návrh sieťových ochrán a rozpadového miesta podľa technických podmienok distribútora',
-        'Garancia rýchleho schválenia a bezproblémového osadenia 4-kvadrantného elektromera',
+        'Kalkulácia prídavného zaťaženia strechy fotovoltikou s ohľadom na snehové a vetrové mapy Slovenska. Bezpečnosť bez kompromisov a bez rizika narušenia krovu.',
+      specs: [
+        { label: 'Prídavná váha', val: '+12 až 15 kg/m²', note: 'minimálna záťaž pre moderné krovy' },
+        { label: 'Snehová oblasť', val: 'Oblasť I - IV', note: 'prepočet na extrémne zaťaženie snehom' },
+        { label: 'Vetrové sanie', val: 'Aero-dynamické', note: 'spoľahlivé balastovanie plochých striech' },
+        { label: 'Hydroizolácia', val: '100% chránená', note: 'špeciálne podložky bez prerazenia fólie' },
       ],
+      output: 'Výstup: Posudok zaťaženia strechy, technický list kotvenia a podklad pre stavebný úrad alebo správcu objektu.'
     },
     {
-      id: 'statika-poziarna-ochrana',
-      title: 'Statické a požiarno-bezpečnostné posúdenie',
-      badge: 'STN EN 1991 / Eurokódy',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
+      id: 'distribucia',
+      label: '4. Distribúcia SSD / ZSD / VSD',
+      title: 'Projekt pre pripojenie do distribučnej sústavy',
+      badge: 'Garancia 1. podania',
+      badgeColor: 'text-amber-400 bg-amber-400/10 border-amber-400/30',
       description:
-        'Odborné statické výpočty zaťaženia krovu a požiarno-bezpečnostné riešenie stavby (PBS) garantujúce dlhodobú stabilitu a schválenie stavebným úradom i hasičmi.',
-      features: [
-        'Prepočet zaťaženia strešnej konštrukcie snehom a vetrom pre konkrétnu vetrovú a snehovú oblasť',
-        'Výpočet potrebnej balastnej záťaže pre rovné strechy bez mechanického narušenia hydroizolácie',
-        'Požiarno-bezpečnostné odstupy od požiarnych stien, svetlíkov a odvodňovacích žľabov',
-        'Návrh certifikovaných protipožiarnych prestupov káblových trás triedy odolnosti EI 60 až EI 120',
-        'Oficiálny podklad pre stavebný úrad (ohlásenie drobnej stavby alebo stavebné povolenie)',
+        'Príprava žiadosti o pripojenie mikrozdroja (do 10,8 kW) alebo lokálneho zdroja pre firmy. 100% súlad s technickými podmienkami prevádzkovateľov sietí SSD, ZSD a VSD.',
+      specs: [
+        { label: 'Typ zdroja', val: 'Mikro / Lokálny', note: 'do 10,8 kW alebo firemné nad 10,8 kW' },
+        { label: 'Nastavenie ochrán', val: 'Protokol U/F', note: 'presné frekvenčné a napäťové limity' },
+        { label: 'Výmena elektromera', val: '4-kvadrantný', note: 'zabezpečíme schválenie distribúcie' },
+        { label: 'Garancia schválenia', val: '100 % zmluva', note: 'žiadne prieťahy ani zamietnutia' },
       ],
-    },
+      output: 'Výstup: Kompletná schválená zmluva o pripojení, protokol o funkčnej skúške a podklad pre montáž 4-kvadrantného elektromera.'
+    }
   ];
 
-  const workflowSteps = [
-    {
-      step: '1',
-      title: 'Zber podkladov & satelitné zameranie',
-      description:
-        'Zanalyzujeme ortofotomapu vašej strechy, orientáciu, sklon, typ krytiny a vaše ročné vyúčtovacie faktúry pre presné stanovenie energetického profilu.',
-    },
-    {
-      step: '2',
-      title: '3D simulácia & optimalizácia rozmiestnenia',
-      description:
-        'Vytvoríme presný 3D model v simulačnom softvéri PV*SOL. Optimalizujeme rozostupy panelov, eliminujeme tiene z komínov a zvolíme najvýhodnejšie stringy.',
-    },
-    {
-      step: '3',
-      title: 'Elektrotechnický návrh & schémy',
-      description:
-        'Autorizovaný elektrotechnický projektant navrhne jednopólové schémy, dimenzovanie istenia, prepäťové ochrany T1+T2 a komunikačné trasy striedača s batériou.',
-    },
-    {
-      step: '4',
-      title: 'Autorizácia & schválenie distribúciou',
-      description:
-        'Finálnu dokumentáciu podáme na schválenie distribučnej spoločnosti (SSD, ZSD, VSD). Získate projekt pripravený na realizáciu s pečiatkou projektanta.',
-    },
-  ];
+  const currentTab = cadTabs.find(t => t.id === activeCadTab) || cadTabs[0];
 
   const faqs = [
     {
@@ -155,16 +146,14 @@ export default function NavrhProjektu() {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': 'https://marvol.sk/sluzby/navrh-projektu#service',
-      name: 'Návrh projektu & 3D simulácia fotovoltiky',
-      serviceType: 'Elektrotechnické projektovanie a 3D analýza zatienenia',
+      name: 'Návrh projektu fotovoltiky a 3D simulácia',
+      serviceType: 'Projektovanie fotovoltických elektrární a elektroinžiniering',
       description:
-        'Profesionálny elektrotechnický návrh fotovoltiky, 3D analýza zatienenia a jednopólové schémy. Kompletná projektová dokumentácia pre SSD, ZSD, VSD a stavebný úrad.',
+        'Autorizovaný inžiniersky návrh fotovoltiky, 3D analýza zatienenia v PV*SOL, jednopólové schémy a projektová dokumentácia pre SSD, ZSD a VSD.',
       provider: {
-        '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
-        name: COMPANY_DETAILS.legalName,
-        telephone: COMPANY_DETAILS.contact.phoneClean,
+        name: 'Marvol s.r.o.',
+        telephone: COMPANY_DETAILS.contact.phone,
         email: COMPANY_DETAILS.contact.email,
         address: {
           '@type': 'PostalAddress',
@@ -219,117 +208,143 @@ export default function NavrhProjektu() {
         </ol>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 ">
-        
+      {/* HERO SECTION: Technical Blueprint CAD Theme */}
+      <section className="relative overflow-hidden pt-8 pb-16 bg-slate-950 border-b border-slate-800">
+        {/* Subtle CAD Grid Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
+            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              {/* Badge Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-bold tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <SunIcon className="w-4 h-4 text-amber-400 shrink-0" /><span>3D PVSol modelovanie a inžiniering</span>
+                <SunIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Inžinierske projektovanie &amp; 3D PV*SOL</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                 Návrh projektu fotovoltiky <br className="hidden sm:block" />
-                <span className="text-amber-400">a 3D analýza zatienenia</span>
+                <span className="text-amber-400">s 3D analýzou oslnenia</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Získajte precíznu projektovú dokumentáciu, fotometrickú simuláciu oslnenia a jednopólové schémy zapojenia. Navrhujeme fotovoltické systémy bez kompromisov s <strong className="text-white">garanciou schválenia</strong> u distribučných spoločností SSD, ZSD a VSD.
+                Navrhujeme solárne elektrárne na základe reálnych satelitných dát a fotometrickej simulácie. Žiadne odhady od stola – presný výpočet oslnenia, eliminácia tieňov a <strong className="text-white">100 % garancia schválenia</strong> distribučnými spoločnosťami SSD, ZSD a VSD.
               </p>
 
-              {/* 4 Key Metrics */}
+              {/* Technical Metrics HUD */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">98,5%</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Presnosť predikcie výroby</div>
+                <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">98,5 %</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Presnosť predikcie</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">8 760 h</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Simulácia dráhy slnka</div>
+                <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">8 760 h</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Simulácia tieňov/rok</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">0 €</div>
-                  <div className="text-slate-400 text-xs mt-0.5">3D koncept pri realizácii</div>
+                <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">0 €</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Projekt pri montáži</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">100%</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Súlad s STN normami</div>
+                <div className="bg-slate-900/90 border border-slate-800/80 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">100 %</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Súlad s normami STN</div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-3">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors shadow-lg shadow-amber-400/20"
                 >
-                  Nezáväzný dopyt na projekt
+                  Nezáväzný dopyt na 3D návrh
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-colors"
                 >
-                  Zavolajte projektantovi: {COMPANY_DETAILS.contact.phone}
+                  Konzultácia s projektantom
                 </a>
               </div>
             </div>
 
-            {/* Hero Feature Card with Illustrative Photo */}
+            {/* Right: Interactive CAD Terminal / Blueprint Explorer */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
-                  <img
-                    src="/images/sluzby/navrh-projektu.jpg"
-                    alt="3D projektovanie a simulácia fotovoltiky Marvol"
-                    className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/40" />
-                  
-                  {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 ">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span>3D PVSol modelovanie</span>
+              <div className="bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl">
+                {/* Terminal Header */}
+                <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                    <span className="text-xs font-mono text-slate-400 ml-2">PV*SOL-CAD-ENGINE.exe</span>
                   </div>
-                  
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs font-semibold rounded-full ">
-                    PV*SOL Premium
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+                    Live Simulator
+                  </span>
+                </div>
+
+                {/* CAD Tabs */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 bg-slate-950/60 p-1 border-b border-slate-800 text-xs font-medium">
+                  {cadTabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveCadTab(tab.id as any)}
+                      className={`py-2 px-2 text-center rounded-lg transition-all text-[11px] font-mono cursor-pointer ${
+                        activeCadTab === tab.id
+                          ? 'bg-amber-400 text-slate-950 font-bold shadow-sm'
+                          : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                      }`}
+                    >
+                      {tab.id.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Tab Active Content Box */}
+                <div className="p-5 sm:p-6 space-y-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${currentTab.badgeColor}`}>
+                        {currentTab.badge}
+                      </span>
+                      <h3 className="text-lg font-bold text-white mt-1.5">
+                        {currentTab.title}
+                      </h3>
+                    </div>
                   </div>
 
-                  {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
-                    <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">3D modelovanie &amp; simulácia zatienenia</span>
-                      <span className="text-amber-400 font-bold">Presnosť 98,5%</span>
-                    </div>
-                    <p className="text-xs text-slate-400 mt-1">
-                      Kompletná projektová dokumentácia pre schválenie SSD, ZSD a VSD na prvé podanie.
-                    </p>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {currentTab.description}
+                  </p>
+
+                  {/* 2x2 Tech Specs Grid */}
+                  <div className="grid grid-cols-2 gap-2.5 pt-1">
+                    {currentTab.specs.map((s, idx) => (
+                      <div key={idx} className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-2.5">
+                        <div className="text-[10px] font-mono text-slate-400 uppercase">{s.label}</div>
+                        <div className="text-sm font-bold font-mono text-white mt-0.5">{s.val}</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">{s.note}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Output summary box */}
+                  <div className="p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl flex items-start gap-2.5 text-xs text-amber-200/90 font-mono">
+                    <FileTextIcon className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span>{currentTab.output}</span>
                   </div>
                 </div>
 
-                {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0 inline" />
-                    <span>Hodinová simulácia 8 760 h</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0 inline" />
-                    <span>Jednopólové schémy zapojenia</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0 inline" />
-                    <span>Statický posudok krovu</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0 inline" />
-                    <span>Garancia schválenia distribúciou</span>
-                  </div>
+                {/* Terminal Footer CTA */}
+                <div className="px-5 py-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs">
+                  <span className="text-slate-400">Potrebujete zamerať vašu strechu?</span>
+                  <a href="#dopyt" className="text-amber-400 font-bold hover:underline">
+                    Zadať adresu objektu →
+                  </a>
                 </div>
               </div>
             </div>
@@ -338,110 +353,270 @@ export default function NavrhProjektu() {
         </div>
       </section>
 
-      {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 ">
+      {/* SECTION 2: ARCHITECTURAL COMPARISON (Amatérsky odhad vs. Inžiniersky návrh MARVOL) */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Inžinierske portfólio
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              Presnosť rozhoduje o návratnosti
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Projektová dokumentácia a simulácie
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Prečo 90 % zlyhaní fotovoltiky vzniká už na rysovacej doske
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Od vstupnej 3D fotometrie rodinného domu až po rozsiahle projekty firemných lokálnych zdrojov pripojených na vysoké napätie.
+              Porovnanie bežnej montážnej firmy vs. certifikovaného elektrotechnického inžinieringu Marvol s.r.o.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {parameterCards.map((card) => (
-              <div
-                key={card.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {card.description}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8  pt-4">
-                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
-                      Rozsah projektovej činnosti:
-                    </div>
-                    {card.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
+            {/* Left: Bežný montážnik */}
+            <div className="bg-red-950/10 border border-red-500/20 rounded-2xl p-6 sm:p-8 space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400">
+                  <AlertCircleIcon className="w-5 h-5" />
                 </div>
-
                 <div>
-                  <a
-                    href="#dopyt"
-                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
-                  >
-                    Dopytovať tento projekt
-                  </a>
+                  <h3 className="text-xl font-bold text-white">Bežný predajca / Montáž od oka</h3>
+                  <div className="text-xs text-red-400 font-mono">Časté chyby a skryté straty</div>
                 </div>
               </div>
-            ))}
-          </div>
 
+              <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold shrink-0">✕</span>
+                  <div>
+                    <strong className="text-white block">Ignorovanie mikrotieňov</strong>
+                    Panely umiestnené v blízkosti komína alebo vikiera zrazia výkon celého stringu o 30 až 50 % počas najlepších hodín.
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold shrink-0">✕</span>
+                  <div>
+                    <strong className="text-white block">Preťaženie káblov a úbytky napätia</strong>
+                    Použitie poddimenzovaných vodičov (4 mm² na dlhých trasách) vedie k neustálemu vypínaniu meniča na prepätie siete (253 V).
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold shrink-0">✕</span>
+                  <div>
+                    <strong className="text-white block">Prieťahy pri schvaľovaní distribúciou</strong>
+                    Neúplná schéma bez protokolov sieťových ochrán končí zamietnutím zo strany SSD, ZSD alebo VSD a zdržaním o niekoľko mesiacov.
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold shrink-0">✕</span>
+                  <div>
+                    <strong className="text-white block">Žiadna statická kontrola krovu</strong>
+                    Riziko priehybu krovu pri snehovej nádielke alebo poškodenia strešnej krytiny pri veterných poryvoch.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Inžiniering Marvol */}
+            <div className="bg-emerald-950/15 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl shadow-emerald-950/20">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                  <ShieldIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Inžiniersky štandard MARVOL s.r.o.</h3>
+                  <div className="text-xs text-emerald-400 font-mono">100% bezpečnosť &amp; maximálny energetický výnos</div>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+                <div className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                  <div>
+                    <strong className="text-white block">Fotometria PV*SOL (8 760 hodín)</strong>
+                    Presne vieme, kam ktorý tieň dopadne v ľubovoľný deň v roku. Panely umiestňujeme iba do zón s maximálnou solárnou ziskovosťou.
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                  <div>
+                    <strong className="text-white block">Prémiové káble Solárflex 6 mm² &amp; STN súlad</strong>
+                    Úbytok napätia prísne pod 0,8 %. Systém funguje stabilne aj pri horúcich letných špičkách bez výpadkov striedača.
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                  <div>
+                    <strong className="text-white block">Garancia schválenia distribúciou na 1. podanie</strong>
+                    Projektová dokumentácia vyhotovená v plnom súlade s technickými podmienkami SSD, ZSD a VSD. Žiadne prestoje.
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                  <div>
+                    <strong className="text-white block">Statické &amp; požiarno-bezpečnostné posúdenie</strong>
+                    Prepočet zaťaženia krovu podľa Eurokódov a návrh certifikovaných protipožiarnych káblových prestupov.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 ">
+      {/* SECTION 3: 4 PILIERE PROJEKTOVEJ DOKUMENTÁCIE (Asymmetric Specs Grid) */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Proces inžinieringu
+          <div className="max-w-3xl mb-16 space-y-3">
+            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              Obsah dokumentácie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Ako prebieha návrh fotovoltiky v Marvol s.r.o.
+              Čo presne od nás dostanete do rúk
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Rýchly a transparentný postup od prvých satelitných dát až po autorizovanú dokumentáciu.
+              Kompletný projektový balík autorizovaný elektrotechnickým inžinierom, pripravený pre realizáciu, revíziu i distribučnú spoločnosť.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-amber-400/30 mb-2">{step.step}</div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold mb-4 font-mono text-lg">
+                  01
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">3D Situačný výkres strechy</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Detailný výkres rozmiestnenia modulov s presnými kótami, odstupmi od hromozvodu a hraníc požiarneho úseku.
                 </p>
               </div>
-            ))}
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Kóty a rozostupy radov</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Odstupy od hromozvodu</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Azimut a sklon krytiny</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 flex items-center justify-center font-bold mb-4 font-mono text-lg">
+                  02
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Jednopólová schéma (SLD)</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Oficiálna elektrotechnická schéma zapojenia stringov, hybridného meniča, LiFePO4 batérie a domového rozvádzača.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-sky-400" /> Dimenzovanie káblových trás</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-sky-400" /> DC a AC prepäťové ochrany</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-sky-400" /> Záložný EPS Back-Up okruh</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold mb-4 font-mono text-lg">
+                  03
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Technická správa pre SSD / ZSD</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Autorizovaná správa s výpočtom skratových pomerov, spätnej dodávky do siete a nastavenia sieťových ochrán.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Protokol nastavenia ochrán</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Výpočet impedancie slučky</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Zmluva o pripojení mikrozdroja</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold mb-4 font-mono text-lg">
+                  04
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Simulačný audit výnosov</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Certifikovaný PV*SOL výstup s mesačnou a hodinovou bilanciou výroby, priamej spotreby a návratnosti v eurách.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Hodinová predikcia výroby</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Percentuálne pokrytie spotreby</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Finančný model návratnosti</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: INŽINIERSKY HARMONOGRAM (Timeline) */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              Ako postupujeme
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Cesta od adresy domu po hotový projekt
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Všetko vybavíme rýchlo a transparentne do 3 až 5 pracovných dní.
+            </p>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
+              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+                DEŇ 1
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Zber dát &amp; Ortofotomapa</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Podľa adresy zanalyzujeme satelitné snímky strechy, orientáciu, sklon a vaše ročné faktúry za elektrinu.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
+              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+                DEŇ 2
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">3D Model &amp; Fotometria</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Vymodelujeme objekt v PV*SOL Premium, nasimulujeme ročné tiene a optimalizujeme umiestnenie panelov.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
+              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+                DEŇ 3 – 4
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Jednopólová schéma &amp; Istenie</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Autorizovaný inžinier vypracuje SLD schému zapojenia, dimenzuje prepäťové ochrany a pripraví žiadosť pre SSD/ZSD.
+              </p>
+            </div>
+
+            <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
+              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+                DEŇ 5
+              </span>
+              <h3 className="text-base font-bold text-white mt-4 mb-2">Odovzdanie &amp; Schválenie</h3>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Dostanete autorizovaný projekt s pečiatkou pripravený na montáž. Podklady podávame priamo na distribúciu.
+              </p>
+            </div>
+          </div>
+
+          {/* Value Banner */}
           <div className="mt-12 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1">
               <div className="text-amber-400 font-bold text-base sm:text-lg">
-                Projekt zdarma pri realizácii na kľúč
+                Projekt máte ZDARMA pri realizácii na kľúč
               </div>
-              <div className="text-slate-300 text-xs sm:text-sm">
-                Pri podpise zmluvy o dielo na kompletnú dodávku a montáž fotovoltiky od Marvol s.r.o. vám celú sumu za projektovú dokumentáciu odpočítame z ceny diela.
+              <div className="text-slate-300 text-xs sm:text-sm max-w-2xl">
+                Pri podpise zmluvy o dielo na kompletnú montáž od Marvol s.r.o. vám celú cenu projektovej dokumentácie odpočítame z realizačnej faktúry.
               </div>
             </div>
             <a
               href="#dopyt"
-              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
+              className="inline-flex items-center justify-center min-h-[48px] px-7 py-3 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 shadow-lg shadow-amber-400/20"
             >
               Získať projektový návrh
             </a>
@@ -449,19 +624,18 @@ export default function NavrhProjektu() {
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 ">
+      {/* SECTION 5: FAQ ACCORDION */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Často kladené otázky
+          <div className="text-center mb-16 space-y-3">
+            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              Odpovede inžinierov
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Všetko o projektovaní fotovoltických elektrární
+              Často kladené otázky k projektovaniu
             </h2>
             <p className="text-slate-400 text-sm">
-              Máte špecifický projekt alebo atypickú strechu? Naši inžinieri sú pripravení zodpovedať vaše otázky.
+              Máte špecifický projekt alebo atypickú strechu? Radi vám technicky poradíme.
             </p>
           </div>
 
@@ -488,7 +662,7 @@ export default function NavrhProjektu() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2 border-t border-slate-800/60">
                       {faq.a}
                     </div>
                   )}
@@ -499,14 +673,14 @@ export default function NavrhProjektu() {
         </div>
       </section>
 
-      {/* Lead Form Consultation Section */}
+      {/* SECTION 6: LEAD FORM CONSULTATION */}
       <section id="dopyt" className="py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-                Bezplatný 3D návrh
+              <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+                Začnite bezplatným 3D návrhom
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
@@ -514,48 +688,43 @@ export default function NavrhProjektu() {
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia 3D návrh, fotometrickú simuláciu oslnenia a predbežnú technickú kalkuláciu.
+                Zadajte adresu vašej nehnuteľnosti alebo priložte pôdorys strechy. Naši projektanti pripravia 3D fotometrický model oslnenia a nezáväzný technický posudok.
               </p>
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    <PhoneIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
+                    <PhoneIcon className="w-5 h-5 text-amber-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Priamy kontakt na projektantov</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-amber-400 transition-colors">
+                    <div className="text-xs text-slate-400">Priama linka na projektové oddelenie</div>
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-amber-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    <MailIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
+                    <MailIcon className="w-5 h-5 text-amber-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Projektové oddelenie</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-amber-400 transition-colors">
+                    <div className="text-xs text-slate-400">Projektové a technické dopyty</div>
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-amber-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
-                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
+                    <BuildingOfficeIcon className="w-5 h-5 text-amber-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Sídlo spoločnosti</div>
+                    <div className="text-xs text-slate-400">Inžinierske sídlo MARVOL s.r.o.</div>
                     <span className="text-white font-medium">{COMPANY_DETAILS.seat.fullAddress}</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 space-y-1">
-                <div className="font-semibold text-slate-300">Garancia inžinierskeho servisu Marvol s.r.o.:</div>
-                <div>Garantujeme 100% súlad projektovej dokumentácie s technickými podmienkami prevádzkovateľov distribučných sústav SSD, ZSD a VSD.</div>
               </div>
             </div>
 
@@ -563,8 +732,8 @@ export default function NavrhProjektu() {
               <LeadForm
                 initialService="fotovoltika-dom"
                 source="page_sluzby_navrh_projektu"
-                title="Nezáväzný dopyt na projekt fotovoltiky"
-                subtitle="Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia 3D návrh a technickú kalkuláciu."
+                title="Dopyt na projekt a 3D simuláciu"
+                subtitle="Zadajte adresu a kontaktné údaje. Projektant sa vám ozve s 3D konceptom."
                 showLocationField={true}
               />
             </div>

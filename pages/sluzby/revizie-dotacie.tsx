@@ -3,10 +3,23 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, BoltIcon, ShieldIcon, FileTextIcon, CheckIcon, PhoneIcon, MailIcon, BuildingOfficeIcon } from '@/components/icons';
+import {
+  SunIcon,
+  BoltIcon,
+  ShieldIcon,
+  FileTextIcon,
+  CheckIcon,
+  PhoneIcon,
+  MailIcon,
+  BuildingOfficeIcon,
+  CurrencyEuroIcon,
+  StarIcon,
+  ClockIcon
+} from '@/components/icons';
 
 export default function RevizieDotacie() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [activeSubsidyTab, setActiveSubsidyTab] = useState<'standard' | 'orko' | 'solidarita' | 'firmy'>('standard');
 
   const breadcrumbs = [
     { name: 'Domov', href: '/' },
@@ -14,95 +27,62 @@ export default function RevizieDotacie() {
     { name: 'Revízie, servis & Dotácie SIEA', href: '/sluzby/revizie-dotacie' },
   ];
 
-  const parameterCards = [
-    {
-      id: 'vychodiskove-revizie-opos',
-      title: 'Východiskové revízie fotovoltiky a batérií (OPOS)',
-      badge: 'Vyhláška MPSVR č. 508/2009 Z. z.',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
-      description:
-        'Oficiálna revízna správa s guľatou pečiatkou revízneho technika podľa § 24. Zákonný doklad nevyhnutný pre pripojenie do distribučnej siete a výmenu elektromera.',
-      features: [
-        'Oficiálna revízna správa vypracovaná certifikovaným revíznym technikom s pečiatkou § 24',
-        'Zákonná podmienka pre uzavretie zmluvy s distribučnou spoločnosťou a výmenu elektromera',
-        'Meranie izolačných odporov DC káblov a stringov pri skúšobnom napätí 1 000 V DC',
-        'Overenie impedancie poruchovej slučky (Zs) a dotykového napätia na striedači',
-        'Testovanie vypínacích časov a prúdov prúdových chráničov (RCD typ B na ochranu pred DC zložkou)',
+  const subsidyTiers = {
+    standard: {
+      title: 'Zelená domácnostiam – Štandardná dotácia',
+      rate: '500 € / kW inštalovaného výkonu',
+      maxCap: 'Max. 1 500 € (bez batérie) / až 4 025 € (hybrid s batériou)',
+      eligibility: 'Vlastníci rodinných domov na celom území SR (vrátane Bratislavského kraja)',
+      points: [
+        'Príspevok 500 € za každý 1 kW inštalovaného výkonu fotovoltiky',
+        'Pri spotrebe do 3 500 kWh/rok max. 2 kW (1 000 €)',
+        'Pri spotrebe nad 3 500 kWh/rok max. 3 kW (1 500 €)',
+        'Odpočítanie sumy dotácie priamo z realizačnej faktúry – nečakáte na peniaze od štátu'
       ],
+      marvolGuarantee: '100 % garancia registrácie poukážky a jej riadneho preplatenia bez rizika prepadnutia.'
     },
-    {
-      id: 'periodicke-prehliadky-termovizia',
-      title: 'Periodické prehliadky a termovízna diagnostika',
-      badge: 'Termokamera Fluke / STN EN 62446',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Pravidelný servis a termovízna kontrola zabraňujúca zlyhaniu panelov i rozvádzačov. Nevyhnutné pre trvalú platnosť poistných zmlúv a záruk.',
-      features: [
-        'Pravidelná odborná kontrola fotovoltických elektrární, rozvádzačov a batérií pre firmy aj domy',
-        'Termovízna kontrola panelov zameraná na vyhľadávanie poškodených článkov a prehriatych hot-spotov',
-        'Kontrola oteplenia spojov, svoriek a istiacich prvkov v DC/AC rozvádzačoch pod plnou záťažou',
-        'Preverenie stavu a opotrebenia kaziet prepäťových ochrán (SPD) pred a po búrkovej sezóne',
-        'Vystavenie periodickej revíznej správy vyžadovanej poisťovňami pre bezproblémové krytie škôd',
+    orko: {
+      title: 'Zvýhodnené regióny ORKO (+15 % navyše)',
+      rate: '575 € / kW (+15 % bonifikácia)',
+      maxCap: 'Až do výšky 1 725 € (3 kW) a viac pri batériových systémoch',
+      eligibility: 'Obce a mestá v oblastiach riadenia kvality ovzdušia (väčšina územia SR)',
+      points: [
+        'Zvýhodnená sadzba 575 € / kW namiesto štandardných 500 €',
+        'Platí pre lokality s preukázaným znečistením ovzdušia (napr. Žilina, Martin, Považie)',
+        'Naši špecialisti bezplatne overia vašu obec v oficiálnom zozname SHMÚ / SIEA',
+        'Vyššia dotácia znižuje počiatočnú investíciu a zrýchľuje návratnosť pod 5 rokov'
       ],
+      marvolGuarantee: 'Automatické uplatnenie 15 % zvýhodnenia pre všetky oprávnené nehnuteľnosti.'
     },
-    {
-      id: 'dotacie-zelena-domacnostiam',
-      title: 'Vybavenie dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €)',
-      badge: 'SIEA Zelená domácnostiam',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-      description:
-        'Kompletný servis štátnych dotácií SIEA. Sme registrovaným zhotoviteľom SIEA, vďaka čomu zabezpečíme priamu online rezerváciu prostriedkov a uplatnenie dotácie priamo na realizačnej faktúre.',
-      features: [
-        'Kompletná kontrola oprávnenosti žiadateľa a listu vlastníctva nehnuteľnosti',
-        'Zaregistrovanie žiadosti v elektronickom systéme SIEA a online rezervácia finančných prostriedkov',
-        'Inštalácia výhradne certifikovaných zariadení evidovaných v zozname oprávnených zariadení',
-        'Odpočítanie plnej sumy dotácie priamo z konečnej faktúry (klient nečaká na preplatenie štátom)',
-        'Asistencia pri programe Zelená solidarita pre nízkopríjmové domácnosti (financovanie až do 90%)',
+    solidarita: {
+      title: 'Zelená solidarita (Financovanie až do 90 % nákladov)',
+      rate: '900 € / kW (pre nízkopríjmové domácnosti)',
+      maxCap: 'Až do 90 % z celkových oprávnených výdavkov na fotovoltiku',
+      eligibility: 'Domácnosti ohrozené energetickou chudobou, seniori a rodiny s ťažkým zdravotným postihnutím',
+      points: [
+        'Mimoriadna sadzba 900 € za 1 kW inštalovaného výkonu',
+        'Financovanie takmer celej solárnej elektrárne z prostriedkov Európskej únie',
+        'Doplatok majiteľa domu tvorí iba symbolických 10 % z celkovej ceny inštalácie',
+        'Kompletnú asistenciu pri dokladovaní sociálnych a dôchodkových kritérií prevezme Marvol'
       ],
+      marvolGuarantee: 'Kompletná právna a administratívna podpora pri overení nároku na Zelenú solidaritu.'
     },
-    {
-      id: 'dotacie-zelena-podnikom',
-      title: 'Dotácie Zelená podnikom pre firmy a prevádzky',
-      badge: 'Dotácie pre podniky',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Financovanie zelených investícií pre podniky a prevádzky. Pomôžeme vám získať nenávratný finančný príspevok na zníženie energetickej náročnosti výroby.',
-      features: [
-        'Príprava podkladov a energetických posudkov pre malé a stredné podniky (MSP)',
-        'Zabezpečenie povinného energetického auditu pre získanie nenávratného finančného príspevku',
-        'Posúdenie súladu s kritériami dekarbonizácie a zásadou "Výrazne nenarušiť" (DNSH)',
-        'Manažment žiadosti a komunikácia s riadiacimi orgánmi, audítormi a ministerstvami',
-        'Asistencia pri monitorovaní a vykazovaní garantovaných úspor počas doby udržateľnosti projektu',
+    firmy: {
+      title: 'Zelená podnikom pre firmy, prevádzky a MSP',
+      rate: 'Nenávratný finančný príspevok (NFP)',
+      maxCap: 'Až do výšky desiatok tisíc eur (podľa výzvy a energetického auditu)',
+      eligibility: 'Malé a stredné podniky (MSP), výrobné areály, agrosektor a komerčné objekty',
+      points: [
+        'Podpora investícií do znižovania energetickej náročnosti výroby a budov',
+        'Nevyhnutnosťou je vypracovanie povinného energetického auditu s výpočtom úspor',
+        'Kombinovateľné s fotovoltikou na firemných strechách a priemyselnými batériami BESS',
+        'Posúdenie princípu "Výrazne nenarušiť" (DNSH) a dekarbonizačných cieľov'
       ],
-    },
-  ];
+      marvolGuarantee: 'Inžiniersky projekt, energetický audit a technická dokumentácia na kľúč.'
+    }
+  };
 
-  const workflowSteps = [
-    {
-      step: '1',
-      title: 'Fyzická obhliadka & merania revíznym technikom',
-      description:
-        'Revízny technik dorazí na miesto a špičkovým kalibrovaným prístrojom Metrel/Megger premeria impedanciu slučiek, izolačný stav a vybavenie chráničov.',
-    },
-    {
-      step: '2',
-      title: 'Spracovanie revíznej správy OPOS',
-      description:
-        'Vyhodnotíme namerané hodnoty, zapíšeme parametre do úradného tlačiva a správu autorizujeme podpisom a pečiatkou revízneho technika podľa § 24.',
-    },
-    {
-      step: '3',
-      title: 'Nahratie podkladov do portálu SIEA',
-      description:
-        'Pre potreby dotácie nahráme revíznu správu, fotodokumentáciu výrobného štítku a faktúry priamo do dotačného systému SIEA.',
-    },
-    {
-      step: '4',
-      title: 'Odovzdanie správy & odpočet dotácie',
-      description:
-        'Dostanete originál revíznej správy pre distribútora (SSD/ZSD/VSD) i poisťovňu, pričom dotáciu vám odpočítame priamo z faktúry.',
-    },
-  ];
+  const currentSubsidy = subsidyTiers[activeSubsidyTab];
 
   const faqs = [
     {
@@ -155,16 +135,14 @@ export default function RevizieDotacie() {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': 'https://marvol.sk/sluzby/revizie-dotacie#service',
       name: 'Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA',
-      serviceType: 'Revízie elektrických zariadení OPOS a dotačný servis',
+      serviceType: 'Odborné prehliadky a skúšky (OPOS) a dotačný manažment SIEA',
       description:
-        'Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €) a Zelená podnikom. Rýchlo a spoľahlivo.',
+        'Úradná revízna správa s pečiatkou § 24 podľa STN 33 1500 a STN 33 2000-6. Kalibrované merania Metrel, termovízia Fluke a 100 % garancia dotácie SIEA.',
       provider: {
-        '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
-        name: COMPANY_DETAILS.legalName,
-        telephone: COMPANY_DETAILS.contact.phoneClean,
+        name: 'Marvol s.r.o.',
+        telephone: COMPANY_DETAILS.contact.phone,
         email: COMPANY_DETAILS.contact.email,
         address: {
           '@type': 'PostalAddress',
@@ -195,8 +173,8 @@ export default function RevizieDotacie() {
 
   return (
     <Layout
-      title="Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA | Marvol"
-      description="Úradné revízne správy fotovoltiky (OPOS § 24) a bezplatné vybavenie štátnych dotácií SIEA Zelená domácnostiam a Zelená podnikom. Rýchlo a spoľahlivo."
+      title="Revízie fotovoltiky (OPOS) & Dotácie SIEA | Marvol s.r.o."
+      description="Úradné revízne správy s pečiatkou revízneho technika § 24. Kalibrované merania Metrel, termovízia Fluke a 100 % garancia vybavenia dotácie Zelená domácnostiam."
       canonicalPath="/sluzby/revizie-dotacie"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -219,116 +197,112 @@ export default function RevizieDotacie() {
         </ol>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-20 ">
-        
+      {/* HERO SECTION: Certification, Diagnostics & Subsidy Authority */}
+      <section className="relative overflow-hidden pt-8 pb-16 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
+            {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              {/* Badge Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-bold tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                <FileTextIcon className="w-4 h-4 text-sky-400 shrink-0" /><span>Revízny technik § 24 a dotácie SIEA do {COMPANY_DETAILS.subsidies.maxHomeSubsidy}</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold tracking-wide">
+                <FileTextIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Revízny technik § 24 &amp; Oprávnený zhotoviteľ SIEA</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                Úradné revízie fotovoltiky (OPOS) <br className="hidden sm:block" />
-                <span className="text-sky-400">a kompletný dotačný servis SIEA</span>
+                Úradné revízie fotovoltiky <br className="hidden sm:block" />
+                <span className="text-emerald-400">&amp; 100 % garancia dotácií SIEA</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Vystavujeme platné úradné revízne správy pre distribučné spoločnosti (SSD, ZSD, VSD) a stavebné úrady. Zároveň zabezpečujeme <strong className="text-white">100% vybavenie a preplatenie štátnych dotácií</strong> z programov Zelená domácnostiam a Zelená podnikom.
+                Vystavujeme oficiálne revízne správy (OPOS) potrebné pre pripojenie do distribučnej siete SSD, ZSD a VSD. Zároveň ako registrovaný zhotoviteľ <strong className="text-white">vybavíme štátnu dotáciu Zelená domácnostiam</strong> a odpočítame ju priamo z faktúry.
               </p>
 
-              {/* 4 Key Metrics */}
+              {/* Authority Metrics HUD */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">§ 24</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Revízny technik el. zar.</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">Do 4 025 €</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Dotácia SIEA</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">3 – 5 dní</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Lehota vystavenia správy</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">100 %</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Preplatenie poukážky</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">Dotácie SIEA</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Odpočet priamo z faktúry</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">§ 24</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Okrúhla pečiatka OPOS</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">100%</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Schválenie distribúciou</div>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
+                  <div className="text-emerald-400 font-mono font-black text-xl sm:text-2xl">Metrel</div>
+                  <div className="text-slate-400 text-xs mt-0.5 font-medium">Kalibrované prístroje</div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-3">
                 <a
                   href="#dopyt"
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-sky-400 hover:bg-sky-300 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-400/20"
                 >
-                  Objednať revíziu alebo dotáciu
+                  Objednať revíziu / Dotáciu
                 </a>
                 <a
                   href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
-                  className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-center transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-colors"
                 >
-                  Kontaktovať revízora: {COMPANY_DETAILS.contact.phone}
+                  Konzultácia s revíznym technikom
                 </a>
               </div>
             </div>
 
-            {/* Hero Feature Card with Illustrative Photo */}
+            {/* Right: Real Photography & Certification Status */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-3xl overflow-hidden border border-slate-700/60  bg-slate-900/90 backdrop-blur-xl">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
+              <div className="relative group rounded-3xl overflow-hidden border border-emerald-500/30 bg-slate-900 shadow-2xl">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/revizie-dotacie.jpg"
-                    alt="Odborná revízia OPOS a merania fotovoltiky Marvol"
+                    alt="Revízie a dotácie fotovoltiky SIEA Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
-                  <div className="absolute inset-0 bg-slate-950/40" />
-                  
-                  {/* Status Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-500/40 text-sky-400 font-semibold text-xs flex items-center gap-1.5 ">
-                    <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                    <span>Odborná revízia OPOS</span>
-                  </div>
-                  
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-sky-500 text-white font-black text-xs font-semibold rounded-full ">
-                    § 24 MPSVR SR
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-semibold text-xs flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Úradná revízna správa OPOS</span>
                   </div>
 
-                  {/* Bottom Image Overlay Details */}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs rounded-full">
+                    SIEA Partner
+                  </div>
+
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">Kalibrované meranie &amp; vybavenie dotácie</span>
-                      <span className="text-sky-400 font-bold">100% Platnosť</span>
+                      <span className="font-bold text-white text-sm">Kalibrované merania &amp; Termovízia</span>
+                      <span className="text-emerald-400 font-bold font-mono">100% súlad STN</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
-                      Úradné revízne správy pre distribúciu (SSD/ZSD/VSD), poisťovne a preplatenie dotácie SIEA.
+                      Meranie izolačných stavov, impedancie slučky a termovízne testy na odhalenie hot-spotov.
                     </p>
                   </div>
                 </div>
 
-                {/* Quick Quality Matrix */}
-                <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900/90  text-xs">
+                <div className="p-4 bg-slate-900 grid grid-cols-2 gap-3 text-xs border-t border-slate-800">
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
-                    <span>Meranie izolačných stavov a slučky</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Revízna správa pre SSD/ZSD</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
-                    <span>Dotácia odpočítaná priamo z ceny</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Odpočet dotácie priamo z faktúry</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
-                    <span>Termovízia hot-spotov FLIR</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Termovízna inšpekcia panelov</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
-                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
-                    <span>Okamžité odstránenie závad</span>
+                    <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Rýchle odstránenie zistených chýb</span>
                   </div>
                 </div>
               </div>
@@ -338,130 +312,268 @@ export default function RevizieDotacie() {
         </div>
       </section>
 
-      {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 ">
+      {/* SECTION 2: CALIBRATED DIAGNOSTIC HARDWARE (Technical Showcase) */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
-              Revízne a dotačné služby
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Revízie OPOS, diagnostika a dotácie
-            </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
-              Poskytujeme komplexné odborné prehliadky a skúšky (OPOS) pre fotovoltické zdroje aj kompletný servis štátnych príspevkov.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {parameterCards.map((card) => (
-              <div
-                key={card.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {card.description}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8  pt-4">
-                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
-                      Rozsah revíznych a dotačných prác:
-                    </div>
-                    {card.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <a
-                    href="#dopyt"
-                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
-                  >
-                    Objednať túto službu
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
-              Proces vybavenia
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Presnosť meraní
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Ako prebieha revízia a schválenie dotácie
+              Špičková meracia technika &amp; Termovízia
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Rýchly postup merania a bezchybné podanie dokumentov na úrady i distribučné spoločnosti.
+              Revízie nevykonávame od stola. Každý parameter preverujeme certifikovanými prístrojmi s platnými kalibračnými certifikátmi.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-sky-400/30 mb-2">{step.step}</div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-lg border border-emerald-400/20 inline-block mb-3">
+                  METREL MI 3108
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Multifunkčný PV tester</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Meranie I-U charakteristík solárnych modulov, napätia naprázdno (Uoc) a skratových prúdov (Isc) podľa normy STN EN 62446.
                 </p>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-12 bg-sky-500/10 border border-sky-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <div className="text-sky-400 font-bold text-base sm:text-lg">
-                Východisková revízna správa v cene inštalácií na kľúč
-              </div>
-              <div className="text-slate-300 text-xs sm:text-sm">
-                Pri dodávke fotovoltiky od Marvol s.r.o. máte kompletné merania a úradnú revíznu správu potrebnú pre distribúciu automaticky v cene.
-              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Skúšobné napätie až 1 000 V</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Meranie izolačného odporu</li>
+              </ul>
             </div>
-            <a
-              href="#dopyt"
-              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
-            >
-              Objednať revízneho technika
-            </a>
+
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-lg border border-amber-400/20 inline-block mb-3">
+                  FLUKE TERMOVÍZIA
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Detekcia hot-spotov</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Infračervená termovízna kamera s vysokým rozlíšením odhalí prehrievajúce sa články, vadné bypass diódy a skryté mikrotrhliny.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Termovízia rozvádzačov</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-amber-400" /> Odhalenie uvoľnených svoriek</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-lg border border-sky-400/20 inline-block mb-3">
+                  RCD &amp; IMPEDANCIA
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Overenie ochrán &amp; RCD</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Testovanie vypínacieho času prúdových chráničov (RCD typ B) a impedancie poruchovej slučky pre bezpečnosť pred dotykom.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-sky-400" /> Ochrana pred dotykom</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-sky-400" /> Test vypínania v milisekundách</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-lg border border-emerald-400/20 inline-block mb-3">
+                  SIEA PROTOKOL
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Kompletná dotačná správa</h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  Oficiálna správa spĺňajúca všetky legislatívne náležitosti pre distribúciu i preplatenie dotačnej poukážky agentúrou SIEA.
+                </p>
+              </div>
+              <ul className="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Okrúhla pečiatka § 24</li>
+                <li className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-emerald-400" /> Garancia bezproblémového schválenia</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-20 bg-slate-950 ">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
-              Často kladené otázky
+      {/* SECTION 3: INTERACTIVE SUBSIDY GUIDE 2026 (SIEA Tiers) */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Dotačný sprievodca 2026
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Všetko o revíziách fotovoltiky a dotáciách SIEA
+              Koľko peňazí od štátu môžete získať?
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Vyberte program a pozrite sa na presné podmienky financovania z projektu Zelená domácnostiam a Zelená podnikom.
+            </p>
+          </div>
+
+          {/* Subsidy Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+            <button
+              onClick={() => setActiveSubsidyTab('standard')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeSubsidyTab === 'standard'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Štandardná dotácia (500 €/kW)
+            </button>
+            <button
+              onClick={() => setActiveSubsidyTab('orko')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeSubsidyTab === 'orko'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Regióny ORKO (+15 % navyše)
+            </button>
+            <button
+              onClick={() => setActiveSubsidyTab('solidarita')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeSubsidyTab === 'solidarita'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Zelená solidarita (až 90 %)
+            </button>
+            <button
+              onClick={() => setActiveSubsidyTab('firmy')}
+              className={`px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                activeSubsidyTab === 'firmy'
+                  ? 'bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-400/20'
+                  : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60'
+              }`}
+            >
+              Zelená podnikom (Firmy)
+            </button>
+          </div>
+
+          {/* Active Subsidy Card */}
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+                  <span>{currentSubsidy.rate}</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  {currentSubsidy.title}
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm">
+                  Oprávnenosť: <strong className="text-white">{currentSubsidy.eligibility}</strong>
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {currentSubsidy.points.map((pt, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                      <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>{pt}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 flex items-center gap-2.5 font-medium">
+                  <ShieldIcon className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <span>{currentSubsidy.marvolGuarantee}</span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center space-y-4">
+                <div className="text-xs font-mono text-slate-400 uppercase">Výška podpory</div>
+                <div className="text-2xl font-black font-mono text-emerald-400">{currentSubsidy.maxCap}</div>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Preveríme vašu nehnuteľnosť na liste vlastníctva a zabezpečíme maximálnu možnú dotáciu.
+                </p>
+                <a
+                  href="#dopyt"
+                  className="w-full inline-flex items-center justify-center py-3.5 px-4 rounded-xl font-bold text-xs text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-400/20 cursor-pointer"
+                >
+                  Overiť nárok na dotáciu
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: STATUTORY INSPECTION SCHEDULE (STN 33 1500) */}
+      <section className="py-20 bg-slate-900 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              STN 33 1500 &amp; Vyhláška 508/2009 Z. z.
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Zákonom predpísané revízne lehoty
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Prehľad povinných revízií potrebných pre bezpečnú prevádzku a platnosť poistenia nehnuteľnosti.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+                PRED SPUSTENÍM
+              </span>
+              <h3 className="text-lg font-bold text-white mt-4 mb-2">Východisková revízia OPOS</h3>
+              <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                Nevyhnutná podmienka pre výmenu elektromera a legálnu prevádzku fotovoltiky. Autorizovaná pečiatka revízneho technika podľa § 24.
+              </p>
+              <div className="text-[11px] text-slate-300 border-t border-slate-800 pt-3 space-y-1">
+                <div>✓ V cene montáže na kľúč od Marvol</div>
+                <div>✓ Zákonná podmienka distribútora</div>
+              </div>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+                1x ROČNE
+              </span>
+              <h3 className="text-lg font-bold text-white mt-4 mb-2">Servisná &amp; Termovízna inšpekcia</h3>
+              <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                Kontrola oteplenia DC/AC spojov, premeranie stavu bleskozvodu a vyčistenie solárnych panelov pre zachovanie maximálnej výroby.
+              </p>
+              <div className="text-[11px] text-slate-300 border-t border-slate-800 pt-3 space-y-1">
+                <div>✓ Prevencia pred prehriatím</div>
+                <div>✓ Zachovanie záruky výrobcov</div>
+              </div>
+            </div>
+
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
+              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+                KAŽDÉ 3 – 4 ROKY
+              </span>
+              <h3 className="text-lg font-bold text-white mt-4 mb-2">Periodická revízia</h3>
+              <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                Pravidelná revízia predpísaná vyhláškou 508/2009 Z. z. a poistnými zmluvami. Zabezpečí, že v prípade škody poisťovňa neskráti plnenie.
+              </p>
+              <div className="text-[11px] text-slate-300 border-t border-slate-800 pt-3 space-y-1">
+                <div>✓ Platnosť poistného krytia</div>
+                <div>✓ Oficiálna revízna správa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: FAQ ACCORDION */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 space-y-3">
+            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              Otázky a odpovede
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
+              Všetko o revíziách a dotáciách SIEA
             </h2>
             <p className="text-slate-400 text-sm">
-              Máte otázky ku kolaudácii, dotačným podmienkam SIEA alebo periodickým lehotám? Radi vám poradíme.
+              Máte otázky k postupu vybavovania poukážky alebo k revíznej správe?
             </p>
           </div>
 
@@ -475,12 +587,12 @@ export default function RevizieDotacie() {
                 >
                   <button
                     onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-sky-400 transition-colors focus:outline-none cursor-pointer"
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-emerald-400 transition-colors focus:outline-none cursor-pointer"
                     aria-expanded={isOpen}
                   >
                     <span>{faq.q}</span>
                     <span
-                      className={`text-xl text-sky-400 transition-transform duration-200 shrink-0 ${
+                      className={`text-xl text-emerald-400 transition-transform duration-200 shrink-0 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     >
@@ -488,7 +600,7 @@ export default function RevizieDotacie() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-3">
+                    <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed pt-2 border-t border-slate-800/60">
                       {faq.a}
                     </div>
                   )}
@@ -499,72 +611,67 @@ export default function RevizieDotacie() {
         </div>
       </section>
 
-      {/* Lead Form Consultation Section */}
+      {/* SECTION 6: LEAD FORM CONSULTATION */}
       <section id="dopyt" className="py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-sky-400 text-xs font-semibold px-3 py-1 rounded-full bg-sky-400/10 border border-sky-400/20">
-                Objednávka revízie & dotácie
+              <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+                100% Dotačný a revízny servis
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                Objednajte si úradnú revíziu alebo dotáciu SIEA
+                Získajte revíznu správu a dotáciu SIEA
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Vyplňte formulár a náš revízny technik vás bude kontaktovať s termínom merania alebo bezplatným preverením dotačného nároku.
+                Potrebujete východiskovú revíziu, periodickú prehliadku alebo chcete získať štátnu dotáciu Zelená domácnostiam? Vyplňte formulár a naši odborníci sa vám ozvú do 24 hodín.
               </p>
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    <PhoneIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <PhoneIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Priamy kontakt na revízneho technika § 24</div>
-                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-sky-400 transition-colors">
+                    <div className="text-xs text-slate-400">Priamy kontakt na revízne oddelenie</div>
+                    <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    <MailIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <MailIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">E-mail pre revízie a dotačnú agendu</div>
-                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="inline-flex items-center min-h-[44px] min-h-[48px] py-2 text-white font-bold hover:text-sky-400 transition-colors">
+                    <div className="text-xs text-slate-400">Dotačný a revízny manažment</div>
+                    <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-white font-bold hover:text-emerald-400 transition-colors">
                       {COMPANY_DETAILS.contact.email}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-bold shrink-0">
-                    <BuildingOfficeIcon className="w-4 h-4 text-amber-400" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                    <BuildingOfficeIcon className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400">Sídlo spoločnosti</div>
+                    <div className="text-xs text-slate-400">Centrála MARVOL s.r.o.</div>
                     <span className="text-white font-medium">{COMPANY_DETAILS.seat.fullAddress}</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 space-y-1">
-                <div className="font-semibold text-slate-300">Zákonná garancia revíznych správ:</div>
-                <div>Revízne správy vyhotovujeme v plnom súlade s vyhláškou MPSVR SR č. 508/2009 Z. z. a normami STN EN 62446 a STN 33 2000-7-712.</div>
               </div>
             </div>
 
             <div className="lg:col-span-6">
               <LeadForm
-                initialService="elektro"
+                initialService="fotovoltika-dom"
                 source="page_sluzby_revizie_dotacie"
-                title="Objednajte si úradnú revíziu alebo dotáciu SIEA"
-                subtitle="Vyplňte formulár a náš revízny technik vás bude kontaktovať s termínom merania alebo preverením dotačného nároku."
+                title="Dopyt na revíziu alebo dotáciu"
+                subtitle="Zadajte údaje a my preveríme vašu žiadosť o dotáciu a revíziu."
                 showLocationField={true}
               />
             </div>
