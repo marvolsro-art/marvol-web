@@ -231,7 +231,7 @@ export default function NavrhProjektu() {
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Navrhujeme solárne elektrárne na základe reálnych satelitných dát a fotometrickej simulácie. Žiadne odhady od stola – presný výpočet oslnenia, eliminácia tieňov a <strong className="text-white">100 % garancia schválenia</strong> distribučnými spoločnosťami SSD, ZSD a VSD.
+                Navrhujeme solárne elektrárne na základe reálnych satelitných dát a fotometrickej simulácie. Žiadne odhady od stola - presný výpočet oslnenia, eliminácia tieňov a <strong className="text-white">100 % garancia schválenia</strong> distribučnými spoločnosťami SSD, ZSD a VSD.
               </p>
 
               {/* Technical Metrics HUD */}
@@ -585,7 +585,7 @@ export default function NavrhProjektu() {
 
             <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
               <span className="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 mb-3">
-                DEŇ 3 – 4
+                DEŇ 3 - 4
               </span>
               <h3 className="text-base font-bold text-white mb-2">Jednopólová schéma &amp; Istenie</h3>
               <p className="text-slate-400 text-xs leading-relaxed">

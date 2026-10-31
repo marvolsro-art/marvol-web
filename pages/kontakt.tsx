@@ -26,7 +26,7 @@ export default function KontaktPage() {
     },
     {
       q: 'Pomôžete nám s vybavením štátnej dotácie SIEA na kľúč?',
-      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike a do 4 600 € pri tepelnom čerpadle, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
+      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike a do 4 600 € pri tepelnom čerpadle, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA - dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
     },
   ];
 
@@ -174,7 +174,7 @@ export default function KontaktPage() {
             </div>
 
             {/* Office & Showroom Visual Banner */}
-            <div className="mt-10 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60  relative group">
+            <div className="mt-10 rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 relative group">
               <div className="relative aspect-[21/9] sm:aspect-[24/9] min-h-[220px] overflow-hidden">
                 <img
                   src="/images/kontakt/hero.jpg"
@@ -505,7 +505,7 @@ export default function KontaktPage() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-slate-300 leading-relaxed  pt-4">
+                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-slate-300 leading-relaxed pt-4">
                       {faq.a}
                     </div>
                   )}

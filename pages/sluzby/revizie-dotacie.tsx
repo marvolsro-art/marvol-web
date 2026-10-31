@@ -29,7 +29,7 @@ export default function RevizieDotacie() {
 
   const subsidyTiers = {
     standard: {
-      title: 'Zelená domácnostiam – Štandardná dotácia',
+      title: 'Zelená domácnostiam - Štandardná dotácia',
       rate: '500 € / kW inštalovaného výkonu',
       maxCap: 'Max. 1 500 € (bez batérie) / až 4 025 € (hybrid s batériou)',
       eligibility: 'Vlastníci rodinných domov na celom území SR (vrátane Bratislavského kraja)',
@@ -37,7 +37,7 @@ export default function RevizieDotacie() {
         'Príspevok 500 € za každý 1 kW inštalovaného výkonu fotovoltiky',
         'Pri spotrebe do 3 500 kWh/rok max. 2 kW (1 000 €)',
         'Pri spotrebe nad 3 500 kWh/rok max. 3 kW (1 500 €)',
-        'Odpočítanie sumy dotácie priamo z realizačnej faktúry – nečakáte na peniaze od štátu'
+        'Odpočítanie sumy dotácie priamo z realizačnej faktúry - nečakáte na peniaze od štátu'
       ],
       marvolGuarantee: '100 % garancia registrácie poukážky a jej riadneho preplatenia bez rizika prepadnutia.'
     },
@@ -547,7 +547,7 @@ export default function RevizieDotacie() {
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
               <span className="inline-block text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20 mb-3">
-                KAŽDÉ 3 – 4 ROKY
+                KAŽDÉ 3 - 4 ROKY
               </span>
               <h3 className="text-lg font-bold text-white mb-2">Periodická revízia</h3>
               <p className="text-slate-400 text-xs leading-relaxed mb-4">

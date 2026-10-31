@@ -29,7 +29,7 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
   const safetyPillars = [
     {
       step: '01',
-      title: 'TIGO Rapid Shutdown – Beznapäťová strecha do 30 sekúnd',
+      title: 'TIGO Rapid Shutdown - Beznapäťová strecha do 30 sekúnd',
       badge: 'Bezpečné dotykové napätie SELV',
       badgeColor: 'border-red-500/30 text-red-400 bg-red-500/10',
       description:
@@ -43,11 +43,11 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
     },
     {
       step: '02',
-      title: 'AFCI – AI Detekcia elektrického oblúka do 2,5 milisekundy',
+      title: 'AFCI - AI Detekcia elektrického oblúka do 2,5 milisekundy',
       badge: 'STN EN 63027 / AI Algoritmus',
       badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
       description:
-        'Jednosmerný oblúk vzniká pri uvoľnení konektora alebo prehryznutí kábla hlodavcom. Má teplotu vyše 3 000 °C a sám nezhasne. Naše hybridné striedače využívajú umelú inteligenciu, ktorá vzorkuje frekvenčné spektrum prúdu a oblúk okamžite preruší do 2,5 ms – skôr než stihne vzniknúť plameň.',
+        'Jednosmerný oblúk vzniká pri uvoľnení konektora alebo prehryznutí kábla hlodavcom. Má teplotu vyše 3 000 °C a sám nezhasne. Naše hybridné striedače využívajú umelú inteligenciu, ktorá vzorkuje frekvenčné spektrum prúdu a oblúk okamžite preruší do 2,5 ms - skôr než stihne vzniknúť plameň.',
       points: [
         'Kontinuálne digitálne vzorkovanie DC spektra na zbernici meniča',
         'Bleskové rozpojenie obvodu do 2,5 ms pri prvom náznaku mikroskopického iskrenia',

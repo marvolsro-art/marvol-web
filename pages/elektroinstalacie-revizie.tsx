@@ -54,7 +54,7 @@ export default function ElektroinstalacieRevizie() {
         'Návrh vonkajšieho systému ochrany pred bleskom (LPS triedy I až IV)',
         'Montáž zachytávacej sústavy, zvodov, skúšobných svoriek a uzemnenia',
         'Uzemňovacie sústavy základovým zemničom alebo obvodovým pásom FeZn',
-        'Vnútorná ochrana proti prepätiu – SPD stupne T1, T2 a T3',
+        'Vnútorná ochrana proti prepätiu - SPD stupne T1, T2 a T3',
         'Presné meranie zemného odporu kalibrovaným prístrojom (do 10 Ω)',
         'Nevyhnutný doklad ku kolaudácii a poisteniu nehnuteľnosti',
       ],
@@ -95,7 +95,7 @@ export default function ElektroinstalacieRevizie() {
     },
     {
       q: 'Ako dlho trvá vykonanie revízie a vystavenie revíznej správy?',
-      a: 'Fyzické meranie na mieste rodinného domu trvá zvyčajne 2 až 4 hodiny v závislosti od počtu okruhov a rozlohy. Vyhodnotenie nameraných hodnôt, spracovanie technickej dokumentácie a vystavenie úradnej revíznej správy s pečiatkou revízneho technika odovzdávame zákazníkovi štandardne do 3 až 5 pracovných dní, v expresnom režime aj do 24–48 hodín.',
+      a: 'Fyzické meranie na mieste rodinného domu trvá zvyčajne 2 až 4 hodiny v závislosti od počtu okruhov a rozlohy. Vyhodnotenie nameraných hodnôt, spracovanie technickej dokumentácie a vystavenie úradnej revíznej správy s pečiatkou revízneho technika odovzdávame zákazníkovi štandardne do 3 až 5 pracovných dní, v expresnom režime aj do 24-48 hodín.',
     },
     {
       q: 'Vykonávate aj opravy a odstránenie zistených chýb po neúspešnej revízii?',
@@ -221,7 +221,7 @@ export default function ElektroinstalacieRevizie() {
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">CE & Atest</div>
                   <div className="text-slate-400 text-xs mt-0.5">Výroba rozvádzačov na kľúč</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 col-span-2 sm:col-span-1">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">100% Platnosť</div>
                   <div className="text-slate-400 text-xs mt-0.5">Pre kolaudáciu a úrady</div>
                 </div>

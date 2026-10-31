@@ -30,10 +30,10 @@ export default function KonzultaciePoradenstvo() {
   const profileData = {
     dom_tc: {
       title: 'Rodinný dom s tepelným čerpadlom & klimatizáciou',
-      annualKwh: '7 500 – 12 000 kWh / rok',
+      annualKwh: '7 500 - 12 000 kWh / rok',
       recommendedSystem: '8 až 10 kWp + 10 až 14 kWh LiFePO4 batéria',
-      selfConsumption: '75 – 85 %',
-      annualSaving: '1 400 – 2 100 € / rok',
+      selfConsumption: '75 - 85 %',
+      annualSaving: '1 400 - 2 100 € / rok',
       payback: '5.2 roka (s dotáciou SIEA)',
       flow: [
         { label: 'Priama spotreba počas dňa (TČ, spotrebiče)', pct: '45 %', color: 'bg-amber-400' },
@@ -45,10 +45,10 @@ export default function KonzultaciePoradenstvo() {
     },
     dom_bez_tc: {
       title: 'Štandardný rodinný dom (plyn / tuhé palivo)',
-      annualKwh: '3 500 – 5 500 kWh / rok',
+      annualKwh: '3 500 - 5 500 kWh / rok',
       recommendedSystem: '4.5 až 6.5 kWp + 7 kWh LiFePO4 batéria',
-      selfConsumption: '70 – 80 %',
-      annualSaving: '750 – 1 100 € / rok',
+      selfConsumption: '70 - 80 %',
+      annualSaving: '750 - 1 100 € / rok',
       payback: '5.8 roka (s dotáciou SIEA)',
       flow: [
         { label: 'Priama spotreba domových spotrebičov', pct: '40 %', color: 'bg-amber-400' },
@@ -56,14 +56,14 @@ export default function KonzultaciePoradenstvo() {
         { label: 'Smart zopínanie bojlera (Dry Contact)', pct: '15 %', color: 'bg-sky-400' },
         { label: 'Dodávka do siete / virtuálna batéria', pct: '10 %', color: 'bg-slate-500' },
       ],
-      insight: 'Pre dom bez tepelného čerpadla je kľúčová kompaktná batéria (7–10 kWh), ktorá pokryje rannú a večernú špičku, kedy rodina trávi čas doma.'
+      insight: 'Pre dom bez tepelného čerpadla je kľúčová kompaktná batéria (7-10 kWh), ktorá pokryje rannú a večernú špičku, kedy rodina trávi čas doma.'
     },
     firma: {
       title: 'Firma, sklad, výrobná prevádzka alebo kancelárie',
-      annualKwh: '25 000 – 150 000+ kWh / rok',
+      annualKwh: '25 000 - 150 000+ kWh / rok',
       recommendedSystem: '20 až 100+ kWp (Lokálny zdroj / Zero Export)',
-      selfConsumption: '85 – 95 %',
-      annualSaving: '4 500 – 25 000+ € / rok',
+      selfConsumption: '85 - 95 %',
+      annualSaving: '4 500 - 25 000+ € / rok',
       payback: '3.5 až 4.8 roka (bez dotácie)',
       flow: [
         { label: 'Priama spotreba výrobných strojov a chladenia', pct: '70 %', color: 'bg-amber-400' },
@@ -71,7 +71,7 @@ export default function KonzultaciePoradenstvo() {
         { label: 'Nabíjanie firemnej flotily elektromobilov', pct: '10 %', color: 'bg-sky-400' },
         { label: 'Dodávka do distribučnej siete', pct: '2 %', color: 'bg-slate-500' },
       ],
-      insight: 'Firmy majú najrýchlejšiu návratnosť na trhu, pretože najväčšiu spotrebu majú cez deň počas pracovnej doby (pondelok–piatok), kedy slnko svieti najintenzívnejšie.'
+      insight: 'Firmy majú najrýchlejšiu návratnosť na trhu, pretože najväčšiu spotrebu majú cez deň počas pracovnej doby (pondelok-piatok), kedy slnko svieti najintenzívnejšie.'
     }
   };
 
@@ -218,11 +218,11 @@ export default function KonzultaciePoradenstvo() {
                   <div className="text-slate-400 text-xs mt-0.5 font-medium">Vstupná analýza faktúr</div>
                 </div>
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">60 – 85 %</div>
+                  <div className="text-amber-400 font-mono font-black text-xl sm:text-2xl">60 - 85 %</div>
                   <div className="text-slate-400 text-xs mt-0.5 font-medium">Úspora na elektrine</div>
                 </div>
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">4 – 6 rokov</div>
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">4 - 6 rokov</div>
                   <div className="text-slate-400 text-xs mt-0.5 font-medium">Reálna návratnosť ROI</div>
                 </div>
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
@@ -480,7 +480,7 @@ export default function KonzultaciePoradenstvo() {
                   </div>
                   <div className="flex items-center gap-2 text-emerald-400 font-semibold">
                     <CheckIcon className="w-4 h-4 shrink-0" />
-                    <span>Životnosť 6 000+ cyklov (cca 15–20 rokov)</span>
+                    <span>Životnosť 6 000+ cyklov (cca 15-20 rokov)</span>
                   </div>
                 </div>
               </div>
@@ -512,7 +512,7 @@ export default function KonzultaciePoradenstvo() {
                     <span>NEFUNGUJE pri výpadku siete (ste bez prúdu)</span>
                   </div>
                   <div className="flex items-center gap-2 text-amber-400">
-                    <span>Mesačný poplatok za vedenie služby (2 – 5 €/mesiac)</span>
+                    <span>Mesačný poplatok za vedenie služby (2 - 5 €/mesiac)</span>
                   </div>
                 </div>
               </div>

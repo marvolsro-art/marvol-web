@@ -34,16 +34,16 @@ export default function TepelneCerpadla() {
     },
     {
       id: 'tc-standard-10kw',
-      name: 'Tepelné čerpadlo 9 – 12 kW',
+      name: 'Tepelné čerpadlo 9 - 12 kW',
       badge: 'Najpredávanejší model',
       badgeColor: 'border-amber-500/40 text-amber-400 bg-amber-500/15',
       cop: 'COP 4.90 (A+++)',
-      coverage: 'Pre domy 130 – 250 m²',
+      coverage: 'Pre domy 130 - 250 m²',
       description: 'Univerzálny výkon pre štandardné rodinné domy aj čiastočne zrekonštruované staršie stavby. Zabezpečí komfortné vykurovanie, chladenie aj ohrev TÚV.',
       features: [
         'Celoročná prevádzka s garantovaným vykurovaním až do -25 °C',
-        'Integrovaná vnútorná hydroveža s integrovaným 190–250 l nerezovým bojlerom',
-        'Vstavaná záložná elektrická špirála 6–9 kW',
+        'Integrovaná vnútorná hydroveža s integrovaným 190-250 l nerezovým bojlerom',
+        'Vstavaná záložná elektrická špirála 6-9 kW',
         'Ekvitermická regulácia podľa vonkajšej teploty',
         'Diaľkové ovládanie cez mobilnú aplikáciu odkiaľkoľvek',
         'Plná dotácia Zelená domácnostiam až 4 600 €',
@@ -53,7 +53,7 @@ export default function TepelneCerpadla() {
     },
     {
       id: 'tc-power-16kw',
-      name: 'Tepelné čerpadlo 14 – 16 kW',
+      name: 'Tepelné čerpadlo 14 - 16 kW',
       badge: 'Väčšie objekty & Rekonštrukcie',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       cop: 'COP 4.75 (A+++)',
@@ -216,7 +216,7 @@ export default function TepelneCerpadla() {
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">COP 5.05</div>
                   <div className="text-slate-400 text-xs mt-0.5">1 kW elektriny = 5 kW tepla</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 col-span-2 sm:col-span-1">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">SG Ready</div>
                   <div className="text-slate-400 text-xs mt-0.5">Hybridné solárne prepojenie</div>
                 </div>
@@ -429,7 +429,7 @@ export default function TepelneCerpadla() {
               </div>
               <h3 className="text-xl font-bold text-white">Dvojitá štátna dotácia</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Kombináciou fotovoltiky a tepelného čerpadla môžete v programe Zelená domácnostiam získať dotácie na obidve zariadenia – spolu až viac ako 7 800 € štátnej podpory.
+                Kombináciou fotovoltiky a tepelného čerpadla môžete v programe Zelená domácnostiam získať dotácie na obidve zariadenia - spolu až viac ako 7 800 € štátnej podpory.
               </p>
             </div>
           </div>

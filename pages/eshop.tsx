@@ -103,7 +103,7 @@ export const TECHNOLOGY_CATEGORIES: TechnologyCategory[] = [
     id: 'panely',
     name: 'Fotovoltické panely (Tier 1)',
     shortDesc: 'Monokryštalické, celočierne, bifaciálne a TOPCon / ABC panely s vysokým výnosom.',
-    badge: 'Lineárna garancia 25–30 rokov',
+    badge: 'Lineárna garancia 25-30 rokov',
     icon: 'sun',
     note: 'Dodávame kusový odber aj ucelené palety (36 ks) za výhodné veľkoobchodné ceny.',
     brands: [
@@ -295,7 +295,7 @@ export default function EshopPage() {
       '@context': 'https://schema.org',
       '@type': ['Store', 'LocalBusiness'],
       '@id': 'https://marvol.sk/eshop#store',
-      name: 'Marvol s.r.o. — Distribúcia solárnych technológií & Zariadenia na vyžiadanie',
+      name: 'Marvol s.r.o. - Distribúcia solárnych technológií & Zariadenia na vyžiadanie',
       url: 'https://marvol.sk/eshop',
       description:
         'Distribúcia a dodávka fotovoltických panelov AIKO, Jinko, striedačov GoodWe, Solinteg, batérií Pylontech a montážnych konštrukcií. Aktuálne nacenenie na vyžiadanie.',
@@ -318,7 +318,7 @@ export default function EshopPage() {
           name: 'Prečo sú ceny a ponuka solárnych zariadení na vyžiadanie?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Trh s fotovoltickými komponentmi a batériovými úložiskami je vysoko nestály – skladové zásoby u distribútorov sa menia zo dňa na deň a ceny kolíšu. Namiesto fiktívneho statického e-shopu preverujeme aktuálne sklady v reálnom čase a garantujeme najlepšiu trhovú cenu.',
+            text: 'Trh s fotovoltickými komponentmi a batériovými úložiskami je vysoko nestály - skladové zásoby u distribútorov sa menia zo dňa na deň a ceny kolíšu. Namiesto fiktívneho statického e-shopu preverujeme aktuálne sklady v reálnom čase a garantujeme najlepšiu trhovú cenu.',
           },
         },
         {
@@ -410,7 +410,7 @@ export default function EshopPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
-              Trh s fotovoltickými striedačmi, batériami a panelmi je vysoko dynamický — dostupnosť komponentov u distribútorov sa mení zo dňa na deň a produkty bývajú často vypredané. Namiesto statického e-shopu s neaktuálnymi stavmi zabezpečujeme <strong className="text-white font-semibold">overenie skladov v reálnom čase</strong> s garantovanou najlepšou cenou.
+              Trh s fotovoltickými striedačmi, batériami a panelmi je vysoko dynamický - dostupnosť komponentov u distribútorov sa mení zo dňa na deň a produkty bývajú často vypredané. Namiesto statického e-shopu s neaktuálnymi stavmi zabezpečujeme <strong className="text-white font-semibold">overenie skladov v reálnom čase</strong> s garantovanou najlepšou cenou.
             </p>
 
             <div className="inline-flex flex-wrap items-center gap-3 p-3.5 rounded-2xl bg-amber-400/10 border border-amber-400/30 text-xs sm:text-sm text-amber-300 font-semibold mb-8">
@@ -452,7 +452,7 @@ export default function EshopPage() {
               <ShieldIcon className="w-6 h-6 text-emerald-400 mb-2" />
               <h3 className="text-white font-bold text-sm">100% Pôvod &amp; Plné záruky</h3>
               <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
-                Iba originálny certifikovaný tovar z oficiálnej distribúcie so zárukou výrobcu až 25–30 rokov.
+                Iba originálny certifikovaný tovar z oficiálnej distribúcie so zárukou výrobcu až 25-30 rokov.
               </p>
             </div>
 
@@ -488,7 +488,7 @@ export default function EshopPage() {
               Dva flexibilné spôsoby odberu technológií
             </h2>
             <p className="text-slate-400 text-sm">
-              Zvoľte si model, ktorý najlepšie vyhovuje vášmu zámeru – od dodávky samotného materiálu až po bezstarostnú realizáciu na kľúč.
+              Zvoľte si model, ktorý najlepšie vyhovuje vášmu zámeru - od dodávky samotného materiálu až po bezstarostnú realizáciu na kľúč.
             </p>
           </div>
 
@@ -711,7 +711,7 @@ export default function EshopPage() {
                   Hľadáte špecifické zariadenie, ktoré je všade vypredané?
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  Trh s fotovoltikou zažíva vlny dopytu a mnohé bežné e-shopy majú sklady prázdne. Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> má priame zmluvné partnerstvá s lídrami európskej distribúcie — <strong className="text-amber-400">BayWa r.e., Krannich Solar, Memodo, Hagard:Hal</strong> a ďalšími.
+                  Trh s fotovoltikou zažíva vlny dopytu a mnohé bežné e-shopy majú sklady prázdne. Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> má priame zmluvné partnerstvá s lídrami európskej distribúcie - <strong className="text-amber-400">BayWa r.e., Krannich Solar, Memodo, Hagard:Hal</strong> a ďalšími.
                 </p>
                 <p className="text-slate-300 text-sm sm:text-base font-semibold">
                   Vďaka tomu pre vás vieme zohnať v podstate akékoľvek zariadenie, invertor, batériový modul či konštrukciu, ktorú si váš projekt vyžaduje.

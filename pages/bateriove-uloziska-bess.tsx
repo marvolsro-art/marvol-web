@@ -17,8 +17,8 @@ export default function BaterioveUloziskaBess() {
     {
       id: 'domace-baterie',
       title: 'Domáce úložiská LiFePO4',
-      capacity: '5,12 – 20,48 kWh',
-      power: '3 kW – 10 kW',
+      capacity: '5,12 - 20,48 kWh',
+      power: '3 kW - 10 kW',
       badge: 'Rezidenčné riešenia',
       badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
       description: 'Kompaktné modulárne batérie pre rodinné domy. Akumulujú denné prebytky fotovoltiky a poskytujú nepretržité záložné napájanie (UPS) počas výpadku verejnej siete.',
@@ -34,13 +34,13 @@ export default function BaterioveUloziskaBess() {
     {
       id: 'komercne-bess',
       title: 'Komerčné & Priemyselné BESS',
-      capacity: '30 kWh – 500+ kWh',
-      power: '20 kW – 250 kW',
+      capacity: '30 kWh - 500+ kWh',
+      power: '20 kW - 250 kW',
       badge: 'Priemysel & Firmy',
       badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
       description: 'Výkonné rackové a kontajnerové batériové systémy (Battery Energy Storage Systems) pre priemyselné haly, polikliniky, servery a energeticky náročné prevádzky.',
       features: [
-        'Efektívny "Peak Shaving" – vyrovnávanie 15-minútových odberových špičiek',
+        'Efektívny "Peak Shaving" - vyrovnávanie 15-minútových odberových špičiek',
         'Arbitráž na spotovom trhu (nabíjanie za lacnú nočnú / zápornú elektrinu)',
         'Záloha citlivých IT technológií, CNC strojov a chladiarenských boxov',
         'Vnútorné rackové skrine alebo vonkajšie klimatizované kontajnery',
@@ -57,7 +57,7 @@ export default function BaterioveUloziskaBess() {
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description: 'Inteligentné domáce i firemné nabíjacie stanice pre elektromobily a plug-in hybridy s dynamickým vyrovnávaním záťaže (DLB) a nabíjaním výhradne zo slnka.',
       features: [
-        'Režim "Solar Only" – auto sa nabíja výhradne zo slnečných prebytkov',
+        'Režim "Solar Only" - auto sa nabíja výhradne zo slnečných prebytkov',
         'Dynamické riadenie výkonu (DLB) chráni hlavný istič pred vyrazením',
         'Univerzálny konektor Type 2 kompatibilný so všetkými značkami EV',
         'Autorizácia cez RFID kartu alebo mobilnú aplikáciu',
@@ -90,7 +90,7 @@ export default function BaterioveUloziskaBess() {
     },
     {
       q: 'Dá sa na batériové úložisko získať štátna dotácia?',
-      a: 'Áno. Pre rodinné domy je batéria podporovaná v rámci programu Zelená domácnostiam ako integrálna súčasť hybridného systému (dotácia SIEA na fotovoltiku do 1 150 €, v schéme Zelená solidarita až do 90 % oprávnených nákladov). Pre podniky a firmy je priemyselné úložisko BESS oprávneným výdavkom v programe Zelená podnikom (podpora 35 % – 50 % formou nenávratného finančného príspevku).',
+      a: 'Áno. Pre rodinné domy je batéria podporovaná v rámci programu Zelená domácnostiam ako integrálna súčasť hybridného systému (dotácia SIEA na fotovoltiku do 1 150 €, v schéme Zelená solidarita až do 90 % oprávnených nákladov). Pre podniky a firmy je priemyselné úložisko BESS oprávneným výdavkom v programe Zelená podnikom (podpora 35 % - 50 % formou nenávratného finančného príspevku).',
     },
   ];
 
@@ -212,7 +212,7 @@ export default function BaterioveUloziskaBess() {
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">6 000+</div>
                   <div className="text-slate-400 text-xs mt-0.5">Cyklov LiFePO4 (15+ rokov)</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 col-span-2 sm:col-span-1">
                   <div className="text-amber-400 font-black text-xl sm:text-2xl">11 / 22 kW</div>
                   <div className="text-slate-400 text-xs mt-0.5">Smart Wallbox s DLB</div>
                 </div>

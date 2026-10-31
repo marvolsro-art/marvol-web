@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MARVOL s.r.o. — Generátor Cenových Ponúk</title>
+  <title>MARVOL s.r.o. - Generátor Cenových Ponúk</title>
   <style>
     /* RESET & ZÁKLADNÉ ŠTÝLY */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -328,10 +328,10 @@
             <div class="form-group">
               <label class="form-label">Konštrukčný systém</label>
               <select id="roofStructure" class="form-control" onchange="recalculate()">
-                <option value="rovna_vz" selected>Rovná strecha — Východ-Západ (Fatrafol / štrk)</option>
-                <option value="rovna_juh">Rovná strecha — Podpora JUH</option>
-                <option value="sikma_skridla">Šikmá strecha — Škridla / Betónka (Vario háky)</option>
-                <option value="sikma_falc">Šikmá strecha — Falcovaný plech / Trapéz</option>
+                <option value="rovna_vz" selected>Rovná strecha - Východ-Západ (Fatrafol / štrk)</option>
+                <option value="rovna_juh">Rovná strecha - Podpora JUH</option>
+                <option value="sikma_skridla">Šikmá strecha - Škridla / Betónka (Vario háky)</option>
+                <option value="sikma_falc">Šikmá strecha - Falcovaný plech / Trapéz</option>
                 <option value="zemna">Zemná konštrukcia (Terén)</option>
                 <option value="fasada">Fasádny montážny systém</option>
               </select>
@@ -1095,9 +1095,9 @@
 
       // D) Konštrukcia
       const roofCostMap = {
-        rovna_vz: { name: "Konštrukčný systém pre rovnú strechu — Východ-Západ", cost: 55.00 },
-        rovna_juh: { name: "Podporná konštrukcia pre rovnú strechu — JUH", cost: 68.00 },
-        sikma_skridla: { name: "Konštrukčný systém pre šikmú strechu — Škridla / Betónka", cost: 31.00 },
+        rovna_vz: { name: "Konštrukčný systém pre rovnú strechu - Východ-Západ", cost: 55.00 },
+        rovna_juh: { name: "Podporná konštrukcia pre rovnú strechu - JUH", cost: 68.00 },
+        sikma_skridla: { name: "Konštrukčný systém pre šikmú strechu - Škridla / Betónka", cost: 31.00 },
         sikma_falc: { name: "Konštrukčný systém pre falcovaný plech / Trapéz", cost: 31.00 },
         zemna: { name: "Zemná nosná konštrukcia (Terén)", cost: 80.00 },
         fasada: { name: "Fasádny montážny systém", cost: 95.00 }
@@ -1162,7 +1162,7 @@
       if (backupType === 'socket') {
         totalCost += 80.00;
         items.push({
-          name: "Záložný okruh EPS — Núdzová zásuvka pri meniči",
+          name: "Záložný okruh EPS - Núdzová zásuvka pri meniči",
           module: "Záložný systém (EPS)",
           qty: 1, unit: "kpl", unitPrice: 80 * margin, total: 80 * margin
         });
@@ -1569,7 +1569,7 @@
           <td><strong>${it.name}</strong></td>
           <td style="text-align: center; font-weight: 700; font-family: monospace; color: #059669;">${it.qty}</td>
           <td style="text-align: center; color: #64748b;">${it.unit}</td>
-          <td style="color: #64748b; font-size: 11px;">${it.note || "—"}</td>
+          <td style="color: #64748b; font-size: 11px;">${it.note || "-"}</td>
         `;
         chkTbody.appendChild(row);
       });

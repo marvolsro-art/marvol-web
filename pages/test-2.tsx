@@ -93,7 +93,7 @@ export default function MinimalistTestPage() {
       desc: 'Znížte ročné účty za elektrinu až o 80%. Kompletné riešenie od 3D projektu cez štátnu dotáciu SIEA až po revíziu.',
       metric1: 'do 1 150 €',
       label1: 'Dotácia SIEA (575 €/kW)',
-      metric2: '3 – 5 rokov',
+      metric2: '3 - 5 rokov',
       label2: 'Reálna návratnosť',
       img: '/images/fotovoltika-domacnosti/hero.jpg',
       features: ['Tier 1 panely N-Type TOPCon', 'Asymetrický 3-fázový menič', '100% online rezervácia dotácie'],
@@ -1366,7 +1366,7 @@ export default function MinimalistTestPage() {
                   >
                     <span>{faq.q}</span>
                     <span className="text-slate-400 text-xl leading-none shrink-0">
-                      {isOpen ? '−' : '+'}
+                      {isOpen ? '-' : '+'}
                     </span>
                   </button>
                   {isOpen && (

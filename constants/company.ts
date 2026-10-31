@@ -34,7 +34,7 @@ export const COMPANY_DETAILS = {
     email: 'info@marvol.sk',
     whatsappUrl: 'https://wa.me/421948123456?text=Dobry%20den,%20mam%20zaujem%20o%20fotovoltiku%20od%20Marvol%20s.r.o.',
     businessHours: {
-      workdays: 'Pondelok – Piatok: 08:00 – 18:00',
+      workdays: 'Pondelok - Piatok: 08:00 - 18:00',
       weekend: 'Víkend: dopyty spracované do 24 hodín',
       shortDisplay: 'Po - Pia: 8:00 - 18:00',
     },

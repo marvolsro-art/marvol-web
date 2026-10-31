@@ -12,6 +12,13 @@ export default function Document() {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#020617" />
+        {/* Google Font: Inter (resolves Slovak diacritics kerning issues like ľ + ú) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <body className="antialiased bg-slate-950 text-slate-100">
         <Main />

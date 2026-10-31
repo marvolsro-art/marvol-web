@@ -20,11 +20,11 @@ export default function FotovoltikaPreDomacnosti() {
       badge: 'Pre menšie domy',
       badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
       description: 'Ideálne riešenie pre menšie domácnosti s ročnou spotrebou do 3 500 kWh bez tepelného čerpadla.',
-      panels: '7× N-Type TOPCon 435–450 Wp',
+      panels: '7× N-Type TOPCon 435-450 Wp',
       inverter: '1-fázový / 3-fázový sieťový On-Grid striedač (GoodWe / Growatt)',
       storage: 'Bez batérie (s možnosťou neskoršieho doplnenia)',
       subsidy: 'Dotácia SIEA do 1 150 €',
-      annualProduction: 'cca 3 300 – 3 600 kWh / rok',
+      annualProduction: 'cca 3 300 - 3 600 kWh / rok',
       savings: 'Úspora až 550 € ročne',
       features: [
         '7 ks Tier-1 celočiernych N-Type TOPCon panelov',
@@ -42,11 +42,11 @@ export default function FotovoltikaPreDomacnosti() {
       badge: 'Najobľúbenejší balík',
       badgeColor: 'border-amber-500/40 text-amber-400 bg-amber-500/15',
       description: 'Zlatý štandard pre moderné rodinné domy. Akumuluje prebytky energie na večer a poskytuje záložné napájanie pri výpadku.',
-      panels: '14× N-Type TOPCon 440–450 Wp',
-      inverter: '3-fázový hybridný asymetrický striedač 6–8 kW',
+      panels: '14× N-Type TOPCon 440-450 Wp',
+      inverter: '3-fázový hybridný asymetrický striedač 6-8 kW',
       storage: 'Kapacitná LiFePO4 batéria 5,12 až 10,24 kWh',
       subsidy: 'Dotácia SIEA do 1 150 €',
-      annualProduction: 'cca 6 600 – 7 200 kWh / rok',
+      annualProduction: 'cca 6 600 - 7 200 kWh / rok',
       savings: 'Úspora až 1 150 € ročne',
       features: [
         '14 ks prémiových Tier-1 TOPCon panelov s účinnosťou 22,5%',
@@ -64,14 +64,14 @@ export default function FotovoltikaPreDomacnosti() {
       badge: 'Maximálna nezávislosť',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description: 'Nekompromisný výkon pre domy s tepelným čerpadlom, klimatizáciou, bazénom alebo elektromobilom (EV).',
-      panels: '22–24× N-Type TOPCon 440–450 Wp',
+      panels: '22-24× N-Type TOPCon 440-450 Wp',
       inverter: '3-fázový hybridný asymetrický striedač 10 kW',
       storage: 'Vysokonapäťová LiFePO4 batéria 10,24 až 15,36 kWh',
       subsidy: 'Dotácia 1 150 € (Solidarita až 90 %)',
-      annualProduction: 'cca 10 500 – 11 800 kWh / rok',
+      annualProduction: 'cca 10 500 - 11 800 kWh / rok',
       savings: 'Úspora až 1 900 € ročne',
       features: [
-        '22–24 ks vysokovýkonných N-Type panelov s bifaciálnym ziskom',
+        '22-24 ks vysokovýkonných N-Type panelov s bifaciálnym ziskom',
         '10 kW trojfázový hybridný menič s mikrosekundovým EPS/UPS zálohovaním',
         'Veľkokapacitné batériové úložisko LiFePO4 s 15-ročnou životnosťou',
         'Plná integrácia s tepelným čerpadlom (SG Ready) a Wallboxom',
@@ -97,11 +97,11 @@ export default function FotovoltikaPreDomacnosti() {
     },
     {
       q: 'Funguje fotovoltika aj v zime, pri zamračenej oblohe alebo snežení?',
-      a: 'Áno. Moderné fotovoltické panely typu N-Type TOPCon využívajú difúzne denné svetlo a vyrábajú elektrinu aj pri zamračenom počasí či miernom daždi. Výroba v zime je pochopiteľne nižšia kvôli kratšiemu slnečnému svitu a nižšej trajektórii slnka (cca 20–25% letného výkonu), avšak systém stále pomáha kryť stálu spotrebu domu (chladnička, obehové čerpadlá, router, osvetlenie).',
+      a: 'Áno. Moderné fotovoltické panely typu N-Type TOPCon využívajú difúzne denné svetlo a vyrábajú elektrinu aj pri zamračenom počasí či miernom daždi. Výroba v zime je pochopiteľne nižšia kvôli kratšiemu slnečnému svitu a nižšej trajektórii slnka (cca 20-25% letného výkonu), avšak systém stále pomáha kryť stálu spotrebu domu (chladnička, obehové čerpadlá, router, osvetlenie).',
     },
     {
       q: 'Aká je životnosť fotovoltických panelov, meniča a batérií?',
-      a: 'Námi dodávané Tier-1 N-Type TOPCon fotovoltické panely majú lineárnu garanciu výkonu 25 až 30 rokov (garantovaný minimálny výkon 85% po 30 rokoch). Hybridné meniče majú životnosť 12–15 rokov s možnosťou predĺženej záruky na 10 rokov. Batérie s chémiou LiFePO4 zvládnu viac ako 6 000 plných nabíjacích cyklov, čo pri bežnom dennom cyklovaní predstavuje životnosť 16 až 20 rokov.',
+      a: 'Námi dodávané Tier-1 N-Type TOPCon fotovoltické panely majú lineárnu garanciu výkonu 25 až 30 rokov (garantovaný minimálny výkon 85% po 30 rokoch). Hybridné meniče majú životnosť 12-15 rokov s možnosťou predĺženej záruky na 10 rokov. Batérie s chémiou LiFePO4 zvládnu viac ako 6 000 plných nabíjacích cyklov, čo pri bežnom dennom cyklovaní predstavuje životnosť 16 až 20 rokov.',
     },
     {
       q: 'Vybaví Marvol s.r.o. celú komunikáciu s distribučnou spoločnosťou a štátom?',
@@ -213,20 +213,20 @@ export default function FotovoltikaPreDomacnosti() {
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Znížte účty za elektrinu až o <strong className="text-white">80%</strong>, zabezpečte si energetickú sebestačnosť pri výpadkoch a získajte štátnu podporu bez jedinej návštevy úradu. Všetko zabezpečíme za vás – od obhliadky cez projekt až po zapojenie do distribučnej siete.
+                Znížte účty za elektrinu až o <strong className="text-white">80%</strong>, zabezpečte si energetickú sebestačnosť pri výpadkoch a získajte štátnu podporu bez jedinej návštevy úradu. Všetko zabezpečíme za vás - od obhliadky cez projekt až po zapojenie do distribučnej siete.
               </p>
 
               {/* Quick Trust Pillars */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 ">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">1–2 dni</div>
+                  <div className="text-amber-400 font-black text-xl sm:text-2xl">1-2 dni</div>
                   <div className="text-slate-400 text-xs mt-0.5">Rýchla čistá montáž</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 ">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">100%</div>
                   <div className="text-slate-400 text-xs mt-0.5">Vybavenie dotácie</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3  col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 col-span-2 sm:col-span-1">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">30 rokov</div>
                   <div className="text-slate-400 text-xs mt-0.5">Garancia výkonu panelov</div>
                 </div>
@@ -556,7 +556,7 @@ export default function FotovoltikaPreDomacnosti() {
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 relative">
               <div className="text-3xl font-black text-amber-400/40 mb-2">3</div>
-              <h4 className="text-lg font-bold text-white mb-2">Montáž za 1–2 dni</h4>
+              <h4 className="text-lg font-bold text-white mb-2">Montáž za 1-2 dni</h4>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                 Naši certifikovaní montážnici osadia panely, zapoja hybridný striedač, batériu a bezpečnostné ochrany bez poškodenia strešnej krytiny.
               </p>

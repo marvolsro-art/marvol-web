@@ -169,7 +169,7 @@ export default function FotovoltikaPreFirmy() {
               {/* B2B Subsidy Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-bold tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-sky-400 " />
-                <span>Program Zelená podnikom: Dotácia 35% – 50% oprávnených nákladov</span>
+                <span>Program Zelená podnikom: Dotácia 35% - 50% oprávnených nákladov</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
@@ -188,10 +188,10 @@ export default function FotovoltikaPreFirmy() {
                   <div className="text-slate-400 text-xs mt-0.5">Zákon č. 309/2009 Z.z.</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
-                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">3 – 5 rokov</div>
+                  <div className="text-emerald-400 font-black text-xl sm:text-2xl">3 - 5 rokov</div>
                   <div className="text-slate-400 text-xs mt-0.5">Typická návratnosť FVE</div>
                 </div>
-                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5  col-span-2 sm:col-span-1">
+                <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 col-span-2 sm:col-span-1">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">ESG & CO₂</div>
                   <div className="text-slate-400 text-xs mt-0.5">Zelený audit & certifikácia</div>
                 </div>
@@ -296,7 +296,7 @@ export default function FotovoltikaPreFirmy() {
               <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
                 <BuildingColumns className="w-6 h-6 text-amber-400" />
               </div>
-              <h3 className="text-2xl font-black text-white">Zákon č. 309/2009 Z. z. – Lokálny zdroj</h3>
+              <h3 className="text-2xl font-black text-white">Zákon č. 309/2009 Z. z. - Lokálny zdroj</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Inštalácia v režime Lokálneho zdroja (do 500 kWp) je určená pre výrobné podniky, poľnohospodárov a logistické areály. Umožňuje spotrebovať vlastnú solárnu energiu priamo na mieste výroby.
               </p>
@@ -385,7 +385,7 @@ export default function FotovoltikaPreFirmy() {
                     {study.type}
                   </div>
 
-                  <div className="space-y-2 py-3  text-xs text-slate-300">
+                  <div className="space-y-2 py-3 text-xs text-slate-300">
                     <div className="flex justify-between">
                       <span className="text-slate-500">Typ inštalácie:</span>
                       <span className="text-right text-white font-medium">{study.roofType}</span>

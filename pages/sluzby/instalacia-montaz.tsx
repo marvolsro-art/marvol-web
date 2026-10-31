@@ -37,7 +37,7 @@ export default function InstalaciaMontaz() {
         'Používame zosilnené nerezové háky triedy A2 s nastaviteľnou výškou. Každú škridlu nad hákom jemne a presne zabrusujeme diamantovým kotúčom, aby dokonale doľahla bez bodového pnutia či prasknutia.',
       highlights: [
         'Kotvenie priamo do nosných krokiev krovu certifikovanými nerezovými vrutmi',
-        'Presné diamantové zabrúsenie škridiel – strecha zostáva 100% vodotesná',
+        'Presné diamantové zabrúsenie škridiel - strecha zostáva 100% vodotesná',
         'Použitie tesniacich EPDM podložiek a penových manžiet proti vnikaniu snehu',
         'Eloxované hliníkové profily 40x40 mm triedy Al 6060 T6 s nerezovým spojovacím materiálom'
       ],
@@ -52,7 +52,7 @@ export default function InstalaciaMontaz() {
         'Montáž bez jediného prevŕtania plechu! Používame špeciálne falcové svorky, ktoré pevne zovrú stojatý falc. Strešná krytina zostáva úplne neporušená, vďaka čomu nestrácate záruku od výrobcu strechy.',
       highlights: [
         'Uchytenie výhradne mechanickým zovretím falcu kalibrovaným momentom',
-        'Nulový prienik skrutiek cez plech – absolútna ochrana pred koróziou a zatekaním',
+        'Nulový prienik skrutiek cez plech - absolútna ochrana pred koróziou a zatekaním',
         'Dilatačné medzery zohľadňujúce tepelnú rozťažnosť kovových striech v lete a zime',
         'Nerezové skrutky so špeciálnym poistným zubom zamedzujúce samovoľnému uvoľneniu'
       ],
@@ -64,12 +64,12 @@ export default function InstalaciaMontaz() {
       badge: 'Aerodynamický balastný systém',
       badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
       description:
-        'Samonosné aerodynamické konštrukcie orientované na Východ-Západ alebo Juh so sklonom 10° až 15°. Žiadne mechanické kotvenie cez hydroizolačnú fóliu – stabilita je zabezpečená presne vypočítanou betónovou záťažou.',
+        'Samonosné aerodynamické konštrukcie orientované na Východ-Západ alebo Juh so sklonom 10° až 15°. Žiadne mechanické kotvenie cez hydroizolačnú fóliu - stabilita je zabezpečená presne vypočítanou betónovou záťažou.',
       highlights: [
         'Konštrukcia spočíva na hrubých EPDM gumových podložkách chrániacich fóliu',
         'Veterné deflektory na zadnej strane znižujú sací účinok vetra na minimum',
         'Výpočet balastnej záťaže v simulačnom softvéri podľa vetrovej mapy danej obce',
-        'Otvorený odvodňovací systém – dažďová voda voľne odteká do strešných vpustí'
+        'Otvorený odvodňovací systém - dažďová voda voľne odteká do strešných vpustí'
       ],
       guarantee: 'Certifikovaná montáž bez porušenia hydroizolácie a bez rizika pretekania.'
     },
@@ -233,7 +233,7 @@ export default function InstalaciaMontaz() {
                   <div className="text-slate-400 text-xs mt-0.5 font-medium">Garantovaný termín</div>
                 </div>
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
-                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">1 – 2 dni</div>
+                  <div className="text-sky-400 font-mono font-black text-xl sm:text-2xl">1 - 2 dni</div>
                   <div className="text-slate-400 text-xs mt-0.5 font-medium">Trvanie montáže RD</div>
                 </div>
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
@@ -438,12 +438,12 @@ export default function InstalaciaMontaz() {
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-bold text-white">Ochrana káblových trás</td>
-                  <td className="py-4 px-6 bg-red-950/5 text-slate-400">Voľne pohodené káble na škridle bez chráničiek – degradácia UV žiarením do 3 rokov.</td>
+                  <td className="py-4 px-6 bg-red-950/5 text-slate-400">Voľne pohodené káble na škridle bez chráničiek - degradácia UV žiarením do 3 rokov.</td>
                   <td className="py-4 px-6 bg-emerald-950/10 text-white font-medium">Kopoflex a UV stabilné chráničky po celej dĺžke, bezpečné prestupy cez krov s požiarnou penou.</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-6 font-bold text-white">Uťahovanie spojov</td>
-                  <td className="py-4 px-6 bg-red-950/5 text-slate-400">Uťahovanie aku-vŕtačkou od oka – strhnuté závity alebo nedostatočný prítlak.</td>
+                  <td className="py-4 px-6 bg-red-950/5 text-slate-400">Uťahovanie aku-vŕtačkou od oka - strhnuté závity alebo nedostatočný prítlak.</td>
                   <td className="py-4 px-6 bg-emerald-950/10 text-white font-medium">Každý spoj dotiahnutý certifikovaným momentovým kľúčom na presný predpísaný moment (Nm).</td>
                 </tr>
                 <tr>
