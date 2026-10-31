@@ -93,7 +93,6 @@ export default function Home() {
     >
       <Hero />
       <SubsidyBanner />
-      <PartnerLogosSection />
       <TargetAudienceSection />
       <ServicesSection />
       <CalculatorSection />
@@ -102,6 +101,7 @@ export default function Home() {
       <ReferencesSection />
       <TestimonialsSection />
       <FAQSection />
+      <PartnerLogosSection />
       <ContactSection />
     </Layout>
   );
