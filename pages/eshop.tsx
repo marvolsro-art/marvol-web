@@ -1,622 +1,233 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Layout } from '@/components/Layout';
-import { LeadForm } from '@/components/LeadForm';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, BoltIcon, BatteryIcon, CarIcon, WrenchIcon, ShieldIcon, CheckIcon, CurrencyEuroIcon, BuildingOfficeIcon, CartIcon } from '@/components/icons';
+import {
+  SunIcon,
+  BoltIcon,
+  BatteryIcon,
+  CarIcon,
+  WrenchIcon,
+  ShieldIcon,
+  CheckIcon,
+  CurrencyEuroIcon,
+  BuildingOfficeIcon,
+} from '@/components/icons';
 
 // =============================================================================
-// TYPES & DATA STRUCTURES
+// BRAND & CATEGORY DEFINITIONS
 // =============================================================================
 
-export type ProductCategory =
-  | 'panels'
-  | 'inverters'
-  | 'storage'
-  | 'wallbox'
-  | 'mounting'
-  | 'sets';
-
-export interface ProductSpec {
-  label: string;
-  value: string;
-}
-
-export interface ProductMock {
-  id: string;
+export interface BrandInfo {
   name: string;
-  category: ProductCategory;
-  brand: string;
-  model: string;
-  powerKw?: number;
-  capacityKwh?: number;
-  phase?: '1-phase' | '3-phase';
-  priceExVat: number;
-  inStock: boolean;
-  stockQty: number;
-  badge?: string;
-  badgeColor?: 'amber' | 'emerald' | 'sky' | 'purple';
-  warranty: string;
-  specs: ProductSpec[];
+  logo: string;
+  badge: string;
   description: string;
-}
-
-export interface FilterState {
-  category: string;
-  brand: string;
-  phase: string;
-  powerRange: string;
-  searchQuery: string;
-}
-
-// =============================================================================
-// MOCK PRODUCT CATALOG
-// =============================================================================
-
-export const ESHOP_PRODUCTS: ProductMock[] = [
-  // 1. Solárne panely
-  {
-    id: 'panel-canadian-450',
-    name: 'Canadian Solar HiKu7 N-Type TOPCon 450 Wp Bifacial',
-    category: 'panels',
-    brand: 'Canadian Solar',
-    model: 'CS7L-450MS-BF',
-    powerKw: 0.45,
-    priceExVat: 109.0,
-    inStock: true,
-    stockQty: 142,
-    badge: 'Tier 1 Top Seller',
-    badgeColor: 'amber',
-    warranty: '30 rokov lineárna garancia',
-    specs: [
-      { label: 'Účinnosť', value: '22.5 %' },
-      { label: 'Technológia', value: 'Bifacial N-Type TOPCon' },
-      { label: 'Rám', value: 'Čierny eloxovaný hliník 30mm' },
-      { label: 'Zaťaženie', value: 'Sneh 5400 Pa / Vietor 2400 Pa' },
-    ],
-    description:
-      'Špičkový bifaciálny fotovoltický panel s TOPCon článkami a zadným sklom pre dodatočný energetický zisk až +25% odrazom z podkladu.',
-  },
-  {
-    id: 'panel-jinko-580',
-    name: 'Jinko Solar Tiger Neo 580 Wp Bifacial N-Type',
-    category: 'panels',
-    brand: 'Jinko',
-    model: 'JKM580N-72HL4-BDV',
-    powerKw: 0.58,
-    priceExVat: 145.0,
-    inStock: true,
-    stockQty: 88,
-    badge: 'Priemyselný výkon',
-    badgeColor: 'sky',
-    warranty: '30 rokov lineárna garancia',
-    specs: [
-      { label: 'Účinnosť', value: '22.45 %' },
-      { label: 'Technológia', value: 'SMBB Dual-Glass N-Type' },
-      { label: 'Rozmery', value: '2278 × 1134 × 30 mm' },
-      { label: 'Degradácia', value: '1. rok <1%, potom max 0.4%/rok' },
-    ],
-    description:
-      'Vysokovýkonný priemyselný fotovoltický panel Tiger Neo s 16-zbernicovou architektúrou pre komerčné strešné a pozemné inštalácie.',
-  },
-
-  // 2. Striedače & Invertory
-  {
-    id: 'inverter-huawei-10ktl',
-    name: 'Huawei SUN2000-10KTL-M1 (10 kW, 3-fázy, Hybrid)',
-    category: 'inverters',
-    brand: 'Huawei',
-    model: 'SUN2000-10KTL-M1',
-    powerKw: 10,
-    phase: '3-phase',
-    priceExVat: 1790.0,
-    inStock: true,
-    stockQty: 24,
-    badge: 'AI AFCI Ochrana',
-    badgeColor: 'emerald',
-    warranty: '10 rokov záruka výrobcu',
-    specs: [
-      { label: 'Menovitý výkon', value: '10 000 W (3-fázový)' },
-      { label: 'Max. účinnosť', value: '98.6 % (Euro 98.1 %)' },
-      { label: 'Ochrana oblúka', value: 'AI Arc Fault Protection (AFCI)' },
-      { label: 'Batériové rozhranie', value: 'Integrované pre LUNA2000' },
-    ],
-    description:
-      'Inteligentný trojfázový hybridný menič najnovšej generácie s umelou inteligenciou pre detekciu oblúka a okamžitú pripravenosť na batérie.',
-  },
-  {
-    id: 'inverter-solax-x3-10',
-    name: 'SolaX X3-Hybrid G4 10.0-D (10 kW, 3-fázy, EPS záloha)',
-    category: 'inverters',
-    brand: 'SolaX',
-    model: 'X3-Hybrid-10.0-D G4',
-    powerKw: 10,
-    phase: '3-phase',
-    priceExVat: 1680.0,
-    inStock: true,
-    stockQty: 18,
-    badge: 'EPS UPS Backup <10ms',
-    badgeColor: 'amber',
-    warranty: '10 rokov záruka výrobcu',
-    specs: [
-      { label: 'Menovitý výkon', value: '10 000 W (3-fázový)' },
-      { label: 'Asymetrický výstup', value: 'Až do 150% preťaženia na fázu' },
-      { label: 'Čas prepnutia', value: '< 10 ms (okamžitý UPS záskok)' },
-      { label: 'Krytie', value: 'IP65 vonkajšie' },
-    ],
-    description:
-      'Mimoriadne obľúbený hybridný striedač 4. generácie s plnohodnotným asymetrickým zálohovaním celej domácnosti pri výpadku distribučnej siete.',
-  },
-  {
-    id: 'inverter-fronius-symo-10',
-    name: 'Fronius Symo GEN24 10.0 Plus (10 kW, 3-fázy)',
-    category: 'inverters',
-    brand: 'Fronius',
-    model: 'Symo GEN24 10.0 Plus',
-    powerKw: 10,
-    phase: '3-phase',
-    priceExVat: 2250.0,
-    inStock: true,
-    stockQty: 12,
-    badge: 'Made in Austria',
-    badgeColor: 'purple',
-    warranty: '5 + 5 rokov záruka',
-    specs: [
-      { label: 'Menovitý výkon', value: '10 000 W (3-fázový)' },
-      { label: 'Multi Flow Tech', value: 'Paralelný obojsmerný tok energie' },
-      { label: 'PV Point', value: 'Núdzová 3 kW zásuvka bez batérie' },
-      { label: 'Chladenie', value: 'Aktívny ventilátor s dlhou životnosťou' },
-    ],
-    description:
-      'Prémiový rakúsky hybridný menič s unikátnou funkciou núdzového napájania PV Point aj bez pripojeného batériového úložiska.',
-  },
-  {
-    id: 'inverter-huawei-5ktl-l1',
-    name: 'Huawei SUN2000-5KTL-L1 (5 kW, 1-fáza, Hybrid)',
-    category: 'inverters',
-    brand: 'Huawei',
-    model: 'SUN2000-5KTL-L1',
-    powerKw: 5,
-    phase: '1-phase',
-    priceExVat: 1080.0,
-    inStock: true,
-    stockQty: 15,
-    badge: '1-fázový Kompakt',
-    badgeColor: 'sky',
-    warranty: '10 rokov záruka výrobcu',
-    specs: [
-      { label: 'Menovitý výkon', value: '5 000 W (1-fázový)' },
-      { label: 'MPPT vstupy', value: '2 nezávislé trackery' },
-      { label: 'Hlučnosť', value: 'Pasívne chladenie (< 29 dB)' },
-      { label: 'Hmotnosť', value: 'Iba 12.0 kg' },
-    ],
-    description:
-      'Jednofázový hybridný menič ideálny pre menšie rodinné domy, chaty a inštalácie s obmedzenou 1-fázovou prípojkou.',
-  },
-
-  // 3. Batériové úložiská
-  {
-    id: 'storage-huawei-luna-10',
-    name: 'Huawei LUNA2000-10-S0 (10 kWh LiFePO4 HV)',
-    category: 'storage',
-    brand: 'Huawei',
-    model: 'LUNA2000-10-S0',
-    capacityKwh: 10,
-    priceExVat: 3890.0,
-    inStock: true,
-    stockQty: 16,
-    badge: '100% Hĺbka DoD',
-    badgeColor: 'emerald',
-    warranty: '10 rokov záruka výrobcu',
-    specs: [
-      { label: 'Využiteľná kapacita', value: '10 kWh (2× 5 kWh moduly)' },
-      { label: 'Chémia článkov', value: 'LiFePO4 (lítium-železo-fosfát)' },
-      { label: 'Optimalizátor', value: 'Nezávislý pack optimizer v module' },
-      { label: 'Požiarna ochrana', value: 'Integrované hasiace mikrovrecká' },
-    ],
-    description:
-      'Modulárne vysokonapäťové úložisko Huawei s 100% využiteľnou kapacitou a vstavaným optimalizátorom energie pre každý batériový modul.',
-  },
-  {
-    id: 'storage-dyness-t10',
-    name: 'Dyness Tower T10 (10.66 kWh LiFePO4 HV)',
-    category: 'storage',
-    brand: 'Dyness',
-    model: 'Tower T10 HV',
-    capacityKwh: 10.66,
-    priceExVat: 3190.0,
-    inStock: true,
-    stockQty: 20,
-    badge: '6000+ Cyklov',
-    badgeColor: 'amber',
-    warranty: '10 rokov (6 000 cyklov)',
-    specs: [
-      { label: 'Využiteľná kapacita', value: '10.66 kWh' },
-      { label: 'Menovité napätie', value: '288 V (vysokonapäťová HV)' },
-      { label: 'Kompatibilita', value: 'SolaX, GoodWe, Sungrow' },
-      { label: 'Krytie', value: 'IP54 pre interiér aj garáž' },
-    ],
-    description:
-      'Stohovateľné batériové úložisko LiFePO4 typu Tower s mimoriadne priaznivým pomerom ceny a kapacity, kompatibilné s poprednými hybridnými invertormi.',
-  },
-
-  // 4. EV Charger Wallboxy
-  {
-    id: 'wallbox-marvol-22',
-    name: 'Marvol Smart Wallbox 22 kW RFID / Wi-Fi / DLB',
-    category: 'wallbox',
-    brand: 'Huawei',
-    model: 'Marvol EV-22-DLB',
-    powerKw: 22,
-    phase: '3-phase',
-    priceExVat: 690.0,
-    inStock: true,
-    stockQty: 35,
-    badge: 'Dynamické riadenie DLB',
-    badgeColor: 'emerald',
-    warranty: '3 roky záruka',
-    specs: [
-      { label: 'Nabíjací výkon', value: 'Nastaviteľný 1.4 kW až 22 kW' },
-      { label: 'Konektor', value: 'Type 2 kábel 5 m súčasťou balenia' },
-      { label: 'Konektivita', value: 'Wi-Fi, Bluetooth, RFID autorizácia' },
-      { label: 'Solárny režim', value: 'Nabíjanie iba z čistých FV prebytkov' },
-    ],
-    description:
-      'Inteligentná trojfázová domáca i firemná nabíjacia stanica pre elektromobily s dynamickým meraním celkovej záťaže objektu a ochranou hlavného ističa.',
-  },
-
-  // 5. Hliníkové konštrukcie & Kabeláž
-  {
-    id: 'mounting-10-panels',
-    name: 'Kompletná konštrukcia pre 10 panelov (škridla / falc / plech)',
-    category: 'mounting',
-    brand: 'Canadian Solar',
-    model: 'Marvol Roof Mounting Kit 10P',
-    priceExVat: 380.0,
-    inStock: true,
-    stockQty: 40,
-    badge: 'Eloxovaný AL6005-T5',
-    badgeColor: 'sky',
-    warranty: '15 rokov garancia na koróziu',
-    specs: [
-      { label: 'Materiál', value: 'Eloxovaný hliník AL6005-T5, nerez A2' },
-      { label: 'Komponenty', value: 'Profily 40x40, nerezové háky, úchytky' },
-      { label: 'Norma', value: 'Eurokód 1 (zaťaženie vetrom do 160 km/h)' },
-      { label: 'Farba', value: 'Strieborná alebo celočierna anodizácia' },
-    ],
-    description:
-      'Certifikovaný montážny set s eloxovanými hliníkovými profilmi a masívnymi nerezovými strešnými hákmi pre bezpečné uchytenie 10 FV panelov.',
-  },
-  {
-    id: 'cabling-mc4-drum',
-    name: 'Solárny UV kábel 6mm² (bubon 100m) + konektory MC4 Stäubli',
-    category: 'mounting',
-    brand: 'Canadian Solar',
-    model: 'Solar-Cable-6mm-MC4',
-    priceExVat: 120.0,
-    inStock: true,
-    stockQty: 60,
-    badge: 'Originál MC4 Stäubli',
-    badgeColor: 'purple',
-    warranty: '25 rokov životnosť v exteriéri',
-    specs: [
-      { label: 'Prierez vodiča', value: '6 mm² pocínované medené lanko' },
-      { label: 'Dĺžka', value: '100 m bubon (čierny / červený)' },
-      { label: 'Konektory', value: '4 páry originálnych Stäubli MC4 EVO2' },
-      { label: 'Certifikácia', value: 'TÜV EN 50618 (H1Z2Z2-K)' },
-    ],
-    description:
-      'Vysokokvalitný bezhalogénový fotovoltický kábel s dvojitou izoláciou, UV stabilizáciou a originálnymi švajčiarskymi konektormi Stäubli.',
-  },
-
-  // 6. Hotové FV sety
-  {
-    id: 'set-ongrid-5kwp',
-    name: 'Kompletný On-Grid set 5 kWp (Canadian Solar TOPCon + Huawei)',
-    category: 'sets',
-    brand: 'Huawei',
-    model: 'Set On-Grid 5 kWp',
-    powerKw: 5,
-    phase: '3-phase',
-    priceExVat: 3490.0,
-    inStock: true,
-    stockQty: 8,
-    badge: 'Dotácia SIEA do 1 500 €',
-    badgeColor: 'amber',
-    warranty: '30 rokov panely, 10 rokov menič',
-    specs: [
-      { label: 'Panely v zostave', value: '11× Canadian Solar 450 Wp TOPCon' },
-      { label: 'Striedač', value: 'Huawei SUN2000-5KTL-M1 (3-fázový)' },
-      { label: 'Príslušenstvo', value: 'Kompletná konštrukcia, DC/AC rozvádzač' },
-      { label: 'Ročná výroba', value: 'cca 5 500 – 6 000 kWh / rok' },
-    ],
-    description:
-      'Kompletný 3-fázový on-grid set pre rodinné domy s overenou kompatibilitou, pripravený na montáž a pripojenie do distribučnej siete.',
-  },
-  {
-    id: 'set-hybrid-10kwp',
-    name: 'Kompletný Hybridný set 10 kWp + 10 kWh batéria (SolaX + LiFePO4)',
-    category: 'sets',
-    brand: 'SolaX',
-    model: 'Set Hybrid 10 kWp + 10 kWh',
-    powerKw: 10,
-    capacityKwh: 10,
-    phase: '3-phase',
-    priceExVat: 7990.0,
-    inStock: true,
-    stockQty: 6,
-    badge: 'Dotácia SIEA do 1 150 €',
-    badgeColor: 'emerald',
-    warranty: '30 rokov panely, 10 rokov menič & batéria',
-    specs: [
-      { label: 'Panely v zostave', value: '22× Canadian Solar 450 Wp N-Type' },
-      { label: 'Striedač', value: 'SolaX X3-Hybrid G4 10.0-D 3-fázový' },
-      { label: 'Batériové úložisko', value: '10 kWh LiFePO4 HV s BMS modulom' },
-      { label: 'UPS funkcia', value: 'Automatický záskok EPS do 10 ms' },
-    ],
-    description:
-      'Nekompromisný hybridný systém pre maximálnu energetickú sebestačnosť rodinného domu alebo firmy s plnohodnotným núdzovým napájaním.',
-  },
-];
-
-// =============================================================================
-// CATEGORIES METADATA
-// =============================================================================
-
-export interface CategoryInfo {
-  id: ProductCategory;
-  title: string;
-  subtitle: string;
-  icon: string;
   highlight: string;
 }
 
-export const CATEGORIES_LIST: CategoryInfo[] = [
+export interface TechnologyCategory {
+  id: string;
+  name: string;
+  shortDesc: string;
+  badge: string;
+  icon: 'bolt' | 'battery' | 'sun' | 'wrench' | 'car';
+  brands: BrandInfo[];
+  note: string;
+}
+
+export const TECHNOLOGY_CATEGORIES: TechnologyCategory[] = [
   {
-    id: 'panels',
-    title: 'Solárne panely',
-    subtitle: 'TOPCon, Bifacial N-Type s vysokou účinnosťou až 22.5%',
-    icon: 'sun',
-    highlight: 'Od 109 € bez DPH',
-  },
-  {
-    id: 'inverters',
-    title: 'Striedače & Invertory',
-    subtitle: 'Huawei, SolaX, Fronius – 1-fázové aj 3-fázové hybridné meniče',
+    id: 'menice',
+    name: 'Meniče & Striedače napätia',
+    shortDesc: 'Hybridné aj sieťové invertory pre rodinné domy, firmy a priemyselné inštalácie.',
+    badge: 'Vysoká účinnosť 98 %+',
     icon: 'bolt',
-    highlight: 'Skladom 10 kW modely',
+    note: 'Plná 3-fázová asymetria, núdzový záložný režim (UPS < 10 ms) a schválenie pre SSD, ZSD a VSD.',
+    brands: [
+      {
+        name: 'GoodWe',
+        logo: '/logos/partners/goodwe.svg',
+        badge: 'Hybridný etalón',
+        description: 'Trojfázové hybridné meniče radu ET s pasívnym chladením a mimoriadnou spoľahlivosťou.',
+        highlight: '98,4 % účinnosť • 10 rokov záruka • Tichá prevádzka',
+      },
+      {
+        name: 'Solinteg',
+        logo: '/logos/partners/solinteg.svg',
+        badge: 'Inteligentná asymetria',
+        description: 'Moderné invertory s bleskovou asymetriou a vysokým preťažením na záložnej vetve.',
+        highlight: 'Preťaženie až 110 % • Rýchly backup < 10 ms • Moderná aplikácia',
+      },
+      {
+        name: 'Sungrow',
+        logo: '/logos/partners/sungrow.svg',
+        badge: 'Globálny líder',
+        description: 'Komerčné aj rezidenčné invertory s integrovanou ochranou AFCI proti elektrickému oblúku.',
+        highlight: 'Vysoké napätie MPPT • Vstavané prepäťové ochrany • 10 rokov záruka',
+      },
+    ],
   },
   {
-    id: 'storage',
-    title: 'Batériové úložiská',
-    subtitle: 'Vysokonapäťové LiFePO4 úložiská Dyness a Huawei LUNA2000',
+    id: 'baterie',
+    name: 'Batériové úložiská (BESS & LFP)',
+    shortDesc: 'Bezpečné modulárne lítiovo-železo-fosfátové úložiská energie.',
+    badge: 'LiFePO4 bezpečnosť',
     icon: 'battery',
-    highlight: '6 000+ cyklov, 100% DoD',
+    note: 'Vysoko dopytované zariadenia s dynamickou dostupnosťou. Preverujeme aktuálne skladové alokácie.',
+    brands: [
+      {
+        name: 'Pylontech',
+        logo: '/logos/partners/pylontech.svg',
+        badge: 'Svetový priekopník',
+        description: 'Vysokonapäťové modulárne veže Force H1/H2 a nízkonapäťové rackové moduly US5000.',
+        highlight: '6 000+ cyklov (95 % DoD) • Modulárne škálovanie • 10 rokov garancia',
+      },
+      {
+        name: 'GoodWe Lynx',
+        logo: '/logos/partners/goodwe.svg',
+        badge: 'Plug & Play systém',
+        description: 'Vysokonapäťové batérie LX F s natívnou optimalizáciou pre striedače GoodWe.',
+        highlight: 'Automatické rozpoznanie modulov • IP55 exteriérové krytie • 10 rokov záruka',
+      },
+      {
+        name: 'Solinteg Battery',
+        logo: '/logos/partners/solinteg.svg',
+        badge: 'Kompaktný design',
+        description: 'LFP batériové zostavy pre domáce hybridné fotovoltické elektrárne.',
+        highlight: 'Vysoká požiarna bezpečnosť • BMS s balancovaním článkov',
+      },
+    ],
   },
   {
-    id: 'wallbox',
-    title: 'EV Charger Wallboxy',
-    subtitle: 'Inteligentné 11 kW / 22 kW nabíjačky s dynamickým riadením záťaže',
-    icon: 'car',
-    highlight: 'Čisté nabíjanie z prebytkov',
+    id: 'panely',
+    name: 'Fotovoltické panely (Tier 1)',
+    shortDesc: 'Monokryštalické, celočierne, bifaciálne a TOPCon / ABC panely s vysokým výnosom.',
+    badge: 'Lineárna garancia 25–30 rokov',
+    icon: 'sun',
+    note: 'Dodávame kusový odber aj ucelené palety (36 ks) za výhodné veľkoobchodné ceny.',
+    brands: [
+      {
+        name: 'AIKO Solar',
+        logo: '/logos/partners/aiko.svg',
+        badge: 'ABC technológia > 24 %',
+        description: 'Revolučné All-Back-Contact články bez rušivých predných zberníc s rekordnou účinnosťou.',
+        highlight: 'Účinnosť cez 24 % • Nízka teplotná strata • 30 rokov záruka',
+      },
+      {
+        name: 'Jinko Solar',
+        logo: '/logos/partners/jinko.png',
+        badge: 'Tiger Neo N-Type',
+        description: 'Najpredávanejšia značka FV panelov na svete s výborným výnosom pri difúznom svetle.',
+        highlight: 'TOPCon technológia • Minimálna degradácia • 30 rokov výkonu',
+      },
+      {
+        name: 'JA Solar',
+        logo: '/logos/partners/ja-solar.svg',
+        badge: 'DeepBlue 4.0 Pro',
+        description: 'Dlhodobo overené Tier 1 panely s výborným pomerom ceny a generovaného výkonu.',
+        highlight: 'Vysoká mechanická odolnosť • 25 rokov záruka na výkon',
+      },
+      {
+        name: 'LONGi Solar',
+        logo: '/logos/partners/longi.png',
+        badge: 'Hi-MO fotovoltika',
+        description: 'Svetový gigant vo výrobe monokryštalického kremíka a prémiových fotovoltických článkov.',
+        highlight: 'Vysoká absorpcia žiarenia • Odolnosť voči mikroprasklinám',
+      },
+      {
+        name: 'Trina Solar',
+        logo: '/logos/partners/trina-solar.svg',
+        badge: 'Vertex 210mm',
+        description: 'Robustné panely s extrémnou pevnosťou rámu pre strechy rodinných domov aj haly.',
+        highlight: 'Odolnosť voči snehu 6 000 Pa • N-Type TOPCon články',
+      },
+    ],
   },
   {
-    id: 'mounting',
-    title: 'Hliníkové konštrukcie & Kabeláž',
-    subtitle: 'AL profily, nerezové háky, UV solárne káble a MC4 Stäubli',
+    id: 'konstrukcie',
+    name: 'Konštrukčné nosné systémy & Elektro',
+    shortDesc: 'Certifikované hliníkové a nerezové konštrukcie pre všetky typy strešných krytín a elektro istenie.',
+    badge: 'Eurokód certifikácia',
     icon: 'wrench',
-    highlight: 'Originál Stäubli & AL6005-T5',
-  },
-  {
-    id: 'sets',
-    title: 'Hotové FV sety',
-    subtitle: 'Kompletné On-grid a hybridné zostavy s batériou pripravené na kľúč',
-    icon: 'box',
-    highlight: 'Dotácia SIEA do 1 150 €',
+    note: 'Kompletné sety na mieru: škridla, trapéz, sendvičový panel, falcovaný plech aj rovné ploché strechy.',
+    brands: [
+      {
+        name: 'Alumero',
+        logo: '/logos/partners/alumero.svg',
+        badge: 'Rakúska kvalita',
+        description: 'Staticky posúdené hliníkové profily a nerezové komponenty pre bezpečné kotvenie.',
+        highlight: 'Odolnosť voči náporovému vetru a snehu • 15 rokov záruka',
+      },
+      {
+        name: 'Krajiczech',
+        logo: '/logos/partners/krajiczech.png',
+        badge: 'Strešné systémy',
+        description: 'Masívne strešné háky z nerezovej ocele A2, kombiskrutky a eloxované príchytky panelov.',
+        highlight: '100% nerezová oceľ A2 • Univerzálna kompatibilita krytín',
+      },
+      {
+        name: 'Schrack Technik',
+        logo: '/logos/partners/schrack.svg',
+        badge: 'Istenie & Bezpečnosť',
+        description: 'Profesionálne DC a AC rozvádzače, poistkové odpájače, prepäťové ochrany SPD a ističe.',
+        highlight: 'Certifikované nehorľavé komponenty podľa STN EN noriem',
+      },
+    ],
   },
 ];
 
-// =============================================================================
-// HELPER FORMATTING FUNCTIONS
-// =============================================================================
-
-export function calculatePriceWithVat(priceExVat: number): number {
-  return Math.round(priceExVat * 1.2 * 100) / 100;
-}
-
-export function formatEuro(amount: number): string {
-  return amount.toLocaleString('sk-SK', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }) + ' €';
-}
-
-// =============================================================================
-// MAIN ESHOP COMPONENT
-// =============================================================================
-
 export default function EshopPage() {
-  // Filter state
-  const [filters, setFilters] = useState<FilterState>({
-    category: 'all',
-    brand: 'all',
-    phase: 'all',
-    powerRange: 'all',
-    searchQuery: '',
-  });
-
-  // Selected product for turnkey installation modal / lead form scroll
-  const [selectedTurnkeyProduct, setSelectedTurnkeyProduct] = useState<ProductMock | null>(null);
-
-  // Component purchase modal state (Option A: "Kúpiť samostatný materiál")
-  const [materialModalProduct, setMaterialModalProduct] = useState<ProductMock | null>(null);
-  const [modalQuantity, setModalQuantity] = useState<number>(1);
-  const [modalCustomerType, setModalCustomerType] = useState<'b2c' | 'b2b'>('b2c');
-  const [modalDelivery, setModalDelivery] = useState<'pallet' | 'pickup'>('pallet');
-  const [modalFormData, setModalFormData] = useState({
+  // Quick Inquiry Form State
+  const [selectedCategory, setSelectedCategory] = useState<string>('menice');
+  const [selectedBrand, setSelectedBrand] = useState<string>('GoodWe');
+  const [serviceMode, setServiceMode] = useState<'material' | 'turnkey'>('turnkey');
+  const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     city: '',
-    companyName: '',
-    ico: '',
-    dic: '',
-    note: '',
+    details: '',
     gdprConsent: false,
   });
-  const [modalSubmitting, setModalSubmitting] = useState(false);
-  const [modalError, setModalError] = useState<string | null>(null);
-  const [modalSuccessLeadId, setModalSuccessLeadId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [formSuccess, setFormSuccess] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  // FAQ accordion state
-  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
-
-  // Handle escape key to dismiss modals
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && materialModalProduct) {
-        closeMaterialModal();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [materialModalProduct]);
-
-  // Modal handlers
-  const openMaterialModal = (product: ProductMock) => {
-    setMaterialModalProduct(product);
-    setModalQuantity(1);
-    setModalError(null);
-    setModalSuccessLeadId(null);
-  };
-
-  const closeMaterialModal = () => {
-    setMaterialModalProduct(null);
-    setModalError(null);
-    setModalSuccessLeadId(null);
-  };
-
-  // Turnkey purchase handler (Option B: "Kúpiť s kompletnou montážou na kľúč + dotácia")
-  const handleTurnkeyClick = (product: ProductMock) => {
-    setSelectedTurnkeyProduct(product);
-    // Smoothly scroll down to the LeadForm consultation section
-    const target = document.getElementById('dopyt-montaz');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Filter products reactively
-  const filteredProducts = useMemo(() => {
-    return ESHOP_PRODUCTS.filter((product) => {
-      // 1. Category
-      if (filters.category !== 'all' && product.category !== filters.category) {
-        return false;
-      }
-      // 2. Brand
-      if (filters.brand !== 'all' && product.brand.toLowerCase() !== filters.brand.toLowerCase()) {
-        return false;
-      }
-      // 3. Phase
-      if (filters.phase !== 'all') {
-        if (!product.phase || product.phase !== filters.phase) {
-          return false;
-        }
-      }
-      // 4. Power / Capacity Range
-      if (filters.powerRange !== 'all') {
-        if (product.powerKw === undefined && product.capacityKwh === undefined) {
-          return false;
-        }
-        const powerOrCap = product.powerKw ?? product.capacityKwh ?? 0;
-        if (filters.powerRange === 'under-5' && powerOrCap >= 5) {
-          return false;
-        }
-        if (filters.powerRange === '5-10' && (powerOrCap < 5 || powerOrCap > 10)) {
-          return false;
-        }
-        if (filters.powerRange === 'over-10' && powerOrCap <= 10) {
-          return false;
-        }
-        if (filters.powerRange === 'over-50' && powerOrCap <= 50) {
-          // Handled gracefully without error (returns 0 products if none exist >50 kW)
-          return false;
-        }
-      }
-      // 5. Search Query
-      if (filters.searchQuery.trim() !== '') {
-        const query = filters.searchQuery.toLowerCase().trim();
-        const matchesName = product.name.toLowerCase().includes(query);
-        const matchesBrand = product.brand.toLowerCase().includes(query);
-        const matchesModel = product.model.toLowerCase().includes(query);
-        const matchesDesc = product.description.toLowerCase().includes(query);
-        if (!matchesName && !matchesBrand && !matchesModel && !matchesDesc) {
-          return false;
-        }
-      }
-      return true;
-    });
-  }, [filters]);
-
-  const resetFilters = () => {
-    setFilters({
-      category: 'all',
-      brand: 'all',
-      phase: 'all',
-      powerRange: 'all',
-      searchQuery: '',
-    });
-  };
-
-  // Submit component purchase modal lead
-  const handleMaterialModalSubmit = async (e: React.FormEvent) => {
+  const handleSubmitInquiry = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!materialModalProduct) return;
-    setModalError(null);
+    setFormError(null);
 
-    const name = modalFormData.name.trim();
-    const phone = modalFormData.phone.trim();
+    const name = formData.name.trim();
+    const phone = formData.phone.trim();
+
     if (name.length < 2) {
-      setModalError('Prosím, zadajte vaše platné meno alebo názov firmy.');
+      setFormError('Prosím, zadajte vaše platné meno alebo názov spoločnosti.');
       return;
     }
     if (phone.length < 9) {
-      setModalError('Prosím, zadajte platné telefónne číslo (aspoň 9 číslic).');
+      setFormError('Prosím, zadajte platné telefónne číslo pre rýchle overenie dostupnosti.');
       return;
     }
-    if (!modalFormData.gdprConsent) {
-      setModalError('Pre odoslanie dopytu musíte potvrdiť súhlas so spracovaním údajov.');
+    if (!formData.gdprConsent) {
+      setFormError('Pre overenie skladovej dostupnosti potvrďte súhlas so spracovaním údajov.');
       return;
-    }
-    if (modalCustomerType === 'b2b') {
-      if (modalFormData.companyName.trim().length < 2 || modalFormData.ico.trim().length < 6) {
-        setModalError('Vyplňte prosím platný názov spoločnosti a IČO.');
-        return;
-      }
     }
 
-    setModalSubmitting(true);
+    setIsSubmitting(true);
     try {
-      const priceWithVat = calculatePriceWithVat(materialModalProduct.priceExVat);
-      const totalExVat = materialModalProduct.priceExVat * modalQuantity;
-      const totalWithVat = priceWithVat * modalQuantity;
-      const deliveryText =
-        modalDelivery === 'pallet'
-          ? 'Paletová doprava hydraulickým čelom (SR 24-48h)'
-          : 'Osobný odber v sklade Vrútky (zdarma)';
+      const modeText =
+        serviceMode === 'turnkey'
+          ? 'Kompletná dodávka s montážou na kľúč + štátna dotácia SIEA'
+          : 'Samostatný nákup materiálu (bez montáže)';
 
-      const message = [
-        `DOPYT NA SAMOSTATNÝ MATERIÁL (E-SHOP):`,
-        `Produkt: ${materialModalProduct.name} (${materialModalProduct.model})`,
-        `Počet kusov: ${modalQuantity} ks`,
-        `Cena za kus: ${formatEuro(materialModalProduct.priceExVat)} bez DPH (${formatEuro(priceWithVat)} s DPH)`,
-        `Celková kalkulácia: ${formatEuro(totalExVat)} bez DPH / ${formatEuro(totalWithVat)} s DPH (20%)`,
-        `Spôsob doručenia: ${deliveryText}`,
-        `Typ zákazníka: ${modalCustomerType === 'b2b' ? 'B2B Firemný nákup / Montážnik' : 'B2C Maloobchodný klient'}`,
-        modalCustomerType === 'b2b'
-          ? `Firemné údaje: ${modalFormData.companyName || 'N/A'}, IČO: ${modalFormData.ico || 'N/A'}, DIČ: ${modalFormData.dic || 'N/A'}`
-          : '',
-        modalFormData.note ? `Poznámka zákazníka: ${modalFormData.note}` : '',
+      const messageContent = [
+        `DOPYT NA TECHNOLÓGIE & ZARIADENIA (E-SHOP NA VYŽIADANIE):`,
+        `Požadovaná kategória: ${selectedCategory}`,
+        `Preferovaná značka / zariadenie: ${selectedBrand}`,
+        `Typ odberu: ${modeText}`,
+        formData.city ? `Mesto / Lokalita: ${formData.city.trim()}` : '',
+        formData.details ? `Špecifikácia / Poznámka zákazníka: ${formData.details.trim()}` : '',
       ]
         .filter(Boolean)
         .join('\n');
@@ -627,11 +238,11 @@ export default function EshopPage() {
         body: JSON.stringify({
           name,
           phone,
-          email: modalFormData.email.trim() || undefined,
-          city: modalFormData.city.trim() || undefined,
+          email: formData.email.trim() || undefined,
+          city: formData.city.trim() || undefined,
           service: 'vseobecny-kontakt',
-          source: 'eshop_material_modal',
-          message,
+          source: 'eshop_on_demand_inquiry',
+          message: messageContent,
         }),
       });
 
@@ -640,21 +251,28 @@ export default function EshopPage() {
         throw new Error(resData.error || 'Nastala chyba pri odosielaní dopytu.');
       }
 
-      setModalSuccessLeadId(resData.leadId || 'ESHOP-' + Date.now().toString().slice(-6));
+      setFormSuccess(resData.leadId || 'ESHOP-' + Date.now().toString().slice(-6));
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        city: '',
+        details: '',
+        gdprConsent: false,
+      });
     } catch (err) {
-      setModalError(
-        err instanceof Error ? err.message : 'Nepodarilo sa odoslať dopyt. Skúste znova.'
-      );
+      setFormError(err instanceof Error ? err.message : 'Nepodarilo sa odoslať dopyt. Skúste znova.');
     } finally {
-      setModalSubmitting(false);
+      setIsSubmitting(false);
     }
   };
 
-  // ===========================================================================
-  // SCHEMA.ORG STRUCTURED DATA
-  // ===========================================================================
+  const breadcrumbs = [
+    { name: 'Domov', href: '/' },
+    { name: 'E-shop & Zariadenia na vyžiadanie', href: '/eshop' },
+  ];
 
-  const storeAndCatalogSchema = [
+  const storeSchema = [
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -668,7 +286,7 @@ export default function EshopPage() {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'E-shop solárnych komponentov',
+          name: 'E-shop solárnych technológií na vyžiadanie',
           item: 'https://marvol.sk/eshop',
         },
       ],
@@ -677,10 +295,10 @@ export default function EshopPage() {
       '@context': 'https://schema.org',
       '@type': ['Store', 'LocalBusiness'],
       '@id': 'https://marvol.sk/eshop#store',
-      name: 'Marvol E-Shop — Solárne komponenty & FV sety',
+      name: 'Marvol s.r.o. — Distribúcia solárnych technológií & Zariadenia na vyžiadanie',
       url: 'https://marvol.sk/eshop',
       description:
-        'Veľkoobchodný a maloobchodný predaj fotovoltických panelov TOPCon, striedačov napätia Huawei a SolaX, LiFePO4 batérií a montážnych konštrukcií s možnosťou realizácie na kľúč.',
+        'Distribúcia a dodávka fotovoltických panelov AIKO, Jinko, striedačov GoodWe, Solinteg, batérií Pylontech a montážnych konštrukcií. Aktuálne nacenenie na vyžiadanie.',
       telephone: COMPANY_DETAILS.contact.phoneClean,
       email: COMPANY_DETAILS.contact.email,
       address: {
@@ -690,56 +308,6 @@ export default function EshopPage() {
         postalCode: COMPANY_DETAILS.seat.zip,
         addressCountry: COMPANY_DETAILS.seat.countryCode,
       },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Katalóg fotovoltických komponentov Marvol',
-        itemListElement: [
-          {
-            '@type': 'OfferCatalog',
-            name: 'Solárne panely',
-            itemListElement: [
-              {
-                '@type': 'Offer',
-                itemOffered: {
-                  '@type': 'Product',
-                  name: 'Canadian Solar HiKu7 TOPCon 450 Wp',
-                  brand: 'Canadian Solar',
-                  category: 'Solar Panels',
-                },
-                price: '130.80',
-                priceCurrency: 'EUR',
-                availability: 'https://schema.org/InStock',
-                seller: {
-                  '@type': 'Organization',
-                  name: 'Marvol s.r.o.',
-                },
-              },
-            ],
-          },
-          {
-            '@type': 'OfferCatalog',
-            name: 'Hybridné striedače',
-            itemListElement: [
-              {
-                '@type': 'Offer',
-                itemOffered: {
-                  '@type': 'Product',
-                  name: 'Huawei SUN2000-10KTL-M1',
-                  brand: 'Huawei',
-                  category: 'Inverters',
-                },
-                price: '2148.00',
-                priceCurrency: 'EUR',
-                availability: 'https://schema.org/InStock',
-                seller: {
-                  '@type': 'Organization',
-                  name: 'Marvol s.r.o.',
-                },
-              },
-            ],
-          },
-        ],
-      },
     },
     {
       '@context': 'https://schema.org',
@@ -747,61 +315,64 @@ export default function EshopPage() {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Môžem si komponenty kúpiť samostatne bez montáže?',
+          name: 'Prečo sú ceny a ponuka solárnych zariadení na vyžiadanie?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Áno, náš e-shop slúži pre maloobchodných zákazníkov aj veľkoobchodných montážnych partnerov. Komponenty dodávame s originálnou zárukou a kompletnou technickou dokumentáciou.',
+            text: 'Trh s fotovoltickými komponentmi a batériovými úložiskami je vysoko nestály – skladové zásoby u distribútorov sa menia zo dňa na deň a ceny kolíšu. Namiesto fiktívneho statického e-shopu preverujeme aktuálne sklady v reálnom čase a garantujeme najlepšiu trhovú cenu.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
+          name: 'Viete zohnať aj špecifické komponenty, ktoré nemáte uvedené v základnom zozname?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Pri každom produkte môžete zvoliť Kúpiť s kompletnou montážou na kľúč. Náš tím pripraví projektovú dokumentáciu, namontuje systém, vykoná revíziu OPOS a zabezpečí online rezerváciu štátnej dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €, Solidarita až do 90 %).',
+            text: 'Áno. Vďaka priamym partnerstvám s najväčšími európskymi veľkoobchodmi (BayWa r.e., Krannich Solar, Memodo, Hagard:Hal) vieme zohnať v podstate akýkoľvek komponent, invertor či batériový modul na trhu.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Môžem si materiál objednať samostatne bez montáže?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Áno, dodávame samostatný materiál za veľkoobchodné ceny pre montážne firmy, živnostníkov aj skúsených domácich majstrov so zabezpečením poistenej paletovej prepravy po celom Slovensku.',
           },
         },
       ],
     },
   ];
 
-  const breadcrumbs = [
-    { name: 'Domov', href: '/' },
-    { name: 'E-shop solárnych komponentov', href: '/eshop' },
-  ];
-
   const faqs = [
     {
-      q: 'Môžem si komponenty kúpiť samostatne bez montáže?',
-      a: 'Áno. Náš e-shop funguje ako veľkoobchod aj maloobchod. Pokiaľ ste certifikovaný elektroinštalatér, montážna firma alebo skúsený majiteľ domu, môžete si objednať jednotlivé panely, striedače, batérie či montážne konštrukcie samostatne. Zabezpečíme poistenú paletovú prepravu s hydraulickým čelom alebo bezplatný osobný odber v sklade Vrútky.',
+      q: 'Prečo sú ceny a ponuka solárnych zariadení na vyžiadanie?',
+      a: 'Trh s fotovoltickými komponentmi, striedačmi a lítiovými batériami je vysoko dynamický. Ceny surovín a skladová dostupnosť v európskych skladoch sa menia na týždennej báze a mnohé modely bývajú prechodne vypredané. Namiesto zavádzajúcich statických cenoviek vám preveríme reálnu skladovú dostupnosť a poskytneme aktuálnu najvýhodnejšiu ponuku v reálnom čase.',
     },
     {
-      q: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
-      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €, TČ až 4 600 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí.',
+      q: 'Viete zohnať aj značku či model, ktorý tu nemáte priamo vypísaný?',
+      a: 'Áno, v podstate hocičo. Spolupracujeme priamo s poprednými európskymi veľkoskladmi (BayWa r.e., Krannich Solar, Memodo, Hagard:Hal a ďalšími). Ak hľadáte konkrétny model Fronius, SolaX, Huawei, Victron, špeciálne panely alebo atypické úchyty, preveríme zásoby naprieč celou EÚ a zabezpečíme dodanie.',
     },
     {
-      q: 'Aká je záruka na dodávané fotovoltické komponenty?',
-      a: 'Všetky produkty pochádzajú výhradne z oficiálnej európskej distribúcie s plnou garanciou originality. Fotovoltické panely Tier 1 disponujú 25 až 30-ročnou lineárnou garanciou výkonu. Hybridné striedače Huawei, SolaX a Fronius majú 10-ročnú záruku výrobcu a LiFePO4 batériové úložiská garantujú minimálne 6 000 plných nabíjacích cyklov s 10-ročnou zárukou.',
+      q: 'Môžem si kúpiť materiál samostatne bez vašej montáže?',
+      a: 'Určite áno. Dodávame komponenty pre inštalačné firmy, certifikovaných elektrikárov aj majiteľov domov, ktorí realizujú časť montáže svojpomocne. K materiálu dodávame kompletnú technickú dokumentáciu, schémy zapojenia a záručné certifikáty.',
     },
     {
-      q: 'Ako prebieha doručenie krehkých fotovoltických panelov a ťažkých batérií?',
-      a: 'Nadrozmerné komponenty expedujeme špecializovanou paletovou dopravou s hydraulickým čelom a ručným paletovým vozíkom priamo na vašu adresu kdekoľvek na Slovensku. Každá zásielka je 100% poistená proti poškodeniu skla. Štandardná doba dodania pri tovare skladom je 24 až 48 hodín od potvrdenia objednávky.',
+      q: 'Aký je rozdiel medzi nákupom materiálu a realizáciou na kľúč?',
+      a: 'Pri montáži na kľúč získavate zníženú sadzbu DPH na celé dielo, projektovú dokumentáciu, revíznu správu OPOS a bezplatné vybavenie štátnej dotácie Zelená domácnostiam (až do 1 150 € na FV a 4 600 € na tepelné čerpadlá). Samostatný materiál je fakturovaný so štandardnou DPH a montáž si zabezpečujete sami.',
     },
     {
-      q: 'Poskytujete veľkoobchodné ceny pre inštalačné a montážne firmy?',
-      a: 'Áno. Pripravujeme dedikovaný B2B Inštalatérsky portál s overením IČO. Montážnym partnerom ponúkame veľkoobchodné zľavy, projektové naceňovanie na celé palety a technické konzultácie so schémami zapojenia.',
+      q: 'Ako prebieha doprava ťažkých batérií a krehkých solárnych panelov?',
+      a: 'Zásielky expedujeme poistenou paletovou dopravou s hydraulickým čelom a paletovým vozíkom až pred váš dom či firemný areál kdekoľvek na Slovensku. K dispozícii je aj osobný odber v sklade.',
     },
   ];
 
   return (
     <Layout
-      title="E-Shop Solárnych Komponentov & FV Sety | Marvol"
-      description="Veľkoobchod a maloobchod: fotovoltické panely TOPCon, striedače Huawei a SolaX, batérie LiFePO4 a montážne sety. Sklad Vrútky aj montáž na kľúč s dotáciou."
+      title="Solárne Technológie & Komponenty na Vyžiadanie | Marvol s.r.o."
+      description="Dodávka certifikovaných fotovoltických panelov, hybridných meničov a batériových úložísk. Ponuka na vyžiadanie s garanciou najlepšej trhovej ceny."
       canonicalPath="/eshop"
-      schema={storeAndCatalogSchema}
+      schema={storeSchema}
       isSubpage={true}
     >
-      {/* Breadcrumb Navigation */}
+      {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full">
         <ol className="flex items-center space-x-2 text-xs text-slate-400">
           {breadcrumbs.map((item, index) => (
@@ -822,75 +393,82 @@ export default function EshopPage() {
       </nav>
 
       {/* =====================================================================
-          1. HERO BANNER: Veľkoobchod & Maloobchod
+          1. HERO BANNER: Ponuka na vyžiadanie & Reálny trh
       ====================================================================== */}
-      <section className="relative py-12 md:py-16 bg-slate-950">
-        
+      <section className="relative py-14 sm:py-18 lg:py-20 bg-slate-950 text-white overflow-hidden border-b border-slate-800/80">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-sky-500/5 blur-[140px] rounded-full pointer-events-none" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 mb-4">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Skladom na Slovensku (Vrútky) • Rýchla expedícia 24–48h
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Veľkoobchodná &amp; maloobchodná distribúcia • Ponuka na vyžiadanie
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-              Veľkoobchod & Maloobchod: Solárne komponenty a energetické technológie
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              Solárne technológie a komponenty overených svetových značiek
             </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Dodávame prémiové fotovoltické panely TOPCon, inteligentné trojfázové hybridné striedače,
-              bezpečné batériové úložiská LiFePO4 a montážne konštrukcie. Kúpte si samostatný materiál
-              alebo využite kompletnú montáž na kľúč so štátnou dotáciou SIEA (FV do 1 150 €, Solidarita až 90 %).
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
+              Trh s fotovoltickými striedačmi, batériami a panelmi je vysoko dynamický — dostupnosť komponentov u distribútorov sa mení zo dňa na deň a produkty bývajú často vypredané. Namiesto statického e-shopu s neaktuálnymi stavmi zabezpečujeme <strong className="text-white font-semibold">overenie skladov v reálnom čase</strong> s garantovanou najlepšou cenou.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="inline-flex flex-wrap items-center gap-3 p-3.5 rounded-2xl bg-amber-400/10 border border-amber-400/30 text-xs sm:text-sm text-amber-300 font-semibold mb-8">
+              <span className="text-base">⚡</span>
+              <span>Spolupracujeme s poprednými výrobcami a vďaka našej sieti veľkoskladov <strong>vieme zohnať v podstate akékoľvek zariadenie na trhu</strong>.</span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <a
-                href="#katalog"
-                className="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm tracking-wide  transition-all text-center"
+                href="#dopyt-form"
+                className="px-7 py-4 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-center flex items-center justify-center gap-2 min-h-[48px] tap-target-48 shadow-lg"
               >
-                Prezrieť katalóg produktov
+                <span>Nezáväzne overiť dostupnosť a cenu</span>
+                <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
               </a>
+
               <a
-                href="#roadmap"
-                className="px-6 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm transition-all text-center"
+                href="#znacky"
+                className="px-7 py-4 rounded-xl font-semibold text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 transition-colors text-center flex items-center justify-center gap-2 min-h-[48px] tap-target-48"
               >
-                B2B portál & Roadmapa rozvoja
+                <span>Prehľad značiek, ktoré montujeme</span>
               </a>
             </div>
           </div>
 
-          {/* 4 Value Proposition Badges */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
+          {/* 4 Value Pillars */}
+          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
               <BuildingOfficeIcon className="w-6 h-6 text-amber-400 mb-2" />
-              <h3 className="text-white font-bold text-sm">Skladom na Slovensku (Vrútky)</h3>
-              <p className="text-slate-400 text-xs mt-1 leading-normal">
-                Expedícia paletovou dopravou s hydraulickým čelom do 24–48h alebo osobný odber v sklade.
+              <h3 className="text-white font-bold text-sm">Európska sieť veľkoskladov</h3>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                Priame dodávateľské kanály cez BayWa r.e., Krannich, Memodo a Hagard:Hal pre bleskové naskladnenie.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <ShieldIcon className="w-6 h-6 text-amber-400 mb-2" />
-              <h3 className="text-white font-bold text-sm">Garancia originality & Tier 1</h3>
-              <p className="text-slate-400 text-xs mt-1 leading-normal">
-                100% originálne komponenty Huawei, SolaX, Fronius, Canadian Solar a Dyness s plnou zárukou.
+            <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+              <ShieldIcon className="w-6 h-6 text-emerald-400 mb-2" />
+              <h3 className="text-white font-bold text-sm">100% Pôvod &amp; Plné záruky</h3>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                Iba originálny certifikovaný tovar z oficiálnej distribúcie so zárukou výrobcu až 25–30 rokov.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <BoltIcon className="w-6 h-6 text-amber-400 mb-2" />
-              <h3 className="text-white font-bold text-sm">Odborná technická podpora</h3>
-              <p className="text-slate-400 text-xs mt-1 leading-normal">
-                Poradenstvo od certifikovaných elektroinžinierov pre dimenzovanie výkonu a batérií.
+            <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+              <BoltIcon className="w-6 h-6 text-sky-400 mb-2" />
+              <h3 className="text-white font-bold text-sm">Vieme zohnať v podstate hocičo</h3>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                Ak hľadáte špecifický striedač, batériu či atypické úchyty, preveríme kapacity po celej EÚ.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-              <CurrencyEuroIcon className="w-6 h-6 text-emerald-400 mb-2" />
-              <h3 className="text-white font-bold text-sm">Montáž na kľúč s dotáciou</h3>
-              <p className="text-slate-400 text-xs mt-1 leading-normal">
-                Možnosť realizácie na kľúč certifikovanými montážnikmi s vybavením dotácie SIEA (FV do 1 150 €, TČ do 4 600 €).
+            <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+              <CurrencyEuroIcon className="w-6 h-6 text-amber-400 mb-2" />
+              <h3 className="text-white font-bold text-sm">Materiál aj montáž na kľúč</h3>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                Možnosť samostatného odberu komponentov alebo kompletnej montáže s vybavením dotácie SIEA.
               </p>
             </div>
           </div>
@@ -898,619 +476,261 @@ export default function EshopPage() {
       </section>
 
       {/* =====================================================================
-          2. 6 CATEGORY GRID
+          2. DUAL MODE: Samostatný nákup vs. Montáž na kľúč + Dotácia
       ====================================================================== */}
-      <section className="py-12 bg-slate-950 ">
+      <section className="py-14 sm:py-18 bg-slate-900/40 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-            <div>
-              <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-3 sm:mb-4">
-                Sortiment technológií
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                Prehľad hlavných kategórií komponentov
-              </h2>
-            </div>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-md">
-              Kliknutím na kategóriu okamžite vyfiltrujete produkty v katalógu nižšie.
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Spôsob spolupráce
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-4">
+              Dva flexibilné spôsoby odberu technológií
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Zvoľte si model, ktorý najlepšie vyhovuje vášmu zámeru – od dodávky samotného materiálu až po bezstarostnú realizáciu na kľúč.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {CATEGORIES_LIST.map((cat) => {
-              const isSelected = filters.category === cat.id;
-              const count = ESHOP_PRODUCTS.filter((p) => p.category === cat.id).length;
-
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => {
-                    setFilters((prev) => ({
-                      ...prev,
-                      category: prev.category === cat.id ? 'all' : cat.id,
-                    }));
-                    const catalogEl = document.getElementById('katalog');
-                    if (catalogEl) {
-                      catalogEl.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className={`text-left p-5 rounded-2xl border transition-all relative overflow-hidden group ${
-                    isSelected
-                      ? 'bg-amber-500/10 border-amber-500/60  ring-1 ring-amber-500'
-                      : 'bg-slate-900/60 border-slate-800 hover:border-amber-400/40 hover:bg-slate-900/90'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    {cat.icon === 'sun' ? <SunIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'bolt' ? <BoltIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'battery' ? <BatteryIcon className="w-7 h-7 text-amber-400" /> : cat.icon === 'car' ? <CarIcon className="w-7 h-7 text-sky-400" /> : cat.icon === 'wrench' ? <WrenchIcon className="w-7 h-7 text-slate-400" /> : <ShieldIcon className="w-7 h-7 text-emerald-400" />}
-                    <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-800 text-slate-300 group-hover:bg-amber-400/20 group-hover:text-amber-400 transition-colors">
-                      {count} {count === 1 ? 'produkt' : count >= 2 && count <= 4 ? 'produkty' : 'produktov'}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-4 text-base font-bold text-white group-hover:text-amber-400 transition-colors">
-                    {cat.title}
-                  </h3>
-
-                  <p className="mt-1 text-xs text-slate-400 leading-relaxed line-clamp-2">
-                    {cat.subtitle}
-                  </p>
-
-                  <div className="mt-4 pt-3  flex items-center justify-between text-xs">
-                    <span className="text-amber-400/90 font-medium">{cat.highlight}</span>
-                    <span className="text-slate-400 group-hover:text-white font-semibold flex items-center gap-1">
-                      Filtrovať <span aria-hidden="true">&rarr;</span>
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          3. INTERACTIVE PRODUCT CATALOG WITH FILTER CONTROLS
-      ====================================================================== */}
-      <section id="katalog" className="py-12 bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header & Filter Controls Bar */}
-          <div className="mb-8 space-y-4">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {/* Mode 1: Material only */}
+            <div className="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                  Katalóg fotovoltických komponentov
-                </h2>
-                <p className="text-slate-400 text-xs sm:text-sm mt-1">
-                  Zobrazených{' '}
-                  <span className="text-amber-400 font-bold">{filteredProducts.length}</span> z{' '}
-                  <span className="text-white font-medium">{ESHOP_PRODUCTS.length}</span> dostupných produktov
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-400/10 text-sky-400 text-xs font-mono font-bold uppercase mb-4">
+                  Pre montážnikov &amp; svojpomoc
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-white mb-3">
+                  1. Samostatný nákup komponentov
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  Ste certifikovaný elektroinštalatér, montážna firma alebo skúsený majiteľ domu? Zabezpečíme pre vás dodávku originálnych komponentov za veľkoobchodné ceny s poistenou dopravou.
                 </p>
+
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 mb-8">
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>Veľkoobchodné ceny a kusový i paletový odber</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>Poistená paletová preprava s hydraulickým čelom po celom SR</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>Technická dokumentácia a záručné certifikáty výrobcov</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-sky-400 shrink-0" />
+                    <span>Konzultácia kompatibility striedačov, batérií a panelov</span>
+                  </li>
+                </ul>
               </div>
 
-              {/* Search Bar */}
-              <div className="w-full lg:w-72">
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={filters.searchQuery}
-                    onChange={(e) =>
-                      setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))
-                    }
-                    placeholder="Hľadať produkt, značku..."
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors min-h-[44px]"
-                  />
-                  <span className="absolute left-3 top-3 text-slate-500 text-sm"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
-                  {filters.searchQuery && (
-                    <button
-                      type="button"
-                      onClick={() => setFilters((prev) => ({ ...prev, searchQuery: '' }))}
-                      className="absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs min-h-[44px] min-w-[32px] flex items-center justify-center cursor-pointer"
-                      aria-label="Vymazať vyhľadávanie"><svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Filter Pills / Selectors */}
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md space-y-3">
-              {/* Category selector row */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold text-slate-400 font-semibold mr-2">
-                  Kategória:
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setFilters((prev) => ({ ...prev, category: 'all' }))}
-                  className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
-                    filters.category === 'all'
-                      ? 'bg-amber-400 text-slate-950 font-bold '
-                      : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
-                  }`}
-                >
-                  Všetky ({ESHOP_PRODUCTS.length})
-                </button>
-                {CATEGORIES_LIST.map((c) => {
-                  const cCount = ESHOP_PRODUCTS.filter((p) => p.category === c.id).length;
-                  return (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => setFilters((prev) => ({ ...prev, category: c.id }))}
-                      className={`text-xs px-3.5 py-2.5 rounded-lg font-medium transition-all min-h-[40px] flex items-center cursor-pointer ${
-                        filters.category === c.id
-                          ? 'bg-amber-400 text-slate-950 font-bold '
-                          : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
-                      }`}
-                    >
-                      {c.title} ({cCount})
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Secondary Filters Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 ">
-                {/* Brand Filter */}
-                <div>
-                  <label htmlFor="filter-brand" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
-                    Značka výrobcu
-                  </label>
-                  <select
-                    id="filter-brand"
-                    value={filters.brand}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, brand: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
-                  >
-                    <option value="all">Všetky značky</option>
-                    <option value="Huawei">Huawei</option>
-                    <option value="SolaX">SolaX</option>
-                    <option value="Fronius">Fronius</option>
-                    <option value="Canadian Solar">Canadian Solar</option>
-                    <option value="Jinko">Jinko Solar</option>
-                    <option value="Dyness">Dyness</option>
-                  </select>
-                </div>
-
-                {/* Phase Filter */}
-                <div>
-                  <label htmlFor="filter-phase" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
-                    Fázovanie
-                  </label>
-                  <select
-                    id="filter-phase"
-                    value={filters.phase}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, phase: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
-                  >
-                    <option value="all">Všetky fázovania</option>
-                    <option value="1-phase">1-fázové (230 V)</option>
-                    <option value="3-phase">3-fázové (400 V)</option>
-                  </select>
-                </div>
-
-                {/* Power / Capacity Filter */}
-                <div>
-                  <label htmlFor="filter-power" className="block text-[11px] font-semibold text-slate-400 font-semibold mb-1">
-                    Výkon / Kapacita
-                  </label>
-                  <select
-                    id="filter-power"
-                    value={filters.powerRange}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, powerRange: e.target.value }))}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-amber-400 min-h-[44px] cursor-pointer"
-                  >
-                    <option value="all">Všetky výkony</option>
-                    <option value="under-5">Do 5 kW / kWh</option>
-                    <option value="5-10">5 – 10 kW / kWh</option>
-                    <option value="over-10">Nad 10 kW / kWh</option>
-                    <option value="over-50">Extrémny výkon (&gt; 50 kWp)</option>
-                  </select>
-                </div>
-
-                {/* Reset Filters Button */}
-                <div className="flex items-end">
-                  <button
-                    type="button"
-                    onClick={resetFilters}
-                    className="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center justify-center gap-1.5 min-h-[44px] cursor-pointer"
-                  >
-                    <svg className="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg> Resetovať filtre
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ===================================================================
-              PRODUCT CARDS GRID OR EMPTY STATE
-          ==================================================================== */}
-          {filteredProducts.length === 0 ? (
-            <div className="py-16 text-center rounded-2xl bg-slate-900/40 border border-slate-800 p-8 max-w-xl mx-auto">
-              <div className="w-12 h-12 mx-auto text-slate-500 mb-3"><svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>
-              <h3 className="text-lg font-bold text-white">Žiadne produkty nevyhovujú zvoleným filtrom</h3>
-              <p className="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                Skúste upraviť kritériá vyhľadávania, zvoliť inú značku, zrušiť obmedzenie fázovania
-                alebo resetovať aktívne filtre.
-              </p>
-              <button
-                type="button"
-                onClick={resetFilters}
-                className="mt-6 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition-colors "
+              <a
+                href="#dopyt-form"
+                onClick={() => setServiceMode('material')}
+                className="w-full py-3.5 rounded-xl font-bold text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-400/40 hover:border-sky-400 transition-colors block text-sm"
               >
-                Resetovať filtre
-              </button>
+                Dopytovať samostatný materiál
+              </a>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => {
-                const priceWithVat = calculatePriceWithVat(product.priceExVat);
 
-                return (
-                  <article
-                    key={product.id}
-                    className="flex flex-col justify-between rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition-all p-5  relative group overflow-hidden"
-                  >
-                    {/* Top Badges & Category */}
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="text-[11px] font-bold font-semibold text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-md">
-                          {product.brand}
-                        </span>
-                        {product.badge && (
-                          <span className="text-[11px] font-bold text-amber-400 bg-amber-400/10 border border-amber-400/25 px-2.5 py-1 rounded-md">
-                            {product.badge}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Title & Model */}
-                      <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors leading-snug">
-                        {product.name}
-                      </h3>
-                      <div className="text-xs text-slate-400 mt-0.5 font-semibold">
-                        Model: {product.model}
-                      </div>
-
-                      {/* Short Description */}
-                      <p className="text-xs text-slate-300 mt-2.5 leading-relaxed line-clamp-2">
-                        {product.description}
-                      </p>
-
-                      {/* Technical Specifications */}
-                      <div className="mt-4 pt-3  space-y-1.5 text-xs">
-                        {product.specs.map((spec, sIdx) => (
-                          <div key={sIdx} className="flex justify-between items-center text-slate-300">
-                            <span className="text-slate-400">{spec.label}:</span>
-                            <span className="font-medium text-right text-slate-200">{spec.value}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Stock & Warranty Status */}
-                      <div className="mt-4 pt-3  flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                          Skladom ({product.stockQty} ks)
-                        </div>
-                        <div className="text-slate-400 text-[11px]">
-                          <span className="inline-flex items-center gap-1"><ShieldIcon className="w-3.5 h-3.5 text-slate-400" /> {product.warranty}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Pricing & Dual Checkout Actions */}
-                    <div className="mt-5 pt-4 ">
-                      {/* Dual Price Display */}
-                      <div className="mb-4">
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-2xl font-black text-amber-400">
-                            {formatEuro(product.priceExVat)}
-                          </span>
-                          <span className="text-xs font-semibold text-slate-400 uppercase">
-                            bez DPH
-                          </span>
-                        </div>
-                        <div className="text-xs text-slate-300 font-medium mt-0.5">
-                          {formatEuro(priceWithVat)} <span className="text-slate-400">s DPH (20%)</span>
-                        </div>
-                      </div>
-
-                      {/* Dual Checkout Action Buttons (Stacked on 320px, responsive flex) */}
-                      <div className="flex flex-col gap-2.5">
-                        {/* Option B: Turnkey + Subsidy (CRO High-Value Primary CTA) */}
-                        <button
-                          type="button"
-                          onClick={() => handleTurnkeyClick(product)}
-                          className="w-full py-2.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs tracking-tight transition-all  text-center flex items-center justify-center gap-1.5"
-                        >
-                          <WrenchIcon className="w-4 h-4 text-slate-950 inline mr-1" /> Kúpiť s kompletnou montážou na kľúč + dotácia
-                        </button>
-
-                        {/* Option A: Buy Component Only (B2B / DIY Modal CTA) */}
-                        <button
-                          type="button"
-                          onClick={() => openMaterialModal(product)}
-                          className="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-xs border border-slate-700 hover:border-slate-500 transition-all text-center flex items-center justify-center gap-1.5"
-                        >
-                          <CartIcon className="w-4 h-4 text-slate-300 inline mr-1" /> Kúpiť samostatný materiál
-                        </button>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* =====================================================================
-          4. LEAD FORM CONSULTATION & TURNKEY CONVERSION SECTION (Option B)
-      ====================================================================== */}
-      <section id="dopyt-montaz" className="py-16 bg-slate-900/40 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Column: Turnkey Benefits & Selected Product Highlights */}
-            <div className="lg:col-span-6 space-y-6">
-              <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20">
-                Inštalácia na kľúč & Štátna dotácia
-              </span>
-
-              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                Získajte fotovoltiku na kľúč so štátnou dotáciou SIEA
-              </h2>
-
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Nezabezpečujeme len dodanie hardvéru – preberáme 100% zodpovednosť za projektovú
-                dokumentáciu, statické posúdenie, odbornú inštaláciu certifikovanými technikmi Marvol s.r.o.,
-                úradnú revíziu OPOS a kompletné vybavenie dotácie SIEA Zelená domácnostiam bez byrokracie.
-              </p>
-
-              {/* Dynamic Turnkey Pre-fill Highlight Banner */}
-              {selectedTurnkeyProduct ? (
-                <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-slate-200 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold font-semibold text-amber-400 flex items-center gap-1.5">
-                      <CheckIcon className="w-4 h-4 text-amber-400 inline mr-1" /> Vybraný produkt pre montáž na kľúč:
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedTurnkeyProduct(null)}
-                      className="text-xs text-slate-400 hover:text-white underline"
-                    >
-                      Zrušiť výber
-                    </button>
-                  </div>
-
-                  <div className="text-white font-bold text-base sm:text-lg">
-                    {selectedTurnkeyProduct.name}
-                  </div>
-
-                  <div className="flex items-center gap-3 text-xs text-slate-300">
-                    <span>Model: {selectedTurnkeyProduct.model}</span>
-                    <span>•</span>
-                    <span>Cena komponentu: {formatEuro(calculatePriceWithVat(selectedTurnkeyProduct.priceExVat))} s DPH</span>
-                  </div>
-
-                  <div className="pt-2  text-xs text-amber-300 font-semibold flex items-center gap-2">
-                    <CurrencyEuroIcon className="w-4 h-4 text-amber-400 inline mr-1" /> Uplatniteľná dotácia SIEA zníži vašu investíciu na minimum (FV do 1 150 €, Solidarita až 90 %).
-                  </div>
-                </div>
-              ) : (
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 text-xs flex items-center gap-3">
-                  <span className="w-5 h-5 text-amber-400"><BoltIcon className="w-5 h-5 text-amber-400" /></span>
-                  <span>
-                    Kliknutím na tlačidlo <strong>„Kúpiť s kompletnou montážou na kľúč + dotácia“</strong> pri
-                    ľubovoľnom produkte v katalógu vyššie sa model automaticky priradí k vášmu dopytu.
-                  </span>
-                </div>
-              )}
-
-              {/* Trust checklist */}
-              <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
-                <div className="flex items-start gap-2.5">
-                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                  <span><strong>Bezplatná obhliadka:</strong> Posúdime sklon strechy, tienenie a elektrickú prípojku.</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                  <span><strong>100% garancia dotácie:</strong> Pomôžeme s online rezerváciou a schválením dotácie SIEA.</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                  <span><strong>Kompletná revízia OPOS:</strong> Oficiálna revízna správa potrebná pre distribúciu i poistenie domu.</span>
-                </div>
+            {/* Mode 2: Turnkey with subsidy */}
+            <div className="bg-gradient-to-b from-slate-950 to-amber-950/20 border-2 border-amber-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl relative">
+              <div className="absolute -top-3 right-6 bg-amber-400 text-slate-950 text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-md">
+                Najobľúbenejšie riešenie
               </div>
-            </div>
 
-            {/* Right Column: Embedded LeadForm */}
-            <div className="lg:col-span-6">
-              <LeadForm
-                initialService={
-                  selectedTurnkeyProduct
-                    ? selectedTurnkeyProduct.category === 'storage' || selectedTurnkeyProduct.category === 'wallbox'
-                      ? 'baterie'
-                      : 'fotovoltika-dom'
-                    : 'fotovoltika-dom'
-                }
-                initialMessage={
-                  selectedTurnkeyProduct
-                    ? `Mám záujem o montáž na kľúč so štátnou dotáciou pre produkt: ${selectedTurnkeyProduct.name} (${selectedTurnkeyProduct.model})`
-                    : undefined
-                }
-                source="eshop_turnkey_cta"
-                title="Dopyt na fotovoltiku na kľúč s dotáciou"
-                subtitle="Vyplňte kontaktné údaje a náš technik vám pripraví bezplatný návrh s odpočtom štátnej dotácie."
-                showLocationField={true}
-              />
-            </div>
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-400 text-xs font-mono font-bold uppercase mb-4">
+                  Bezstarostná inštalácia
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-white mb-3">
+                  2. Dodávka s montážou na kľúč + Dotácia
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  Kompletná realizácia certifikovanými technikmi Marvol s.r.o. vrátane projektovania, revíznej správy OPOS, zapojenia u distribútora a vybavenia štátnej dotácie.
+                </p>
 
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 mb-8">
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Znížená sadzba DPH na celý systém vrátane práce</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Vybavenie štátnej dotácie SIEA (FV do 1 150 €, TČ do 4 600 €)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Odborná montáž s garanciou inštalácie do 30 dní</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Oficiálna revízna správa OPOS a podklady pre SSD/ZSD/VSD</span>
+                  </li>
+                </ul>
+              </div>
+
+              <a
+                href="#dopyt-form"
+                onClick={() => setServiceMode('turnkey')}
+                className="w-full py-3.5 rounded-xl font-black text-center bg-amber-400 hover:bg-amber-300 text-slate-950 transition-colors block text-sm shadow-md"
+              >
+                Dopytovať realizáciu na kľúč s dotáciou
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          5. INTEGRATED E-SHOP EXPANSION ROADMAP (4 PILLARS)
+          3. BRAND SHOWCASE BY CATEGORY (Používané a overené značky)
       ====================================================================== */}
-      <section id="roadmap" className="py-16 bg-slate-950 ">
+      <section id="znacky" className="py-16 sm:py-20 lg:py-24 bg-slate-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-              Strategický plán rozvoja 2026 – 2027
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Certifikované technológie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
-              Roadmapa rozvoja e-shopu Marvol
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white mb-4">
+              Značky zariadení, ktoré používame a overene montujeme
             </h2>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              Budujeme najmodernejšiu solárnu platformu na Slovensku. Od transparentného katalógu
-              komponentov k plnoautomatizovanému B2B inštalatérskemu portálu s priamou integráciou skladu a logistiky.
+              Neexperimentujeme s lacnými no-name komponentmi. Spolupracujeme výlučne so svetovými lídrami, ktorí garantujú dlhodobú stabilitu, dostupnosť servisných dielov a vysokú požiarnu bezpečnosť.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Pillar 1 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                    Pillar 1 • V príprave / Q1 2027
-                  </span>
-                  <CurrencyEuroIcon className="w-6 h-6 text-sky-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  Platobné brány & B2C Checkout
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Integrácia bezpečných instantných platobných brán pre okamžitú úhradu objednávok kartou
-                  alebo bankovým prevodom bez oneskorenia.
-                </p>
-                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Podporované metódy:</strong> Stripe, Shoptet Pay, Apple Pay, Google Pay, Comgate</span>
+          <div className="space-y-16">
+            {TECHNOLOGY_CATEGORIES.map((cat, idx) => (
+              <div
+                key={cat.id}
+                className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-10 relative overflow-hidden"
+              >
+                {/* Category Header */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-8 mb-8 border-b border-slate-800/80">
+                  <div className="max-w-2xl">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-mono font-bold uppercase px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400">
+                        {cat.badge}
+                      </span>
+                      <span className="text-xs text-slate-500 font-mono">
+                        Kategória 0{idx + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
+                      {cat.name}
+                    </h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {cat.shortDesc}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>SEPA Instant:</strong> Automatické párovanie bankových úhrad v reálnom čase</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Nákup na splátky:</strong> Možnosť financovania fotovoltiky (Quatro, Home Credit)</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 pt-3  text-xs text-slate-500">
-                Fáza: Implementácia API a zabezpečenia PCI-DSS
-              </div>
-            </div>
 
-            {/* Pillar 2 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    Pillar 2 • Architektúra schválená
-                  </span>
-                  <BuildingOfficeIcon className="w-6 h-6 text-amber-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  B2B Inštalatérsky portál
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Špecializovaný portál pre certifikovaných elektroinštalatérov a montážne firmy s registráciou
-                  na IČO, veľkoobchodnými maržami a projektovým košíkom.
-                </p>
-                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>IČO registrácia:</strong> Overenie živnosti a priradenie partnerského rabatu (Tier 1–3)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Projektový košík:</strong> Rýchle zostavenie celých setov na jedno kliknutie</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Export cenových ponúk:</strong> Generovanie PDF ponúk pre klientov inštalatéra</span>
+                  <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-xs text-slate-300 max-w-md">
+                    <span className="text-amber-400 font-bold block mb-1">Dôležitá poznámka:</span>
+                    {cat.note}
                   </div>
                 </div>
-              </div>
-              <div className="mt-6 pt-3  text-xs text-slate-500">
-                Fáza: Vývoj autentifikácie a správcovských rabatových hladín
-              </div>
-            </div>
 
-            {/* Pillar 3 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                    Pillar 3 • Vo vývoji
-                  </span>
-                  <BoltIcon className="w-6 h-6 text-emerald-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  WMS & ERP Integrácia
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Obojsmerné API prepojenie s podnikovými systémami pre synchronizáciu skladu v reálnom čase
-                  a automatické priraďovanie sériových čísel meničov a batérií.
-                </p>
-                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Podporované ERP:</strong> Helios Orange, Pohoda, Money S3, SuperFaktura API</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Sériové čísla:</strong> Párovanie SN striedačov pre garancie a dotačné audity SIEA</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Automatická fakturácia:</strong> Okamžité vystavenie a zasielanie daňových dokladov</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 pt-3  text-xs text-slate-500">
-                Fáza: Testovanie REST API webhookov s účtovným softvérom
-              </div>
-            </div>
+                {/* Brand Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {cat.brands.map((brand) => (
+                    <div
+                      key={brand.name}
+                      className="bg-slate-950 border border-slate-800/90 hover:border-slate-700 rounded-2xl p-6 flex flex-col justify-between transition-all hover:-translate-y-1 group"
+                    >
+                      <div>
+                        {/* High Contrast Logo Container */}
+                        <div className="h-16 w-full bg-white rounded-xl p-3 flex items-center justify-center mb-5 shadow-sm group-hover:shadow-md transition-shadow">
+                          <img
+                            src={brand.logo}
+                            alt={brand.name}
+                            className="max-h-10 max-w-[140px] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
 
-            {/* Pillar 4 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/30 transition-all backdrop-blur-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-xs px-2.5 py-1 rounded-md font-bold font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    Pillar 4 • Aktívne v prevádzke
-                  </span>
-                  <CarIcon className="w-6 h-6 text-emerald-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  Nadrozmerná FV Logistika
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Zmluvná paletová preprava fotovoltických panelov so 100% poistením krehkého skla
-                  a vykladaním hydraulickým čelom priamo na stavenisku po celej SR a ČR.
-                </p>
-                <div className="mt-4 pt-3  space-y-2 text-xs text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Partneri prepravy:</strong> Raben, Gebrüder Weiss, Toptrans</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Rýchlosť dodania:</strong> Štandard 24–48 hodín pri položkách na centrálnom sklade</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">•</span>
-                    <span><strong>Osobný odber:</strong> Bezplatné vyzdvihnutie v centrálnom sklade Vrútky</span>
-                  </div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <h4 className="text-lg font-black text-white tracking-tight">
+                            {brand.name}
+                          </h4>
+                          <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                            {brand.badge}
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                          {brand.description}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-900">
+                        <div className="text-[11px] text-emerald-400 font-medium flex items-center gap-1.5 mb-3">
+                          <span>✓</span>
+                          <span>{brand.highlight}</span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedCategory(cat.name);
+                            setSelectedBrand(brand.name);
+                            const formEl = document.getElementById('dopyt-form');
+                            if (formEl) {
+                              formEl.scrollIntoView({ behavior: 'smooth' });
+                            }
+                          }}
+                          className="w-full py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs font-bold text-slate-200 hover:text-white border border-slate-800 transition-colors text-center cursor-pointer"
+                        >
+                          Dopytovať komponenty {brand.name}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="mt-6 pt-3  text-xs text-slate-500">
-                Fáza: Aktívna prevádzka s denným dispečingom
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          4. "VIEME ZOHNAŤ V PODSTATE HOCIČO" - TRUST PROCURMENT BANNER
+      ====================================================================== */}
+      <section className="py-14 sm:py-18 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-y border-slate-800 text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-slate-900/90 border border-amber-400/40 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-400/20 text-amber-400 border border-amber-400/30">
+                  Neobmedzený európsky dodávateľský reťazec
+                </span>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                  Hľadáte špecifické zariadenie, ktoré je všade vypredané?
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  Trh s fotovoltikou zažíva vlny dopytu a mnohé bežné e-shopy majú sklady prázdne. Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> má priame zmluvné partnerstvá s lídrami európskej distribúcie — <strong className="text-amber-400">BayWa r.e., Krannich Solar, Memodo, Hagard:Hal</strong> a ďalšími.
+                </p>
+                <p className="text-slate-300 text-sm sm:text-base font-semibold">
+                  Vďaka tomu pre vás vieme zohnať v podstate akékoľvek zariadenie, invertor, batériový modul či konštrukciu, ktorú si váš projekt vyžaduje.
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 flex flex-col gap-3">
+                <a
+                  href="#dopyt-form"
+                  className="w-full py-4 rounded-xl font-black text-center bg-amber-400 hover:bg-amber-300 text-slate-950 transition-colors shadow-lg block text-sm"
+                >
+                  Zadať dopyt na konkrétne zariadenie
+                </a>
+                <a
+                  href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
+                  className="w-full py-3.5 rounded-xl font-bold text-center bg-slate-950 hover:bg-slate-800 text-slate-200 border border-slate-700 transition-colors block text-xs"
+                >
+                  Zavolať do skladu: {COMPANY_DETAILS.contact.phone}
+                </a>
               </div>
             </div>
           </div>
@@ -1518,356 +738,307 @@ export default function EshopPage() {
       </section>
 
       {/* =====================================================================
-          6. FAQS SECTION
+          5. INTERACTIVE INQUIRY FORM (Konfigurátor dopytu)
       ====================================================================== */}
-      <section className="py-16 bg-slate-900/30 ">
+      <section id="dopyt-form" className="py-16 sm:py-20 lg:py-24 bg-slate-950 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-              Často kladené otázky
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Rýchle overenie dostupnosti
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Všetko o nákupe solárnych komponentov
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white mb-4">
+              Pošlite nám dopyt na technológiu či zostavu
             </h2>
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              Uveďte, o aké zariadenie alebo značku máte záujem. Obratom preveríme skladové stavy a zašleme vám aktuálnu cenovú ponuku s termínom dodania.
+            </p>
           </div>
 
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaqIdx === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden transition-all"
-                >
+          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+            {formSuccess ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+                  ✓
+                </div>
+                <h3 className="text-2xl font-black text-white">Dopyt bol úspešne prijatý!</h3>
+                <p className="text-slate-300 text-sm max-w-lg mx-auto">
+                  Ďakujeme. Vaša požiadavka bola zaregistrovaná pod kódom <strong className="text-amber-400 font-mono">{formSuccess}</strong>. Naši technici preverujú aktuálnu dostupnosť v európskych skladoch a ozvú sa vám do 24 hodín s cenovou ponukou.
+                </p>
+                <div className="pt-4">
                   <button
                     type="button"
-                    onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-white hover:text-amber-400 transition-colors"
+                    onClick={() => setFormSuccess(null)}
+                    className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors cursor-pointer"
                   >
-                    <span>{faq.q}</span>
-                    <span className="text-amber-400 text-lg shrink-0">
-                      {isOpen ? '−' : '+'}
-                    </span>
+                    Odoslať ďalší dopyt
                   </button>
-                  {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed  pt-3">
-                      {faq.a}
-                    </div>
-                  )}
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          7. MODAL: KÚPIŤ SAMOSTATNÝ MATERIÁL (OPTION A)
-      ====================================================================== */}
-      {materialModalProduct && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="material-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
-        >
-          <div className="relative w-full max-w-lg rounded-2xl bg-slate-900 border border-slate-700  p-6 text-slate-100 my-8">
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={closeMaterialModal}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-11 h-11 min-h-[44px] min-w-[44px] rounded-full bg-slate-800 flex items-center justify-center transition-colors cursor-pointer"
-              aria-label="Zavrieť okno"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
-
-            {modalSuccessLeadId ? (
-              <div className="text-center py-6 space-y-4">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 text-3xl mx-auto flex items-center justify-center"><CheckIcon className="w-8 h-8 text-emerald-400" /></div>
-                <h3 className="text-xl font-bold text-white">Ďakujeme za váš dopyt!</h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Váš dopyt na samostatný materiál bol úspešne zaevidovaný pod číslom{' '}
-                  <strong className="text-amber-400 font-semibold">{modalSuccessLeadId}</strong>.
-                  Náš skladový dispečing preverí dostupnosť a do 24 hodín vám zašle potvrdenie
-                  s kalkuláciou prepravy.
-                </p>
-                <button
-                  type="button"
-                  onClick={closeMaterialModal}
-                  className="mt-4 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm min-h-[44px]"
-                >
-                  Zavrieť
-                </button>
               </div>
             ) : (
-              <form onSubmit={handleMaterialModalSubmit} className="space-y-4">
-                <div>
-                  <span className="text-[11px] font-extrabold font-semibold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded">
-                    Dopyt na samostatný materiál
-                  </span>
-                  <h3 id="material-modal-title" className="text-lg font-bold text-white mt-1">
-                    {materialModalProduct.name}
-                  </h3>
-                  <div className="text-xs text-slate-400 font-semibold mt-0.5">
-                    Model: {materialModalProduct.model}
-                  </div>
-                </div>
-
-                {/* Price & Quantity Selector */}
-                <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-xs text-slate-400">Jednotková cena:</div>
-                    <div className="text-base font-bold text-white">
-                      {formatEuro(materialModalProduct.priceExVat)} <span className="text-xs text-slate-400 font-normal">bez DPH</span>
-                    </div>
-                    <div className="text-[11px] text-slate-400">
-                      {formatEuro(calculatePriceWithVat(materialModalProduct.priceExVat))} s DPH
-                    </div>
-                  </div>
-
-                  {/* Quantity input */}
-                  <div>
-                    <label htmlFor="modal-qty" className="block text-[11px] text-slate-400 mb-1 text-right">
-                      Počet kusov:
-                    </label>
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => setModalQuantity((prev) => Math.max(1, prev - 1))}
-                        className="w-10 h-10 min-h-[40px] min-w-[40px] rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer"
-                        aria-label="Znížiť počet"
-                      >
-                        −
-                      </button>
-                      <input
-                        id="modal-qty"
-                        type="number"
-                        min="1"
-                        max={materialModalProduct.stockQty}
-                        value={modalQuantity}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value, 10);
-                          setModalQuantity(
-                            isNaN(val) || val < 1
-                              ? 1
-                              : Math.min(materialModalProduct.stockQty, Math.max(1, val))
-                          );
-                        }}
-                        className="w-14 h-10 bg-slate-900 border border-slate-700 rounded-lg text-center text-base font-bold text-white focus:outline-none focus:border-amber-400"
-                      />
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setModalQuantity((prev) =>
-                            Math.min(materialModalProduct.stockQty, prev + 1)
-                          )
-                        }
-                        className="w-10 h-10 min-h-[40px] min-w-[40px] rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-base flex items-center justify-center cursor-pointer"
-                        aria-label="Zvýšiť počet"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Total Calculated Price Banner */}
-                <div className="px-3.5 py-2.5 rounded-lg bg-amber-400/10 border border-amber-400/30 flex justify-between items-center text-xs">
-                  <span className="text-slate-300 font-medium">Celkom za materiál:</span>
-                  <div className="text-right">
-                    <span className="font-bold text-amber-400 text-sm">
-                      {formatEuro(materialModalProduct.priceExVat * modalQuantity)} bez DPH
-                    </span>
-                    <span className="text-[11px] text-slate-400 block">
-                      ({formatEuro(calculatePriceWithVat(materialModalProduct.priceExVat) * modalQuantity)} s DPH)
-                    </span>
-                  </div>
-                </div>
-
-                {/* Customer Type Toggle */}
-                <div>
-                  <div className="text-xs font-semibold text-slate-300 mb-1.5">Typ nákupu:</div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setModalCustomerType('b2c')}
-                      className={`py-2.5 px-3 min-h-[44px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                        modalCustomerType === 'b2c'
-                          ? 'bg-amber-400 text-slate-950 border-amber-400 font-bold'
-                          : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-800'
-                      }`}
-                    >
-                      Fyzická osoba (B2C)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setModalCustomerType('b2b')}
-                      className={`py-2.5 px-3 min-h-[44px] rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                        modalCustomerType === 'b2b'
-                          ? 'bg-amber-400 text-slate-950 border-amber-400 font-bold'
-                          : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-800'
-                      }`}
-                    >
-                      Firma / Inštalatér (B2B)
-                    </button>
-                  </div>
-                </div>
-
-                {/* B2B Company Details */}
-                {modalCustomerType === 'b2b' && (
-                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2.5">
-                    <input
-                      type="text"
-                      placeholder="Obchodné meno firmy *"
-                      value={modalFormData.companyName}
-                      onChange={(e) =>
-                        setModalFormData((prev) => ({ ...prev, companyName: e.target.value }))
-                      }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                    />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      <input
-                        type="text"
-                        placeholder="IČO *"
-                        value={modalFormData.ico}
-                        onChange={(e) =>
-                          setModalFormData((prev) => ({ ...prev, ico: e.target.value }))
-                        }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                      />
-                      <input
-                        type="text"
-                        placeholder="DIČ / IČ DPH"
-                        value={modalFormData.dic}
-                        onChange={(e) =>
-                          setModalFormData((prev) => ({ ...prev, dic: e.target.value }))
-                        }
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                      />
-                    </div>
+              <form onSubmit={handleSubmitInquiry} className="space-y-6">
+                {formError && (
+                  <div className="p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-200 text-xs sm:text-sm">
+                    {formError}
                   </div>
                 )}
 
-                {/* Delivery Option */}
+                {/* Service Mode Selector */}
                 <div>
-                  <div className="text-xs font-semibold text-slate-300 mb-1.5">Spôsob odberu / prepravy:</div>
-                  <div className="space-y-1.5 text-xs">
-                    <label className="flex items-center gap-2 p-2.5 min-h-[44px] rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
-                      <input
-                        type="radio"
-                        name="modal-delivery"
-                        checked={modalDelivery === 'pallet'}
-                        onChange={() => setModalDelivery('pallet')}
-                        className="text-amber-400 focus:ring-amber-400 h-4 w-4"
-                      />
-                      <span className="flex items-center gap-1.5"><CarIcon className="w-4 h-4 text-amber-400 shrink-0" /> Paletová doprava s hydraulickým čelom (SR 24–48h)</span>
+                  <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                    Spôsob odberu zariadení
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setServiceMode('turnkey')}
+                      className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer ${
+                        serviceMode === 'turnkey'
+                          ? 'bg-amber-400/20 border-amber-400 text-white ring-1 ring-amber-400'
+                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-900'
+                      }`}
+                    >
+                      <strong className="block text-sm font-bold text-white mb-0.5">
+                        Kompletná montáž na kľúč + Dotácia
+                      </strong>
+                      <span className="text-xs text-slate-400">
+                        Vrátane inštalácie, revízie OPOS a dotácie SIEA až do 4 600 €
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setServiceMode('material')}
+                      className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer ${
+                        serviceMode === 'material'
+                          ? 'bg-sky-400/20 border-sky-400 text-white ring-1 ring-sky-400'
+                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-900'
+                      }`}
+                    >
+                      <strong className="block text-sm font-bold text-white mb-0.5">
+                        Iba samostatný materiál (bez montáže)
+                      </strong>
+                      <span className="text-xs text-slate-400">
+                        Pre montážnikov a firmy za veľkoobchodné ceny
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Category & Brand Selectors */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      Kategória technológie
                     </label>
-                    <label className="flex items-center gap-2 p-2.5 min-h-[44px] rounded-lg bg-slate-950/40 border border-slate-800 cursor-pointer hover:border-slate-700">
-                      <input
-                        type="radio"
-                        name="modal-delivery"
-                        checked={modalDelivery === 'pickup'}
-                        onChange={() => setModalDelivery('pickup')}
-                        className="text-amber-400 focus:ring-amber-400 h-4 w-4"
-                      />
-                      <span className="flex items-center gap-1.5"><BuildingOfficeIcon className="w-4 h-4 text-amber-400 shrink-0" /> Osobný odber v centrálnom sklade Vrútky (zdarma)</span>
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400"
+                    >
+                      <option value="Meniče & Striedače napätia">Meniče &amp; Striedače napätia</option>
+                      <option value="Batériové úložiská (BESS & LFP)">Batériové úložiská (BESS &amp; LFP)</option>
+                      <option value="Fotovoltické panely (Tier 1)">Fotovoltické panely (Tier 1)</option>
+                      <option value="Konštrukčné systémy & Elektro">Konštrukčné nosné systémy &amp; Elektro</option>
+                      <option value="Tepelné čerpadlá & EV Wallboxy">Tepelné čerpadlá &amp; EV Wallboxy</option>
+                      <option value="Celá kompletná zostava na kľúč">Celá kompletná zostava na kľúč</option>
+                      <option value="Iný špecifický komponent">Iný špecifický komponent</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      Preferovaná značka / Model
                     </label>
+                    <input
+                      type="text"
+                      value={selectedBrand}
+                      onChange={(e) => setSelectedBrand(e.target.value)}
+                      placeholder="Napr. GoodWe, Solinteg, Pylontech, AIKO, alebo iná..."
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                    />
                   </div>
                 </div>
 
                 {/* Contact Inputs */}
-                <div className="space-y-2.5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      Meno a priezvisko / Názov firmy <span className="text-amber-400">*</span>
+                    </label>
                     <input
                       type="text"
                       required
-                      placeholder="Meno a priezvisko *"
-                      value={modalFormData.name}
-                      onChange={(e) =>
-                        setModalFormData((prev) => ({ ...prev, name: e.target.value }))
-                      }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Ján Novák / Elektro s.r.o."
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      Telefónne číslo <span className="text-amber-400">*</span>
+                    </label>
                     <input
                       type="tel"
                       required
-                      placeholder="Telefónne číslo *"
-                      value={modalFormData.phone}
-                      onChange={(e) =>
-                        setModalFormData((prev) => ({ ...prev, phone: e.target.value }))
-                      }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+421 900 000 000"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                   </div>
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      E-mailová adresa (pre zaslanie ponuky)
+                    </label>
                     <input
                       type="email"
-                      placeholder="E-mailová adresa"
-                      value={modalFormData.email}
-                      onChange={(e) =>
-                        setModalFormData((prev) => ({ ...prev, email: e.target.value }))
-                      }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="vas@email.sk"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                      Mesto / Obec doručenia
+                    </label>
                     <input
                       type="text"
-                      placeholder="Mesto / PSČ dodania"
-                      value={modalFormData.city}
-                      onChange={(e) =>
-                        setModalFormData((prev) => ({ ...prev, city: e.target.value }))
-                      }
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[44px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      placeholder="Napr. Žilina, Martin, Bratislava..."
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                   </div>
+                </div>
 
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase text-slate-300 mb-2">
+                    Poznámka / Špecifikácia dopytovaných zariadení
+                  </label>
                   <textarea
-                    rows={2}
-                    placeholder="Poznámka alebo dodatočné otázky k príslušenstvu..."
-                    value={modalFormData.note}
-                    onChange={(e) =>
-                      setModalFormData((prev) => ({ ...prev, note: e.target.value }))
-                    }
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 min-h-[48px] text-base sm:text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
+                    rows={3}
+                    value={formData.details}
+                    onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                    placeholder="Uveďte napr. požadovaný výkon v kWp, počet kusov batériových modulov, typ strechy alebo konkrétne produktové číslo..."
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                   />
                 </div>
 
-                {/* GDPR Consent Checkbox */}
-                <label className="flex items-start gap-2 text-[11px] text-slate-400 cursor-pointer pt-1">
+                {/* GDPR Consent */}
+                <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
-                    checked={modalFormData.gdprConsent}
-                    onChange={(e) =>
-                      setModalFormData((prev) => ({ ...prev, gdprConsent: e.target.checked }))
-                    }
-                    className="mt-0.5 rounded border-slate-700 text-amber-400 focus:ring-amber-400"
+                    id="gdpr"
+                    required
+                    checked={formData.gdprConsent}
+                    onChange={(e) => setFormData({ ...formData, gdprConsent: e.target.checked })}
+                    className="mt-1 h-4 w-4 rounded border-slate-800 bg-slate-950 text-amber-400 focus:ring-amber-400 cursor-pointer"
                   />
-                  <span>
-                    Súhlasím so spracovaním osobných údajov pre účely spracovania cenovej ponuky podľa GDPR.
-                  </span>
-                </label>
-
-                {modalError && (
-                  <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs">
-                    {modalError}
-                  </div>
-                )}
-
-                {/* Submit button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={modalSubmitting}
-                    className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs tracking-wide transition-all  disabled:opacity-50"
-                  >
-                    {modalSubmitting
-                      ? 'Odosielam dopyt...'
-                      : 'Odoslať nezáväzný dopyt na materiál'}
-                  </button>
+                  <label htmlFor="gdpr" className="text-xs text-slate-400 leading-normal cursor-pointer">
+                    Súhlasím so spracovaním osobných údajov za účelom overenia skladovej dostupnosti a vypracovania cenovej ponuky spoločnosťou Marvol s.r.o. podľa{' '}
+                    <Link href="/ochrana-osobnych-udajov" className="text-amber-400 hover:underline">
+                      Zásad ochrany osobných údajov
+                    </Link>.
+                  </label>
                 </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-xl font-black text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors shadow-lg disabled:opacity-50 text-sm cursor-pointer"
+                >
+                  {isSubmitting ? 'Overujem dostupnosť...' : 'Odoslať dopyt na technológiu'}
+                </button>
               </form>
             )}
           </div>
         </div>
-      )}
+      </section>
+
+      {/* =====================================================================
+          6. ROADMAP: Strategický plán rozvoja B2B distribúcie
+      ====================================================================== */}
+      <section className="py-14 sm:py-18 bg-slate-900/30 border-y border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Strategický plán rozvoja
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-4">
+              Pripravovaný B2B Inštalatérsky portál
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Budujeme priame prepojenie s európskymi veľkoskladmi s live dostupnosťou na sekundu presne pre montážne firmy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800">
+              <span className="text-xs font-mono font-bold text-amber-400 block mb-2">Q2 2026</span>
+              <h4 className="text-lg font-bold text-white mb-2">B2B Registrácia IČO</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Zvýhodnené veľkoobchodné cenníky pre certifikovaných elektroinštalatérov s možnosťou rezervácie celých paliet.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800">
+              <span className="text-xs font-mono font-bold text-amber-400 block mb-2">Q3 2026</span>
+              <h4 className="text-lg font-bold text-white mb-2">Live API napojenie skladov</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Priame zobrazenie reálnych stavov centrálnych skladov BayWa r.e., Krannich a Memodo s automatickou rezerváciou.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800">
+              <span className="text-xs font-mono font-bold text-amber-400 block mb-2">Q4 2026</span>
+              <h4 className="text-lg font-bold text-white mb-2">Projektový konfigurátor</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Automatický výpočet nosných konštrukcií a prepojenia DC/AC káblov s vygenerovaním materiálového kusovníka.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          7. FAQ SECTION
+      ====================================================================== */}
+      <section className="py-16 sm:py-20 bg-slate-950 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+              Často kladené otázky
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-4">
+              Všetko o dopytovaní technológií a dodávkach
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-colors"
+              >
+                <h3 className="text-base font-bold text-white mb-2 flex items-start gap-2">
+                  <span className="text-amber-400 font-mono font-black">Q:</span>
+                  <span>{faq.q}</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-6">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 }
