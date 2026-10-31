@@ -325,11 +325,11 @@ export default function InstalaciaMontaz() {
       {/* SECTION 2: INTERACTIVE ROOF MOUNTING SELECTOR */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Certifikované systémy kotvenia
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Strešné konštrukcie bez kompromisov a bez zatekania
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -361,7 +361,7 @@ export default function InstalaciaMontaz() {
           <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full border ${currentRoof.badgeColor}`}>
+                <span className={`inline-block text-xs font-mono font-bold px-2.5 py-1 rounded-full border ${currentRoof.badgeColor}`}>
                   {currentRoof.badge}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-white">
@@ -409,11 +409,11 @@ export default function InstalaciaMontaz() {
       {/* SECTION 3: CRAFTSMANSHIP COMPARISON (Marvol vs. Lacná montáž) */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Kvalita v detailoch
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Prečo remeselná kvalita montáže rozhoduje o požiari a zatekaní
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -465,11 +465,11 @@ export default function InstalaciaMontaz() {
       {/* SECTION 4: 3-STAGE WORKFLOW TIMELINE */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Priebeh realizácie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Harmonogram montáže rodinného domu
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -526,11 +526,11 @@ export default function InstalaciaMontaz() {
       {/* SECTION 5: FAQ ACCORDION */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Často kladené otázky
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Všetko o montáži fotovoltiky
             </h2>
             <p className="text-slate-400 text-sm">
@@ -578,7 +578,7 @@ export default function InstalaciaMontaz() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Garantovaná montáž do 30 dní
               </span>
 

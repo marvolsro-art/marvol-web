@@ -308,11 +308,11 @@ export default function ElektroinstalacieRevizie() {
       <section id="sluzby-elektro" className="py-20 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Komplexné portfólio
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
               Elektromontážne práce a revízne služby
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -328,7 +328,7 @@ export default function ElektroinstalacieRevizie() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${service.badgeColor}`}>
+                    <span className={`inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${service.badgeColor}`}>
                       {service.badge}
                     </span>
                   </div>
@@ -372,11 +372,11 @@ export default function ElektroinstalacieRevizie() {
       <section className="py-20 bg-slate-900 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Právne garancie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Legislatíva & Bezpečnostné normy STN
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -422,11 +422,11 @@ export default function ElektroinstalacieRevizie() {
       <section className="py-20 bg-slate-950 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Často kladené otázky
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Všetko o elektroinštaláciách a revíznych správach
             </h2>
             <p className="text-slate-400 text-sm">
@@ -468,7 +468,7 @@ export default function ElektroinstalacieRevizie() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="inline-block text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Objednávka elektro prác & revízií
               </span>
 

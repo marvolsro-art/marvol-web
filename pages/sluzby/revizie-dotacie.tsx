@@ -315,11 +315,11 @@ export default function RevizieDotacie() {
       {/* SECTION 2: CALIBRATED DIAGNOSTIC HARDWARE (Technical Showcase) */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Presnosť meraní
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Špičková meracia technika &amp; Termovízia
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -398,11 +398,11 @@ export default function RevizieDotacie() {
       {/* SECTION 3: INTERACTIVE SUBSIDY GUIDE 2026 (SIEA Tiers) */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Dotačný sprievodca 2026
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Koľko peňazí od štátu môžete získať?
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -504,11 +504,11 @@ export default function RevizieDotacie() {
       {/* SECTION 4: STATUTORY INSPECTION SCHEDULE (STN 33 1500) */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               STN 33 1500 &amp; Vyhláška 508/2009 Z. z.
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Zákonom predpísané revízne lehoty
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -518,10 +518,10 @@ export default function RevizieDotacie() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 mb-3">
                 PRED SPUSTENÍM
               </span>
-              <h3 className="text-lg font-bold text-white mt-4 mb-2">Východisková revízia OPOS</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Východisková revízia OPOS</h3>
               <p className="text-slate-400 text-xs leading-relaxed mb-4">
                 Nevyhnutná podmienka pre výmenu elektromera a legálnu prevádzku fotovoltiky. Autorizovaná pečiatka revízneho technika podľa § 24.
               </p>
@@ -532,10 +532,10 @@ export default function RevizieDotacie() {
             </div>
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 mb-3">
                 1x ROČNE
               </span>
-              <h3 className="text-lg font-bold text-white mt-4 mb-2">Servisná &amp; Termovízna inšpekcia</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Servisná &amp; Termovízna inšpekcia</h3>
               <p className="text-slate-400 text-xs leading-relaxed mb-4">
                 Kontrola oteplenia DC/AC spojov, premeranie stavu bleskozvodu a vyčistenie solárnych panelov pre zachovanie maximálnej výroby.
               </p>
@@ -546,10 +546,10 @@ export default function RevizieDotacie() {
             </div>
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20 mb-3">
                 KAŽDÉ 3 – 4 ROKY
               </span>
-              <h3 className="text-lg font-bold text-white mt-4 mb-2">Periodická revízia</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Periodická revízia</h3>
               <p className="text-slate-400 text-xs leading-relaxed mb-4">
                 Pravidelná revízia predpísaná vyhláškou 508/2009 Z. z. a poistnými zmluvami. Zabezpečí, že v prípade škody poisťovňa neskráti plnenie.
               </p>
@@ -565,11 +565,11 @@ export default function RevizieDotacie() {
       {/* SECTION 5: FAQ ACCORDION */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Otázky a odpovede
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Všetko o revíziách a dotáciách SIEA
             </h2>
             <p className="text-slate-400 text-sm">
@@ -617,7 +617,7 @@ export default function RevizieDotacie() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20">
                 100% Dotačný a revízny servis
               </span>
 

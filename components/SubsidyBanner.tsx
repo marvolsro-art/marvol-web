@@ -5,11 +5,11 @@ export const SubsidyBanner: React.FC = () => {
     <section className="bg-gradient-to-r from-amber-500 via-amber-600 to-emerald-600 text-slate-950 py-10 sm:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="space-y-2 text-left">
-            <div className="inline-block bg-slate-950 text-amber-400 font-extrabold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-1">
+          <div className="text-left">
+            <div className="inline-block bg-slate-950 text-amber-400 font-extrabold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-3 sm:mb-4">
               Aktuálne dotácie SIEA: FV do 1 150 € • Tepelné čerpadlá do 4 600 € • Solidarita až 90 %
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-950 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-950 leading-tight mb-3">
               Vybavíme za vás dotácie z projektov Zelená domácnostiam &amp; Zelená podnikom
             </h2>
             <p className="text-slate-950 font-medium text-sm sm:text-base max-w-3xl leading-relaxed">

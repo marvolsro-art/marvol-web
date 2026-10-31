@@ -356,11 +356,11 @@ export default function NavrhProjektu() {
       {/* SECTION 2: ARCHITECTURAL COMPARISON (Amatérsky odhad vs. Inžiniersky návrh MARVOL) */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Presnosť rozhoduje o návratnosti
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Prečo 90 % zlyhaní fotovoltiky vzniká už na rysovacej doske
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -463,11 +463,11 @@ export default function NavrhProjektu() {
       {/* SECTION 3: 4 PILIERE PROJEKTOVEJ DOKUMENTÁCIE (Asymmetric Specs Grid) */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="max-w-3xl mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Obsah dokumentácie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Čo presne od nás dostanete do rúk
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -550,11 +550,11 @@ export default function NavrhProjektu() {
       {/* SECTION 4: INŽINIERSKY HARMONOGRAM (Timeline) */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Ako postupujeme
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Cesta od adresy domu po hotový projekt
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -564,40 +564,40 @@ export default function NavrhProjektu() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
             <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
-              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 mb-3">
                 DEŇ 1
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Zber dát &amp; Ortofotomapa</h3>
+              <h3 className="text-base font-bold text-white mb-2">Zber dát &amp; Ortofotomapa</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Podľa adresy zanalyzujeme satelitné snímky strechy, orientáciu, sklon a vaše ročné faktúry za elektrinu.
               </p>
             </div>
 
             <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
-              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20 mb-3">
                 DEŇ 2
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">3D Model &amp; Fotometria</h3>
+              <h3 className="text-base font-bold text-white mb-2">3D Model &amp; Fotometria</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Vymodelujeme objekt v PV*SOL Premium, nasimulujeme ročné tiene a optimalizujeme umiestnenie panelov.
               </p>
             </div>
 
             <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
-              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 mb-3">
                 DEŇ 3 – 4
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Jednopólová schéma &amp; Istenie</h3>
+              <h3 className="text-base font-bold text-white mb-2">Jednopólová schéma &amp; Istenie</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Autorizovaný inžinier vypracuje SLD schému zapojenia, dimenzuje prepäťové ochrany a pripraví žiadosť pre SSD/ZSD.
               </p>
             </div>
 
             <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 relative">
-              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 mb-3">
                 DEŇ 5
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Odovzdanie &amp; Schválenie</h3>
+              <h3 className="text-base font-bold text-white mb-2">Odovzdanie &amp; Schválenie</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Dostanete autorizovaný projekt s pečiatkou pripravený na montáž. Podklady podávame priamo na distribúciu.
               </p>
@@ -627,11 +627,11 @@ export default function NavrhProjektu() {
       {/* SECTION 5: FAQ ACCORDION */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Odpovede inžinierov
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Často kladené otázky k projektovaniu
             </h2>
             <p className="text-slate-400 text-sm">
@@ -679,7 +679,7 @@ export default function NavrhProjektu() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="inline-block text-amber-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Začnite bezplatným 3D návrhom
               </span>
 

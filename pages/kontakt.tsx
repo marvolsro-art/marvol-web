@@ -466,13 +466,13 @@ export default function KontaktPage() {
       <section className="py-16 bg-slate-900/50 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-xs font-bold font-semibold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            <span className="inline-block text-xs font-bold text-amber-400 bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/20 mb-4 sm:mb-5">
               Časté otázky pred kontaktovaním
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-3">
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-3">
               Máte otázky pred odoslaním dopytu?
             </h2>
-            <p className="text-sm text-slate-400 mt-2">
+            <p className="text-sm text-slate-400">
               Transparentné informácie o našom postupe, cenách a termínoch.
             </p>
           </div>

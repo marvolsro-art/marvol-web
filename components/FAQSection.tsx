@@ -36,11 +36,11 @@ export const FAQSection: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-4">
-          <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+        <div className="text-center mb-16">
+          <span className="inline-block text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
             Otázky a Odpovede
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white">
+          <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">
             Často kladené otázky (FAQ)
           </h2>
           <p className="text-slate-400 text-base">

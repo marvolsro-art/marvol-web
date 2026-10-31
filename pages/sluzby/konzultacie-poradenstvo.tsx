@@ -308,11 +308,11 @@ export default function KonzultaciePoradenstvo() {
       {/* SECTION 2: INTERACTIVE ENERGY PROFILE ALLOCATOR */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Modelovanie tokov energie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Kam smeruje vyrobená solárna energia?
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -445,11 +445,11 @@ export default function KonzultaciePoradenstvo() {
       {/* SECTION 3: DEEP-DIVE COMPARISON: BATTERY VS VIRTUAL VS SPOT */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Nezávislé porovnanie
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Fyzická batéria vs. Virtuálna batéria vs. Spotový trh
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -561,11 +561,11 @@ export default function KonzultaciePoradenstvo() {
       {/* SECTION 4: 4-STEP AUDIT ROADMAP */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Proces auditu
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Ako prebieha bezplatná konzultácia
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -575,40 +575,40 @@ export default function KonzultaciePoradenstvo() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 mb-3">
                 KROK 1
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Zaslanie vyúčtovania</h3>
+              <h3 className="text-base font-bold text-white mb-2">Zaslanie vyúčtovania</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Pošlite nám ročnú faktúru alebo informáciu o mesačných zálohách. Preveríme vašu sadzbu (DD1, DD2, DD5) a charakter odberu.
               </p>
             </div>
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 mb-3">
                 KROK 2
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Simulácia a výpočet ROI</h3>
+              <h3 className="text-base font-bold text-white mb-2">Simulácia a výpočet ROI</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Vypočítame ročnú výrobu podľa GPS lokality, navrhneme optimálnu kapacitu batérie a vypracujeme finančný model návratnosti.
               </p>
             </div>
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-full border border-sky-400/20 mb-3">
                 KROK 3
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Preverenie dotácie SIEA</h3>
+              <h3 className="text-base font-bold text-white mb-2">Preverenie dotácie SIEA</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Skontrolujeme list vlastníctva a zabezpečíme maximálny možný štátny príspevok v programe Zelená domácnostiam alebo Zelená podnikom.
               </p>
             </div>
 
             <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
-              <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20">
+              <span className="inline-block text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 mb-3">
                 KROK 4
               </span>
-              <h3 className="text-base font-bold text-white mt-4 mb-2">Osobná konzultácia</h3>
+              <h3 className="text-base font-bold text-white mb-2">Osobná konzultácia</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Prezentácia návrhu osobne u vás alebo online. Odpovieme na všetky technické otázky a pripravíme fixnú cenovú ponuku.
               </p>
@@ -620,11 +620,11 @@ export default function KonzultaciePoradenstvo() {
       {/* SECTION 5: FAQ ACCORDION */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 mb-4 sm:mb-5">
               Otázky a odpovede
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Všetko o návratnosti a konzultáciách
             </h2>
             <p className="text-slate-400 text-sm">
@@ -672,7 +672,7 @@ export default function KonzultaciePoradenstvo() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-emerald-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">
+              <span className="inline-block text-emerald-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20">
                 100% Bezplatný audit spotreby
               </span>
 

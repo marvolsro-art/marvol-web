@@ -221,7 +221,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
         <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckIcon className="w-8 h-8 text-emerald-400" strokeWidth={2.5} />
         </div>
-        <span className="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold rounded-full mb-3">
+        <span className="inline-block px-3.5 py-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold rounded-full mb-4">
           Dopyt úspešne prijatý
         </span>
         <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">

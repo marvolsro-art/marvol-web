@@ -319,11 +319,11 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
       {/* SECTION 2: 4 OCHRANNÉ ŠTÍTY BEZPEČNOSTI (Pillar Architecture) */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-red-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-red-400/10 border border-red-400/20 mb-4 sm:mb-5">
               4 Piliere bezpečnosti MARVOL
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Viacúrovňový požiarny štít vašej nehnuteľnosti
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -342,7 +342,7 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
                     <span className="text-2xl font-black font-mono text-red-400/40">
                       {p.step}
                     </span>
-                    <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${p.badgeColor}`}>
+                    <span className={`inline-block text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${p.badgeColor}`}>
                       {p.badge}
                     </span>
                   </div>
@@ -382,11 +382,11 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
       {/* SECTION 3: SIMULÁCIA NÚDZOVEJ SITUÁCIE (Interactive Disaster Scenario) */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-red-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-red-400/10 border border-red-400/20 mb-4 sm:mb-5">
               Scenár požiaru v reálnom čase
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Čo sa stane pri požiari susedného objektu alebo podkrovia?
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -457,11 +457,11 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
       {/* SECTION 4: LEGISLATION & INSURANCE STANDARDS */}
       <section className="py-20 bg-slate-900 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-red-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-red-400/10 border border-red-400/20 mb-4 sm:mb-5">
               Právna a požiarna istota
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Súlad so slovenskými zákonmi a požiadavkami poisťovní
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
@@ -506,11 +506,11 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
       {/* SECTION 5: FAQ ACCORDION */}
       <section className="py-20 bg-slate-950 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+          <div className="text-center mb-16">
+            <span className="inline-block text-red-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-red-400/10 border border-red-400/20 mb-4 sm:mb-5">
               Často kladené otázky
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Všetko o požiari a bezpečnosti fotovoltiky
             </h2>
             <p className="text-slate-400 text-sm">
@@ -558,7 +558,7 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-red-400 text-xs font-mono font-bold px-3 py-1 rounded-full bg-red-400/10 border border-red-400/20">
+              <span className="inline-block text-red-400 text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-red-400/10 border border-red-400/20">
                 Požiarny audit &amp; Dodatočná montáž
               </span>
 

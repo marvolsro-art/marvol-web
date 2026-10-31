@@ -904,10 +904,10 @@ export default function EshopPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-3 sm:mb-4">
                 Sortiment technológií
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 Prehľad hlavných kategórií komponentov
               </h2>
             </div>
@@ -1254,7 +1254,7 @@ export default function EshopPage() {
             
             {/* Left Column: Turnkey Benefits & Selected Product Highlights */}
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+              <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20">
                 Inštalácia na kľúč & Štátna dotácia
               </span>
 
@@ -1357,13 +1357,13 @@ export default function EshopPage() {
       <section id="roadmap" className="py-16 bg-slate-950 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Strategický plán rozvoja 2026 – 2027
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
               Roadmapa rozvoja e-shopu Marvol
             </h2>
-            <p className="mt-3 text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
               Budujeme najmodernejšiu solárnu platformu na Slovensku. Od transparentného katalógu
               komponentov k plnoautomatizovanému B2B inštalatérskemu portálu s priamou integráciou skladu a logistiky.
             </p>
@@ -1523,10 +1523,10 @@ export default function EshopPage() {
       <section className="py-16 bg-slate-900/30 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+            <span className="inline-block text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
               Často kladené otázky
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
               Všetko o nákupe solárnych komponentov
             </h2>
           </div>
