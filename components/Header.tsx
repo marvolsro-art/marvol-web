@@ -306,7 +306,11 @@ export const Header: React.FC = () => {
             </a>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <span className="hidden lg:inline text-slate-400 font-medium text-xs">
+              Marvol - robíme svet zelenším
+            </span>
+            <span className="hidden lg:inline text-slate-700">•</span>
             <span className="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               Dotácie Zelená solidarita &amp; Zelená podnikom otvorené
@@ -617,13 +621,18 @@ export const Header: React.FC = () => {
       >
         {/* Drawer Header */}
         <div className="p-5 border-b border-slate-800 flex items-center justify-between"> {/* taste-skill-ignore: drawer header */}
-          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
-            <img
-              src="/logos/logo-marvol.svg"
-              alt="Marvol s.r.o. Logo"
-              className="h-9 w-auto max-w-[160px] object-contain"
-            />
-          </Link>
+          <div className="flex flex-col">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
+              <img
+                src="/logos/logo-marvol.svg"
+                alt="Marvol s.r.o. Logo"
+                className="h-9 w-auto max-w-[160px] object-contain"
+              />
+            </Link>
+            <span className="text-[11px] text-emerald-400 font-bold tracking-tight mt-0.5">
+              Marvol - robíme svet zelenším
+            </span>
+          </div>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}

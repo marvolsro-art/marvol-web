@@ -62,7 +62,7 @@ export const WhyUsSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block text-sm font-semibold text-amber-400 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-            Dôvody pre spoluprácu
+            Dôvody pre spoluprácu • Marvol - robíme svet zelenším
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">
             Prečo si vybrať práve Marvol s.r.o.?

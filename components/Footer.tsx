@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Brand & Statutory (lg:col-span-2 per § 3a Obch. zák. & § 4 zákona o DPH) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="space-y-1.5">
               <Link href="/" className="inline-block">
                 <img
                   src="/logos/logo-marvol.svg"
@@ -19,6 +19,9 @@ export const Footer: React.FC = () => {
                   className="h-10 sm:h-11 w-auto max-w-[190px] object-contain"
                 />
               </Link>
+              <p className="text-emerald-400 font-bold text-xs tracking-wide">
+                Marvol - robíme svet zelenším
+              </p>
             </div>
             
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">

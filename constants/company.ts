@@ -7,6 +7,7 @@
 export const COMPANY_DETAILS = {
   legalName: 'Marvol s. r. o.',
   shortName: 'Marvol',
+  motto: 'Marvol - robíme svet zelenším',
   seat: {
     street: 'Chotárna 3394/6',
     city: 'Vrútky',

@@ -28,9 +28,11 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
             
             {/* Top Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-amber-400 text-xs sm:text-sm font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs sm:text-sm font-semibold">
               <SunIcon className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>Certifikovaný špecialista na fotovoltiku a energetické riešenia</span>
+              <span className="text-emerald-400 font-bold">Marvol - robíme svet zelenším</span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <span className="text-slate-300 hidden sm:inline">Certifikovaný špecialista na fotovoltiku</span>
             </div>
 
             {/* Main Headline (max 2-line display hierarchy) */}
