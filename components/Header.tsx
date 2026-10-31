@@ -334,6 +334,9 @@ export const Header: React.FC = () => {
               src="/logos/logo-marvol.svg"
               alt="Marvol s.r.o. Logo"
               className="h-11 sm:h-12 w-auto max-w-[190px] object-contain group-hover:scale-105 transition-transform"
+              decoding="async"
+              width={190}
+              height={48}
             />
           </Link>
 
@@ -627,6 +630,9 @@ export const Header: React.FC = () => {
                 src="/logos/logo-marvol.svg"
                 alt="Marvol s.r.o. Logo"
                 className="h-9 w-auto max-w-[160px] object-contain"
+                decoding="async"
+                width={160}
+                height={36}
               />
             </Link>
             <span className="text-[11px] text-emerald-400 font-bold tracking-tight mt-0.5">

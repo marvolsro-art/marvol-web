@@ -249,6 +249,8 @@ export const Hero: React.FC = () => {
                       alt="Reálna inštalácia fotovoltiky pre rodinný dom od Marvol s.r.o."
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                       loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                       width={1376}
                       height={768}
                     />

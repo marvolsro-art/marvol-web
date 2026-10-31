@@ -128,7 +128,7 @@ export const ServicesSection: React.FC = () => {
   const CurrentIcon = currentService.icon;
 
   return (
-    <section id="sluzby" className="py-24 bg-slate-950 text-white relative">
+    <section id="sluzby" className="py-24 bg-slate-950 text-white relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
@@ -234,6 +234,9 @@ export const ServicesSection: React.FC = () => {
                   alt={currentService.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={640}
+                  height={360}
                 />
                 <div className="absolute bottom-3 left-3 right-3 p-3 bg-slate-950/85 rounded-xl text-xs text-slate-200 flex items-center justify-between">
                   <span className="font-semibold text-white">{currentService.title}</span>

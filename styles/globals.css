@@ -95,13 +95,13 @@ textarea,
   background: #0284c7;
 }
 
-/* Continuous logo marquee ticker */
+/* Continuous logo marquee ticker (GPU accelerated with translate3d) */
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -109,6 +109,8 @@ textarea,
   display: flex;
   width: max-content;
   animation: marquee 40s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-marquee:hover {
@@ -117,10 +119,10 @@ textarea,
 
 @keyframes marquee-reverse {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
   }
 }
 
@@ -128,9 +130,17 @@ textarea,
   display: flex;
   width: max-content;
   animation: marquee-reverse 45s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
+}
+
+/* Performance optimization: content-visibility for deep below-the-fold sections */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
 }
 

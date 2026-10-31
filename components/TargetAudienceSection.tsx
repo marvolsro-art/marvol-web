@@ -4,7 +4,7 @@ import { HomeIcon, BuildingOfficeIcon, BatteryIcon, CheckIcon } from '@/componen
 
 export const TargetAudienceSection: React.FC = () => {
   return (
-    <section id="target-groups" className="py-20 bg-slate-900 text-white relative">
+    <section id="target-groups" className="py-20 bg-slate-900 text-white relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -33,6 +33,9 @@ export const TargetAudienceSection: React.FC = () => {
                   alt="Fotovoltika pre rodinné domy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
+                  width={480}
+                  height={270}
                 />
                 <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
                   <HomeIcon className="w-5 h-5 text-slate-950" />
@@ -97,6 +100,9 @@ export const TargetAudienceSection: React.FC = () => {
                   alt="Fotovoltika pre firmy a priemysel"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
+                  width={480}
+                  height={270}
                 />
                 <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-sky-500 text-slate-950 flex items-center justify-center font-bold">
                   <BuildingOfficeIcon className="w-5 h-5 text-slate-950" />
@@ -161,6 +167,9 @@ export const TargetAudienceSection: React.FC = () => {
                   alt="Batériové systémy BESS a bytové domy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
+                  width={480}
+                  height={270}
                 />
                 <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
                   <BatteryIcon className="w-5 h-5 text-slate-950" />

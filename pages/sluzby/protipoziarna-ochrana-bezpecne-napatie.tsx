@@ -268,6 +268,10 @@ export default function ProtipoziarnaOchranaBezpecneNapatie() {
                     alt="Protipožiarna ochrana a bezpečné napätie fotovoltiky Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={800}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 

@@ -244,6 +244,10 @@ export default function BaterioveUloziskaBess() {
                     alt="Batériové úložisko BESS a smart EV Wallbox Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={800}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-slate-950/20" />
                   

@@ -30,7 +30,7 @@ export const PARTNERS_ROW_2: PartnerLogo[] = [
 
 export const PartnerLogosSection: React.FC = () => {
   return (
-    <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80">
+    <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80 content-auto">
       {/* Background ambient accents */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true" />
@@ -66,6 +66,9 @@ export const PartnerLogosSection: React.FC = () => {
                     alt={partner.name}
                     className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
                     loading="lazy"
+                    decoding="async"
+                    width={145}
+                    height={48}
                   />
                 </div>
               ))}
@@ -86,6 +89,9 @@ export const PartnerLogosSection: React.FC = () => {
                     alt={partner.name}
                     className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
                     loading="lazy"
+                    decoding="async"
+                    width={145}
+                    height={48}
                   />
                 </div>
               ))}

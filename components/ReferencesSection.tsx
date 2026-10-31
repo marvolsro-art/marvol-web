@@ -80,7 +80,7 @@ export const ReferencesSection: React.FC = () => {
   const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="referencie" className="py-24 bg-slate-900 text-white relative">
+    <section id="referencie" className="py-24 bg-slate-900 text-white relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -158,6 +158,9 @@ export const ReferencesSection: React.FC = () => {
                     alt={project.location}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
+                    width={480}
+                    height={270}
                   />
                   <div className="absolute top-2.5 left-2.5 bg-slate-950/85 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-md">
                     {project.badge}

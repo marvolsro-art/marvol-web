@@ -647,6 +647,9 @@ export default function EshopPage() {
                             alt={brand.name}
                             className="max-h-10 max-w-[140px] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-105"
                             loading="lazy"
+                            decoding="async"
+                            width={140}
+                            height={40}
                           />
                         </div>
 

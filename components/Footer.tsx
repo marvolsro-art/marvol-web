@@ -5,7 +5,7 @@ import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, LockClosedIcon } from '@/co
 
 export const Footer: React.FC = () => {
   return (
-    <footer data-ui="footer" className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800">
+    <footer data-ui="footer" className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800 content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
@@ -17,6 +17,10 @@ export const Footer: React.FC = () => {
                   src="/logos/logo-marvol.svg"
                   alt="Marvol s.r.o."
                   className="h-10 sm:h-11 w-auto max-w-[190px] object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  width={190}
+                  height={44}
                 />
               </Link>
               <p className="text-emerald-400 font-bold text-xs tracking-wide">

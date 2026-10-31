@@ -181,6 +181,10 @@ export default function KontaktPage() {
                   alt="Zákaznícke centrum a showroom technológií Marvol"
                   className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={1200}
+                  height={500}
                 />
                 <div className="absolute inset-0 bg-slate-950/40" />
                 

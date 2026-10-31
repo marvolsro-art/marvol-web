@@ -258,6 +258,10 @@ export default function FotovoltikaPreDomacnosti() {
                     alt="Inštalácia fotovoltiky pre rodinný dom Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={800}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-slate-950/20" />
                   
@@ -488,6 +492,9 @@ export default function FotovoltikaPreDomacnosti() {
                     alt="Inštalácia hybridného striedača a LiFePO4 batérie Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={450}
                   />
                   <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/90 border border-amber-500/40 text-amber-400 font-medium text-xs">
                     Inštalácia striedača a úložiska

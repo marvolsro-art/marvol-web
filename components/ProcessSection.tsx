@@ -68,7 +68,7 @@ export const ProcessSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-900 text-white relative">
+    <section className="py-24 bg-slate-900 text-white relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -101,6 +101,9 @@ export const ProcessSection: React.FC = () => {
                       alt={step.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
+                      width={360}
+                      height={202}
                     />
                     <div className="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center">
                       {step.step}

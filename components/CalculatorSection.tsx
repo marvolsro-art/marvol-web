@@ -413,6 +413,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                       alt="Solárne panely"
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div className="min-w-0">
@@ -429,6 +432,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                       alt="Striedač"
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div className="min-w-0">
@@ -446,6 +452,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                         alt="Batéria"
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
                       />
                     </div>
                     <div className="min-w-0">
@@ -474,6 +483,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                         alt="Tepelné čerpadlo"
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
                       />
                     </div>
                     <div className="min-w-0">
@@ -492,6 +504,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                         alt="Wallbox"
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
                       />
                     </div>
                     <div className="min-w-0">
@@ -509,6 +524,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                       alt="Revízia"
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div className="min-w-0">
