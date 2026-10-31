@@ -81,6 +81,11 @@ export const Footer: React.FC = () => {
                   Referencie realizácií
                 </Link>
               </li>
+              <li>
+                <Link href="/#partneri" className="hover:text-amber-400 transition-colors">
+                  Technologickí partneri
+                </Link>
+              </li>
             </ul>
           </div>
 

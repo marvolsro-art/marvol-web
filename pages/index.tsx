@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from '@/components/Layout';
 import { Hero } from '@/components/Hero';
 import { SubsidyBanner } from '@/components/SubsidyBanner';
+import { PartnerLogosSection } from '@/components/PartnerLogosSection';
 import { TargetAudienceSection } from '@/components/TargetAudienceSection';
 import { ServicesSection } from '@/components/ServicesSection';
 import { CalculatorSection } from '@/components/CalculatorSection';
@@ -92,6 +93,7 @@ export default function Home() {
     >
       <Hero />
       <SubsidyBanner />
+      <PartnerLogosSection />
       <TargetAudienceSection />
       <ServicesSection />
       <CalculatorSection />
