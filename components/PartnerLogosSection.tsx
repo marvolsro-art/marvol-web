@@ -31,17 +31,13 @@ export const PARTNERS_ROW_2: PartnerLogo[] = [
 export const PartnerLogosSection: React.FC = () => {
   return (
     <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80 content-auto">
-      {/* Background ambient accents */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true" />
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-800 text-amber-400 mb-4 sm:mb-5">
+        <div className="max-w-3xl mb-10 sm:mb-12">
+          <p className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">
             Overení technologickí partneri &amp; dodávatelia
-          </span>
+          </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white mb-4">
             Spolupracujeme s lídrami v oblasti solárnej energie
           </h2>
@@ -58,7 +54,7 @@ export const PartnerLogosSection: React.FC = () => {
               {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
                 <div
                   key={`${partner.id}-row1-${idx}`}
-                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 shadow-sm hover:shadow-md transition-transform hover:scale-105 border border-slate-200/80"
+                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
                   title={partner.name}
                 >
                   <img
@@ -81,7 +77,7 @@ export const PartnerLogosSection: React.FC = () => {
               {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
                 <div
                   key={`${partner.id}-row2-${idx}`}
-                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 shadow-sm hover:shadow-md transition-transform hover:scale-105 border border-slate-200/80"
+                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
                   title={partner.name}
                 >
                   <img

@@ -131,21 +131,21 @@ export const ServicesSection: React.FC = () => {
     <section id="sluzby" className="py-24 bg-slate-950 text-white relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm font-semibold text-amber-400 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-            Komplexné portfólio na kľúč
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">
-            Naše fotovoltické a energetické služby
+        {/* Section Title (Left-aligned, zero pill badge) */}
+        <div className="max-w-3xl space-y-3 mb-10 sm:mb-14">
+          <p className="text-xs font-bold uppercase tracking-wider text-amber-400">
+            Energetické portfólio
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            Komplexné fotovoltické a energetické služby
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Postaráme sa o celú realizáciu od návrhu až po revíziu a dlhodobý monitoring.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Postaráme sa o celú realizáciu od počiatočného 3D návrhu až po odbornú revíziu, štátnu dotáciu SIEA a dlhodobý monitoring.
           </p>
         </div>
 
         {/* Tab Navigation Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 mb-10">
           {services.map((service) => {
             const TabIcon = service.icon;
             const isActive = activeTab === service.id;

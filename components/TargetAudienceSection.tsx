@@ -4,227 +4,198 @@ import { HomeIcon, BuildingOfficeIcon, BatteryIcon, CheckIcon } from '@/componen
 
 export const TargetAudienceSection: React.FC = () => {
   return (
-    <section id="target-groups" className="py-20 bg-slate-900 text-white relative content-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="target-groups" className="py-20 sm:py-24 bg-slate-900 text-white relative content-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm font-semibold text-amber-400 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-            Riešenia prispôsobené na mieru
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-            Pre kategórie zákazníkov
+        {/* Section Header (Left-aligned, zero pill badge) */}
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-amber-400">
+            Energetické segmenty
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            Riešenia navrhnuté pre váš typ nehnuteľnosti
           </h2>
-          <p className="text-slate-400 text-base">
-            Každý objekt vyžaduje špecifické technické riešenie. Spoločnosť Marvol s.r.o. dodáva certifikované energetické systémy pre všetky typy nehnuteľností.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Každá stavba si vyžaduje špecifické technické riešenie. Spoločnosť Marvol s.r.o. dodáva certifikované energetické systémy s garanciou kompatibility, bezpečnosti a návratnosti.
           </p>
         </div>
 
-        {/* 3 Main Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Card 1: Domácnosti */}
-          <div className="bg-slate-950/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between group hover:bg-slate-950 transition-colors">
-            <div className="space-y-5">
-              {/* Authentic 16:9 Photograph */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
-                <img
-                  src="/images/fotovoltika-domacnosti/hero.jpg"
-                  alt="Fotovoltika pre rodinné domy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  width={480}
-                  height={270}
-                />
-                <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
-                  <HomeIcon className="w-5 h-5 text-slate-950" />
-                </div>
-                <div className="absolute bottom-3 left-3 text-xs font-semibold text-amber-300 bg-slate-950/85 px-2.5 py-1 rounded-md">
-                  Dotácia až 1 150 € / 4 600 €
-                </div>
+        {/* Segment 1: Rodinné domy (Dominant Architectural Showcase) */}
+        <div className="bg-slate-950 rounded-3xl overflow-hidden p-6 sm:p-8 lg:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            
+            {/* Visual Left */}
+            <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900">
+              <img
+                src="/images/fotovoltika-domacnosti/hero.jpg"
+                alt="Fotovoltika pre rodinné domy od Marvol"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={500}
+              />
+              <div className="absolute bottom-4 left-4 bg-slate-950/90 text-amber-400 text-xs font-bold px-3 py-1.5 rounded-lg">
+                Štátna dotácia SIEA do 1 150 €
               </div>
+            </div>
 
+            {/* Content Right */}
+            <div className="lg:col-span-6 space-y-5">
               <div>
-                <h3 className="text-2xl font-black text-white mb-2 group-hover:text-amber-400 transition-colors">
-                  Domácnosti
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  Fotovoltika pre rodinné domy
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Plaťte menej za energie a užívajte si vyšší komfort bývania. Smart fotovoltické systémy a batérie znížia vaše mesačné účty o 70 až 90%.
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-2">
+                  Znížte mesačné účty za elektrinu o 70 až 80 %. Navrhneme zostavu presne podľa energetického profilu vašej domácnosti s možnosťou LiFePO4 batériového úložiska a smart ohrevu vody.
                 </p>
               </div>
 
-              <ul className="space-y-3 pt-1 text-sm text-slate-300">
-                <li className="flex items-start gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-200 pt-1">
+                <div className="flex items-start gap-2.5">
                   <CheckIcon className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <span>Fotovoltika od 3 kWp do 10 kWp</span>
-                </li>
-                <li className="flex items-start gap-2.5">
+                  <span>Výkon od 3 kWp do 10 kWp</span>
+                </div>
+                <div className="flex items-start gap-2.5">
                   <CheckIcon className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <span>Batériové úložiská & virtuálna batéria</span>
-                </li>
-                <li className="flex items-start gap-2.5">
+                  <span>Hybridný menič s EPS záskokom</span>
+                </div>
+                <div className="flex items-start gap-2.5">
                   <CheckIcon className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <span>Nabíjacie stanice Wallbox pre elektromobily</span>
-                </li>
-                <li className="flex items-start gap-2.5">
+                  <span>LiFePO4 batérie 6 000+ cyklov</span>
+                </div>
+                <div className="flex items-start gap-2.5">
                   <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span className="font-semibold text-emerald-400">Dotácia Zelená domácnostiam (SIEA)</span>
-                </li>
-              </ul>
+                  <span className="font-semibold text-emerald-400">Vybavenie SIEA bez poplatku</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+                <Link
+                  href="/fotovoltika-pre-domacnosti"
+                  className="px-6 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-center text-sm min-h-[48px] tap-target-48"
+                >
+                  Riešenia pre rodinné domy →
+                </Link>
+                <a
+                  href="#kalkulacka"
+                  className="px-6 py-3.5 rounded-xl font-semibold text-slate-200 bg-slate-900 hover:bg-slate-800 transition-colors text-center text-sm min-h-[48px] tap-target-48"
+                >
+                  Kalkulácia úspory
+                </a>
+              </div>
             </div>
 
-            <div className="pt-6 space-y-2">
-              <Link
-                href="/fotovoltika-pre-domacnosti"
-                className="block w-full py-3.5 min-h-[44px] min-h-[48px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-amber-400 text-slate-950 hover:bg-amber-300 transition-colors"
-              >
-                Preskúmať riešenia pre rodinné domy →
-              </Link>
-              <a
-                href="#kalkulacka"
-                className="block text-center text-xs font-semibold text-slate-400 hover:text-amber-400 transition-colors py-1.5"
-              >
-                Spočítať úsporu v kalkulačke
-              </a>
-            </div>
           </div>
+        </div>
 
-          {/* Card 2: Firmy */}
-          <div className="bg-slate-950/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between group hover:bg-slate-950 transition-colors">
-            <div className="space-y-5">
-              {/* Authentic 16:9 Photograph */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+        {/* Dual Secondary Plane: Firmy & Komerčné objekty + Bytové domy */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Plane 2: Firmy & Priemysel */}
+          <div className="bg-slate-950 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-900">
                 <img
                   src="/images/fotovoltika-firmy/hero.jpg"
                   alt="Fotovoltika pre firmy a priemysel"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                   decoding="async"
-                  width={480}
-                  height={270}
+                  width={640}
+                  height={360}
                 />
-                <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-sky-500 text-slate-950 flex items-center justify-center font-bold">
-                  <BuildingOfficeIcon className="w-5 h-5 text-slate-950" />
-                </div>
-                <div className="absolute bottom-3 left-3 text-xs font-semibold text-sky-300 bg-slate-950/85 px-2.5 py-1 rounded-md">
-                  Zelená podnikom & PVSOL
+                <div className="absolute bottom-3 left-3 bg-slate-950/90 text-sky-400 text-xs font-bold px-3 py-1.5 rounded-lg">
+                  Program Zelená podnikom &amp; PVSOL
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2 group-hover:text-sky-400 transition-colors">
-                  Firmy & Priemysel
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Optimalizujte prevádzkové náklady výrobných hál, logistických centier a administratívnych budov. Chráňte podnikanie pred výkyvmi cien energií.
-                </p>
-              </div>
+              <h3 className="text-2xl font-black text-white">
+                Firmy &amp; Priemyselné haly
+              </h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Lokálne fotovoltické zdroje od 10 kWp do 500+ kWp s priemyselným úložiskom BESS. Ochrana pred výkyvmi cien na burze a zníženie rezervovanej kapacity (peak-shaving).
+              </p>
 
-              <ul className="space-y-3 pt-1 text-sm text-slate-300">
-                <li className="flex items-start gap-2.5">
+              <ul className="space-y-2.5 text-sm text-slate-200 pt-1">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
-                  <span>Lokálne fotovoltické zdroje od 10 kWp do 500+ kWp</span>
+                  <span>PVSOL energetická a finančná simulácia</span>
                 </li>
-                <li className="flex items-start gap-2.5">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
-                  <span>Priemyselné batériové úložiská (BESS)</span>
+                  <span>Veľkokapacitné batériové úložiská BESS</span>
                 </li>
-                <li className="flex items-start gap-2.5">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
-                  <span>Elektroinštalácie a rozvádzače pre priemysel</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span className="font-semibold text-emerald-400">Program Zelená podnikom pre firmy</span>
+                  <span>Projekt, distribúcia a priemyselné rozvádzače</span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-6 space-y-2">
+            <div className="pt-2">
               <Link
                 href="/fotovoltika-pre-firmy"
-                className="block w-full py-3.5 min-h-[44px] min-h-[48px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-sky-500 text-slate-950 hover:bg-sky-400 transition-colors"
+                className="block w-full py-3.5 text-center font-bold text-sm rounded-xl bg-sky-500 text-slate-950 hover:bg-sky-400 transition-colors min-h-[48px] tap-target-48"
               >
                 Preskúmať riešenia pre firmy →
               </Link>
-              <a
-                href="#kontakt"
-                className="block text-center text-xs font-semibold text-slate-400 hover:text-sky-400 transition-colors py-1.5"
-              >
-                Požiadať o energetický audit
-              </a>
             </div>
           </div>
 
-          {/* Card 3: Bytové domy & BESS */}
-          <div className="bg-slate-950/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between group hover:bg-slate-950 transition-colors">
-            <div className="space-y-5">
-              {/* Authentic 16:9 Photograph */}
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+          {/* Plane 3: Bytové domy & Samosprávy */}
+          <div className="bg-slate-950 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-900">
                 <img
                   src="/images/bateriove-uloziska/hero.jpg"
                   alt="Batériové systémy BESS a bytové domy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                   decoding="async"
-                  width={480}
-                  height={270}
+                  width={640}
+                  height={360}
                 />
-                <div className="absolute top-3 left-3 w-10 h-10 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold">
-                  <BatteryIcon className="w-5 h-5 text-slate-950" />
-                </div>
-                <div className="absolute bottom-3 left-3 text-xs font-semibold text-emerald-300 bg-slate-950/85 px-2.5 py-1 rounded-md">
-                  LiFePO4 & UPS Záloha
+                <div className="absolute bottom-3 left-3 bg-slate-950/90 text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-lg">
+                  LiFePO4 systémy &amp; UPS záloha
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                  Bytové domy & Samosprávy
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Efektívne energetické systémy pre spoločenstvá vlastníkov, škôlky, úrady a kultúrne domy. Lokálna sebestačnosť a zníženie verejných výdavkov.
-                </p>
-              </div>
+              <h3 className="text-2xl font-black text-white">
+                Bytové domy, Samosprávy &amp; BESS
+              </h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Energetická sebestačnosť pre spoločenstvá vlastníkov, škôlky, úrady a kultúrne domy. Zdieľanie vyrobenej energie v bytovom dome a zníženie nákladov spoločných priestorov.
+              </p>
 
-              <ul className="space-y-3 pt-1 text-sm text-slate-300">
-                <li className="flex items-start gap-2.5">
+              <ul className="space-y-2.5 text-sm text-slate-200 pt-1">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Veľkokapacitné batériové systémy BESS</span>
+                  <span>Batériové úložiská BESS od 20 kWh do 1 MWh</span>
                 </li>
-                <li className="flex items-start gap-2.5">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Energetická sebestačnosť verejných objektov</span>
+                  <span>Zdieľanie elektriny v rámci bytového domu</span>
                 </li>
-                <li className="flex items-start gap-2.5">
+                <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Zdieľanie vyrobenej energie v bytových domoch</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckIcon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span className="font-semibold text-emerald-400">Verejné obstarávanie & Inžiniering</span>
+                  <span>Kompletná projektová a legislatívna podpora</span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-6 space-y-2">
+            <div className="pt-2">
               <Link
                 href="/bateriove-uloziska-bess"
-                className="block w-full py-3.5 min-h-[44px] min-h-[48px] flex items-center justify-center text-center font-bold text-sm rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors"
+                className="block w-full py-3.5 text-center font-bold text-sm rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors min-h-[48px] tap-target-48"
               >
                 Preskúmať batériové úložiská BESS →
               </Link>
-              <a
-                href="#kontakt"
-                className="block text-center text-xs font-semibold text-slate-400 hover:text-emerald-400 transition-colors py-1.5"
-              >
-                Konzultácia pre samosprávu / dom
-              </a>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

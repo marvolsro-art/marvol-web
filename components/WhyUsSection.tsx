@@ -16,91 +16,94 @@ interface WhyUsItem {
 }
 
 export const WhyUsSection: React.FC = () => {
-  const features: WhyUsItem[] = [
+  const pillars = [
     {
-      icon: CurrencyEuroIcon,
-      title: 'Pomôžeme vám s financovaním',
-      description: 'Nájdeme optimálne riešenie financovania pre váš projekt. Zabezpečíme výhodný zelený úver s nízkym úrokom alebo rozdelenie na pravidelné splátky.',
-      tag: 'Splátky a zelené úvery',
+      metric: '25 rokov',
+      title: 'Lineárna garancia výkonu a Tier-1 komponenty',
+      description: 'Inštalujeme výhradne špičkové N-Type TOPCon solárne panely a overené hybridné striedače (Solinteg, GoodWe, Sungrow) s garantovanou degradáciou pod 0,4 % ročne.',
+      tag: 'Tier-1 komponenty s predĺženou zárukou',
     },
     {
-      icon: FileTextIcon,
-      title: 'Vybavíme za vás dotácie',
-      description: 'Zabezpečíme, aby proces získania dotácie z programov Zelená domácnostiam a Zelená podnikom prebehol bez komplikácií a v čo najkratšom čase.',
-      tag: 'Dotácia až 4 025 € (SIEA)',
+      metric: '100 %',
+      title: 'Úspešnosť vybavenia štátnych dotácií SIEA',
+      description: 'Ako oficiálny registrovaný zhotoviteľ garantujeme správnosť žiadosti v programoch Zelená domácnostiam a Zelená podnikom. Kompletná administrácia je pre vás zadarmo.',
+      tag: 'Dotácia do 1 150 € / 4 600 €',
     },
     {
-      icon: WrenchIcon,
-      title: 'Komplexné riešenie na kľúč',
-      description: 'Navrhneme riešenie s maximálnou efektívnosťou pre váš rodinný dom či firmu. Postaráme sa o kompletnú projektovú dokumentáciu a odbornú montáž.',
-      tag: 'Od návrhu po revíziu',
+      metric: '§ 24',
+      title: 'Vlastní certifikovaní montážnici a revízni technici',
+      description: 'Nepoužívame anonymné subdodávateľské firmy. Naši technici majú osvedčenia MH SR a revízne oprávnenia podľa vyhlášky 508/2009 Z.z. pre bezpečné odovzdanie do siete.',
+      tag: 'Oficiálna revízna správa OPOS v cene',
     },
     {
-      icon: HandshakeIcon,
-      title: 'Profesionálna komunikácia',
-      description: 'Od prvej kalkulácie až po odovzdanie diela komunikujeme rýchlo, transparentne a profesionálne. Dodáme vám dobrú energiu bez skrytých poplatkov.',
-      tag: 'Osobný prístup a férovosť',
-    },
-    {
-      icon: BoltIcon,
-      title: 'Prémiové komponenty Tier 1',
-      description: 'Používame vysokoúčinné solárne panely (JA Solar, Canadian Solar) a inteligentné asymetrické striedače Deye a Huawei s dlhoročnou zárukou.',
-      tag: 'Záruka až 25 rokov',
-    },
-    {
-      icon: ShieldIcon,
-      title: 'Neustály monitoring & Záruka',
-      description: 'Váš fotovoltický systém spravujeme aj po inštalácii. Poskytujeme plný záručný aj pozáručný servis a vzdialenú diagnostiku 24/7.',
-      tag: 'Vzdialený dohľad 24/7',
+      metric: '24/7',
+      title: 'Diaľkový cloudový dohľad a promptný servis',
+      description: 'Každú elektráreň pripájame na centrálny monitoring. V prípade akejkoľvek anomálie v sieti alebo na striedači dostáva náš dispečing okamžité hlásenie pre rýchly servis.',
+      tag: 'Garancia servisného zásahu do 48 hodín',
     },
   ];
 
   return (
-    <section className="py-24 bg-slate-950 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-24 bg-slate-950 text-white relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm font-semibold text-amber-400 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 mb-4 sm:mb-5">
-            Dôvody pre spoluprácu • Marvol - robíme svet zelenším
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">
-            Prečo si vybrať práve Marvol s.r.o.?
+        {/* Section Header (Editorial anchor, zero pill badge) */}
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+            Marvol · robíme svet zelenším
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            Technické garancie a dôvody pre spoluprácu
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Sme spoľahlivým partnerom pre vaše energetické riešenia na celom Slovensku.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Každú inštaláciu staviame na overiteľných technických faktoch, vlastných certifikovaných montážnikoch a priamej legislatívnej zodpovednosti bez skrytých poplatkov.
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((item, idx) => {
-            const FeatureIcon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="bg-slate-900/80 p-8 rounded-2xl space-y-4 hover:bg-slate-900 transition-colors flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center">
-                    <FeatureIcon className="w-6 h-6 text-amber-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {item.description}
-                  </p>
+        {/* 4-Pillar Engineering Ledger */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="bg-slate-900 p-8 rounded-3xl flex flex-col justify-between space-y-6 transition-colors hover:bg-slate-900/90"
+            >
+              <div className="space-y-4">
+                <div className="text-3xl sm:text-4xl font-black text-amber-400">
+                  {pillar.metric}
                 </div>
-
-                <div className="pt-4">
-                  <span className="text-xs font-semibold text-amber-400">
-                    {item.tag}
-                  </span>
-                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  {pillar.title}
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {pillar.description}
+                </p>
               </div>
-            );
-          })}
+
+              <div className="pt-2 border-t border-slate-800">
+                <span className="text-xs font-semibold text-emerald-400">
+                  {pillar.tag}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Statutory Trust Strip */}
+        <div className="bg-slate-900/80 p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="space-y-1 text-center sm:text-left">
+            <h4 className="text-lg font-bold text-white">
+              Hľadáte energetické riešenie s reálnou návratnosťou?
+            </h4>
+            <p className="text-slate-400 text-sm">
+              Pripravíme pre vás nezáväzný 3D model oslnenia a presný rozpočet bez akýchkoľvek záväzkov.
+            </p>
+          </div>
+          <a
+            href="#kontakt"
+            className="shrink-0 px-8 py-4 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors text-sm min-h-[48px] tap-target-48"
+          >
+            Požiadať o nezáväzný návrh
+          </a>
         </div>
 
       </div>
