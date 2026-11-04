@@ -2,7 +2,7 @@ import React from 'react';
 
 export const SubsidyBanner: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 text-slate-950 py-12 sm:py-16"> {/* taste-skill-ignore */}
+    <section id="dotacie" className="relative overflow-hidden bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 text-slate-950 py-12 sm:py-16 scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44"> {/* taste-skill-ignore */}
       {/* Subtle architectural solar light shimmer */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-black/[0.04] pointer-events-none" aria-hidden="true" /> {/* taste-skill-ignore */}
       <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-yellow-200/40 to-transparent pointer-events-none" aria-hidden="true" /> {/* taste-skill-ignore */}

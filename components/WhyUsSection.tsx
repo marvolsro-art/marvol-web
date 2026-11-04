@@ -44,7 +44,7 @@ export const WhyUsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-slate-950 text-white relative">
+    <section id="preco-my" className="py-20 sm:py-24 bg-slate-950 text-white relative scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
         {/* Section Header (Editorial anchor, zero pill badge) */}

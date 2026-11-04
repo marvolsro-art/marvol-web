@@ -16,7 +16,7 @@ import {
 export const Hero: React.FC = () => {
   const [heroCardTab, setHeroCardTab] = useState<'model' | 'photo'>('model');
   return (
-    <section id="fotovoltika" className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 bg-slate-950 overflow-hidden text-white">
+    <section id="fotovoltika" className="relative pt-40 pb-16 sm:pt-44 sm:pb-20 md:pt-44 lg:pt-48 lg:pb-24 bg-slate-950 overflow-hidden text-white scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           

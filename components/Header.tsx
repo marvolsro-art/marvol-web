@@ -201,7 +201,14 @@ export const Header: React.FC = () => {
       e.preventDefault();
       const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 120;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight - 20;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: 'smooth',
+        });
         window.history.pushState(null, '', hash);
       }
     }
@@ -283,12 +290,12 @@ export const Header: React.FC = () => {
   return (
     <header ref={headerRef} data-ui="header" className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Banner Bar */}
-      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800"> {/* taste-skill-ignore: header top bar */}
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <div className="bg-slate-950 text-slate-300 text-xs py-1.5 sm:py-2 px-4 border-b border-slate-800"> {/* taste-skill-ignore: header top bar */}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 sm:gap-2">
           <div className="flex items-center space-x-6">
             <a
               href="tel:+421948123456"
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors min-h-[48px] sm:min-h-0"
+              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors py-0.5"
             >
               <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -297,7 +304,7 @@ export const Header: React.FC = () => {
             </a>
             <a
               href="mailto:info@marvol.sk"
-              className="hidden sm:flex items-center gap-1.5 hover:text-amber-400 transition-colors min-h-[48px] sm:min-h-0"
+              className="hidden sm:flex items-center gap-1.5 hover:text-amber-400 transition-colors py-0.5"
             >
               <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

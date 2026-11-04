@@ -153,7 +153,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   };
 
   return (
-    <section id="kalkulacka" className={`py-20 sm:py-28 bg-slate-950 text-slate-100 relative scroll-mt-20 ${className}`}>
+    <section id="kalkulacka" className={`py-20 sm:py-28 bg-slate-950 text-slate-100 relative scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

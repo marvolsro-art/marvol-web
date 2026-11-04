@@ -74,7 +74,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
       <Header />
 
-      <main className={`flex-1 w-full overflow-x-hidden ${isSubpage ? 'pt-28 md:pt-36' : ''}`}>
+      <main className={`flex-1 w-full overflow-x-hidden ${isSubpage ? 'pt-36 sm:pt-40 md:pt-40 lg:pt-44' : ''}`}>
         {children}
       </main>
 

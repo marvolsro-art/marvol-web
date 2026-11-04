@@ -128,7 +128,7 @@ export const ServicesSection: React.FC = () => {
   const CurrentIcon = currentService.icon;
 
   return (
-    <section id="sluzby" className="py-24 bg-slate-950 text-white relative content-auto">
+    <section id="sluzby" className="py-24 bg-slate-950 text-white relative content-auto scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title (Left-aligned, zero pill badge) */}

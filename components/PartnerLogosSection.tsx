@@ -30,7 +30,7 @@ export const PARTNERS_ROW_2: PartnerLogo[] = [
 
 export const PartnerLogosSection: React.FC = () => {
   return (
-    <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80 content-auto">
+    <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80 content-auto scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
