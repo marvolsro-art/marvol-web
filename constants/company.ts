@@ -7,7 +7,6 @@
 export const COMPANY_DETAILS = {
   legalName: 'Marvol s. r. o.',
   shortName: 'Marvol',
-  motto: 'Marvol - robíme svet zelenším',
   seat: {
     street: 'Chotárna 3394/6',
     city: 'Vrútky',
@@ -32,10 +31,11 @@ export const COMPANY_DETAILS = {
   contact: {
     phone: '+421 908 403 042',
     phoneClean: '+421908403042',
+    phoneNational: '0908 403 042',
     email: 'marvolsro@gmail.com',
     whatsappUrl: 'https://wa.me/421908403042?text=Dobry%20den,%20mam%20zaujem%20o%20fotovoltiku%20od%20Marvol%20s.r.o.',
     businessHours: {
-      workdays: 'Pondelok - Piatok: 08:00 - 18:00',
+      workdays: 'Pondelok – Piatok: 08:00 – 18:00',
       weekend: 'Víkend: dopyty spracované do 24 hodín',
       shortDisplay: 'Po - Pia: 8:00 - 18:00',
     },

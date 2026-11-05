@@ -99,7 +99,7 @@ export const CookieConsent: React.FC = () => {
             setShowDetails(true);
             setIsOpen(true);
           }}
-          className="fixed bottom-20 sm:bottom-6 left-4 sm:left-6 z-40 p-2.5 sm:px-3 sm:py-2 rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/80 shadow-2xl backdrop-blur-md flex items-center gap-2 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer group"
+          className="fixed bottom-18 sm:bottom-6 left-3 sm:left-6 z-40 p-2.5 sm:px-3 sm:py-2 rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/80 shadow-2xl backdrop-blur-md flex items-center gap-2 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer group"
           title="Upraviť nastavenia cookies"
           aria-label="Nastavenia cookies"
         >
@@ -116,7 +116,7 @@ export const CookieConsent: React.FC = () => {
           role="dialog"
           aria-modal="false"
           aria-labelledby="cookie-banner-title"
-          className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md md:max-w-lg z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
+          className="fixed bottom-16 sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 sm:max-w-md md:max-w-lg z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
         >
           <div className="bg-slate-900/98 border border-slate-700/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl shadow-black/80 backdrop-blur-2xl text-left text-slate-200">
             
