@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
+import { sendLeadNotificationEmail } from '@/lib/email';
 
 export interface LeadRequestBody {
   name: string;
@@ -49,6 +50,7 @@ export type ResponseData = {
   success: boolean;
   message: string;
   leadId?: string;
+  emailSent?: boolean;
 };
 
 const PHONE_REGEX = /^[+0-9\s-]{9,20}$/;
@@ -177,6 +179,18 @@ export default async function handler(
     leads.push(newLead);
     fs.writeFileSync(leadsFilePath, JSON.stringify(leads, null, 2), 'utf8');
 
+    // 5. Send automated email notification to Marvol sales team (Resend or SMTP)
+    let emailSent = false;
+    try {
+      const emailResult = await sendLeadNotificationEmail(newLead);
+      emailSent = emailResult.success;
+      if (!emailResult.success && emailResult.error !== 'NO_EMAIL_PROVIDER_CONFIGURED') {
+        console.warn('[LEAD_EMAIL_WARNING]', emailResult.error);
+      }
+    } catch (emailErr) {
+      console.error('[LEAD_EMAIL_ERROR] Unexpected error dispatching lead email:', emailErr);
+    }
+
     // Optional webhook dispatch (e.g. to CRM / Discord / Slack / Zapier if env variable exists)
     const webhookUrl = process.env.LEAD_WEBHOOK_URL;
     if (webhookUrl) {
@@ -197,6 +211,7 @@ export default async function handler(
       success: true,
       message: 'Ďakujeme! Váš dopyt bol úspešne zaregistrovaný.',
       leadId,
+      emailSent,
     });
   } catch (error) {
     console.error('Error handling lead submission:', error);
