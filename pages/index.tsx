@@ -10,9 +10,6 @@ import {
   BoltIcon,
   AlertCircleIcon,
   CheckIcon,
-  BatteryIcon,
-  BuildingOfficeIcon,
-  HeatPumpIcon,
   WrenchIcon,
   FileTextIcon,
 } from '@/components/icons';
@@ -114,11 +111,11 @@ export default function MaintenancePage() {
         
         {/* Subtle Ambient Solar Background Glows */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-amber-500/15 via-amber-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/4 -left-48 w-[600px] h-[600px] bg-emerald-500/5 blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/3 -left-48 w-[600px] h-[600px] bg-emerald-500/5 blur-3xl pointer-events-none -z-10" />
         <div className="absolute bottom-1/3 -right-48 w-[600px] h-[600px] bg-amber-500/10 blur-3xl pointer-events-none -z-10" />
 
         {/* Top Header Bar */}
-        <header className="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-40">
+        <header className="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <img
@@ -136,27 +133,91 @@ export default function MaintenancePage() {
           </div>
         </header>
 
-        {/* Main Content Area */}
-        <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex flex-col items-center justify-center text-center">
-          
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs sm:text-sm font-bold tracking-wide mb-6">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
-            <span>Servisný režim • Spustenie nového webu už čoskoro</span>
+        {/* FULL-WIDTH ZOOMED ROOF HERO WITH SMOOTH DOWNWARD FADING TRANSITION */}
+        <section className="relative w-full overflow-hidden min-h-[620px] sm:min-h-[720px] lg:min-h-[820px] flex items-center justify-center">
+          {/* Zoomed Macro Photovoltaic Roof Background Image */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            <img
+              src="/images/roof/solar-roof-macro.jpg"
+              alt="Detail modernej fotovoltickej elektrárne na streche od Marvol s.r.o."
+              className="w-full h-full object-cover object-[center_35%] scale-105 pointer-events-none select-none motion-safe:transition-transform motion-safe:duration-1000"
+            />
+
+            {/* Dark contrast base overlay for high text legibility */}
+            <div className="absolute inset-0 bg-slate-950/60 backdrop-brightness-[0.82] pointer-events-none" />
+
+            {/* Radial vignette spotlight */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.25)_0%,rgba(2,6,23,0.85)_100%)] pointer-events-none" />
+
+            {/* Top gradient fade under header */}
+            <div className="absolute inset-x-0 top-0 h-32 sm:h-44 bg-gradient-to-b from-slate-950 via-slate-950/70 to-transparent pointer-events-none z-10" />
+
+            {/* Bottom fading transition ("miznúci prechod pri scrolle nižšie") */}
+            <div className="absolute inset-x-0 bottom-0 h-56 sm:h-80 lg:h-96 bg-gradient-to-b from-transparent via-slate-950/75 to-slate-950 pointer-events-none z-10" />
           </div>
 
-          {/* Main Title & Subtitle */}
-          <div className="max-w-3xl space-y-4 mb-8">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+          {/* Foreground Hero Content */}
+          <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center flex flex-col items-center justify-center">
+            
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-950/85 border border-amber-400/40 text-amber-400 text-xs sm:text-sm font-bold tracking-wide mb-6 backdrop-blur-md shadow-xl shadow-black/50">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+              </span>
+              <span>Servisný režim • Spustenie nového webu už čoskoro</span>
+            </div>
+
+            {/* Main Title & Value Proposition */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.1] mb-5 drop-shadow-2xl max-w-4xl">
               Na stránke sa usilovne pracuje
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 mt-2 sm:mt-3">
+                Fotovoltika &amp; montáže v plnom chode
+              </span>
             </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-              Pripravujeme pre vás modernizovaný online systém pre fotovoltické elektrárne na kľúč, batériové úložiská BESS a tepelné čerpadlá.
-            </p>
-          </div>
 
+            {/* Subtitle */}
+            <p className="text-slate-200 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-8 drop-shadow">
+              Pripravujeme pre vás modernizovaný online systém s interaktívnou kalkulačkou úspor. Všetky technické obhliadky striech, montáže elektrární na kľúč a vybavenie štátnych dotácií SIEA fungujú po celom Slovensku bez obmedzení.
+            </p>
+
+            {/* Quick Contact CTAs in Hero */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none mb-10">
+              <a
+                href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 font-black text-sm hover:from-amber-400 hover:to-amber-300 transition-all duration-200 shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              >
+                <PhoneIcon className="w-4 h-4" />
+                <span>Zavolať: {COMPANY_DETAILS.contact.phone}</span>
+              </a>
+              <a
+                href={`mailto:${COMPANY_DETAILS.contact.email}?subject=Dopyt%20na%20fotovoltiku%20-%20Marvol%20s.r.o.`}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-white font-bold text-sm border border-slate-700/80 hover:border-amber-400/50 transition-all duration-200 backdrop-blur-md shadow-xl hover:-translate-y-0.5 cursor-pointer"
+              >
+                <MailIcon className="w-4 h-4 text-amber-400" />
+                <span>{COMPANY_DETAILS.contact.email}</span>
+              </a>
+            </div>
+
+            {/* Downward Scroll Cue */}
+            <a
+              href="#sluzby"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-amber-400 transition-colors cursor-pointer group"
+            >
+              <span>Zistiť viac o našich službách a technológiách</span>
+              <svg className="w-4 h-4 text-amber-400 animate-bounce group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+
+          </div>
+        </section>
+
+        {/* Main Content Area (Seamlessly emerging from the dark dissolve gradient) */}
+        <main id="sluzby" className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col items-center justify-center text-center">
+          
           {/* Continuous Operations Banner */}
-          <div className="w-full max-w-4xl bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 mb-10 text-left flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-xl shadow-black/40">
+          <div className="w-full max-w-4xl bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 mb-12 text-left flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-xl shadow-black/40">
             <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center shrink-0 text-amber-400">
               <AlertCircleIcon className="w-6 h-6" />
             </div>
@@ -170,79 +231,42 @@ export default function MaintenancePage() {
             </div>
           </div>
 
-          {/* THEMATIC HERO SHOWCASE: Fotovoltika na kľúč (Large Visual Hero) */}
-          <div className="w-full max-w-4xl bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden mb-12 shadow-2xl shadow-black/60 text-left">
-            <div className="relative h-64 sm:h-80 md:h-[420px] w-full overflow-hidden">
-              <img
-                src="/images/fotovoltika-domacnosti/hero.jpg"
-                alt="Fotovoltické inštalácie na rodinné domy Marvol s.r.o."
-                className="w-full h-full object-cover object-center filter brightness-95 hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-              
-              {/* Badges on image */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-400/40 text-amber-400 text-xs font-black uppercase tracking-wider">
-                  <SunIcon className="w-3.5 h-3.5" />
-                  <span>Fotovoltika na kľúč</span>
-                </span>
-                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-400/30 text-emerald-400 text-xs font-bold">
-                  <ShieldIcon className="w-3.5 h-3.5" />
-                  <span>Záruka na výkon 25 rokov</span>
-                </span>
+          {/* Solar Key Metrics Strip */}
+          <div className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-900/80 border border-slate-800 rounded-3xl p-4 sm:p-6 mb-12 shadow-xl shadow-black/30">
+            <div className="p-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-400 text-xs font-bold mb-0.5">
+                <SunIcon className="w-3.5 h-3.5" />
+                <span>Úspora energií</span>
               </div>
-
-              {/* Bottom caption on image */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                <span className="inline-block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
-                  Marvol Photovoltaic Engineering
-                </span>
-                <p className="text-xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">
-                  Kompletné fotovoltické systémy pre rodinné domy a firmy
-                </p>
-                <p className="text-xs sm:text-sm text-slate-200 mt-1.5 max-w-2xl drop-shadow leading-relaxed">
-                  Od technického 3D návrhu, statiky strechy a vybavenia dotácie až po montáž, úradnú revíznu správu a pripojenie do distribučnej siete.
-                </p>
-              </div>
+              <p className="text-xl sm:text-2xl font-black text-white">až do 80 %</p>
+              <p className="text-[11px] text-slate-400">Na ročných účtoch za elektrinu</p>
             </div>
 
-            {/* Solar Key Metrics Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950/80 p-4 sm:p-5">
-              <div className="p-3 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-400 text-xs font-bold mb-0.5">
-                  <SunIcon className="w-3.5 h-3.5" />
-                  <span>Úspora energií</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-black text-white">až do 80 %</p>
-                <p className="text-[11px] text-slate-400">Na ročných účtoch za elektrinu</p>
+            <div className="p-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-1.5 text-emerald-400 text-xs font-bold mb-0.5">
+                <ShieldIcon className="w-3.5 h-3.5" />
+                <span>Dotácia SIEA</span>
               </div>
+              <p className="text-xl sm:text-2xl font-black text-white">do 1 150 €</p>
+              <p className="text-[11px] text-slate-400">Zelená domácnostiam bez starostí</p>
+            </div>
 
-              <div className="p-3 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-emerald-400 text-xs font-bold mb-0.5">
-                  <ShieldIcon className="w-3.5 h-3.5" />
-                  <span>Dotácia SIEA</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-black text-white">do 1 150 €</p>
-                <p className="text-[11px] text-slate-400">Zelená domácnostiam bez starostí</p>
+            <div className="p-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-1.5 text-sky-400 text-xs font-bold mb-0.5">
+                <BoltIcon className="w-3.5 h-3.5" />
+                <span>Špičková garancia</span>
               </div>
+              <p className="text-xl sm:text-2xl font-black text-white">25 rokov</p>
+              <p className="text-[11px] text-slate-400">Lineárna záruka na výkon panelov</p>
+            </div>
 
-              <div className="p-3 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-sky-400 text-xs font-bold mb-0.5">
-                  <BoltIcon className="w-3.5 h-3.5" />
-                  <span>Špičková garancia</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-black text-white">25 rokov</p>
-                <p className="text-[11px] text-slate-400">Lineárna záruka na výkon panelov</p>
+            <div className="p-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-400 text-xs font-bold mb-0.5">
+                <WrenchIcon className="w-3.5 h-3.5" />
+                <span>Revízie OPOS</span>
               </div>
-
-              <div className="p-3 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-400 text-xs font-bold mb-0.5">
-                  <WrenchIcon className="w-3.5 h-3.5" />
-                  <span>Revízie OPOS</span>
-                </div>
-                <p className="text-xl sm:text-2xl font-black text-white">§ 24 elektrotechnici</p>
-                <p className="text-[11px] text-slate-400">Vlastný certifikovaný personál</p>
-              </div>
+              <p className="text-xl sm:text-2xl font-black text-white">§ 24 elektrotechnici</p>
+              <p className="text-[11px] text-slate-400">Vlastný certifikovaný personál</p>
             </div>
           </div>
 
@@ -423,7 +447,7 @@ export default function MaintenancePage() {
           </div>
 
           {/* DIRECT CONTACT ACTION HUB (Without Form) */}
-          <div className="w-full max-w-4xl bg-gradient-to-b from-slate-900 to-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl shadow-black/50">
+          <div className="w-full max-w-4xl bg-gradient-to-b from-slate-900 to-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 mb-16 shadow-2xl shadow-black/50">
             <div className="text-center max-w-xl mx-auto space-y-2 mb-6">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                 Priame kontakty
