@@ -232,9 +232,23 @@ export default function MaintenancePage() {
                 {COMPANY_DETAILS.registry.legalNotice}
               </p>
             </div>
-            <div className="text-center md:text-right text-[11px]">
+            <div className="text-center md:text-right text-[11px] space-y-1">
               <p>© {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené.</p>
-              <p className="text-slate-500 mt-0.5">Oficiálny registrovaný zhotoviteľ SIEA (Zelená domácnostiam &amp; Zelená podnikom)</p>
+              <p className="text-slate-500">Oficiálny registrovaný zhotoviteľ SIEA (Zelená domácnostiam &amp; Zelená podnikom)</p>
+              <p className="pt-0.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('openCookieSettings'));
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors text-slate-500 hover:underline cursor-pointer"
+                  aria-label="Upraviť nastavenia cookies"
+                >
+                  Nastavenia cookies
+                </button>
+              </p>
             </div>
           </div>
         </footer>
