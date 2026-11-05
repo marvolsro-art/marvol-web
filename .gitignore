@@ -147,6 +147,7 @@ vite.config.ts.timestamp-*
 # Misc
 .DS_Store
 .agents/
+.taste-skill/
 
 # Data
 data/leads.json
