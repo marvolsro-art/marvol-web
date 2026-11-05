@@ -16,17 +16,7 @@ import {
   WrenchIcon,
   FileTextIcon,
 } from '@/components/icons';
-
-const PARTNER_LOGOS = [
-  { name: 'AIKO Solar', logo: '/logos/partners/aiko.svg' },
-  { name: 'GoodWe', logo: '/logos/partners/goodwe.svg' },
-  { name: 'Sungrow', logo: '/logos/partners/sungrow.svg' },
-  { name: 'LONGi Solar', logo: '/logos/partners/longi.png' },
-  { name: 'Trina Solar', logo: '/logos/partners/trina-solar.svg' },
-  { name: 'Pylontech', logo: '/logos/partners/pylontech.svg' },
-  { name: 'Solinteg', logo: '/logos/partners/solinteg.svg' },
-  { name: 'Schrack Technik', logo: '/logos/partners/schrack.svg' },
-];
+import { PARTNERS_ROW_1, PARTNERS_ROW_2 } from '@/components/PartnerLogosSection';
 
 const SOLAR_SERVICES = [
   {
@@ -368,38 +358,67 @@ export default function MaintenancePage() {
             </div>
           </div>
 
-          {/* TECHNOLOGICAL PARTNERS STRIP */}
-          <div className="w-full max-w-4xl bg-slate-900/40 border border-slate-800/70 rounded-3xl p-6 sm:p-8 mb-12">
-            <div className="text-center max-w-xl mx-auto mb-6">
+          {/* TECHNOLOGICAL PARTNERS STRIP (Continuous Marquee Slider identical to preview) */}
+          <div className="w-full max-w-5xl bg-slate-900/40 border border-slate-800/70 rounded-3xl p-6 sm:p-8 mb-12 overflow-hidden">
+            <div className="text-center max-w-xl mx-auto mb-8">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                 Svetoví lídri v solárnej energetike
               </span>
-              <h3 className="text-lg sm:text-xl font-black text-white tracking-tight mt-1">
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-1">
                 Technológie, ktorým dôverujeme
               </h3>
-              <p className="text-xs text-slate-400 mt-1">
-                Pracujeme výhradne s certifikovanými výrobcami s oficiálnym zastúpením v EÚ a dlhoročnou zárukou:
+              <p className="text-xs text-slate-400 mt-1.5">
+                Pracujeme výhradne s certifikovanými výrobcami s oficiálnym zastúpením v EÚ a dlhoročnou zárukou až 25 rokov:
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-              {PARTNER_LOGOS.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="bg-white rounded-xl p-3.5 flex items-center justify-center border border-slate-200 shadow-sm hover:scale-105 transition-transform"
-                  title={partner.name}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-7 sm:max-h-8 max-w-[110px] w-auto h-auto object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    width={110}
-                    height={32}
-                  />
+            {/* Dual Marquee Tracks */}
+            <div className="space-y-4 sm:space-y-5">
+              {/* Track 1: Gliding Left */}
+              <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div className="flex w-max animate-marquee gap-4 sm:gap-6 items-center">
+                  {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
+                    <div
+                      key={`${partner.id}-row1-${idx}`}
+                      className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
+                      title={partner.name}
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        width={145}
+                        height={48}
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Track 2: Gliding Right */}
+              <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div className="flex w-max animate-marquee-reverse gap-4 sm:gap-6 items-center">
+                  {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
+                    <div
+                      key={`${partner.id}-row2-${idx}`}
+                      className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
+                      title={partner.name}
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        width={145}
+                        height={48}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
