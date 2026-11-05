@@ -1404,6 +1404,20 @@ export default function MinimalistTestPage() {
             <a href="mailto:info@marvol.sk" className="hover:text-white transition-colors">
               info@marvol.sk
             </a>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('openCookieSettings'));
+                }
+              }}
+              className="hover:text-amber-400 transition-colors cursor-pointer"
+            >
+              Nastavenia cookies
+            </button>
+            <Link href="/ochrana-osobnych-udajov" className="hover:text-amber-400 transition-colors">
+              GDPR
+            </Link>
           </div>
         </div>
       </footer>

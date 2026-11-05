@@ -68,6 +68,29 @@ export default function PrivacyPolicy() {
             V prípade akýchkoľvek otázok alebo uplatnenia práv ma môžete kontaktovať e-mailom na <a href="mailto:info@marvol.sk" className="text-amber-400 underline">info@marvol.sk</a> alebo písomne na adrese sídla prevádzkovateľa.
           </p>
         </div>
+
+        <div className="space-y-4 text-sm leading-relaxed border-t border-slate-800 pt-6">
+          <h2 className="text-xl font-bold text-white">6. Súbory cookies a ich správa</h2>
+          <p>
+            Náš web využíva súbory cookies na zabezpečenie základných technických funkcií (nevyhnutné cookies) a s vaším predchádzajúcim súhlasom aj na anonymnú analýzu návštevnosti a optimalizáciu výkonu webu v súlade so zákonom č. 452/2021 Z. z. o elektronických komunikáciách.
+          </p>
+          <p>
+            Svoje preferencie môžete kedykoľvek zmeniť alebo odvolať kliknutím na tlačidlo nižšie alebo cez odkaz v pätičke každej stránky:
+          </p>
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('openCookieSettings'));
+                }
+              }}
+              className="py-2.5 px-5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors shadow-lg shadow-amber-400/20 cursor-pointer"
+            >
+              🍪 Otvoriť a upraviť nastavenia cookies
+            </button>
+          </div>
+        </div>
       </div>
     </Layout>
   );

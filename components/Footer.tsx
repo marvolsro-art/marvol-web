@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, LockClosedIcon } from '@/components/icons';
+import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, LockClosedIcon, CookieIcon } from '@/components/icons';
 
 export const Footer: React.FC = () => {
   return (
@@ -168,6 +168,21 @@ export const Footer: React.FC = () => {
                   <LockClosedIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>Ochrana osobných údajov (GDPR)</span>
                 </Link>
+              </li>
+              <li className="pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('openCookieSettings'));
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors flex items-center gap-1.5 text-xs text-slate-400 cursor-pointer"
+                  aria-label="Otvoriť nastavenia cookies"
+                >
+                  <CookieIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Nastavenia cookies</span>
+                </button>
               </li>
               <li className="pt-2 text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
                 <CheckIcon className="w-3 h-3 text-emerald-400 shrink-0" />
