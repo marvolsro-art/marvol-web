@@ -24,7 +24,7 @@ export default async function handler(
     (req.query.to as string) ||
     process.env.NOTIFICATION_EMAIL ||
     process.env.LEAD_RECIPIENT_EMAIL ||
-    'info@marvol.sk';
+    'marvolsro@gmail.com';
 
   const configStatus = {
     resendConfigured: Boolean(resendApiKey),

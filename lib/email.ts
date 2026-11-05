@@ -222,7 +222,7 @@ export async function sendLeadNotificationEmail(
   const recipientEmail =
     process.env.NOTIFICATION_EMAIL ||
     process.env.LEAD_RECIPIENT_EMAIL ||
-    'info@marvol.sk';
+    'marvolsro@gmail.com';
 
   const subject = `⚡ Nový dopyt: ${lead.name} (${lead.service || 'Fotovoltika'}) [${lead.phone}]`;
   const htmlContent = buildLeadNotificationHtml(lead);
