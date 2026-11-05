@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { COMPANY_DETAILS } from "@/constants/company";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GA_TRACKING_ID, pageview } from "@/lib/gtag";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
