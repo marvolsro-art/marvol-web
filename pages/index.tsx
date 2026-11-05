@@ -14,6 +14,7 @@ import {
   BuildingOfficeIcon,
   HeatPumpIcon,
   WrenchIcon,
+  FileTextIcon,
 } from '@/components/icons';
 
 const PARTNER_LOGOS = [
@@ -27,11 +28,89 @@ const PARTNER_LOGOS = [
   { name: 'Schrack Technik', logo: '/logos/partners/schrack.svg' },
 ];
 
+const SOLAR_SERVICES = [
+  {
+    title: 'Fotovoltika pre rodinné domy',
+    badge: 'Primárna služba',
+    badgeColor: 'amber',
+    image: '/images/fotovoltika-domacnosti/hero.jpg',
+    description: 'Kompletné fotovoltické elektrárne na kľúč pre rodinné domy. Znížte náklady na elektrinu až o 80 % a získajte štátnu dotáciu z programu Zelená domácnostiam.',
+    highlights: [
+      'Celočierne N-Type TOPCon panely s účinnosťou > 22.5 %',
+      'Hybridné striedače s batériovým back-upom pri výpadku siete',
+      'Kompletné vybavenie dotácie SIEA až do 1 150 € za vás',
+    ],
+  },
+  {
+    title: 'Komerčná fotovoltika pre firmy a haly',
+    badge: 'B2B & Priemysel',
+    badgeColor: 'sky',
+    image: '/images/fotovoltika-firmy/hero.jpg',
+    description: 'Priemyselné strešné a pozemné inštalácie od 30 kWp do 1 MWp. Fixujte si cenu elektriny na 25+ rokov a využite program Zelená podnikom.',
+    highlights: [
+      'Energetický audit, optimalizácia spotreby a 3D návrh',
+      'Trafostanice, pripojenie do distribučnej siete (SSD, ZSD, VSD)',
+      'Rýchla návratnosť investície od 3,5 do 5 rokov',
+    ],
+  },
+  {
+    title: 'Batériové úložiská BESS & Záloha',
+    badge: 'Energetická rezerva',
+    badgeColor: 'emerald',
+    image: '/images/bateriove-uloziska/hero.jpg',
+    description: 'Ukladajte prebytky solárnej energie na nočnú spotrebu. Inteligentný manažment tokov energie a bleskové záložné napájanie do 20 ms.',
+    highlights: [
+      'Bezpečné LiFePO4 batériové články s dlhou cyklickou životnosťou',
+      'Ostrovná prevádzka a ochrana pred blackoutom',
+      'Integrácia s inteligentným nabíjaním elektromobilov (Wallbox)',
+    ],
+  },
+  {
+    title: 'Odborná montáž & Úradné revízie',
+    badge: 'Garancia kvality',
+    badgeColor: 'amber',
+    image: '/images/sluzby/montaz-instalacia.jpg',
+    description: 'Inštalácie realizujeme výhradne vlastnými certifikovanými montážnikmi a revíznymi technikmi bez nespoľahlivých subdodávateľov.',
+    highlights: [
+      'Odborná spôsobilosť elektrotechnikov podľa § 24',
+      'Úradné revízne správy (OPOS) podľa noriem STN EN',
+      'Záručný a pozáručný servis po celom Slovensku',
+    ],
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    step: '01',
+    title: 'Bezplatná obhliadka & 3D návrh',
+    desc: 'Zameriame vašu strechu, analyzujeme orientáciu, oslnenie a pripravíme presný technický návrh na mieru.',
+    icon: SunIcon,
+  },
+  {
+    step: '02',
+    title: 'Vybavenie štátnej dotácie',
+    desc: 'Ako oprávnený zhotoviteľ SIEA podáme žiadosť a zaistíme poukážku (Zelená domácnostiam & podnikom).',
+    icon: FileTextIcon,
+  },
+  {
+    step: '03',
+    title: 'Certifikovaná montáž na kľúč',
+    desc: 'Náš tím namontuje konštrukcie, fotovoltické panely, striedač a prepäťové ochrany zvyčajne do 1-2 dní.',
+    icon: BoltIcon,
+  },
+  {
+    step: '04',
+    title: 'Úradná revízia & Pripojenie do siete',
+    desc: 'Vystavíme revíznu správu § 24 a pripojíme elektráreň do distribučnej siete. Vyrábate vlastnú čistú energiu.',
+    icon: ShieldIcon,
+  },
+];
+
 export default function MaintenancePage() {
   return (
     <>
       <Head>
-        <title>Prebieha údržba | Marvol s.r.o. - Špecialista na fotovoltiku</title>
+        <title>Prebieha údržba | Marvol s.r.o. - Špecialista na fotovoltiku na kľúč</title>
         <meta
           name="description"
           content={`Na stránke Marvol s.r.o. prebieha plánovaná technická údržba. Všetky montáže fotovoltických elektrární, batériových úložísk BESS a technické obhliadky po celom Slovensku fungujú bez obmedzení. Kontaktujte nás na ${COMPANY_DETAILS.contact.phone} alebo ${COMPANY_DETAILS.contact.email}.`}
@@ -44,9 +123,9 @@ export default function MaintenancePage() {
       <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950 font-sans antialiased relative overflow-hidden">
         
         {/* Subtle Ambient Solar Background Glows */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-emerald-500/5 blur-3xl pointer-events-none -z-10" />
-        <div className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-amber-500/5 blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-amber-500/15 via-amber-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/4 -left-48 w-[600px] h-[600px] bg-emerald-500/5 blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-1/3 -right-48 w-[600px] h-[600px] bg-amber-500/10 blur-3xl pointer-events-none -z-10" />
 
         {/* Top Header Bar */}
         <header className="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-40">
@@ -101,23 +180,23 @@ export default function MaintenancePage() {
             </div>
           </div>
 
-          {/* THEMATIC HERO SHOWCASE: Fotovoltika na kľúč (Visual Highlight) */}
+          {/* THEMATIC HERO SHOWCASE: Fotovoltika na kľúč (Large Visual Hero) */}
           <div className="w-full max-w-4xl bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden mb-12 shadow-2xl shadow-black/60 text-left">
-            <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden">
+            <div className="relative h-64 sm:h-80 md:h-[420px] w-full overflow-hidden">
               <img
                 src="/images/fotovoltika-domacnosti/hero.jpg"
                 alt="Fotovoltické inštalácie na rodinné domy Marvol s.r.o."
-                className="w-full h-full object-cover object-center filter brightness-90 hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-center filter brightness-95 hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
               
               {/* Badges on image */}
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-400/40 text-amber-400 text-xs font-black uppercase tracking-wider">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-400/40 text-amber-400 text-xs font-black uppercase tracking-wider">
                   <SunIcon className="w-3.5 h-3.5" />
                   <span>Fotovoltika na kľúč</span>
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-emerald-400/30 text-emerald-400 text-xs font-bold">
+                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-400/30 text-emerald-400 text-xs font-bold">
                   <ShieldIcon className="w-3.5 h-3.5" />
                   <span>Záruka na výkon 25 rokov</span>
                 </span>
@@ -125,17 +204,20 @@ export default function MaintenancePage() {
 
               {/* Bottom caption on image */}
               <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                <p className="text-lg sm:text-2xl font-black text-white tracking-tight drop-shadow-md">
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
+                  Marvol Photovoltaic Engineering
+                </span>
+                <p className="text-xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">
                   Kompletné fotovoltické systémy pre rodinné domy a firmy
                 </p>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl drop-shadow">
-                  Od technického návrhu, statiky strechy a vybavenia dotácie až po montáž, revíznu správu a pripojenie do distribučnej siete.
+                <p className="text-xs sm:text-sm text-slate-200 mt-1.5 max-w-2xl drop-shadow leading-relaxed">
+                  Od technického 3D návrhu, statiky strechy a vybavenia dotácie až po montáž, úradnú revíznu správu a pripojenie do distribučnej siete.
                 </p>
               </div>
             </div>
 
             {/* Solar Key Metrics Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950/60 p-4 sm:p-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950/80 p-4 sm:p-5">
               <div className="p-3 text-center sm:text-left">
                 <div className="flex items-center justify-center sm:justify-start gap-1.5 text-amber-400 text-xs font-bold mb-0.5">
                   <SunIcon className="w-3.5 h-3.5" />
@@ -174,150 +256,115 @@ export default function MaintenancePage() {
             </div>
           </div>
 
-          {/* THEMATIC SERVICE CARDS (Primárne Fotovoltika) */}
+          {/* THEMATIC SOLAR SERVICE CARDS WITH AUTHENTIC PHOTOGRAPHY */}
           <div className="w-full max-w-4xl mb-12">
             <div className="text-center max-w-2xl mx-auto mb-8">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Naša špecializácia
+                Solárne portfólio
               </span>
               <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
-                Čo pre vás realizujeme
+                Naše špecializované riešenia
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-2">
-                Každé riešenie navrhujeme na mieru konkrétnemu objektu pre maximálny solárny zisk a najrýchlejšiu návratnosť.
+                Každú fotovoltickú elektráreň navrhujeme na mieru pre maximálnu sebestačnosť, energetickú nezávislosť a najrýchlejšiu návratnosť investície.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-              
-              {/* Card 1: Fotovoltika pre rodinné domy (Highlight) */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-900/70 border border-amber-400/40 relative group hover:border-amber-400 transition-colors shadow-lg">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
-                    <SunIcon className="w-6 h-6" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              {SOLAR_SERVICES.map((srv) => (
+                <div
+                  key={srv.title}
+                  className="rounded-3xl bg-slate-900/90 border border-slate-800 overflow-hidden shadow-xl hover:border-amber-400/50 transition-all duration-300 flex flex-col group"
+                >
+                  {/* Photo Header */}
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <img
+                      src={srv.image}
+                      alt={srv.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 filter brightness-95"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent" />
+                    
+                    <div className="absolute top-3.5 left-3.5">
+                      <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full backdrop-blur-md border ${
+                        srv.badgeColor === 'amber'
+                          ? 'bg-amber-400/20 text-amber-300 border-amber-400/30'
+                          : srv.badgeColor === 'emerald'
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                          : 'bg-sky-500/20 text-sky-300 border-sky-500/30'
+                      }`}>
+                        {srv.badge}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2.5 py-1 rounded-full">
-                    Hlavná služba
-                  </span>
-                </div>
-                <h3 className="text-lg font-black text-white mb-1.5">
-                  Fotovoltika pre rodinné domy
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                  Solárne elektrárne na kľúč pre zníženie závislosti od drahej elektriny. Zabezpečujeme dotáciu z programu Zelená domácnostiam (až 1 150 €).
-                </p>
-                <ul className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800/80 pt-3">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Celočierne Tier-1 N-Type TOPCon panely</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Hybridné striedače so zálohou pri výpadku</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Kompletná administratíva a pripojenie do siete</span>
-                  </li>
-                </ul>
-              </div>
 
-              {/* Card 2: Komerčná fotovoltika pre firmy */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-sky-400/50 transition-colors shadow-lg group">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-400/15 border border-sky-400/30 flex items-center justify-center text-sky-400 group-hover:scale-105 transition-transform">
-                    <BuildingOfficeIcon className="w-6 h-6" />
+                  {/* Body Content */}
+                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                      <h3 className="text-lg font-black text-white group-hover:text-amber-400 transition-colors mb-2">
+                        {srv.title}
+                      </h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        {srv.description}
+                      </p>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+                      {srv.highlights.map((hl) => (
+                        <li key={hl} className="flex items-start gap-2">
+                          <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                          <span>{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-sky-400/10 text-sky-300 border border-sky-400/20 px-2.5 py-1 rounded-full">
-                    B2B &amp; Priemysel
-                  </span>
                 </div>
-                <h3 className="text-lg font-black text-white mb-1.5">
-                  Komerčná fotovoltika pre firmy a haly
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                  Priemyselné solárne inštalácie od 30 kWp do 1 MWp. Zníženie prevádzkových nákladov podniku a podpora z programu Zelená podnikom.
-                </p>
-                <ul className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800/80 pt-3">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                    <span>Energetický audit a statické posudky striech</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                    <span>Vlastné trafostanice a pripojenie k distribučnej sieti</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                    <span>Fixácia cien elektrickej energie na 25+ rokov</span>
-                  </li>
-                </ul>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              {/* Card 3: Batériové úložiská BESS */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-400/50 transition-colors shadow-lg group">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-400/15 border border-emerald-400/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-                    <BatteryIcon className="w-6 h-6" />
+          {/* TURNKEY SOLAR PROCESS (4 Step Visual Timeline) */}
+          <div className="w-full max-w-4xl bg-gradient-to-b from-slate-900/90 to-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8 mb-12 shadow-xl">
+            <div className="text-center max-w-xl mx-auto mb-8">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                Jednoduchý proces
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
+                Ako prebieha inštalácia fotovoltiky
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-2">
+                Celý proces od prvého kontaktu až po pripojenie do distribučnej siete zabezpečujeme bez vašich starostí.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+              {PROCESS_STEPS.map((step) => {
+                const IconComponent = step.icon;
+                return (
+                  <div
+                    key={step.step}
+                    className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/90 flex flex-col justify-between hover:border-amber-400/40 transition-colors group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xl font-black text-amber-400 tracking-tight">
+                          {step.step}
+                        </span>
+                        <div className="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                          <IconComponent className="w-4 h-4" />
+                        </div>
+                      </div>
+                      <h3 className="text-sm font-bold text-white mb-1.5">
+                        {step.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-400 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-400/10 text-emerald-300 border border-emerald-400/20 px-2.5 py-1 rounded-full">
-                    Energetická rezerva
-                  </span>
-                </div>
-                <h3 className="text-lg font-black text-white mb-1.5">
-                  Batériové úložiská BESS &amp; Wallbox
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                  Ukladajte nespotrebovanú solárnu energiu pre večernú a nočnú spotrebu. Plná ochrana pred výpadkom distribučnej siete vďaka funkcii Back-up.
-                </p>
-                <ul className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800/80 pt-3">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Bezpečné modulárne LiFePO4 batérie s dlhou životnosťou</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Automatické prepnutie na záložné napájanie do 20 ms</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Inteligentné solárne nabíjanie elektromobilov (EV)</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Card 4: Tepelné čerpadlá a revízie */}
-              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-400/50 transition-colors shadow-lg group">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
-                    <HeatPumpIcon className="w-6 h-6" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2.5 py-1 rounded-full">
-                    Synergia &amp; Dotácie
-                  </span>
-                </div>
-                <h3 className="text-lg font-black text-white mb-1.5">
-                  Tepelné čerpadlá a úradné revízie
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                  Vykurovanie poháňané priamo vašou fotovoltikou. Štátna dotácia SIEA až 4 600 € (v schéme Zelená solidarita až do 90 % nákladov).
-                </p>
-                <ul className="space-y-1.5 text-xs text-slate-300 border-t border-slate-800/80 pt-3">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Invertorové tepelné čerpadlá triedy A+++ (vzduch-voda)</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Úradné revízne správy (OPOS) podľa platných noriem STN</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Záručný a pozáručný servis solárnych technológií</span>
-                  </li>
-                </ul>
-              </div>
-
+                );
+              })}
             </div>
           </div>
 
