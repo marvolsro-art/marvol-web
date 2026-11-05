@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { COMPANY_DETAILS } from '@/constants/company';
 import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, ShieldIcon } from '@/components/icons';
 
 export const ContactSection: React.FC = () => {
@@ -90,8 +91,8 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-bold">Infolinka & Obchod</p>
-                  <a href="tel:+421948123456" className="text-lg font-black text-white hover:text-amber-400 transition-colors">
-                    +421 948 123 456
+                  <a href={`tel:${COMPANY_DETAILS.contact.phoneClean}`} className="text-lg font-black text-white hover:text-amber-400 transition-colors">
+                    {COMPANY_DETAILS.contact.phone}
                   </a>
                   <p className="text-[11px] text-emerald-400 font-semibold mt-0.5">Po - Pia: 8:00 - 18:00</p>
                 </div>

@@ -117,7 +117,7 @@ export default async function handler(
     if (!phone || typeof phone !== 'string' || !PHONE_REGEX.test(phone.trim())) {
       return res.status(400).json({
         success: false,
-        message: 'Zadajte platné telefónne číslo (9 až 20 znakov, napr. +421 948 123 456).',
+        message: 'Zadajte platné telefónne číslo (9 až 20 znakov, napr. +421 908 403 042).',
       });
     }
 

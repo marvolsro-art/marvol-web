@@ -225,13 +225,13 @@ export default function MinimalistTestPage() {
           {/* CTA & Phone */}
           <div className="hidden sm:flex items-center gap-4">
             <a
-              href="tel:+421948123456"
+              href="tel:+421908403042"
               className="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1.5"
             >
               <svg className="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>0948 123 456</span>
+              <span>0908 403 042</span>
             </a>
             <a
               href="#kontakt"
@@ -314,11 +314,11 @@ export default function MinimalistTestPage() {
                 Požiadať o bezplatnú obhliadku
               </a>
               <a
-                href="tel:+421948123456"
+                href="tel:+421908403042"
                 className="w-full py-3 text-center text-sm font-semibold text-slate-300 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center gap-2"
               >
                 <span>📞</span>
-                <span>Zavolať: 0948 123 456</span>
+                <span>Zavolať: 0908 403 042</span>
               </a>
             </div>
           </div>
@@ -1139,7 +1139,7 @@ export default function MinimalistTestPage() {
 
                   <div className="space-y-2.5 pt-1">
                     <a
-                      href="tel:+421948123456"
+                      href="tel:+421908403042"
                       className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-amber-400/40 text-xs text-slate-200 transition-colors"
                     >
                       <span className="w-8 h-8 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center text-sm shrink-0">
@@ -1147,12 +1147,12 @@ export default function MinimalistTestPage() {
                       </span>
                       <div>
                         <div className="text-[10px] text-slate-400">Telefonická infolinka</div>
-                        <div className="font-bold text-white text-sm">0948 123 456</div>
+                        <div className="font-bold text-white text-sm">0908 403 042</div>
                       </div>
                     </a>
 
                     <a
-                      href="mailto:info@marvol.sk"
+                      href="mailto:marvolsro@gmail.com"
                       className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-amber-400/40 text-xs text-slate-200 transition-colors"
                     >
                       <span className="w-8 h-8 rounded-lg bg-sky-400/10 text-sky-400 flex items-center justify-center text-sm shrink-0">
@@ -1160,7 +1160,7 @@ export default function MinimalistTestPage() {
                       </span>
                       <div>
                         <div className="text-[10px] text-slate-400">Emailová podpora</div>
-                        <div className="font-bold text-white text-sm">info@marvol.sk</div>
+                        <div className="font-bold text-white text-sm">marvolsro@gmail.com</div>
                       </div>
                     </a>
 
@@ -1398,11 +1398,11 @@ export default function MinimalistTestPage() {
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-400">
             <span>Sídlo: Vrútky</span>
             <span>IČO: 53 060 091</span>
-            <a href="tel:+421948123456" className="text-amber-400 hover:underline">
-              0948 123 456
+            <a href="tel:+421908403042" className="text-amber-400 hover:underline">
+              0908 403 042
             </a>
-            <a href="mailto:info@marvol.sk" className="hover:text-white transition-colors">
-              info@marvol.sk
+            <a href="mailto:marvolsro@gmail.com" className="hover:text-white transition-colors">
+              marvolsro@gmail.com
             </a>
             <button
               type="button"
@@ -1425,11 +1425,11 @@ export default function MinimalistTestPage() {
       {/* STICKY MOBILE QUICK BAR (Thumb-friendly conversion bar) */}
       <div className="fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-white/10 p-2.5 sm:hidden flex items-center gap-2 shadow-2xl">
         <a
-          href="tel:+421948123456"
+          href="tel:+421908403042"
           className="flex-1 min-h-[46px] px-3 rounded-xl bg-slate-900 border border-white/10 text-white font-bold text-xs flex items-center justify-center gap-1.5 active:bg-slate-800"
         >
           <span>📞</span>
-          <span>0948 123 456</span>
+          <span>0908 403 042</span>
         </a>
         <a
           href="#konfigurator"

@@ -68,6 +68,11 @@ This repository contains the Next.js application for **Marvol s.r.o.** (Photovol
 - **Primary Goal**: Profit Maximization through high-margin photovoltaic installations, battery storage (BESS), heat pumps, and turnkey electrical engineering.
 - **Conversion Optimization**: All forms, call-to-actions, and interactive calculators must remain frictionless, responsive, and pre-fill client data for maximum lead submission rates.
 - **Subsidies Assistance**: Provide 100% transparent guidance for state subsidies (Zelená domácnostiam & Zelená podnikom up to €4,025).
+- **Official Contact Credentials**:
+  - Email: `marvolsro@gmail.com`
+  - Infolinka & Telefón: `+421 908 403 042` (`+421908403042`, krátke zobrazenie: `0908 403 042`)
+  - Sídlo: `Chotárna 3394/6, 038 61 Vrútky`
+  - Vždy čerpať z `constants/company.ts` ako jediného zdroja pravdy; nikdy nepoužívať staré fiktívne čísla (napr. 0948 123 456).
 
 ---
 

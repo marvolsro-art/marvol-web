@@ -56,7 +56,7 @@ export default function KontaktPage() {
       url: 'https://marvol.sk/kontakt',
       name: 'Kontakt a bezplatná konzultácia | Marvol s.r.o. Vrútky',
       description:
-        'Kontaktujte špecialistov na fotovoltiku Marvol s.r.o. Obhliadky po celom Slovensku zdarma. Telefón: +421 948 123 456, e-mail: info@marvol.sk. Sídlo: Vrútky.',
+        `Kontaktujte špecialistov na fotovoltiku Marvol s.r.o. Obhliadky po celom Slovensku zdarma. Telefón: ${COMPANY_DETAILS.contact.phone}, e-mail: ${COMPANY_DETAILS.contact.email}. Sídlo: Vrútky.`,
       mainEntity: {
         '@type': 'LocalBusiness',
         '@id': 'https://marvol.sk/#organization',
@@ -110,7 +110,7 @@ export default function KontaktPage() {
   return (
     <Layout
       title="Kontakt a bezplatná konzultácia | Marvol s.r.o. Vrútky"
-      description="Kontaktujte špecialistov na fotovoltiku Marvol s.r.o. Obhliadky po celom Slovensku zdarma. Telefón: +421 948 123 456, e-mail: info@marvol.sk. Sídlo: Vrútky."
+      description={`Kontaktujte špecialistov na fotovoltiku Marvol s.r.o. Obhliadky po celom Slovensku zdarma. Telefón: ${COMPANY_DETAILS.contact.phone}, e-mail: ${COMPANY_DETAILS.contact.email}. Sídlo: Vrútky.`}
       canonicalPath="/kontakt"
       schema={jsonLdSchema}
       isSubpage={true}

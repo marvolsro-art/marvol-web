@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { COMPANY_DETAILS } from '@/constants/company';
 import { SunIcon, WrenchIcon, CartIcon, BoltIcon, MapPinIcon } from '@/components/icons';
 
 export interface NavDropdownItem {
@@ -287,22 +288,22 @@ export const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
           <div className="flex items-center space-x-6">
             <a
-              href="tel:+421948123456"
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors min-h-[48px] sm:min-h-0"
+              href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
+              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors py-0.5"
             >
               <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span className="font-semibold text-white">Infolinka &amp; Servis:</span> +421 948 123 456
+              <span className="font-semibold text-white">Infolinka &amp; Servis:</span> {COMPANY_DETAILS.contact.phone}
             </a>
             <a
-              href="mailto:info@marvol.sk"
-              className="hidden sm:flex items-center gap-1.5 hover:text-amber-400 transition-colors min-h-[48px] sm:min-h-0"
+              href={`mailto:${COMPANY_DETAILS.contact.email}`}
+              className="hidden sm:flex items-center gap-1.5 hover:text-amber-400 transition-colors py-0.5"
             >
               <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span>info@marvol.sk</span>
+              <span>{COMPANY_DETAILS.contact.email}</span>
             </a>
           </div>
 
@@ -823,7 +824,7 @@ export const Header: React.FC = () => {
           </Link>
           <div className="flex items-center justify-between text-xs text-slate-400 pt-2 px-1">
             <a
-              href="tel:+421948123456"
+              href={`tel:${COMPANY_DETAILS.contact.phoneClean}`}
               className="text-amber-400 font-bold hover:underline flex items-center gap-1.5 min-h-[48px]"
             >
               <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -834,9 +835,9 @@ export const Header: React.FC = () => {
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 />
               </svg>
-              <span>+421 948 123 456</span>
+              <span>{COMPANY_DETAILS.contact.phone}</span>
             </a>
-            <a href="mailto:info@marvol.sk" className="hover:text-white flex items-center gap-1.5 min-h-[48px]">
+            <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="hover:text-white flex items-center gap-1.5 min-h-[48px]">
               <svg className="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -845,7 +846,7 @@ export const Header: React.FC = () => {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <span>info@marvol.sk</span>
+              <span>{COMPANY_DETAILS.contact.email}</span>
             </a>
           </div>
         </div>

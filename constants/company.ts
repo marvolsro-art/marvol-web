@@ -29,10 +29,10 @@ export const COMPANY_DETAILS = {
     vatPayer: true,
   },
   contact: {
-    phone: '+421 948 123 456',
-    phoneClean: '+421948123456',
-    email: 'info@marvol.sk',
-    whatsappUrl: 'https://wa.me/421948123456?text=Dobry%20den,%20mam%20zaujem%20o%20fotovoltiku%20od%20Marvol%20s.r.o.',
+    phone: '+421 908 403 042',
+    phoneClean: '+421908403042',
+    email: 'marvolsro@gmail.com',
+    whatsappUrl: 'https://wa.me/421908403042?text=Dobry%20den,%20mam%20zaujem%20o%20fotovoltiku%20od%20Marvol%20s.r.o.',
     businessHours: {
       workdays: 'Pondelok – Piatok: 08:00 – 18:00',
       weekend: 'Víkend: dopyty spracované do 24 hodín',

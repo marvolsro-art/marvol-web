@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
             <p>Sídlo: Chotárna 3394/6, 038 61 Vrútky</p>
             <p>IČO: 53 060 091 | DIČ: 2121255961 | IČ DPH: SK2121255961</p>
             <p>Zapísaná v Obchodnom registri Okresného súdu Žilina, oddiel: Sro, vložka č. 74765/L</p>
-            <p>E-mail: info@marvol.sk | Telefón: +421 948 123 456</p>
+            <p>E-mail: marvolsro@gmail.com | Telefón: +421 908 403 042</p>
           </div>
         </div>
 
