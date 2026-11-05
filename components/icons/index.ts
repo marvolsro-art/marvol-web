@@ -25,4 +25,5 @@ export { default as ClipboardIcon } from './ClipboardIcon';
 export { default as CopyIcon } from './CopyIcon';
 export { default as GitHubIcon } from './GitHubIcon';
 export { default as LinkIcon } from './LinkIcon';
+export { default as CookieIcon, CookieIcon as Cookie } from './CookieIcon';
 export { default as AlertCircleIcon, AlertCircleIcon as AlertCircle } from './AlertCircleIcon';

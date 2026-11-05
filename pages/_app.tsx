@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { COMPANY_DETAILS } from "@/constants/company";
+import { CookieConsent } from "@/components/CookieConsent";
 
 export default function App({ Component, pageProps }: AppProps) {
   const structuredData = {
@@ -107,6 +108,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <CookieConsent />
     </>
   );
 }
