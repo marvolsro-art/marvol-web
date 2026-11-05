@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, ShieldIcon } from '@/components/icons';
+import { trackLeadConversion } from '@/lib/gtag';
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -42,6 +43,10 @@ export const ContactSection: React.FC = () => {
       const data = await res.json();
       if (res.ok && data.success) {
         setSubmitted(true);
+        trackLeadConversion({
+          source: 'contact_section',
+          service: formData.service,
+        });
       } else {
         setErrorMsg(data.message || 'Chyba pri spracovaní dopytu.');
       }

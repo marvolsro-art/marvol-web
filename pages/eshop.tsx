@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { trackLeadConversion } from '@/lib/gtag';
 import {
   SunIcon,
   BoltIcon,
@@ -252,6 +253,10 @@ export default function EshopPage() {
       }
 
       setFormSuccess(resData.leadId || 'ESHOP-' + Date.now().toString().slice(-6));
+      trackLeadConversion({
+        source: 'eshop_on_demand_inquiry',
+        service: 'eshop-dopyt',
+      });
       setFormData({
         name: '',
         phone: '',

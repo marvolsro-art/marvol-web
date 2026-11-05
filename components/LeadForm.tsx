@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { LeadRequestBody } from '@/pages/api/lead';
+import { trackLeadConversion } from '@/lib/gtag';
 import {
   CheckIcon,
   ClockIcon,
@@ -181,6 +182,11 @@ export const LeadForm: React.FC<LeadFormProps> = ({
       if (response.ok && data.success) {
         const id = data.leadId || `LEAD-${Date.now()}`;
         setSuccessLeadId(id);
+        trackLeadConversion({
+          source: prefillData?.source || source,
+          service: formData.service,
+          value: prefillData?.netPrice || 0,
+        });
         if (onSuccess) {
           onSuccess(id);
         }

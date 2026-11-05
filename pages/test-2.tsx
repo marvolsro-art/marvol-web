@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { COMPANY_DETAILS } from '@/constants/company';
+import { trackLeadConversion } from '@/lib/gtag';
 
 type SegmentType = 'home' | 'business' | 'storage';
 
@@ -76,6 +77,10 @@ export default function MinimalistTestPage() {
       const data = await res.json();
       if (res.ok && data.success) {
         setFormSubmitted(true);
+        trackLeadConversion({
+          source: 'test-2_minimalist',
+          service: leadCategory === 'firma' ? 'fotovoltika-firma' : 'fotovoltika-dom',
+        });
       } else {
         setFormError(data.message || 'Nepodarilo sa odoslať dopyt. Skúste to znova.');
       }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { trackLeadConversion } from '@/lib/gtag';
 import {
   SunIcon,
   BatteryIcon,
@@ -142,6 +143,11 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
       if (res.ok && data.success) {
         setSubmitted(true);
         setSubmittedLeadId(data.leadId || `LEAD-${Date.now()}`);
+        trackLeadConversion({
+          source: 'calculator_section',
+          service: propertyType === 'home' ? 'fotovoltika-dom' : 'fotovoltika-firma',
+          value: netPrice || 0,
+        });
       } else {
         setErrorMsg(data.message || 'Chyba pri spracovaní dopytu. Skontrolujte prosím údaje a skúste znova.');
       }
