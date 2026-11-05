@@ -31,9 +31,8 @@ export const PARTNERS_ROW_2: PartnerLogo[] = [
 export const PartnerLogosSection: React.FC = () => {
   return (
     <section id="partneri" className="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800/80 content-auto scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
+      {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
         <div className="max-w-3xl mb-10 sm:mb-12">
           <p className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">
             Overení technologickí partneri &amp; dodávatelia
@@ -45,56 +44,55 @@ export const PartnerLogosSection: React.FC = () => {
             Pre rodinné domy aj firemné fotovoltické inštalácie dodávame overené komponenty od svetových výrobcov s predĺženou zárukou až 25 rokov.
           </p>
         </div>
+      </div>
 
-        {/* Dual Marquee Slider: Pure Logos */}
-        <div className="space-y-4 sm:space-y-5">
-          {/* Track 1: Gliding Left */}
-          <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex w-max animate-marquee gap-4 sm:gap-6 items-center">
-              {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
-                <div
-                  key={`${partner.id}-row1-${idx}`}
-                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
-                  title={partner.name}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    width={145}
-                    height={48}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Track 2: Gliding Right */}
-          <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex w-max animate-marquee-reverse gap-4 sm:gap-6 items-center">
-              {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
-                <div
-                  key={`${partner.id}-row2-${idx}`}
-                  className="w-40 sm:w-48 h-18 sm:h-20 bg-white rounded-2xl px-5 py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform hover:scale-105"
-                  title={partner.name}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-10 sm:max-h-12 max-w-[130px] sm:max-w-[145px] w-auto h-auto object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    width={145}
-                    height={48}
-                  />
-                </div>
-              ))}
-            </div>
+      {/* Dual Marquee Slider: 100% Full Width of Screen (Zero Horizontal Margins) */}
+      <div className="w-full space-y-3.5 sm:space-y-5">
+        {/* Track 1: Gliding Left */}
+        <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="flex w-max animate-marquee gap-3 sm:gap-6 items-center">
+            {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
+              <div
+                key={`${partner.id}-row1-${idx}`}
+                className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 shadow-md transition-transform active:scale-95 sm:hover:scale-105"
+                title={partner.name}
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  width={145}
+                  height={48}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Track 2: Gliding Right */}
+        <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="flex w-max animate-marquee-reverse gap-3 sm:gap-6 items-center">
+            {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
+              <div
+                key={`${partner.id}-row2-${idx}`}
+                className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 shadow-md transition-transform active:scale-95 sm:hover:scale-105"
+                title={partner.name}
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  width={145}
+                  height={48}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

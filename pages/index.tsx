@@ -395,69 +395,74 @@ export default function MaintenancePage() {
             </div>
           </div>
 
-          {/* TECHNOLOGICAL PARTNERS STRIP (Continuous Marquee Slider optimized for mobile & desktop) */}
-          <div className="w-full max-w-5xl bg-slate-900/40 border border-slate-800/70 rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-10 sm:mb-12 overflow-hidden">
-            <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8 px-2">
-              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400">
-                Svetoví lídri v solárnej energetike
-              </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-1">
-                Technológie, ktorým dôverujeme
-              </h3>
-              <p className="text-xs text-slate-400 mt-1.5">
-                Pracujeme výhradne s certifikovanými výrobcami s oficiálnym zastúpením v EÚ a dlhoročnou zárukou až 25 rokov:
-              </p>
+        </main>
+
+        {/* TECHNOLOGICAL PARTNERS FULL-WIDTH MARQUEE SECTION (Edge-to-Edge na celú šírku obrazovky) */}
+        <section className="w-full py-12 sm:py-16 md:py-20 border-y border-slate-800/80 bg-slate-900/40 backdrop-blur-sm relative overflow-hidden my-4 sm:my-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-12">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400">
+              Svetoví lídri v solárnej energetike
+            </span>
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight mt-1 sm:mt-1.5">
+              Technológie, ktorým dôverujeme
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-2 max-w-2xl mx-auto leading-relaxed">
+              Pracujeme výhradne s certifikovanými výrobcami s oficiálnym zastúpením v EÚ a dlhoročnou lineárnou zárukou až 25 rokov:
+            </p>
+          </div>
+
+          {/* Dual Marquee Tracks - 100% Full Width of Screen (Zero Horizontal Margins) */}
+          <div className="w-full space-y-3.5 sm:space-y-5">
+            {/* Track 1: Gliding Left */}
+            <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              <div className="flex w-max animate-marquee gap-3 sm:gap-6 items-center">
+                {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
+                  <div
+                    key={`${partner.id}-row1-${idx}`}
+                    className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 shadow-md transition-transform active:scale-95 sm:hover:scale-105"
+                    title={partner.name}
+                  >
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
+                      width={145}
+                      height={48}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Dual Marquee Tracks */}
-            <div className="space-y-3 sm:space-y-5">
-              {/* Track 1: Gliding Left */}
-              <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-                <div className="flex w-max animate-marquee gap-3 sm:gap-6 items-center">
-                  {[...PARTNERS_ROW_1, ...PARTNERS_ROW_1, ...PARTNERS_ROW_1].map((partner, idx) => (
-                    <div
-                      key={`${partner.id}-row1-${idx}`}
-                      className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform active:scale-95"
-                      title={partner.name}
-                    >
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
-                        loading="lazy"
-                        decoding="async"
-                        width={145}
-                        height={48}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Track 2: Gliding Right */}
-              <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-                <div className="flex w-max animate-marquee-reverse gap-3 sm:gap-6 items-center">
-                  {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
-                    <div
-                      key={`${partner.id}-row2-${idx}`}
-                      className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 transition-transform active:scale-95"
-                      title={partner.name}
-                    >
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
-                        loading="lazy"
-                        decoding="async"
-                        width={145}
-                        height={48}
-                      />
-                    </div>
-                  ))}
-                </div>
+            {/* Track 2: Gliding Right */}
+            <div className="relative w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              <div className="flex w-max animate-marquee-reverse gap-3 sm:gap-6 items-center">
+                {[...PARTNERS_ROW_2, ...PARTNERS_ROW_2, ...PARTNERS_ROW_2].map((partner, idx) => (
+                  <div
+                    key={`${partner.id}-row2-${idx}`}
+                    className="w-32 sm:w-48 h-14 sm:h-20 bg-white rounded-xl sm:rounded-2xl px-3 sm:px-5 py-2 sm:py-3.5 flex items-center justify-center shrink-0 border border-slate-200 shadow-md transition-transform active:scale-95 sm:hover:scale-105"
+                    title={partner.name}
+                  >
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-h-7 sm:max-h-12 max-w-[95px] sm:max-w-[145px] w-auto h-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
+                      width={145}
+                      height={48}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Direct Contact Action Section */}
+        <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col items-center justify-center text-center">
 
           {/* DIRECT CONTACT ACTION HUB */}
           <div className="w-full max-w-4xl bg-gradient-to-b from-slate-900 to-slate-900/80 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-12 sm:mb-16 shadow-2xl shadow-black/50">
@@ -546,7 +551,7 @@ export default function MaintenancePage() {
 
           </div>
 
-        </main>
+        </section>
 
         {/* Footer with full statutory legal compliance */}
         <footer className="border-t border-slate-800/80 bg-slate-950 py-8 text-xs text-slate-400">
