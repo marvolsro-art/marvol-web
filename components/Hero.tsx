@@ -17,7 +17,28 @@ export const Hero: React.FC = () => {
   const [heroCardTab, setHeroCardTab] = useState<'model' | 'photo'>('model');
   return (
     <section id="fotovoltika" className="relative pt-40 pb-16 sm:pt-44 sm:pb-20 md:pt-44 lg:pt-48 lg:pb-24 bg-slate-950 overflow-hidden text-white scroll-mt-36 sm:scroll-mt-40 md:scroll-mt-44">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* FULL-WIDTH ZOOMED ROOF PHOTO BACKGROUND WITH SMOOTH DOWNWARD DISSOLVE TRANSITION */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <img
+          src="/images/roof/solar-roof-macro.jpg"
+          alt="Detail fotovoltických panelov na modernej streche - Marvol s.r.o."
+          className="w-full h-full object-cover object-[center_35%] scale-105 pointer-events-none select-none motion-safe:transition-transform motion-safe:duration-1000"
+        />
+
+        {/* Dark contrast base overlay for high text legibility */}
+        <div className="absolute inset-0 bg-slate-950/65 backdrop-brightness-[0.8]" />
+
+        {/* Radial vignette spotlight */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(2,6,23,0.25)_0%,rgba(2,6,23,0.88)_100%)]" />
+
+        {/* Top gradient fade under sticky header */}
+        <div className="absolute inset-x-0 top-0 h-36 sm:h-48 bg-gradient-to-b from-slate-950 via-slate-950/80 to-transparent z-10" />
+
+        {/* Downward fading transition into page background ("miznúci prechod pri scrolle nižšie") */}
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-72 lg:h-96 bg-gradient-to-b from-transparent via-slate-950/75 to-slate-950 z-10" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Main Hero Copy & CTAs */}
@@ -223,7 +244,7 @@ export const Hero: React.FC = () => {
                 <div className={heroCardTab === 'photo' ? 'block' : 'hidden'}>
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
                     <img
-                      src="/images/fotovoltika-domacnosti/hero.jpg"
+                      src="/images/roof/solar-roof-macro.jpg"
                       alt="Reálna inštalácia fotovoltiky pre rodinný dom od Marvol s.r.o."
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                       loading="eager"

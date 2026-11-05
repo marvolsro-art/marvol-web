@@ -106,9 +106,102 @@
     .a4-badge { background: #dcfce7; color: #065f46; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
     .cards-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
     .metric-card {
-      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; text-align: center;
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+      min-height: 82px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.15s ease-in-out;
     }
     .metric-card.accent { background: #ecfdf5; border-color: #a7f3d0; }
+    .metric-card.amber { background: #fffbeb; border-color: #fde68a; }
+    .metric-card-empty {
+      background: transparent;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      min-height: 82px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px;
+    }
+    .btn-card-close {
+      position: absolute;
+      top: 4px;
+      right: 5px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 800;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      line-height: 1;
+      transition: all 0.15s;
+      padding: 0;
+    }
+    .btn-card-close:hover {
+      color: #dc2626;
+      background: #fee2e2;
+    }
+    .btn-card-restore {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #059669;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-card-restore:hover {
+      background: #ecfdf5;
+      border-color: #059669;
+    }
+    .card-type-select {
+      font-size: 9px;
+      padding: 1px 4px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #475569;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-preset-margin {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      cursor: pointer;
+      color: #475569;
+      transition: all 0.15s;
+    }
+    .btn-preset-margin:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .btn-preset-margin.active {
+      background: #059669;
+      border-color: #059669;
+      color: #ffffff;
+    }
     .metric-val { font-size: 17px; font-weight: 900; font-family: monospace; margin: 2px 0; }
     .a4-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10px; }
     .a4-table th { background: #f1f5f9; padding: 6px 8px; border-bottom: 1px solid #cbd5e1; font-weight: 700; }
@@ -204,7 +297,7 @@
     /* PRINT CSS RULES */
     @media print {
       body { background: #ffffff !important; }
-      .app-header, .print-hide { display: none !important; }
+      .app-header, .print-hide, .btn-card-close, .empty-card-screen { display: none !important; }
       .inline-edit-input {
         border: none !important;
         background: transparent !important;
@@ -214,6 +307,12 @@
       }
       .btn-row-del, .preview-actions-bar {
         display: none !important;
+      }
+      .metric-card-empty {
+        visibility: hidden !important;
+        border: none !important;
+        background: transparent !important;
+        min-height: 82px !important;
       }
       .a4-page {
         margin: 0 !important; padding: 0 !important; border: none !important;
@@ -312,17 +411,34 @@
           <div class="field-grid">
             <div class="form-group">
               <label class="form-label">Počet panelov (ks)</label>
-              <input type="number" id="panelCount" class="form-control" min="4" max="60" value="16" oninput="recalculate()">
+              <input type="number" id="panelCount" class="form-control" placeholder="Zadajte počet panelov (napr. 16)" oninput="recalculate()">
+              <span style="font-size: 10px; color: #94a3b8; margin-top: 2px;">* Nechajte prázdne alebo 0, ak ide len o batériu/menič bez panelov.</span>
             </div>
             <div class="form-group">
               <label class="form-label">Typ fotovoltického modulu</label>
-              <select id="panelType" class="form-control" onchange="recalculate()">
+              <select id="panelTypeSelect" class="form-control" onchange="handlePanelTypeSelectChange(this.value)">
                 <option value="tier1_455" selected>Tier-1 N-Type TOPCon 455 Wp (Canadian Solar / DAH / AIKO)</option>
                 <option value="aiko_460">AIKO Neostar All-Black ABC 460 Wp (Prémiový čierny)</option>
+                <option value="dah_455">DAH Solar Full-Screen N-Type 455 Wp (Samočistiaci bezrám)</option>
+                <option value="ja_455">JA Solar DeepBlue 4.0 Pro 455 Wp</option>
+                <option value="jinko_445">Jinko Tiger Neo N-Type All-Black 445 Wp</option>
+                <option value="longi_440">Longi Hi-MO X6 Explorer HPBC 440 Wp</option>
+                <option value="trina_500">Trina Solar Vertex S+ Dual-Glass 500 Wp</option>
+                <option value="custom">✏️ Iný / Vlastný typ modulu (zadať ručne)...</option>
               </select>
               <div style="margin-top: 6px;">
-                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena/panel (€ bez DPH):</label>
-                <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Názov modulu (možné priamo prepísať):</label>
+                <input type="text" id="customPanelName" class="form-control" value="Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp" placeholder="Zadajte vlastný model modulu" oninput="handleCustomPanelNameInput()" style="font-size: 12px; font-weight: 600;">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+                <div>
+                  <label class="form-label" style="font-size: 10px; color: #64748b;">Výkon panelu (Wp):</label>
+                  <input type="number" id="customPanelWp" class="form-control" value="455" placeholder="Auto z názvu" step="5" min="100" max="900" oninput="recalculate()" style="font-size: 12px; padding: 4px 8px;">
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena (€ bez DPH):</label>
+                  <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -496,16 +612,47 @@
           </div>
         </div>
 
-        <!-- KARTA 5: PRÁCE, MONTÁŽ & VLASTNÉ POLOŽKY -->
+        <!-- KARTA 5: PRÁCE, MONTÁŽ & CENOTVORBA -->
         <div class="card">
           <div class="card-title">
-            <span>5. Práce, Montáž & Ručné Zadanie Cien</span>
-            <div style="font-size: 11px; text-transform: none; display: flex; align-items: center; gap: 6px;">
-              <label style="font-weight: 600; color: #475569;">Režim cien:</label>
-              <select id="priceInputMode" class="form-control" style="padding: 2px 8px; font-size: 11px;" onchange="recalculate()">
-                <option value="selling" selected>Priama predajná cena pre klienta</option>
-                <option value="cost">Nákupná cena + marža (1.5x)</option>
-              </select>
+            <span>5. Cenotvorba, Marža & Práce</span>
+            <span id="margin-badge" style="font-size: 11px; font-weight: 700; color: #059669; font-family: monospace;">Koeficient: 1.50x (+50 %)</span>
+          </div>
+
+          <!-- OVLÁDACÍ PANEL MARŽE A KOEFICIENTU -->
+          <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
+            <div class="field-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+              <div class="form-group">
+                <label class="form-label">Koeficient marže (násobok nákupu)</label>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <input type="number" id="marginMultiplier" class="form-control" value="1.50" step="0.05" min="1.0" max="3.0" oninput="handleMarginMultiplierChange()" style="font-weight: 800; color: #059669; font-family: monospace; font-size: 14px; max-width: 120px;">
+                  <span style="font-weight: 700; color: #64748b;">x</span>
+                </div>
+                <div style="display: flex; gap: 4px; margin-top: 4px;">
+                  <button type="button" class="btn-preset-margin" onclick="setMarginMultiplier(1.30)">1.30x</button>
+                  <button type="button" class="btn-preset-margin" onclick="setMarginMultiplier(1.40)">1.40x</button>
+                  <button type="button" class="btn-preset-margin active" id="btn-m-150" onclick="setMarginMultiplier(1.50)">1.50x</button>
+                  <button type="button" class="btn-preset-margin" onclick="setMarginMultiplier(1.60)">1.60x</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Režim zadávania cien</label>
+                <select id="priceInputMode" class="form-control" onchange="recalculate()">
+                  <option value="selling" selected>Priama predajná cena pre klienta</option>
+                  <option value="cost">Nákupná cena + marža (násobená koeficientom)</option>
+                </select>
+                <span style="font-size: 10px; color: #64748b; margin-top: 2px;">Určuje význam ručne zadaných cien komponentov.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Provízia obchodníka (%)</label>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <input type="number" id="repCommissionRate" class="form-control" value="10" step="1" min="0" max="50" oninput="recalculate()" style="font-weight: 800; color: #059669; font-family: monospace; font-size: 14px; max-width: 120px;">
+                  <span style="font-weight: 700; color: #64748b;">%</span>
+                </div>
+                <span style="font-size: 10px; color: #64748b; margin-top: 2px;">Percento z ceny bez DPH pre obchodného zástupcu.</span>
+              </div>
             </div>
           </div>
 
@@ -647,16 +794,20 @@
           <div style="background: #1e293b; padding: 12px; border-radius: 12px; font-size: 11px; margin-top: 16px;">
             <div style="color: #94a3b8; font-weight: 700; text-transform: uppercase; font-size: 9px; margin-bottom: 6px;">Interné čísla (Len pre obchoďáka)</div>
             <div class="sum-row" style="margin-bottom: 4px;">
-              <span>Náklady diela:</span>
-              <span class="sum-val" id="sum-cost">4 921.66 €</span>
+              <span>Koeficient marže:</span>
+              <span class="sum-val" id="sum-margin-coeff">1.50x (+50 %)</span>
             </div>
             <div class="sum-row" style="margin-bottom: 4px;">
-              <span>Provízia obchodníka (10%):</span>
-              <span class="sum-val" style="color: #34d399;" id="sum-comm">738.25 €</span>
+              <span>Náklady diela:</span>
+              <span class="sum-val" id="sum-cost">0.00 €</span>
+            </div>
+            <div class="sum-row" style="margin-bottom: 4px;">
+              <span>Provízia obchodníka (<span id="sum-comm-rate">10</span>%):</span>
+              <span class="sum-val" style="color: #34d399;" id="sum-comm">0.00 €</span>
             </div>
             <div class="sum-row" style="margin-bottom: 0;">
               <span>Marža firmy:</span>
-              <span class="sum-val" style="color: #fbbf24;" id="sum-margin">1 722.58 €</span>
+              <span class="sum-val" style="color: #fbbf24;" id="sum-margin">0.00 €</span>
             </div>
           </div>
 
@@ -723,28 +874,9 @@
       </div>
     </div>
 
-    <!-- 4 PREHĽADNÉ DASHBOARD KARTY -->
-    <div class="cards-row">
-      <div class="metric-card accent">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #065f46;">Inštalovaný výkon DC</span>
-        <div class="metric-val" style="color: #065f46;" id="p-kwp">7.28 kWp</div>
-        <span style="font-size: 8.5px; color: #047857;" id="p-panels-desc">16x panel 455 Wp</span>
-      </div>
-      <div class="metric-card">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #64748b;">Ročná výroba energie</span>
-        <div class="metric-val" id="p-mwh">7.79 MWh</div>
-        <span style="font-size: 8.5px; color: #64748b;">odhad solárneho zisku</span>
-      </div>
-      <div class="metric-card">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #64748b;">Technológia meniča</span>
-        <div class="metric-val" style="font-size: 12px; font-weight: 800; padding: 4px 0;" id="p-inv-short">Solinteg 10 kW</div>
-        <span style="font-size: 8.5px; color: #64748b;">3-fázový hybridný invertor</span>
-      </div>
-      <div class="metric-card" style="background: #fffbeb; border-color: #fde68a;">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #92400e;">Návratnosť investície</span>
-        <div class="metric-val" style="color: #b45309;" id="p-payback">5.6 roka</div>
-        <span style="font-size: 8.5px; color: #92400e;">so štátnou dotáciou</span>
-      </div>
+    <!-- 4 PREHĽADNÉ DASHBOARD KARTY (Dynamické, relevantné k položkám, s možnosťou odstránenia [×]) -->
+    <div class="cards-row" id="p-cards-row">
+      <!-- Generované dynamicky cez renderPreviewCards() -->
     </div>
 
     <!-- ROZPIS POLOŽIEK DIELA (LEN SKUTOČNE MONTOVANÉ!) -->
@@ -754,7 +886,8 @@
       </div>
       <div class="print-hide preview-actions-bar" style="display: flex; gap: 6px;">
         <button type="button" class="btn-add-item" onclick="addPreviewItem()">+ Pridať položku / prácu</button>
-        <button type="button" id="btn-reset-preview" class="btn-reset-items" style="display: none;" onclick="resetPreviewItems()" title="Vrátiť položky do pôvodného stavu">↺ Obnoviť pôvodné</button>
+        <button type="button" id="btn-reset-cards" class="btn-reset-items" style="display: none;" onclick="resetAllPreviewCards()" title="Znovu zobraziť všetky odstránené polia kariet">↺ Obnoviť polia kariet</button>
+        <button type="button" id="btn-reset-preview" class="btn-reset-items" style="display: none;" onclick="resetPreviewItems()" title="Vrátiť položky do pôvodného stavu">↺ Obnoviť pôvodné položky</button>
       </div>
     </div>
 

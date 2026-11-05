@@ -254,7 +254,7 @@ export default function FotovoltikaPreDomacnosti() {
               <div className="relative group rounded-3xl overflow-hidden border border-slate-800 bg-slate-900">
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
-                    src="/images/fotovoltika-domacnosti/hero.jpg"
+                    src="/images/roof/solar-roof-macro.jpg"
                     alt="Inštalácia fotovoltiky pre rodinný dom Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
