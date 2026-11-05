@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CookieIcon, ShieldIcon, CheckIcon } from '@/components/icons';
+import { updateGtagConsent } from '@/lib/gtag';
 
 export interface CookiePreferences {
   necessary: true;
@@ -27,8 +28,11 @@ export const CookieConsent: React.FC = () => {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed: CookiePreferences = JSON.parse(stored);
-        setAnalytics(Boolean(parsed.analytics));
-        setMarketing(Boolean(parsed.marketing));
+        const allowAnalytics = Boolean(parsed.analytics);
+        const allowMarketing = Boolean(parsed.marketing);
+        setAnalytics(allowAnalytics);
+        setMarketing(allowMarketing);
+        updateGtagConsent({ analytics: allowAnalytics, marketing: allowMarketing });
         setIsOpen(false);
       } else {
         // No consent recorded yet -> open banner
@@ -57,6 +61,7 @@ export const CookieConsent: React.FC = () => {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+      updateGtagConsent({ analytics: allowAnalytics, marketing: allowMarketing });
       window.dispatchEvent(
         new CustomEvent('marvolCookieConsentUpdated', { detail: preferences })
       );

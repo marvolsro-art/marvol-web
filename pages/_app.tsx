@@ -1,10 +1,26 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { COMPANY_DETAILS } from "@/constants/company";
 import { CookieConsent } from "@/components/CookieConsent";
+import { GA_TRACKING_ID, pageview } from "@/lib/gtag";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -107,6 +123,36 @@ export default function App({ Component, pageProps }: AppProps) {
           }}
         />
       </Head>
+
+      {/* Google Analytics 4 (gtag.js) */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+      />
+      <Script
+        id="google-analytics-init"
+        strategy="afterInteractive"
+      >
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+
+          // Google Consent Mode v2 Default Settings (strict privacy opt-in)
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update': 500
+          });
+
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
+
       <Component {...pageProps} />
       <CookieConsent />
     </>
