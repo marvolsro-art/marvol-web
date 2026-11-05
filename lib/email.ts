@@ -228,6 +228,8 @@ export async function sendLeadNotificationEmail(
   const htmlContent = buildLeadNotificationHtml(lead);
   const plainTextContent = buildLeadNotificationPlainText(lead);
 
+  let lastError: string | undefined;
+
   // ---------------------------------------------------------------------------
   // METHOD 1: Resend HTTP REST API
   // ---------------------------------------------------------------------------
@@ -261,10 +263,12 @@ export async function sendLeadNotificationEmail(
           messageId: data.id,
         };
       } else {
+        lastError = data?.message || (typeof data === 'object' ? JSON.stringify(data) : 'RESEND_DISPATCH_FAILED');
         console.error('[EMAIL_RESEND_ERROR]', data);
         // Continue to check if SMTP is configured as fallback
       }
     } catch (err: unknown) {
+      lastError = err instanceof Error ? err.message : String(err);
       console.error('[EMAIL_RESEND_FETCH_ERROR]', err);
     }
   }
@@ -333,6 +337,6 @@ export async function sendLeadNotificationEmail(
 
   return {
     success: false,
-    error: 'NO_EMAIL_PROVIDER_CONFIGURED',
+    error: lastError || 'NO_EMAIL_PROVIDER_CONFIGURED',
   };
 }
