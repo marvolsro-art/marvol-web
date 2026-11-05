@@ -60,7 +60,7 @@ export default async function handler(
     id: `TEST-${Date.now()}`,
     timestamp: new Date().toISOString(),
     name: 'Testovací Zákazník (Test systému Marvol)',
-    phone: '+421 948 123 456',
+    phone: '+421 908 403 042',
     email: 'test@marvol.sk',
     city: 'Vrútky / Žilina',
     service: 'Testovacia správa odosielania e-mailov',

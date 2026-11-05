@@ -83,11 +83,11 @@ export const FAQSection: React.FC = () => {
           <h3 className="text-lg font-bold text-white">Nenašli ste odpoveď na vašu otázku?</h3>
           <p className="text-xs text-slate-300">Naši energetickí poradcovia vám radi bezplatne odpovedia na akúkoľvek otázku.</p>
           <a
-            href="tel:+421948123456"
+            href="tel:+421908403042"
             className="inline-flex items-center justify-center gap-2 bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs hover:bg-amber-300 transition-colors min-h-[44px]"
           >
             <PhoneIcon className="w-4 h-4 text-slate-950 shrink-0" />
-            <span>Zavolať expertovi: +421 948 123 456</span>
+            <span>Zavolať expertovi: +421 908 403 042</span>
           </a>
         </div>
 

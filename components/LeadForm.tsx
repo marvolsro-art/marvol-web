@@ -132,7 +132,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
 
     const trimmedPhone = formData.phone.trim();
     if (!PHONE_REGEX.test(trimmedPhone)) {
-      setErrorMsg('Prosím, zadajte platné telefónne číslo (napr. +421 948 123 456).');
+      setErrorMsg('Prosím, zadajte platné telefónne číslo (napr. +421 908 403 042).');
       return;
     }
 
@@ -422,7 +422,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               type="tel"
               required
               autoComplete="tel"
-              placeholder="+421 948 123 456"
+              placeholder="+421 908 403 042"
               value={formData.phone}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })

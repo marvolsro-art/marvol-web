@@ -125,8 +125,8 @@ export default function BaterioveUloziskaBess() {
         '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
         name: 'Marvol s.r.o.',
-        telephone: '+421948123456',
-        email: 'info@marvol.sk',
+        telephone: COMPANY_DETAILS.contact.phoneClean,
+        email: COMPANY_DETAILS.contact.email,
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Chotárna 3394/6',
