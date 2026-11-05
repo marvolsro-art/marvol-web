@@ -107,8 +107,37 @@
     .cards-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
     .metric-card {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; text-align: center;
+      position: relative; min-height: 82px; display: flex; flex-direction: column; justify-content: center;
     }
     .metric-card.accent { background: #ecfdf5; border-color: #a7f3d0; }
+    .metric-card.amber { background: #fffbeb; border-color: #fde68a; }
+    .metric-card-empty {
+      border: 1px dashed #cbd5e1; border-radius: 10px; padding: 8px; text-align: center;
+      background: #f8fafc; min-height: 82px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; color: #94a3b8; font-size: 10px;
+    }
+    .btn-card-close {
+      position: absolute; top: 3px; right: 4px; background: transparent; border: none;
+      color: #94a3b8; font-size: 14px; font-weight: 700; width: 18px; height: 18px;
+      line-height: 16px; border-radius: 4px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: all 0.15s;
+    }
+    .btn-card-close:hover { color: #dc2626; background: #fee2e2; }
+    .btn-card-restore {
+      background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; color: #059669;
+      font-size: 9px; font-weight: 700; padding: 2px 6px; cursor: pointer; margin-top: 4px;
+    }
+    .btn-card-restore:hover { background: #ecfdf5; border-color: #059669; }
+    .card-type-select {
+      font-size: 9px; border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 4px;
+      color: #334155; background: #ffffff; margin-top: 4px; max-width: 100%;
+    }
+    .btn-preset-margin {
+      background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px;
+      font-size: 11px; font-weight: 700; color: #334155; cursor: pointer; transition: all 0.15s;
+    }
+    .btn-preset-margin:hover { background: #e2e8f0; color: #0f172a; }
+    .btn-preset-margin.active { background: #059669; color: #ffffff; border-color: #047857; }
     .metric-val { font-size: 17px; font-weight: 900; font-family: monospace; margin: 2px 0; }
     .a4-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10px; }
     .a4-table th { background: #f1f5f9; padding: 6px 8px; border-bottom: 1px solid #cbd5e1; font-weight: 700; }
@@ -212,8 +241,13 @@
         margin: 0 !important;
         box-shadow: none !important;
       }
-      .btn-row-del, .preview-actions-bar {
+      .btn-row-del, .preview-actions-bar, .btn-card-close, .btn-card-restore, .card-type-select {
         display: none !important;
+      }
+      .metric-card-empty {
+        visibility: hidden !important;
+        border: none !important;
+        min-height: 82px !important;
       }
       .a4-page {
         margin: 0 !important; padding: 0 !important; border: none !important;
@@ -312,17 +346,34 @@
           <div class="field-grid">
             <div class="form-group">
               <label class="form-label">Počet panelov (ks)</label>
-              <input type="number" id="panelCount" class="form-control" min="4" max="60" value="16" oninput="recalculate()">
+              <input type="number" id="panelCount" class="form-control" min="0" max="100" placeholder="Zadajte počet panelov (napr. 16)" oninput="recalculate()">
+              <div style="font-size: 10px; color: #64748b; margin-top: 4px;">Ponechajte prázdne (0 ks) pre čisto batériové riešenie.</div>
             </div>
             <div class="form-group">
               <label class="form-label">Typ fotovoltického modulu</label>
-              <select id="panelType" class="form-control" onchange="recalculate()">
-                <option value="tier1_455" selected>Tier-1 N-Type TOPCon 455 Wp (Canadian Solar / DAH / AIKO)</option>
+              <select id="panelTypeSelect" class="form-control" onchange="handlePanelTypeSelectChange(this.value)">
+                <option value="tier1_455" selected>Tier-1 N-Type TOPCon 455 Wp (Canadian / AIKO / DAH)</option>
                 <option value="aiko_460">AIKO Neostar All-Black ABC 460 Wp (Prémiový čierny)</option>
+                <option value="dah_455">DAH Solar Full-Screen N-Type 455 Wp (Samočistiaci)</option>
+                <option value="ja_455">JA Solar DeepBlue 4.0 Pro N-Type 455 Wp</option>
+                <option value="jinko_445">Jinko Tiger Neo N-Type All-Black 445 Wp</option>
+                <option value="longi_440">Longi Hi-MO X6 Explorer HPBC 440 Wp</option>
+                <option value="trina_500">Trina Solar Vertex S+ Dual-Glass 500 Wp</option>
+                <option value="custom">Vlastný / Iný typ modulu (napíšte nižšie)</option>
               </select>
               <div style="margin-top: 6px;">
-                <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena/panel (€ bez DPH):</label>
-                <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 12px; padding: 4px 8px;">
+                <label class="form-label" style="font-size: 10px; color: #64748b;">Názov a model modulu (ľubovoľný text):</label>
+                <input type="text" id="customPanelName" class="form-control" value="Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp" placeholder="Napr. Trina Solar Vertex S+ 500 Wp" oninput="handleCustomPanelNameInput()" style="font-size: 11px; padding: 4px 8px;">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px;">
+                <div>
+                  <label class="form-label" style="font-size: 10px; color: #64748b;">Výkon panelu (Wp):</label>
+                  <input type="number" id="customPanelWp" class="form-control" value="455" min="100" max="900" step="5" oninput="recalculate()" style="font-size: 11px; padding: 4px 6px;">
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 10px; color: #64748b;">Vlastná cena/ks (€):</label>
+                  <input type="number" id="customPanelPrice" class="form-control" placeholder="Katalógová" step="0.01" oninput="recalculate()" onblur="formatInputPriceBlur(this)" style="font-size: 11px; padding: 4px 6px;">
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -499,13 +550,46 @@
         <!-- KARTA 5: PRÁCE, MONTÁŽ & VLASTNÉ POLOŽKY -->
         <div class="card">
           <div class="card-title">
-            <span>5. Práce, Montáž & Ručné Zadanie Cien</span>
-            <div style="font-size: 11px; text-transform: none; display: flex; align-items: center; gap: 6px;">
-              <label style="font-weight: 600; color: #475569;">Režim cien:</label>
-              <select id="priceInputMode" class="form-control" style="padding: 2px 8px; font-size: 11px;" onchange="recalculate()">
-                <option value="selling" selected>Priama predajná cena pre klienta</option>
-                <option value="cost">Nákupná cena + marža (1.5x)</option>
-              </select>
+            <span>5. Cenotvorba, Marža & Práce</span>
+          </div>
+
+          <!-- Ovládanie koeficientu marže a režimu cien -->
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase;">Nastavenie cenotvorby a marže</span>
+              <span id="margin-badge" style="font-size: 11px; font-weight: 700; color: #059669; background: #ecfdf5; padding: 2px 8px; border-radius: 6px; border: 1px solid #a7f3d0;">Koeficient: 1.50x (+50 %)</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 10px; align-items: end;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Koeficient marže (násobok nákupu)</label>
+                <div style="display: flex; gap: 4px; align-items: center;">
+                  <input type="number" id="marginMultiplier" class="form-control" value="1.50" min="1.05" max="3.00" step="0.05" oninput="handleMarginMultiplierChange()" style="font-weight: 700;">
+                  <div style="display: flex; gap: 2px;">
+                    <button type="button" class="btn-preset-margin" id="btn-m-130" onclick="setMarginMultiplier(1.30)">1.3x</button>
+                    <button type="button" class="btn-preset-margin" id="btn-m-140" onclick="setMarginMultiplier(1.40)">1.4x</button>
+                    <button type="button" class="btn-preset-margin active" id="btn-m-150" onclick="setMarginMultiplier(1.50)">1.5x</button>
+                    <button type="button" class="btn-preset-margin" id="btn-m-160" onclick="setMarginMultiplier(1.60)">1.6x</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Režim zadávania vlastných cien</label>
+                <select id="priceInputMode" class="form-control" onchange="recalculate()">
+                  <option value="selling" selected>Priama predajná cena pre klienta</option>
+                  <option value="cost">Nákupná cena + marža (aplikuje koeficient)</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Provízia obchodníka (% z ceny bez DPH)</label>
+                <select id="repCommissionRate" class="form-control" onchange="recalculate()">
+                  <option value="0.10" selected>10 % z celkovej ceny bez DPH</option>
+                  <option value="0.08">8 % z celkovej ceny bez DPH</option>
+                  <option value="0.07">7 % z celkovej ceny bez DPH</option>
+                  <option value="0.05">5 % z celkovej ceny bez DPH</option>
+                  <option value="0.12">12 % z celkovej ceny bez DPH</option>
+                  <option value="0.00">0 % (bez provízie)</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -647,15 +731,19 @@
           <div style="background: #1e293b; padding: 12px; border-radius: 12px; font-size: 11px; margin-top: 16px;">
             <div style="color: #94a3b8; font-weight: 700; text-transform: uppercase; font-size: 9px; margin-bottom: 6px;">Interné čísla (Len pre obchoďáka)</div>
             <div class="sum-row" style="margin-bottom: 4px;">
+              <span>Koeficient marže:</span>
+              <span class="sum-val" style="color: #38bdf8;" id="sum-margin-coeff">1.50x</span>
+            </div>
+            <div class="sum-row" style="margin-bottom: 4px;">
               <span>Náklady diela:</span>
               <span class="sum-val" id="sum-cost">4 921.66 €</span>
             </div>
             <div class="sum-row" style="margin-bottom: 4px;">
-              <span>Provízia obchodníka (10%):</span>
+              <span>Provízia obchodníka (<span id="sum-comm-rate">10%</span>):</span>
               <span class="sum-val" style="color: #34d399;" id="sum-comm">738.25 €</span>
             </div>
             <div class="sum-row" style="margin-bottom: 0;">
-              <span>Marža firmy:</span>
+              <span>Čistá marža firmy:</span>
               <span class="sum-val" style="color: #fbbf24;" id="sum-margin">1 722.58 €</span>
             </div>
           </div>
@@ -723,28 +811,9 @@
       </div>
     </div>
 
-    <!-- 4 PREHĽADNÉ DASHBOARD KARTY -->
-    <div class="cards-row">
-      <div class="metric-card accent">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #065f46;">Inštalovaný výkon DC</span>
-        <div class="metric-val" style="color: #065f46;" id="p-kwp">7.28 kWp</div>
-        <span style="font-size: 8.5px; color: #047857;" id="p-panels-desc">16x panel 455 Wp</span>
-      </div>
-      <div class="metric-card">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #64748b;">Ročná výroba energie</span>
-        <div class="metric-val" id="p-mwh">7.79 MWh</div>
-        <span style="font-size: 8.5px; color: #64748b;">odhad solárneho zisku</span>
-      </div>
-      <div class="metric-card">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #64748b;">Technológia meniča</span>
-        <div class="metric-val" style="font-size: 12px; font-weight: 800; padding: 4px 0;" id="p-inv-short">Solinteg 10 kW</div>
-        <span style="font-size: 8.5px; color: #64748b;">3-fázový hybridný invertor</span>
-      </div>
-      <div class="metric-card" style="background: #fffbeb; border-color: #fde68a;">
-        <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #92400e;">Návratnosť investície</span>
-        <div class="metric-val" style="color: #b45309;" id="p-payback">5.6 roka</div>
-        <span style="font-size: 8.5px; color: #92400e;">so štátnou dotáciou</span>
-      </div>
+    <!-- 4 PREHĽADNÉ DASHBOARD KARTY (Dynamicky adaptívne & Odstrániteľné krížikom) -->
+    <div class="cards-row" id="p-cards-row">
+      <!-- Vykresľované pomocou renderPreviewCards() -->
     </div>
 
     <!-- ROZPIS POLOŽIEK DIELA (LEN SKUTOČNE MONTOVANÉ!) -->
@@ -754,7 +823,8 @@
       </div>
       <div class="print-hide preview-actions-bar" style="display: flex; gap: 6px;">
         <button type="button" class="btn-add-item" onclick="addPreviewItem()">+ Pridať položku / prácu</button>
-        <button type="button" id="btn-reset-preview" class="btn-reset-items" style="display: none;" onclick="resetPreviewItems()" title="Vrátiť položky do pôvodného stavu">↺ Obnoviť pôvodné</button>
+        <button type="button" id="btn-reset-cards" class="btn-reset-items" style="display: none;" onclick="resetAllPreviewCards()" title="Znovu zobraziť všetky odstránené karty">↺ Obnoviť karty</button>
+        <button type="button" id="btn-reset-preview" class="btn-reset-items" style="display: none;" onclick="resetPreviewItems()" title="Vrátiť položky do pôvodného stavu">↺ Obnoviť položky</button>
       </div>
     </div>
 
@@ -903,6 +973,58 @@
       "prešov", "presov", "košice", "kosice"
     ];
 
+    // Katalóg predvolených fotovoltických panelov
+    const PANELS_CATALOG = {
+      tier1_455: {
+        name: "Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp",
+        wp: 455,
+        cost: 59.15
+      },
+      aiko_460: {
+        name: "AIKO Neostar All-Black ABC 460 Wp (Prémiový čierny)",
+        wp: 460,
+        cost: 66.00
+      },
+      dah_455: {
+        name: "DAH Solar Full-Screen N-Type 455 Wp (Samočistiaci bezrám)",
+        wp: 455,
+        cost: 61.00
+      },
+      ja_455: {
+        name: "JA Solar DeepBlue 4.0 Pro N-Type 455 Wp",
+        wp: 455,
+        cost: 59.50
+      },
+      jinko_445: {
+        name: "Jinko Tiger Neo N-Type All-Black 445 Wp",
+        wp: 445,
+        cost: 58.50
+      },
+      longi_440: {
+        name: "Longi Hi-MO X6 Explorer HPBC 440 Wp",
+        wp: 440,
+        cost: 62.00
+      },
+      trina_500: {
+        name: "Trina Solar Vertex S+ Dual-Glass 500 Wp",
+        wp: 500,
+        cost: 68.00
+      },
+      custom: {
+        name: "Vlastný fotovoltický modul",
+        wp: 455,
+        cost: 60.00
+      }
+    };
+
+    // Stav 4 dashboard kariet v náhľade ponuky (možnosť odstránenia krížikom a zmeny typu)
+    let previewCardsState = [
+      { visible: true, cardType: 'auto' },
+      { visible: true, cardType: 'auto' },
+      { visible: true, cardType: 'auto' },
+      { visible: true, cardType: 'auto' }
+    ];
+
     function handleCityInput(cityName) {
       const clean = cityName.trim().toLowerCase();
       const isOrko = ORKO_CITIES.some(c => clean.includes(c));
@@ -948,6 +1070,352 @@
       document.title = getSafePdfTitle();
     });
 
+    // Obsluha výberu a ručného zadávania modulu
+    function handlePanelTypeSelectChange(key) {
+      const customNameInput = document.getElementById('customPanelName');
+      const customWpInput = document.getElementById('customPanelWp');
+      const customPriceInput = document.getElementById('customPanelPrice');
+
+      if (key === 'custom') {
+        if (customNameInput) {
+          customNameInput.focus();
+          customNameInput.select();
+        }
+      } else if (PANELS_CATALOG[key]) {
+        const p = PANELS_CATALOG[key];
+        if (customNameInput) customNameInput.value = p.name;
+        if (customWpInput) customWpInput.value = p.wp;
+        if (customPriceInput) customPriceInput.placeholder = `Katalógová (~${p.cost.toFixed(2)} €)`;
+      }
+      recalculate();
+    }
+
+    function handleCustomPanelNameInput() {
+      const name = document.getElementById('customPanelName')?.value || "";
+      const wpInput = document.getElementById('customPanelWp');
+      const wpMatch = name.match(/(\d{3,4})\s*(?:wp|w)\b/i);
+
+      if (wpMatch && wpInput) {
+        wpInput.value = wpMatch[1];
+      }
+
+      const select = document.getElementById('panelTypeSelect');
+      if (select && select.value !== 'custom') {
+        const curPreset = PANELS_CATALOG[select.value];
+        if (!curPreset || curPreset.name !== name) {
+          select.value = 'custom';
+        }
+      }
+
+      recalculate();
+    }
+
+    // Obsluha koeficientu marže
+    function setMarginMultiplier(val) {
+      const input = document.getElementById('marginMultiplier');
+      if (input) {
+        input.value = val.toFixed(2);
+      }
+      updateMarginButtons(val);
+      recalculate();
+    }
+
+    function handleMarginMultiplierChange() {
+      const val = parseFloat(document.getElementById('marginMultiplier')?.value) || 1.5;
+      updateMarginButtons(val);
+      recalculate();
+    }
+
+    function updateMarginButtons(val) {
+      document.querySelectorAll('.btn-preset-margin').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const keyId = 'btn-m-' + Math.round(val * 100);
+      const exactBtn = document.getElementById(keyId);
+      if (exactBtn) exactBtn.classList.add('active');
+
+      const badge = document.getElementById('margin-badge');
+      if (badge) {
+        const markupPct = Math.round((val - 1) * 100);
+        badge.innerText = `Koeficient: ${val.toFixed(2)}x (+${markupPct} %)`;
+      }
+    }
+
+    // Parser parametrov z položiek ponuky (Výkon Wp, počet modulov, kapacita batérie, menič)
+    function parseItemParameters(items) {
+      let totalPanelWatts = 0;
+      let totalPanelCount = 0;
+      let detectedPanelWp = 0;
+      let detectedPanelName = "";
+
+      let totalBatteryKwh = 0;
+      let detectedBatteryName = "";
+
+      let detectedInverterName = "";
+      let detectedInverterKw = "";
+
+      const itemsList = items || [];
+
+      itemsList.forEach(it => {
+        const name = it.name || "";
+        const module = (it.module || "").toLowerCase();
+        const qty = parseFloat(it.qty) || 0;
+
+        // 1. Fotovoltické panely
+        const isPanelModule = module.includes("panel") || module.includes("modul") || module.includes("fotovolt");
+        const isPanelName = /(panel|modul|aiko|topcon|neostar|canadian|dah|ja solar|jinko|longi|trina)/i.test(name);
+        const wpMatch = name.match(/(\d{3,4})\s*(?:wp|w)\b/i);
+
+        if ((isPanelModule || isPanelName || wpMatch) && !module.includes("optimizér") && !name.toLowerCase().includes("optimizér")) {
+          const wp = wpMatch ? parseInt(wpMatch[1], 10) : (detectedPanelWp || 455);
+          if (qty > 0) {
+            totalPanelWatts += qty * wp;
+            totalPanelCount += qty;
+            detectedPanelWp = wp;
+            detectedPanelName = name;
+          }
+        }
+
+        // 2. Batéria
+        const isBatModule = module.includes("batér") || module.includes("battery");
+        const isBatName = /(batéri|battery|pylontech|force h|lynx|luna2000|t-bat|byd|se-g5)/i.test(name);
+        const kwhMatch = name.match(/(\d+(?:[.,]\d+)?)\s*kwh\b/i);
+
+        if (isBatModule || isBatName || kwhMatch) {
+          let kwh = 0;
+          if (kwhMatch) {
+            kwh = parseFloat(kwhMatch[1].replace(',', '.'));
+          }
+          if (kwh > 0 && qty > 0) {
+            totalBatteryKwh += qty * kwh;
+            if (!detectedBatteryName) {
+              detectedBatteryName = name.split('(')[0].replace(/batériové úložisko/i, '').trim() || "LiFePO4 batéria";
+            }
+          }
+        }
+
+        // 3. Menič / Striedač
+        const isInvModule = module.includes("striedač") || module.includes("menič");
+        const isInvName = /(menič|striedač|invertor|inverter|solinteg|goodwe|solax|huawei|deye)/i.test(name);
+        if ((isInvModule || isInvName) && !detectedInverterName) {
+          const kwMatch = name.match(/(\d+(?:[.,]\d+)?)\s*k(?:w|va)\b/i) || name.match(/[-_](\d{1,2})k/i);
+          const kwStr = kwMatch ? kwMatch[1] + " kW" : "";
+          
+          let brand = "";
+          if (/solinteg/i.test(name)) brand = "Solinteg";
+          else if (/goodwe/i.test(name)) brand = "GoodWe";
+          else if (/solax/i.test(name)) brand = "SolaX";
+          else if (/huawei/i.test(name)) brand = "Huawei";
+          else if (/deye/i.test(name)) brand = "Deye";
+
+          detectedInverterName = (brand && kwStr) ? `${brand} ${kwStr}` : (brand || name.split('(')[0].replace(/hybridný menič/i, '').trim());
+          detectedInverterKw = kwStr;
+        }
+      });
+
+      const kwp = (totalPanelWatts / 1000).toFixed(2);
+      const mwh = (parseFloat(kwp) * 1.07).toFixed(2);
+      const batteryKwhStr = totalBatteryKwh > 0 ? (totalBatteryKwh % 1 === 0 ? totalBatteryKwh.toFixed(1) : totalBatteryKwh.toFixed(2)) : "0";
+
+      const annualKwhInput = parseInt(document.getElementById('annualKwh')?.value, 10) || 7500;
+      const paybackEl = document.getElementById('p-payback');
+      const paybackText = paybackEl ? paybackEl.innerText.replace(/[^0-9.,]/g, '') : "5.6";
+
+      return {
+        hasPanels: totalPanelWatts > 0,
+        totalWatts: totalPanelWatts,
+        kwp: kwp,
+        panelCount: totalPanelCount,
+        panelWp: detectedPanelWp || 455,
+        panelsDesc: totalPanelCount > 0 ? `${totalPanelCount}x panel ${detectedPanelWp || 455} Wp` : "Bez fotovoltických panelov",
+        mwh: mwh,
+        hasBattery: totalBatteryKwh > 0,
+        batteryKwh: batteryKwhStr,
+        batteryName: detectedBatteryName || "Batériové úložisko",
+        hasInverter: !!detectedInverterName,
+        inverterShort: detectedInverterName || (document.getElementById('inverterModel')?.options[document.getElementById('inverterModel')?.selectedIndex]?.text?.split(' - ')[0] || "Solinteg 10 kW"),
+        annualKwh: annualKwhInput,
+        paybackYears: paybackText
+      };
+    }
+
+    function getCardMetricData(metricType, parsed) {
+      switch (metricType) {
+        case 'kwp':
+          return {
+            title: "Inštalovaný výkon DC",
+            val: `${parsed.kwp} kWp`,
+            sub: parsed.panelsDesc,
+            accentClass: "accent",
+            titleColor: "#065f46",
+            valColor: "#065f46",
+            subColor: "#047857"
+          };
+        case 'mwh':
+          return {
+            title: "Ročná výroba energie",
+            val: `${parsed.mwh} MWh`,
+            sub: "odhad solárneho zisku",
+            accentClass: "",
+            titleColor: "#64748b",
+            valColor: "#0f172a",
+            subColor: "#64748b"
+          };
+        case 'battery':
+          return {
+            title: "Kapacita batérie",
+            val: `${parsed.batteryKwh} kWh`,
+            sub: parsed.batteryName,
+            accentClass: "accent",
+            titleColor: "#065f46",
+            valColor: "#065f46",
+            subColor: "#047857"
+          };
+        case 'inverter':
+          return {
+            title: "Technológia meniča",
+            val: parsed.inverterShort,
+            sub: "3-fázový hybridný invertor",
+            accentClass: "",
+            titleColor: "#64748b",
+            valColor: "#0f172a",
+            subColor: "#64748b",
+            isLong: true
+          };
+        case 'consumption':
+          return {
+            title: "Ročná spotreba objektu",
+            val: `${(parsed.annualKwh / 1000).toFixed(2)} MWh`,
+            sub: "ročná spotreba elektriny",
+            accentClass: "",
+            titleColor: "#64748b",
+            valColor: "#0f172a",
+            subColor: "#64748b"
+          };
+        case 'payback':
+        default:
+          return {
+            title: "Návratnosť investície",
+            val: `${parsed.paybackYears} roka`,
+            sub: "so štátnou dotáciou",
+            accentClass: "amber",
+            titleColor: "#92400e",
+            valColor: "#b45309",
+            subColor: "#92400e"
+          };
+      }
+    }
+
+    function getAutoMetricTypeForSlot(slotIdx, parsed) {
+      if (parsed.hasPanels && parsed.hasBattery) {
+        const types = ['kwp', 'mwh', 'battery', 'inverter'];
+        return types[slotIdx] || 'payback';
+      } else if (parsed.hasPanels && !parsed.hasBattery) {
+        const types = ['kwp', 'mwh', 'inverter', 'payback'];
+        return types[slotIdx] || 'consumption';
+      } else if (!parsed.hasPanels && parsed.hasBattery) {
+        const types = ['battery', 'consumption', 'inverter', 'payback'];
+        return types[slotIdx] || 'kwp';
+      } else {
+        const types = ['consumption', 'inverter', 'payback', 'kwp'];
+        return types[slotIdx] || 'mwh';
+      }
+    }
+
+    // Vykreslenie 4 kariet v náhľade
+    function renderPreviewCards() {
+      const container = document.getElementById('p-cards-row');
+      if (!container) return;
+
+      const items = currentPreviewItems || lastGeneratedItems;
+      const parsed = parseItemParameters(items);
+
+      const anyHidden = previewCardsState.some(c => !c.visible);
+      const resetCardsBtn = document.getElementById('btn-reset-cards');
+      if (resetCardsBtn) {
+        resetCardsBtn.style.display = anyHidden ? 'inline-flex' : 'none';
+      }
+
+      container.innerHTML = '';
+
+      previewCardsState.forEach((slotState, idx) => {
+        if (!slotState.visible) {
+          // Zobrazenie prázdnej plochy (v tlači invisible cez visibility: hidden, zachováva mriežku)
+          const emptyDiv = document.createElement('div');
+          emptyDiv.className = 'metric-card metric-card-empty';
+          emptyDiv.id = 'card-slot-' + idx;
+          emptyDiv.innerHTML = `
+            <div class="empty-card-screen print-hide">
+              <span style="font-size: 9.5px; color: #94a3b8; font-style: italic;">Prázdna plocha</span>
+              <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px;">
+                <button type="button" class="btn-card-restore" onclick="restorePreviewCard(${idx})" title="Znovu zobraziť toto pole">↺ Obnoviť</button>
+                <select class="card-type-select print-hide" onchange="changeSlotType(${idx}, this.value)" title="Vybrať konkrétnu metriku">
+                  <option value="" disabled selected>Zmeniť typ...</option>
+                  <option value="auto">Auto (podľa položiek)</option>
+                  <option value="kwp">Inštalovaný výkon DC</option>
+                  <option value="mwh">Ročná výroba energie</option>
+                  <option value="battery">Kapacita batérie</option>
+                  <option value="inverter">Technológia meniča</option>
+                  <option value="consumption">Ročná spotreba</option>
+                  <option value="payback">Návratnosť investície</option>
+                </select>
+              </div>
+            </div>
+          `;
+          container.appendChild(emptyDiv);
+        } else {
+          const type = (slotState.cardType && slotState.cardType !== 'auto') 
+            ? slotState.cardType 
+            : getAutoMetricTypeForSlot(idx, parsed);
+          const data = getCardMetricData(type, parsed);
+
+          const cardDiv = document.createElement('div');
+          cardDiv.className = 'metric-card ' + (data.accentClass || '');
+          cardDiv.id = 'card-slot-' + idx;
+          cardDiv.innerHTML = `
+            <button type="button" class="btn-card-close print-hide" onclick="removePreviewCard(${idx})" title="Odstrániť toto pole (namiesto neho ostane prázdna plocha)">×</button>
+            <span style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: ${data.titleColor};">${data.title}</span>
+            <div class="metric-val" style="color: ${data.valColor}; ${data.isLong ? 'font-size: 12px; font-weight: 800; padding: 4px 0;' : ''}">${data.val}</div>
+            <span style="font-size: 8.5px; color: ${data.subColor};">${data.sub}</span>
+          `;
+          container.appendChild(cardDiv);
+        }
+      });
+    }
+
+    function removePreviewCard(idx) {
+      if (previewCardsState[idx]) {
+        previewCardsState[idx].visible = false;
+        renderPreviewCards();
+      }
+    }
+
+    function restorePreviewCard(idx) {
+      if (previewCardsState[idx]) {
+        previewCardsState[idx].visible = true;
+        renderPreviewCards();
+      }
+    }
+
+    function changeSlotType(idx, newType) {
+      if (previewCardsState[idx]) {
+        previewCardsState[idx].visible = true;
+        previewCardsState[idx].cardType = newType;
+        renderPreviewCards();
+      }
+    }
+
+    function resetAllPreviewCards() {
+      previewCardsState = [
+        { visible: true, cardType: 'auto' },
+        { visible: true, cardType: 'auto' },
+        { visible: true, cardType: 'auto' },
+        { visible: true, cardType: 'auto' }
+      ];
+      renderPreviewCards();
+    }
+
+    // Hlavná funkcia prepočítať
     function recalculate() {
       // 1. Zber vstupov
       const repSelect = document.getElementById('salesRep');
@@ -963,8 +1431,22 @@
       const clientAddress = document.getElementById('clientAddress').value || "Michelova 6";
       const clientEic = document.getElementById('clientEic').value || "24ZSS1234567890X";
 
-      const panelCount = parseInt(document.getElementById('panelCount').value, 10) || 16;
-      const panelType = document.getElementById('panelType').value;
+      // Počet panelov: nepredvypĺňa sa (ak je prázdny, považuje sa za 0)
+      const panelCountRaw = document.getElementById('panelCount')?.value?.trim() || "";
+      const panelCount = panelCountRaw === "" ? 0 : (parseInt(panelCountRaw, 10) || 0);
+
+      // Typ a názov modulu
+      const panelTypeSelect = document.getElementById('panelTypeSelect')?.value || "tier1_455";
+      const customPanelName = document.getElementById('customPanelName')?.value?.trim() || "";
+      const customPanelWp = parseInt(document.getElementById('customPanelWp')?.value, 10);
+      const customPanelPrice = parseFloat(document.getElementById('customPanelPrice')?.value);
+
+      const nameWpMatch = customPanelName.match(/(\d{3,4})\s*(?:wp|w)\b/i);
+      const panelWp = (!isNaN(customPanelWp) && customPanelWp > 0) 
+        ? customPanelWp 
+        : (nameWpMatch ? parseInt(nameWpMatch[1], 10) : (PANELS_CATALOG[panelTypeSelect]?.wp || 455));
+      const panelName = customPanelName || (PANELS_CATALOG[panelTypeSelect]?.name || `Fotovoltický panel ${panelWp} Wp`);
+
       const roofStructure = document.getElementById('roofStructure').value;
       const inverterModel = document.getElementById('inverterModel').value;
       const batteryModel = document.getElementById('batteryModel').value;
@@ -984,9 +1466,11 @@
       const isOrko = document.getElementById('isOrko').checked;
       const annualKwh = parseInt(document.getElementById('annualKwh').value, 10) || 7500;
 
-      // Ručné nastavenia cien
+      // Nastavenia cien, koeficientu marže a provízie
       const priceInputMode = document.getElementById('priceInputMode')?.value || "selling";
-      const customPanelPrice = parseFloat(document.getElementById('customPanelPrice')?.value);
+      const margin = parseFloat(document.getElementById('marginMultiplier')?.value) || 1.50;
+      const repCommRate = (parseFloat(document.getElementById('repCommissionRate')?.value) || 10) / 100;
+
       const customRoofPrice = parseFloat(document.getElementById('customRoofPrice')?.value);
       const customInverterPrice = parseFloat(document.getElementById('customInverterPrice')?.value);
       const customBatteryPrice = parseFloat(document.getElementById('customBatteryPrice')?.value);
@@ -1000,7 +1484,6 @@
       const customItemQty = parseInt(document.getElementById('customItemQty')?.value, 10) || 1;
       const customItemUnit = document.getElementById('customItemUnit')?.value?.trim() || "kpl";
 
-      const margin = 1.5;
       const vatRate = 0.23;
       const isSellingMode = (priceInputMode === "selling");
 
@@ -1016,28 +1499,29 @@
       }
 
       // 2. Výpočet výkonu
-      const panelWp = (panelType === 'aiko_460') ? 460 : 455;
       const totalPowerWp = panelCount * panelWp;
       const kwp = (totalPowerWp / 1000).toFixed(2);
-      const mwh = (kwp * 1.07).toFixed(2);
+      const mwh = (parseFloat(kwp) * 1.07).toFixed(2);
 
       // 3. Rozpis nákladov a položiek
       let totalCost = 0;
       const items = [];
       const checklist = [];
 
-      // A) Panely
-      const defaultPanelCost = (panelType === 'aiko_460') ? 66.00 : 59.15;
-      const pPrice = resolvePrice(customPanelPrice, defaultPanelCost);
-      const pCostTotal = panelCount * pPrice.cost;
-      const pSellTotal = panelCount * pPrice.sell;
-      totalCost += pCostTotal;
-      items.push({
-        name: (panelType === 'aiko_460') ? "AIKO Neostar All-Black N-Type ABC 460 Wp" : "Tier-1 N-Type TOPCon panel (Canadian Solar / AIKO / DAH) 455 Wp",
-        module: "Fotovoltický panel",
-        qty: panelCount, unit: "ks", unitPrice: pPrice.sell, total: pSellTotal
-      });
-      checklist.push({ name: "Fotovoltické panely " + panelWp + " Wp", qty: panelCount, unit: "ks", note: "Overiť neporušenosť skla a sériové čísla" });
+      // A) Panely (iba ak je počet panelov > 0)
+      if (panelCount > 0) {
+        const defaultPanelCost = PANELS_CATALOG[panelTypeSelect]?.cost || 59.15;
+        const pPrice = resolvePrice(customPanelPrice, defaultPanelCost);
+        const pCostTotal = panelCount * pPrice.cost;
+        const pSellTotal = panelCount * pPrice.sell;
+        totalCost += pCostTotal;
+        items.push({
+          name: panelName,
+          module: "Fotovoltický panel",
+          qty: panelCount, unit: "ks", unitPrice: pPrice.sell, total: pSellTotal
+        });
+        checklist.push({ name: "Fotovoltické panely " + panelWp + " Wp", qty: panelCount, unit: "ks", note: "Overiť neporušenosť skla a sériové čísla" });
+      }
 
       // B) Menič
       const invertersCostMap = {
@@ -1093,36 +1577,38 @@
         checklist.push({ name: batObj.name || "Batériové úložisko", qty: 1, unit: "kpl", note: "Skontrolovať silové káble BMS a dátovú zbernicu" });
       }
 
-      // D) Konštrukcia
-      const roofCostMap = {
-        rovna_vz: { name: "Konštrukčný systém pre rovnú strechu — Východ-Západ", cost: 55.00 },
-        rovna_juh: { name: "Podporná konštrukcia pre rovnú strechu — JUH", cost: 68.00 },
-        sikma_skridla: { name: "Konštrukčný systém pre šikmú strechu — Škridla / Betónka", cost: 31.00 },
-        sikma_falc: { name: "Konštrukčný systém pre falcovaný plech / Trapéz", cost: 31.00 },
-        zemna: { name: "Zemná nosná konštrukcia (Terén)", cost: 80.00 },
-        fasada: { name: "Fasádny montážny systém", cost: 95.00 }
-      };
-      const roofObj = roofCostMap[roofStructure] || roofCostMap.rovna_vz;
-      const roofPrice = resolvePrice(customRoofPrice, roofObj.cost);
-      const roofCostTotal = panelCount * roofPrice.cost;
-      const roofSellTotal = panelCount * roofPrice.sell;
-      totalCost += roofCostTotal;
-      items.push({
-        name: roofObj.name,
-        module: "Konštrukcia",
-        qty: 1, unit: "kpl", unitPrice: roofSellTotal, total: roofSellTotal
-      });
-      checklist.push({ name: "AL profily 4m (" + roofObj.name + ")", qty: Math.ceil(panelCount * 0.7), unit: "ks" });
-      checklist.push({ name: "Spojky AL profilov + nerezové skrutky", qty: Math.ceil(panelCount * 0.6), unit: "ks" });
-      checklist.push({ name: "Úchyty / háky podľa typu strechy", qty: Math.ceil(panelCount * 2.5), unit: "ks" });
+      // D) Konštrukcia (iba ak je počet panelov > 0)
+      if (panelCount > 0) {
+        const roofCostMap = {
+          rovna_vz: { name: "Konštrukčný systém pre rovnú strechu - Východ-Západ", cost: 55.00 },
+          rovna_juh: { name: "Podporná konštrukcia pre rovnú strechu - JUH", cost: 68.00 },
+          sikma_skridla: { name: "Konštrukčný systém pre šikmú strechu - Škridla / Betónka", cost: 31.00 },
+          sikma_falc: { name: "Konštrukčný systém pre falcovaný plech / Trapéz", cost: 31.00 },
+          zemna: { name: "Zemná nosná konštrukcia (Terén)", cost: 80.00 },
+          fasada: { name: "Fasádny montážny systém", cost: 95.00 }
+        };
+        const roofObj = roofCostMap[roofStructure] || roofCostMap.rovna_vz;
+        const roofPrice = resolvePrice(customRoofPrice, roofObj.cost);
+        const roofCostTotal = panelCount * roofPrice.cost;
+        const roofSellTotal = panelCount * roofPrice.sell;
+        totalCost += roofCostTotal;
+        items.push({
+          name: roofObj.name,
+          module: "Konštrukcia",
+          qty: 1, unit: "kpl", unitPrice: roofSellTotal, total: roofSellTotal
+        });
+        checklist.push({ name: "AL profily 4m (" + roofObj.name + ")", qty: Math.ceil(panelCount * 0.7), unit: "ks" });
+        checklist.push({ name: "Spojky AL profilov + nerezové skrutky", qty: Math.ceil(panelCount * 0.6), unit: "ks" });
+        checklist.push({ name: "Úchyty / háky podľa typu strechy", qty: Math.ceil(panelCount * 2.5), unit: "ks" });
 
-      // E) Kotviaci materiál
-      totalCost += 40.00;
-      items.push({
-        name: "Spojovací a kotviaci materiál (A2 nerez / hliník)",
-        module: "Kotviaci materiál",
-        qty: 1, unit: "kpl", unitPrice: 40 * margin, total: 40 * margin
-      });
+        // E) Kotviaci materiál
+        totalCost += 40.00;
+        items.push({
+          name: "Spojovací a kotviaci materiál (A2 nerez / hliník)",
+          module: "Kotviaci materiál",
+          qty: 1, unit: "kpl", unitPrice: 40 * margin, total: 40 * margin
+        });
+      }
 
       // F) TIGO / STOP tlačidlo
       if (hasTigoStop) {
@@ -1228,12 +1714,14 @@
       // N) Montážne práce
       const autoMountLabor = totalPowerWp * 0.075;
       const mountPrice = resolvePrice(customMountLabor, autoMountLabor);
-      totalCost += mountPrice.cost;
-      items.push({
-        name: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
-        module: "Montážne práce",
-        qty: 1, unit: "kpl", unitPrice: mountPrice.sell, total: mountPrice.sell
-      });
+      if (panelCount > 0 || (!isNaN(customMountLabor) && customMountLabor > 0)) {
+        totalCost += mountPrice.cost;
+        items.push({
+          name: "Montážne a stavebné práce (Inštalácia konštrukcie a panelov na strechu)",
+          module: "Montážne práce",
+          qty: 1, unit: "kpl", unitPrice: mountPrice.sell, total: mountPrice.sell
+        });
+      }
 
       // O) Elektroinštalačné práce
       const elecPrice = resolvePrice(customElectricalLabor, 330.60);
@@ -1319,10 +1807,12 @@
 
       const finalPrice = Math.max(0, sellingWithVat - subsidy);
       const pricePerWp = totalPowerWp > 0 ? (finalPrice / totalPowerWp).toFixed(2) : 0;
-      const paybackYears = ((finalPrice / (parseFloat(mwh) * 1000 * 0.18))).toFixed(1);
+      const mwhNum = parseFloat(mwh) || 0;
+      const paybackYears = mwhNum > 0 ? ((finalPrice / (mwhNum * 1000 * 0.18))).toFixed(1) : "—";
 
-      const comm = (sellingWithoutVat * 0.10);
+      const comm = (sellingWithoutVat * repCommRate);
       const companyMargin = (sellingWithoutVat - totalCost - comm);
+      const marginPercent = sellingWithoutVat > 0 ? ((companyMargin / sellingWithoutVat) * 100).toFixed(1) : "0.0";
 
       // 6. Aktualizácia UI (Vstupy & Sticky panel)
       document.getElementById('badge-kwp').innerText = kwp + " kWp";
@@ -1334,13 +1824,22 @@
       document.getElementById('sum-subsidy').innerText = "- " + subsidy.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
       document.getElementById('badge-subsidy').innerText = subsidy.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
       document.getElementById('sum-final').innerText = finalPrice.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
-      document.getElementById('sum-per-wp').innerText = pricePerWp + " € / Wp s DPH";
+      document.getElementById('sum-per-wp').innerText = totalPowerWp > 0 ? pricePerWp + " € / Wp s DPH" : "—";
+
+      // Marža a provízia
+      const markupPct = Math.round((margin - 1) * 100);
+      const marginBadge = document.getElementById('margin-badge');
+      if (marginBadge) marginBadge.innerText = `Koeficient: ${margin.toFixed(2)}x (+${markupPct} %)`;
+      const sumMarginCoeff = document.getElementById('sum-margin-coeff');
+      if (sumMarginCoeff) sumMarginCoeff.innerText = `${margin.toFixed(2)}x (+${markupPct} %)`;
+      const sumCommRate = document.getElementById('sum-comm-rate');
+      if (sumCommRate) sumCommRate.innerText = Math.round(repCommRate * 100) + "%";
 
       document.getElementById('sum-cost').innerText = totalCost.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
       document.getElementById('sum-comm').innerText = comm.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
-      document.getElementById('sum-margin').innerText = companyMargin.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+      document.getElementById('sum-margin').innerText = companyMargin.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ` € (${marginPercent} %)`;
 
-      // 7. Aktualizácia A4 Preview (Dokument pre klienta)
+      // 7. Aktualizácia A4 Preview (Hlavička dokumentu pre klienta)
       document.getElementById('p-quote-no').innerText = quoteNo;
       document.getElementById('p-date').innerText = quoteDate;
       document.getElementById('p-client-name').innerText = clientName;
@@ -1352,15 +1851,9 @@
       document.getElementById('p-sig-rep').innerText = repName;
       document.getElementById('p-sig-client').innerText = clientName;
 
-      document.getElementById('p-kwp').innerText = kwp + " kWp";
-      document.getElementById('p-panels-desc').innerText = panelCount + "x panel " + panelWp + " Wp";
-      document.getElementById('p-mwh').innerText = mwh + " MWh";
-      document.getElementById('p-inv-short').innerText = invObj.short;
-      document.getElementById('p-payback').innerText = paybackYears + " roka";
-
       // Uloženie do stavu pre náhľad a montážny list
       lastGeneratedItems = items.map((it, idx) => ({ id: 'gen-' + idx, ...it }));
-      lastCalculatedMeta = { vatRate, subsidy, applySubsidy, totalPowerWp, mwh };
+      lastCalculatedMeta = { vatRate, subsidy, applySubsidy, totalPowerWp, mwh, paybackYears, invShort: invObj.short };
       lastChecklist = checklist;
 
       document.getElementById('chk-kwp').innerText = kwp + " kWp";
@@ -1369,6 +1862,7 @@
       if (!currentPreviewItems) {
         renderPreviewItems();
       }
+      renderPreviewCards();
       updatePreviewTotals();
 
       document.title = getSafePdfTitle();
@@ -1397,7 +1891,7 @@
         row.innerHTML = `
           <td style="color: #94a3b8; font-family: monospace; font-size: 9px; vertical-align: middle;">${idx + 1}</td>
           <td>
-            <input type="text" class="inline-edit-input" style="width: 100%; font-weight: 700; color: #0f172a; font-size: 10px;" value="${safeName}" oninput="updatePreviewItem(${idx}, 'name', this.value)" title="Kliknite pre úpravu textu položky">
+            <input type="text" class="inline-edit-input" style="width: 100%; font-weight: 700; color: #0f172a; font-size: 10px;" value="${safeName}" oninput="updatePreviewItem(${idx}, 'name', this.value)" title="Kliknite pre úpravu textu položky (automaticky prepočíta výkon a parametre)">
             <div style="font-size: 8.5px; color: #64748b; font-weight: 500; margin-top: 1px; padding-left: 4px;">
               Modul: <span style="color: #059669; font-weight: 700;">${it.module}</span>
             </div>
@@ -1501,11 +1995,15 @@
       const sellingWithVat = sellingWithoutVat + vatAmount;
       const subsidy = lastCalculatedMeta.applySubsidy ? lastCalculatedMeta.subsidy : 0;
       const finalPrice = Math.max(0, sellingWithVat - subsidy);
-      const pricePerWp = lastCalculatedMeta.totalPowerWp > 0 ? (finalPrice / lastCalculatedMeta.totalPowerWp).toFixed(2) : '0.00';
-      const mwhNum = parseFloat(lastCalculatedMeta.mwh) || 1;
-      const paybackYears = ((finalPrice / (mwhNum * 1000 * 0.18))).toFixed(1);
 
-      // Aktualizácia A4 Preview
+      // Získame parametre z aktuálnych položiek v náhľade
+      const parsed = parseItemParameters(items);
+      const curPowerWp = parsed.totalWatts > 0 ? parsed.totalWatts : lastCalculatedMeta.totalPowerWp;
+      const pricePerWp = curPowerWp > 0 ? (finalPrice / curPowerWp).toFixed(2) : '0.00';
+      const mwhNum = parsed.totalWatts > 0 ? parseFloat(parsed.mwh) : (parseFloat(lastCalculatedMeta.mwh) || 0);
+      const paybackYears = mwhNum > 0 ? ((finalPrice / (mwhNum * 1000 * 0.18))).toFixed(1) : "—";
+
+      // Aktualizácia A4 Preview cien
       const elWithoutVat = document.getElementById('p-tot-without-vat');
       if (elWithoutVat) elWithoutVat.innerText = sellingWithoutVat.toFixed(2) + " €";
       const elVat = document.getElementById('p-tot-vat');
@@ -1526,9 +2024,11 @@
       const elFinal = document.getElementById('p-tot-final');
       if (elFinal) elFinal.innerText = finalPrice.toFixed(2) + " €";
       const elPerWp = document.getElementById('p-tot-per-wp');
-      if (elPerWp) elPerWp.innerText = "s DPH po odpočítaní dotácie (" + pricePerWp + " € / Wp)";
-      const elPayback = document.getElementById('p-payback');
-      if (elPayback) elPayback.innerText = paybackYears + " roka";
+      if (elPerWp) {
+        elPerWp.innerText = curPowerWp > 0 
+          ? "s DPH po odpočítaní dotácie (" + pricePerWp + " € / Wp)" 
+          : "s DPH po odpočítaní dotácie";
+      }
 
       // Aktualizácia sticky panelu na záložke Vstupy
       const sumWithout = document.getElementById('sum-without-vat');
@@ -1540,8 +2040,10 @@
       const sumFinal = document.getElementById('sum-final');
       if (sumFinal) sumFinal.innerText = finalPrice.toLocaleString('sk-SK', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
       const sumPerWp = document.getElementById('sum-per-wp');
-      if (sumPerWp) sumPerWp.innerText = pricePerWp + " € / Wp s DPH";
+      if (sumPerWp) sumPerWp.innerText = curPowerWp > 0 ? pricePerWp + " € / Wp s DPH" : "—";
 
+      // Aktualizácia dashboard kariet podľa položiek
+      renderPreviewCards();
       renderChecklist();
     }
 

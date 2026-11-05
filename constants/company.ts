@@ -31,6 +31,7 @@ export const COMPANY_DETAILS = {
   contact: {
     phone: '+421 908 403 042',
     phoneClean: '+421908403042',
+    phoneNational: '0908 403 042',
     email: 'marvolsro@gmail.com',
     whatsappUrl: 'https://wa.me/421908403042?text=Dobry%20den,%20mam%20zaujem%20o%20fotovoltiku%20od%20Marvol%20s.r.o.',
     businessHours: {
