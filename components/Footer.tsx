@@ -5,27 +5,20 @@ import { PhoneIcon, MailIcon, MapPinIcon, CheckIcon, LockClosedIcon, CookieIcon 
 
 export const Footer: React.FC = () => {
   return (
-    <footer data-ui="footer" className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800 content-auto">
+    <footer data-ui="footer" className="bg-slate-950 text-slate-400 text-sm border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
           {/* Col 1: Brand & Statutory (lg:col-span-2 per § 3a Obch. zák. & § 4 zákona o DPH) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="space-y-1.5">
+            <div className="flex items-center gap-3">
               <Link href="/" className="inline-block">
                 <img
                   src="/logos/logo-marvol.svg"
                   alt="Marvol s.r.o."
                   className="h-10 sm:h-11 w-auto max-w-[190px] object-contain"
-                  loading="lazy"
-                  decoding="async"
-                  width={190}
-                  height={44}
                 />
               </Link>
-              <p className="text-emerald-400 font-bold text-xs tracking-wide">
-                Marvol - robíme svet zelenším
-              </p>
             </div>
             
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
@@ -43,7 +36,21 @@ export const Footer: React.FC = () => {
                 {COMPANY_DETAILS.registry.legalNotice}
               </p>
               <p className="pt-1 text-slate-600">
-                © {new Date().getFullYear()} {COMPANY_DETAILS.legalName}. Všetky práva vyhradené.
+                © {new Date().getFullYear()} {COMPANY_DETAILS.legalName}. Všetky práva vyhradené. • Autor webu:{' '}
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-500 hover:text-amber-400 transition-colors underline-offset-2 hover:underline"
+                >
+                  Ing. Matej Machej
+                </a>{' '}
+                (
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-500 hover:text-amber-400 transition-colors"
+                >
+                  mamachej@gmail.com
+                </a>
+                )
               </p>
             </div>
           </div>
@@ -86,11 +93,6 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/#referencie" className="hover:text-amber-400 transition-colors">
                   Referencie realizácií
-                </Link>
-              </li>
-              <li>
-                <Link href="/#partneri" className="hover:text-amber-400 transition-colors">
-                  Technologickí partneri
                 </Link>
               </li>
             </ul>

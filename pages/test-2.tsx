@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { trackLeadConversion } from '@/lib/gtag';
 
 type SegmentType = 'home' | 'business' | 'storage';
 
@@ -77,10 +76,6 @@ export default function MinimalistTestPage() {
       const data = await res.json();
       if (res.ok && data.success) {
         setFormSubmitted(true);
-        trackLeadConversion({
-          source: 'test-2_minimalist',
-          service: leadCategory === 'firma' ? 'fotovoltika-firma' : 'fotovoltika-dom',
-        });
       } else {
         setFormError(data.message || 'Nepodarilo sa odoslať dopyt. Skúste to znova.');
       }
@@ -98,7 +93,7 @@ export default function MinimalistTestPage() {
       desc: 'Znížte ročné účty za elektrinu až o 80%. Kompletné riešenie od 3D projektu cez štátnu dotáciu SIEA až po revíziu.',
       metric1: 'do 1 150 €',
       label1: 'Dotácia SIEA (575 €/kW)',
-      metric2: '3 - 5 rokov',
+      metric2: '3 – 5 rokov',
       label2: 'Reálna návratnosť',
       img: '/images/fotovoltika-domacnosti/hero.jpg',
       features: ['Tier 1 panely N-Type TOPCon', 'Asymetrický 3-fázový menič', '100% online rezervácia dotácie'],
@@ -1371,7 +1366,7 @@ export default function MinimalistTestPage() {
                   >
                     <span>{faq.q}</span>
                     <span className="text-slate-400 text-xl leading-none shrink-0">
-                      {isOpen ? '-' : '+'}
+                      {isOpen ? '−' : '+'}
                     </span>
                   </button>
                   {isOpen && (
@@ -1397,7 +1392,23 @@ export default function MinimalistTestPage() {
               className="h-7 w-auto object-contain"
             />
             <span className="text-slate-600 hidden sm:inline">|</span>
-            <span>&copy; {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené.</span>
+            <span>
+              &copy; {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené. • Autor webu:{' '}
+              <a
+                href="mailto:mamachej@gmail.com"
+                className="text-slate-400 hover:text-amber-400 transition-colors underline-offset-2 hover:underline"
+              >
+                Ing. Matej Machej
+              </a>{' '}
+              (
+              <a
+                href="mailto:mamachej@gmail.com"
+                className="text-slate-400 hover:text-amber-400 transition-colors"
+              >
+                mamachej@gmail.com
+              </a>
+              )
+            </span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-400">
