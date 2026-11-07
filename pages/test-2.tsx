@@ -1392,7 +1392,23 @@ export default function MinimalistTestPage() {
               className="h-7 w-auto object-contain"
             />
             <span className="text-slate-600 hidden sm:inline">|</span>
-            <span>&copy; {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené.</span>
+            <span>
+              &copy; {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené. • Autor webu:{' '}
+              <a
+                href="mailto:mamachej@gmail.com"
+                className="text-slate-400 hover:text-amber-400 transition-colors underline-offset-2 hover:underline"
+              >
+                Ing. Matej Machej
+              </a>{' '}
+              (
+              <a
+                href="mailto:mamachej@gmail.com"
+                className="text-slate-400 hover:text-amber-400 transition-colors"
+              >
+                mamachej@gmail.com
+              </a>
+              )
+            </span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-400">

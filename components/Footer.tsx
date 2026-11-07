@@ -36,7 +36,21 @@ export const Footer: React.FC = () => {
                 {COMPANY_DETAILS.registry.legalNotice}
               </p>
               <p className="pt-1 text-slate-600">
-                © {new Date().getFullYear()} {COMPANY_DETAILS.legalName}. Všetky práva vyhradené.
+                © {new Date().getFullYear()} {COMPANY_DETAILS.legalName}. Všetky práva vyhradené. • Autor webu:{' '}
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-500 hover:text-amber-400 transition-colors underline-offset-2 hover:underline"
+                >
+                  Ing. Matej Machej
+                </a>{' '}
+                (
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-500 hover:text-amber-400 transition-colors"
+                >
+                  mamachej@gmail.com
+                </a>
+                )
               </p>
             </div>
           </div>

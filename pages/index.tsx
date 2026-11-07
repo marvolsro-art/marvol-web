@@ -566,7 +566,23 @@ export default function MaintenancePage() {
               </p>
             </div>
             <div className="text-center md:text-right text-[11px] space-y-1">
-              <p>© {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené.</p>
+              <p>
+                © {new Date().getFullYear()} Marvol s.r.o. Všetky práva vyhradené. • Autor webu:{' '}
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-400 hover:text-amber-400 transition-colors underline-offset-2 hover:underline"
+                >
+                  Ing. Matej Machej
+                </a>{' '}
+                (
+                <a
+                  href="mailto:mamachej@gmail.com"
+                  className="text-slate-400 hover:text-amber-400 transition-colors"
+                >
+                  mamachej@gmail.com
+                </a>
+                )
+              </p>
               <p className="text-slate-500">Oficiálny registrovaný zhotoviteľ SIEA (Zelená domácnostiam &amp; Zelená podnikom)</p>
               <p className="pt-0.5">
                 <button
