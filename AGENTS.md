@@ -80,3 +80,4 @@ This repository contains the Next.js application for **Marvol s.r.o.** (Photovol
 - **Development Mode**: Always iterate using `npm run dev` (or `PORT=3000 npm run dev`). Do **not** run `npm run build` during agent sessions.
 - **Dependencies**: Keep lockfiles in sync after adding or updating dependencies.
 - **Quality Assurance**: Run `npx tsc --noEmit` before declaring any task resolved.
+- **Google Drive Auto-Sync**: Po každej úprave kalkulačky (`MARVOL-Kalkulacka-spodna-kalkulacia.html`, `MARVOL-Kalkulacka.html`, `data/`) sa súbory automaticky nahrávajú do lokálneho Google Drive priečinka: `/Users/matejmachej/Library/CloudStorage/GoogleDrive-mamachej@gmail.com/Môj disk/Marvol Kalkulačka` (beží na pozadí cez daemon `node scripts/watch-sync-drive.js` resp. `npm run watch:drive`).

@@ -8,6 +8,7 @@ export const ContactSection: React.FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [gdprConsent, setGdprConsent] = useState<boolean>(false);
+  const [bUrl, setBUrl] = useState<string>('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -36,7 +37,8 @@ export const ContactSection: React.FC = () => {
           email: formData.email,
           service: formData.service,
           message: formData.message,
-          source: 'contact_section'
+          source: 'contact_section',
+          b_url: bUrl,
         })
       });
 
@@ -160,6 +162,20 @@ export const ContactSection: React.FC = () => {
                     {errorMsg}
                   </div>
                 )}
+
+                {/* Honeypot anti-spam field */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <label htmlFor="contact-b-url">Nevyplňujte toto pole</label>
+                  <input
+                    type="text"
+                    name="b_url"
+                    id="contact-b-url"
+                    value={bUrl}
+                    onChange={(e) => setBUrl(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

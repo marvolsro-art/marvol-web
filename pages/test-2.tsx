@@ -28,6 +28,7 @@ export default function MinimalistTestPage() {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
+  const [bUrl, setBUrl] = useState('');
 
   // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -70,6 +71,7 @@ export default function MinimalistTestPage() {
           hasBattery: withBattery,
           hasEV: withWallbox,
           source: 'test-2_minimalist',
+          b_url: bUrl,
         }),
       });
 
@@ -1213,6 +1215,20 @@ export default function MinimalistTestPage() {
                       {formError}
                     </div>
                   )}
+
+                  {/* Honeypot anti-spam field */}
+                  <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                    <label htmlFor="test2-b-url">Nevyplňujte toto pole</label>
+                    <input
+                      type="text"
+                      name="b_url"
+                      id="test2-b-url"
+                      value={bUrl}
+                      onChange={(e) => setBUrl(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
 
                   {/* Category Pills */}
                   <div>

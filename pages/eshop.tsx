@@ -463,6 +463,7 @@ export default function EshopPage() {
     dic: '',
     note: '',
     gdprConsent: false,
+    b_url: '',
   });
   const [modalSubmitting, setModalSubmitting] = useState(false);
   const [modalError, setModalError] = useState<string | null>(null);
@@ -632,6 +633,7 @@ export default function EshopPage() {
           service: 'vseobecny-kontakt',
           source: 'eshop_material_modal',
           message,
+          b_url: modalFormData.b_url,
         }),
       });
 
@@ -1771,6 +1773,21 @@ export default function EshopPage() {
                       <span className="flex items-center gap-1.5"><BuildingOfficeIcon className="w-4 h-4 text-amber-400 shrink-0" /> Osobný odber v centrálnom sklade Vrútky (zdarma)</span>
                     </label>
                   </div>
+                </div>
+
+                {/* Honeypot anti-spam field */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="b_url"
+                    id="eshop-b-url"
+                    value={modalFormData.b_url}
+                    onChange={(e) =>
+                      setModalFormData((prev) => ({ ...prev, b_url: e.target.value }))
+                    }
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
                 </div>
 
                 {/* Contact Inputs */}

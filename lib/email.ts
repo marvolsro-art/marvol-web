@@ -1,11 +1,28 @@
 import nodemailer from 'nodemailer';
-import type { LeadRecord } from '@/pages/api/lead';
+import type { LeadRecord } from '../pages/api/lead';
 
 export interface EmailDispatchResult {
   success: boolean;
   provider?: 'resend' | 'smtp';
   messageId?: string;
   error?: string;
+}
+
+export function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * Strips carriage returns and newlines (\r, \n) to prevent SMTP header injection (CWE-93 / CWE-113)
+ */
+export function sanitizeEmailSubject(subject: string): string {
+  if (typeof subject !== 'string') return '';
+  return subject.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -25,8 +42,17 @@ export function buildLeadNotificationHtml(lead: LeadRecord): string {
     lead.estimatedSavings !== undefined ||
     lead.netPrice !== undefined;
 
-  const quickCallUrl = `tel:${lead.phone.replace(/\s+/g, '')}`;
-  const quickMailUrl = lead.email ? `mailto:${lead.email}?subject=Marvol%20s.r.o.%20-%20Odpoved%20na%20dopyt` : '';
+  const sanitizedPhone = lead.phone.replace(/[^\d+]/g, '');
+  const quickCallUrl = `tel:${sanitizedPhone}`;
+  const quickMailUrl = lead.email ? `mailto:${encodeURIComponent(lead.email)}?subject=Marvol%20s.r.o.%20-%20Odpoved%20na%20dopyt` : '';
+
+  const safeName = escapeHtml(lead.name);
+  const safePhone = escapeHtml(lead.phone);
+  const safeEmail = lead.email ? escapeHtml(lead.email) : '';
+  const safeCity = lead.city ? escapeHtml(lead.city) : '';
+  const safeService = lead.service ? escapeHtml(lead.service) : '';
+  const safeSource = escapeHtml(lead.source);
+  const safeMessage = lead.message ? escapeHtml(lead.message).replace(/\n/g, '<br/>') : '';
 
   return `
 <!DOCTYPE html>
@@ -67,7 +93,7 @@ export function buildLeadNotificationHtml(lead: LeadRecord): string {
   <div class="card">
     <div class="header">
       <div class="brand-pill">⚡ Nový dopyt z webu</div>
-      <h1>${lead.name}</h1>
+      <h1>${safeName}</h1>
       <p>Prijaté: ${new Date(lead.timestamp).toLocaleString('sk-SK', { timeZone: 'Europe/Bratislava' })} • ID: ${lead.id}</p>
     </div>
 
@@ -77,27 +103,27 @@ export function buildLeadNotificationHtml(lead: LeadRecord): string {
       <table class="table-data">
         <tr>
           <td class="label">Meno a priezvisko</td>
-          <td class="value">${lead.name}</td>
+          <td class="value">${safeName}</td>
         </tr>
         <tr>
           <td class="label">Telefónne číslo</td>
-          <td class="value"><a href="${quickCallUrl}" style="color: #d97706; text-decoration: none; font-weight: 800;">${lead.phone}</a></td>
+          <td class="value"><a href="${quickCallUrl}" style="color: #d97706; text-decoration: none; font-weight: 800;">${safePhone}</a></td>
         </tr>
         <tr>
           <td class="label">E-mail</td>
-          <td class="value">${lead.email ? `<a href="mailto:${lead.email}" style="color: #0284c7; text-decoration: none;">${lead.email}</a>` : '<span style="color:#94a3b8; font-weight:normal;">Nezadaný</span>'}</td>
+          <td class="value">${safeEmail ? `<a href="${quickMailUrl}" style="color: #0284c7; text-decoration: none;">${safeEmail}</a>` : '<span style="color:#94a3b8; font-weight:normal;">Nezadaný</span>'}</td>
         </tr>
         <tr>
           <td class="label">Mesto / Lokalita</td>
-          <td class="value">${lead.city || '<span style="color:#94a3b8; font-weight:normal;">Nezadaná</span>'}</td>
+          <td class="value">${safeCity || '<span style="color:#94a3b8; font-weight:normal;">Nezadaná</span>'}</td>
         </tr>
         <tr>
           <td class="label">Kategória / Služba</td>
-          <td class="value">${lead.service || '<span style="color:#94a3b8; font-weight:normal;">Všeobecný dopyt</span>'}</td>
+          <td class="value">${safeService || '<span style="color:#94a3b8; font-weight:normal;">Všeobecný dopyt</span>'}</td>
         </tr>
         <tr>
           <td class="label">Zdroj na webe</td>
-          <td class="value"><code style="background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:12px;">${lead.source}</code></td>
+          <td class="value"><code style="background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:12px;">${safeSource}</code></td>
         </tr>
       </table>
 
@@ -142,10 +168,10 @@ export function buildLeadNotificationHtml(lead: LeadRecord): string {
       </table>
       ` : ''}
 
-      ${lead.message ? `
+      ${safeMessage ? `
       <div class="section-title">Poznámka / Správa od klienta</div>
       <div class="note-box">
-        ${lead.message.replace(/\n/g, '<br/>')}
+        ${safeMessage}
       </div>
       ` : ''}
 
@@ -224,7 +250,9 @@ export async function sendLeadNotificationEmail(
     process.env.LEAD_RECIPIENT_EMAIL ||
     'marvolsro@gmail.com';
 
-  const subject = `⚡ Nový dopyt: ${lead.name} (${lead.service || 'Fotovoltika'}) [${lead.phone}]`;
+  const rawSubject = `⚡ Nový dopyt: ${lead.name} (${lead.service || 'Fotovoltika'}) [${lead.phone}]`;
+  const subject = sanitizeEmailSubject(rawSubject);
+  const cleanReplyTo = lead.email ? lead.email.replace(/[\r\n\s]+/g, '').trim() : undefined;
   const htmlContent = buildLeadNotificationHtml(lead);
   const plainTextContent = buildLeadNotificationPlainText(lead);
 
@@ -247,7 +275,7 @@ export async function sendLeadNotificationEmail(
         body: JSON.stringify({
           from: fromEmail,
           to: [recipientEmail],
-          reply_to: lead.email ? lead.email : undefined,
+          reply_to: cleanReplyTo || undefined,
           subject,
           html: htmlContent,
           text: plainTextContent,
@@ -299,15 +327,15 @@ export async function sendLeadNotificationEmail(
           pass: smtpPass,
         },
         tls: {
-          // Do not fail on self-signed certificates
-          rejectUnauthorized: false,
+          // Enforce valid TLS certificate verification
+          rejectUnauthorized: true,
         },
       });
 
       const info = await transporter.sendMail({
         from: fromAddress,
         to: recipientEmail,
-        replyTo: lead.email || undefined,
+        replyTo: cleanReplyTo || undefined,
         subject,
         text: plainTextContent,
         html: htmlContent,
