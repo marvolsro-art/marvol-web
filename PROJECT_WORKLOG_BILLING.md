@@ -1,0 +1,44 @@
+# 📊 MARVOL s.r.o. – Evidencia prác, upgradov a fakturačný ledger
+
+Tento dokument slúži ako **oficiálny a transparentný denník všetkých realizovaných aktivít, upgradov, technických riešení a rozšírení** na projekte **Marvol s.r.o.** pre potreby presného a kamarátskeho nacenenia.
+
+- **Klient:** Marvol s.r.o.
+- **Dodávateľ & Technický architekt:** Ing. Matej Machej (`mamachej@gmail.com`)
+- **Dohodnutá partnerská sadzba:** **25,00 € / hod.** *(Trhová cena senior vývojára: 50 – 75 € / hod.)*
+- **Pravidelná mesačná licencia:** **30,00 € / mesiac** (software, AI modely & nástroje)
+
+---
+
+## 1. Prehľad realizovaných aktivít a rozšírení
+
+| ID | Kategória / Modul | Popis činnosti, upgradu a rozšírenia | Rozsah / Hod. | Partnerská cena (25 €/h) | Komerčná hodnota | Stav |
+| :---: | :--- | :--- | :---: | :---: | :---: | :---: |
+| **ACT-01** | **Základný WEB** | Kompletný vývoj responzívneho Next.js webu, Tailwind CSS v4, dark/light glassmorphism estetika, podstránky, SEO štruktúra a Vercel CDN deployment. | *Fixný balík* | **400,00 €** | 1 500,00 € | ✅ Hotovo |
+| **ACT-02** | **Servisný režim** | Vývoj samostatnej maintenance stránky (`pages/index.tsx`), zachovanie SEO autority, firemných kontaktov a IČO pred spustením plného webu. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
+| **ACT-03** | **Úpravy kalkulácie (CK)** | Iteratívne úpravy, testovanie a ladenie výpočtovej logiky cenovej ponuky (4h + 1h + 3h + 1h). | 9,0 h | **225,00 €** | 550,00 € | ✅ Hotovo |
+| **ACT-04** | **Aplikácia CK & Scraper** | Samostatná HTML/JS kalkulačka, scraper katalógu Krannich Solar (panely, striedače, batérie, optimizéry), generovanie A4 PDF cenovej ponuky s rozpisom DPH, Google Drive synchronizačný daemon. | 14,0 h | **350,00 €** | 1 500,00 € | ✅ Hotovo |
+| **ACT-05** | **Google ekosystém** | Založenie a optimalizácia Google Profil firmy (Mapy), GA4 meranie, Google Search Console, overenie domény a sitemapy. | 3,0 h | **75,00 €** | 200,00 € | ✅ Hotovo |
+| **ACT-06** | **DNS & SSL Infraštruktúra** | Websupport DNS správa, Anycast A a CNAME smerovanie na Vercel, riešenie konfliktov, MX záznamy pre e-maily, SPF, DMARC, TLS Let's Encrypt certifikáty pre `marvol.sk` aj `www.marvol.sk`. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
+| **ACT-07** | **Resend Transakčné Maily** | Overenie domény cez DKIM, konfigurácia Resend API a SMTP relay, implementácia responzívnej HTML notifikácie nového dopytu s klikateľným volaním. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
+| **ACT-08** | **GDPR Cookies Consent** | Cookie lišta podľa EÚ regulácií s integráciou Google Consent Mode v2, možnosť odmietnutia a dodatočnej zmeny preferencií. | 2,0 h | **50,00 €** | 120,00 € | ✅ Hotovo |
+| **ACT-09** | **CyberSecurity Hardening** | Nastavenie HTTP hlavičiek (HSTS 2 roky, CSP, X-Frame DENY, nosniff, Permissions), in-memory IP Rate Limiting (5/10 min), honeypot pasca na botov, ochrana pred CRLF a XSS injection, aktualizácia Next.js na 16.4.5 (0 CVE chýb, 164/164 testov). | 4,0 h | **100,00 €** | 500,00 € | ✅ Hotovo |
+| **ACT-10** | **CRM & Spracovanie Leadov** | Dátová štruktúra leadov (JSON backend / log), enrichnuté parametre z kalkulačky (spotreba, kWp, úspory), prevencia straty kontaktov. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
+| **ACT-11** | **Autor webu & Branding** | Implementácia podpisu autora do päty (`Ing. Matej Machej`, `mamachej@gmail.com`) na vetvách `main` aj `preview`, úprava full-width slideru partnerov. | 1,0 h | *Zahrnuté v balíku (0 €)* | 50,00 € | ✅ Hotovo |
+
+---
+
+## 2. Finančný súhrn (Aktuálna bilancia)
+
+- **Celkový počet odpracovaných hodín:** **40 hodín + základný balík webu**
+- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 400,00 €**
+- **Reálna trhová hodnota (komerčná agentúra):** **~4 870,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 470,00 € (úspora cca 71 %)**
+
+### Pravidelné mesačné položky:
+- **Licencia program / nástroje:** **30,00 € / mesiac**
+- **Hosting (Vercel + Resend):** **0,00 € / mesiac** (v bezplatnom limite)
+
+---
+
+## 3. Pravidlo pre zaznamenávanie budúcich úprav
+*Každá ďalšia nová aktivita, požiadavka klienta (úprava kalkulačky, nové podstránky, napojenie Raynet CRM, ďalšie automatizácie) sa automaticky zaeviduje do tejto tabuľky s presným počtom hodín, popisom a cenou.*
