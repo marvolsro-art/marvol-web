@@ -130,28 +130,22 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* Hero Visual Card / Interactive Preview with Ambient Backlight ("Podsvietenie") */}
+          {/* Hero Visual Card / Interactive Preview */}
           <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-lg lg:max-w-none w-full group">
+            <div className="relative mx-auto max-w-lg lg:max-w-none w-full">
               
-              {/* Vibrant Ambient Backlight Glow ("Podsvietenie okna") */}
-              <div
-                className="absolute -inset-1 sm:-inset-1.5 bg-gradient-to-r from-amber-500 via-sky-500 to-emerald-500 rounded-3xl blur-xl opacity-35 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none"
-                aria-hidden="true"
-              />
-
               {/* Main Card Shell */}
-              <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-md">
+              <div className="relative rounded-2xl overflow-hidden bg-slate-900">
                 
                 {/* Mode Selector Tabs (Modelová úspora vs. Reálna inštalácia) */}
-                <div className="p-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center gap-2">
+                <div className="p-2.5 bg-slate-950 flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => setHeroCardTab('model')}
-                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer tap-target-48 min-h-[44px] ${
+                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer tap-target-48 min-h-[44px] ${
                       heroCardTab === 'model'
-                        ? 'bg-amber-400 text-slate-950 shadow-sm'
-                        : 'text-slate-400 hover:text-white bg-slate-900/60'
+                        ? 'bg-amber-400 text-slate-950'
+                        : 'text-slate-400 hover:text-white bg-slate-900'
                     }`}
                   >
                     <BoltIcon className="w-4 h-4 shrink-0" />
@@ -161,10 +155,10 @@ export const Hero: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setHeroCardTab('photo')}
-                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer tap-target-48 min-h-[44px] ${
+                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer tap-target-48 min-h-[44px] ${
                       heroCardTab === 'photo'
-                        ? 'bg-amber-400 text-slate-950 shadow-sm'
-                        : 'text-slate-400 hover:text-white bg-slate-900/60'
+                        ? 'bg-amber-400 text-slate-950'
+                        : 'text-slate-400 hover:text-white bg-slate-900'
                     }`}
                   >
                     <SunIcon className="w-4 h-4 shrink-0" />
@@ -172,13 +166,13 @@ export const Hero: React.FC = () => {
                   </button>
                 </div>
 
-                {/* View 1: Interactive Model Preview Card (Exact illuminated window from screenshot) */}
+                {/* View 1: Interactive Model Preview Card */}
                 <div className={heroCardTab === 'model' ? 'block p-6 sm:p-7 space-y-4' : 'hidden'}>
                   
                   {/* Card Header */}
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                  <div className="flex items-center justify-between pb-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-400 font-bold shrink-0">
                         <BoltIcon className="w-5 h-5 text-amber-400" />
                       </div>
                       <div>
@@ -186,7 +180,7 @@ export const Hero: React.FC = () => {
                         <p className="text-xs text-slate-400">Fotovoltika 10 kWp + Batéria 10 kWh</p>
                       </div>
                     </div>
-                    <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-500/20">
+                    <span className="bg-emerald-400/10 text-emerald-400 text-xs px-2.5 py-1 rounded-lg font-bold">
                       A+ Energetická trieda
                     </span>
                   </div>
@@ -195,21 +189,21 @@ export const Hero: React.FC = () => {
                   <div className="space-y-3">
                     
                     {/* Window 1: Pôvodné ročné náklady */}
-                    <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                    <div className="bg-slate-950 p-3.5 rounded-xl flex items-center justify-between">
                       <span className="text-slate-400 text-sm">Pôvodné ročné náklady:</span>
                       <span className="text-slate-400 font-bold text-sm line-through">2 400 € / rok</span>
                     </div>
 
                     {/* Window 2: Nové náklady s fotovoltikou */}
-                    <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                    <div className="bg-slate-950 p-3.5 rounded-xl flex items-center justify-between">
                       <span className="text-slate-400 text-sm">Nové náklady s fotovoltikou:</span>
                       <span className="text-emerald-400 font-extrabold text-sm">480 € / rok</span>
                     </div>
 
-                    {/* Window 3: Čistá ročná úspora (Illuminated Golden Window) */}
-                    <div className="bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-transparent p-4 rounded-xl border border-amber-500/40 flex items-center justify-between shadow-sm">
+                    {/* Window 3: Čistá ročná úspora */}
+                    <div className="bg-amber-400/10 p-4 rounded-xl flex items-center justify-between">
                       <div>
-                        <p className="text-xs uppercase tracking-wider text-amber-400 font-bold">Čistá ročná úspora</p>
+                        <p className="text-sm font-semibold text-amber-400">Čistá ročná úspora</p>
                         <p className="text-2xl font-black text-amber-400 mt-0.5">1 920 €</p>
                       </div>
                       <div className="text-right">
@@ -219,7 +213,7 @@ export const Hero: React.FC = () => {
                     </div>
 
                     {/* Window 4: Dotácie notice */}
-                    <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 flex items-center gap-2.5 text-xs text-slate-300">
+                    <div className="bg-slate-950 p-3 rounded-xl flex items-center gap-2.5 text-xs text-slate-300">
                       <AlertCircleIcon className="w-4 h-4 text-amber-400 shrink-0" />
                       <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na fotovoltike až <strong>1 150 €</strong> (tepelné čerpadlá až <strong>4 600 €</strong>, Solidarita <strong>90 %</strong>).</span>
                     </div>
@@ -229,7 +223,7 @@ export const Hero: React.FC = () => {
                   {/* Window 5: CTA Action Button */}
                   <a
                     href="#kalkulacka"
-                    className="block w-full py-3.5 text-center font-bold text-sm rounded-xl text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors shadow-sm min-h-[48px] tap-target-48 flex items-center justify-center gap-2"
+                    className="block w-full py-3.5 text-center font-bold text-sm rounded-xl text-slate-950 bg-amber-400 hover:bg-amber-300 transition-colors min-h-[48px] tap-target-48 flex items-center justify-center gap-2"
                   >
                     <span>Vypočítať presnú úsporu pre môj dom</span>
                     <svg className="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,7 +246,7 @@ export const Hero: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
-                    <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-slate-950/90 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5">
+                    <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-slate-950 text-slate-200 text-xs font-semibold flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
                       <span>Reálna inštalácia Marvol</span>
                     </div>
@@ -261,7 +255,7 @@ export const Hero: React.FC = () => {
                       <span>N-Type TOPCon</span>
                     </div>
 
-                    <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 text-xs text-slate-300">
+                    <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-slate-950 text-xs text-slate-300">
                       <div className="flex items-center justify-between font-semibold text-white">
                         <span>Rodinný dom s LiFePO4 úložiskom</span>
                         <span className="text-emerald-400 font-bold">Úspora až 80 %</span>
@@ -272,7 +266,7 @@ export const Hero: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-4 bg-slate-950 grid grid-cols-3 gap-3 text-center border-t border-slate-800">
+                  <div className="p-4 bg-slate-950 grid grid-cols-3 gap-3 text-center">
                     <div>
                       <p className="text-xl sm:text-2xl font-black text-amber-400">350+</p>
                       <p className="text-[11px] text-slate-400 mt-0.5">Inštalácií</p>

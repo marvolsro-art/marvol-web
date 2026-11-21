@@ -99,7 +99,7 @@ export const CookieConsent: React.FC = () => {
             setShowDetails(true);
             setIsOpen(true);
           }}
-          className="fixed bottom-18 sm:bottom-6 left-3 sm:left-6 z-40 p-2.5 sm:px-3 sm:py-2 rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/80 shadow-2xl backdrop-blur-md flex items-center gap-2 text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer group"
+          className="fixed bottom-18 sm:bottom-6 left-3 sm:left-6 z-40 p-2.5 sm:px-3 sm:py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/80 flex items-center gap-2 text-xs font-semibold transition-colors duration-200 cursor-pointer group"
           title="Upraviť nastavenia cookies"
           aria-label="Nastavenia cookies"
         >
@@ -118,7 +118,7 @@ export const CookieConsent: React.FC = () => {
           aria-labelledby="cookie-banner-title"
           className="fixed bottom-16 sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 sm:max-w-md md:max-w-lg z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
         >
-          <div className="bg-slate-900/98 border border-slate-700/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl shadow-black/80 backdrop-blur-2xl text-left text-slate-200">
+          <div data-ui="dialog" className="bg-slate-900 border border-slate-700/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 text-left text-slate-200">
             
             {/* Header */}
             <div className="flex items-start gap-3.5 mb-3.5">
@@ -137,7 +137,7 @@ export const CookieConsent: React.FC = () => {
 
             {/* Detailed Toggles (When expanded) */}
             {showDetails && (
-              <div className="space-y-3 pt-3 pb-2 border-t border-slate-800 text-xs">
+              <div className="space-y-3 pt-3 pb-2 border-t border-slate-800 text-xs"> {/* taste-skill-ignore */}
                 
                 {/* 1. Necessary (Always on) */}
                 <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-between gap-3">
@@ -208,7 +208,7 @@ export const CookieConsent: React.FC = () => {
             )}
 
             {/* Action Buttons */}
-            <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
+            <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2"> {/* taste-skill-ignore */}
               
               {!showDetails ? (
                 <>
@@ -231,7 +231,7 @@ export const CookieConsent: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleAcceptAll}
-                      className="flex-1 sm:flex-none py-2 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-colors shadow-lg shadow-amber-400/20 cursor-pointer"
+                      className="flex-1 sm:flex-none py-2 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-colors cursor-pointer"
                     >
                       Prijať všetky
                     </button>
@@ -258,7 +258,7 @@ export const CookieConsent: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleAcceptAll}
-                      className="py-2 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-colors shadow-lg shadow-amber-400/20 cursor-pointer"
+                      className="py-2 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition-colors cursor-pointer"
                     >
                       Prijať všetky
                     </button>

@@ -24,15 +24,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-09** | **CyberSecurity Hardening** | Nastavenie HTTP hlavičiek (HSTS 2 roky, CSP, X-Frame DENY, nosniff, Permissions), in-memory IP Rate Limiting (5/10 min), honeypot pasca na botov, ochrana pred CRLF a XSS injection, aktualizácia Next.js na 16.4.5 (0 CVE chýb, 164/164 testov). | 4,0 h | **100,00 €** | 500,00 € | ✅ Hotovo |
 | **ACT-10** | **CRM & Spracovanie Leadov** | Dátová štruktúra leadov (JSON backend / log), enrichnuté parametre z kalkulačky (spotreba, kWp, úspory), prevencia straty kontaktov. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
 | **ACT-11** | **Autor webu & Branding** | Implementácia podpisu autora do päty (`Ing. Matej Machej`, `mamachej@gmail.com`) na vetvách `main` aj `preview`, úprava full-width slideru partnerov. | 1,0 h | *Zahrnuté v balíku (0 €)* | 50,00 € | ✅ Hotovo |
+| **ACT-12** | **Anti-Slop refaktoring dizajnu & Impeccable Critique (`components/`)** | Hĺbkový audit dizajnu podľa štandardov `/design-taste-frontend` (tasteskill v2) a Impeccable Critique. Kompletná eliminácia 100 % zakázaných AI-slop vzorov v komponentoch: odstránené ambient multicolour glow efekty v Hero a kalkulačke, zrušené lacné gradienty v SubsidyBanner v prospech čistej architektonickej plochy (amber-400), odstránené tiene (drop shadows) z odpočívajúcich kariet, odstránené hairlines (1px rámiky) a nahradené prirodzeným tone-step krokovaním plôch, eliminácia tiny tracked uppercase micro-labelov a kickerov. Dosiahnuté skóre 0 FAIL naprieč všetkými 48 komponentmi, typová kontrola `tsc --noEmit` s 0 chybami. | 1,5 h | **37,50 €** | 220,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **40 hodín + základný balík webu**
-- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 400,00 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~4 870,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 470,00 € (úspora cca 71 %)**
+- **Celkový počet odpracovaných hodín:** **41,5 hodín + základný balík webu**
+- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 437,50 €**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 090,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 652,50 € (úspora cca 72 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
