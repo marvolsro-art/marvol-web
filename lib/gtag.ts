@@ -67,6 +67,7 @@ export const trackLeadConversion = (leadData: {
  * Update Google Consent Mode v2 based on user cookie preferences
  */
 export const updateGtagConsent = (preferences: {
+  preferences?: boolean;
   analytics: boolean;
   marketing: boolean;
 }) => {
@@ -76,6 +77,8 @@ export const updateGtagConsent = (preferences: {
       ad_storage: preferences.marketing ? 'granted' : 'denied',
       ad_user_data: preferences.marketing ? 'granted' : 'denied',
       ad_personalization: preferences.marketing ? 'granted' : 'denied',
+      functionality_storage: preferences.preferences ? 'granted' : 'denied',
+      personalization_storage: preferences.preferences ? 'granted' : 'denied',
     });
   }
 };

@@ -65,19 +65,96 @@ export default function PrivacyPolicy() {
         <div className="space-y-4 text-sm leading-relaxed">
           <h2 className="text-xl font-bold text-white">5. Kontakt pre uplatnenie práv</h2>
           <p>
-            V prípade akýchkoľvek otázok alebo uplatnenia práv ma môžete kontaktovať e-mailom na <a href="mailto:info@marvol.sk" className="text-amber-400 underline">info@marvol.sk</a> alebo písomne na adrese sídla prevádzkovateľa.
+            V prípade akýchkoľvek otázok alebo uplatnenia práv ma môžete kontaktovať e-mailom na{' '}
+            <a href="mailto:marvolsro@gmail.com" className="text-amber-400 underline font-semibold">
+              marvolsro@gmail.com
+            </a>{' '}
+            alebo písomne na adrese sídla prevádzkovateľa: Marvol s. r. o., Chotárna 3394/6, 038 61 Vrútky.
           </p>
         </div>
 
-        <div className="space-y-4 text-sm leading-relaxed border-t border-slate-800 pt-6">
-          <h2 className="text-xl font-bold text-white">6. Súbory cookies a ich správa</h2>
+        <div className="space-y-5 text-sm leading-relaxed border-t border-slate-800 pt-8">
+          <h2 className="text-xl font-bold text-white">6. Súbory cookies a zásady ich používania</h2>
           <p>
-            Náš web využíva súbory cookies na zabezpečenie základných technických funkcií (nevyhnutné cookies) a s vaším predchádzajúcim súhlasom aj na anonymnú analýzu návštevnosti a optimalizáciu výkonu webu v súlade so zákonom č. 452/2021 Z. z. o elektronických komunikáciách.
+            Tento web využíva súbory cookies a technológie lokálneho úložiska (Local Storage) na zabezpečenie základných technických funkcií webu a s vaším predchádzajúcim, dobrovoľným a výslovným súhlasom aj na anonymnú analýzu návštevnosti a optimalizáciu výkonu webu.
           </p>
           <p>
-            Svoje preferencie môžete kedykoľvek zmeniť alebo odvolať kliknutím na tlačidlo nižšie alebo cez odkaz v pätičke každej stránky:
+            Spracúvanie podlieha požiadavkám <strong>Nariadenia GDPR (EÚ) 2016/679</strong> a <strong>§ 109 ods. 8 zákona č. 452/2021 Z. z. o elektronických komunikáciách</strong>, podľa ktorého je prevádzkovateľ povinný získať preukázateľný predchádzajúci súhlas (opt-in) pred aktiváciou akýchkoľvek neesenciálnych analytických alebo marketingových nástrojov.
           </p>
-          <div className="pt-2">
+
+          <h3 className="text-base font-bold text-white pt-2">Kategórie súborov cookies:</h3>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong className="text-white">1. Nevyhnutné (Technické) cookies:</strong> Sú potrebné na technické zabezpečenie webu, ochranu pred botmi a zaznamenanie vašej voľby súhlasu. Tieto cookies sú aktívne vždy a nemožno ich vypnúť (právny základ: oprávnený záujem a plnenie zákonnej povinnosti).
+            </li>
+            <li>
+              <strong className="text-white">2. Preferenčné (Funkčné) cookies:</strong> Umožňujú zapamätať si vaše voľby a priebežné parametre vo fotovoltickej kalkulačke pri prehliadaní rôznych podstránok nášho webu.
+            </li>
+            <li>
+              <strong className="text-white">3. Analytické (Štatistické) cookies:</strong> Zhromažďujú anonymné agregované štatistiky (napr. cez Google Analytics 4 v prísnom režime Google Consent Mode v2) o tom, ako návštevníci web používajú, bez identifikácie konkrétnej osoby.
+            </li>
+            <li>
+              <strong className="text-white">4. Marketingové cookies:</strong> Slúžia na vyhodnocovanie efektivity vzdelávacích a propagačných kampaní o štátnych dotáciách a fotovoltike.
+            </li>
+          </ul>
+
+          <h3 className="text-base font-bold text-white pt-2">Detailný zoznam používaných cookies:</h3>
+          <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/60">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-slate-800 bg-slate-900 text-slate-300 font-bold">
+                  <th className="p-3">Názov</th>
+                  <th className="p-3">Poskytovateľ</th>
+                  <th className="p-3">Kategória</th>
+                  <th className="p-3">Účel</th>
+                  <th className="p-3">Expirácia</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tr>
+                  <td className="p-3 font-mono font-bold text-amber-300">marvol_cookie_consent</td>
+                  <td className="p-3">Marvol s.r.o.</td>
+                  <td className="p-3 font-semibold text-emerald-400">Nevyhnutné</td>
+                  <td className="p-3">Uloženie voľby súhlasu a Consent ID pre preukázateľnosť podľa GDPR</td>
+                  <td className="p-3 whitespace-nowrap">12 mesiacov</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono font-bold text-amber-300">marvol_calc_state</td>
+                  <td className="p-3">Marvol s.r.o.</td>
+                  <td className="p-3 font-semibold text-sky-400">Preferenčné</td>
+                  <td className="p-3">Uchovanie rozpracovaných výpočtov v solárnej kalkulačke</td>
+                  <td className="p-3 whitespace-nowrap">Relácia (Session)</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono font-bold text-amber-300">_ga</td>
+                  <td className="p-3">Google LLC (GA4)</td>
+                  <td className="p-3 font-semibold text-amber-400">Analytické</td>
+                  <td className="p-3">Rozlíšenie relácií pre agregované anonymné štatistiky návštevnosti</td>
+                  <td className="p-3 whitespace-nowrap">2 roky</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono font-bold text-amber-300">_ga_YH051CYNV3</td>
+                  <td className="p-3">Google LLC (GA4)</td>
+                  <td className="p-3 font-semibold text-amber-400">Analytické</td>
+                  <td className="p-3">Udržiavanie stavu relácie pre meranie stability a rýchlosti načítania</td>
+                  <td className="p-3 whitespace-nowrap">2 roky</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono font-bold text-amber-300">_gcl_au</td>
+                  <td className="p-3">Google LLC</td>
+                  <td className="p-3 font-semibold text-purple-400">Marketingové</td>
+                  <td className="p-3">Voliteľné anonymné konverzné meranie efektívnosti kampaní</td>
+                  <td className="p-3 whitespace-nowrap">90 dní</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="text-base font-bold text-white pt-2">Správa, zmena a odvolanie súhlasu:</h3>
+          <p>
+            Svoj súhlas môžete kedykoľvek jednoducho a bezplatne zmeniť, obmedziť alebo úplne odvolať kliknutím na tlačidlo nižšie, prípadne cez trvalý odkaz „Nastavenia cookies“ v pätičke nášho webu:
+          </p>
+          <div className="pt-2 flex flex-wrap items-center gap-3">
             <button
               type="button"
               onClick={() => {
@@ -87,9 +164,12 @@ export default function PrivacyPolicy() {
               }}
               className="py-2.5 px-5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors shadow-lg shadow-amber-400/20 cursor-pointer"
             >
-              🍪 Otvoriť a upraviť nastavenia cookies
+              🍪 Otvoriť nastavenia cookies a odvolať súhlas
             </button>
           </div>
+          <p className="text-xs text-slate-400 pt-2">
+            Súbory cookies môžete kedykoľvek odstrániť alebo zablokovať aj priamo v nastaveniach svojho internetového prehliadača (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge). V prípade zablokovania nevyhnutných cookies však web nemusí fungovať korektne.
+          </p>
         </div>
       </div>
     </Layout>

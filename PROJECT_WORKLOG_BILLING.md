@@ -26,15 +26,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-11** | **Autor webu & Branding** | Implementácia podpisu autora do päty (`Ing. Matej Machej`, `mamachej@gmail.com`) na vetvách `main` aj `preview`, úprava full-width slideru partnerov. | 1,0 h | *Zahrnuté v balíku (0 €)* | 50,00 € | ✅ Hotovo |
 | **ACT-12** | **Anti-Slop refaktoring dizajnu & Impeccable Critique (`components/`)** | Hĺbkový audit dizajnu podľa štandardov `/design-taste-frontend` (tasteskill v2) a Impeccable Critique. Kompletná eliminácia 100 % zakázaných AI-slop vzorov v komponentoch: odstránené ambient multicolour glow efekty v Hero a kalkulačke, zrušené lacné gradienty v SubsidyBanner v prospech čistej architektonickej plochy (amber-400), odstránené tiene (drop shadows) z odpočívajúcich kariet, odstránené hairlines (1px rámiky) a nahradené prirodzeným tone-step krokovaním plôch, eliminácia tiny tracked uppercase micro-labelov a kickerov. Dosiahnuté skóre 0 FAIL naprieč všetkými 48 komponentmi, typová kontrola `tsc --noEmit` s 0 chybami. | 1,5 h | **37,50 €** | 220,00 € | ✅ Hotovo |
 | **ACT-13** | **Úprava portfólia služieb** | Dočasné odstránenie ponuky a možnosti výberu tepelných čerpadiel naprieč celým webom: odstránený toggle prepínač a výpočet z interaktívnej kalkulačky (`CalculatorSection`), vyčistená desktopová a mobilná navigácia (`Header`), aktualizované portfólio na 3 hlavné piliere (fotovoltika, BESS batérie, elektroinštalácie & revízie v `ServicesSection`), odstránenie z dopytových formulárov (`LeadForm`, `ContactSection`), úprava dotačného banneru a FAQ (nahradenie dotácie 4 600 € na TČ presnou fotovoltickou a B2B schémou Zelená podnikom). Overené cez anti-slop linter (0 FAIL) a `tsc --noEmit`. | 1,0 h | **25,00 €** | 150,00 € | ✅ Hotovo |
+| **ACT-14** | **GDPR & Cookie Compliance v2.0** | Kompletný redesign a technický refaktoring cookie lišty pre 100% zosúladenie so slovenským Zákonom o elektronických komunikáciách (§ 109 ods. 8 zákona č. 452/2021 Z. z.) a GDPR. Implementácia rovnocenných tlačidiel „Prijať všetky“ a „Odmietnuť všetky“ bez dark patterns, rozdelenie do 4 kategórií, zoznam konkrétnych cookies a expirácií v lište i v zásadách na webe, trvalé odvolanie súhlasu, striktné Google Consent Mode v2 default denied načítavanie v hlavičke (`_document.tsx`) a backendový audit log súhlasov (`/api/consent`) s anonymizovanou IP preukázateľný pri kontrole ÚOOÚ a Telekomunikačného úradu. | 1,5 h | **37,50 €** | 250,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **42,5 hodín + základný balík webu**
-- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 462,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 240,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 777,50 € (úspora cca 72 %)**
+- **Celkový počet odpracovaných hodín:** **44,0 hodín + základný balík webu**
+- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 500,00 €**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 490,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 990,00 € (úspora cca 73 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
