@@ -81,7 +81,7 @@ export const ContactSection: React.FC = () => {
               <span className="text-amber-400 font-bold text-xs">Oficiálne údaje spoločnosti</span>
               <h3 className="text-2xl font-black text-white">Marvol s. r. o.</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Váš špecializovaný partner pre fotovoltické elektrárne, batériové úložiská, tepelné čerpadlá a elektroinštalácie na kľúč po celom Slovensku.
+                Váš špecializovaný partner pre fotovoltické elektrárne, batériové úložiská a elektroinštalácie na kľúč po celom Slovensku.
               </p>
             </div>
 
@@ -234,7 +234,6 @@ export const ContactSection: React.FC = () => {
                       <option value="fotovoltika-dom">Fotovoltika pre rodinný dom</option>
                       <option value="fotovoltika-firma">Fotovoltika pre firmu / objekt</option>
                       <option value="baterie">Batériové úložisko & Wallbox</option>
-                      <option value="cerpadlo">Tepelné čerpadlo</option>
                       <option value="elektro">Elektroinštalácie & Revízie</option>
                     </select>
                   </div>

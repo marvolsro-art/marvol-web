@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   SunIcon,
   BatteryIcon,
-  HeatPumpIcon,
   BoltIcon,
   CarIcon,
   CheckIcon,
@@ -29,7 +28,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   const [propertyType, setPropertyType] = useState<'home' | 'business'>(defaultPropertyType);
   const [monthlyBill, setMonthlyBill] = useState<number>(defaultMonthlyBill);
   const [hasBattery, setHasBattery] = useState<boolean>(true);
-  const [hasHeatPump, setHasHeatPump] = useState<boolean>(false);
+  const hasHeatPump = false;
   const [hasEV, setHasEV] = useState<boolean>(false);
 
   // Quick inquiry form state
@@ -134,7 +133,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
           b_url: bUrl,
           source: 'calculator_section',
           service: propertyType === 'home' ? 'fotovoltika-dom' : 'fotovoltika-firma',
-          message: `Kalkulačka úspor Marvol: Typ: ${propertyType === 'home' ? 'Rodinný dom' : 'Firma'}, Mesačná platba: ${monthlyBill} €/mes, Výkon: ${recommendedKwp} kWp, Odhadovaná úspora: ${estimatedSavings} €/rok, Batéria: ${hasBattery ? 'Áno' : 'Nie'}, Tepelné čerpadlo: ${hasHeatPump ? 'Áno' : 'Nie'}, EV Wallbox: ${hasEV ? 'Áno' : 'Nie'}, Dotácia: ${estimatedSubsidy} €.`,
+          message: `Kalkulačka úspor Marvol: Typ: ${propertyType === 'home' ? 'Rodinný dom' : 'Firma'}, Mesačná platba: ${monthlyBill} €/mes, Výkon: ${recommendedKwp} kWp, Odhadovaná úspora: ${estimatedSavings} €/rok, Batéria: ${hasBattery ? 'Áno' : 'Nie'}, EV Wallbox: ${hasEV ? 'Áno' : 'Nie'}, Dotácia: ${estimatedSubsidy} €.`,
         }),
       });
 
@@ -166,7 +165,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
             Nakonfigurujte si solárnu elektráreň a dotáciu na mieru
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Zistite, koľko môžete ušetriť s fotovoltikou Marvol s.r.o. a akú štátnu dotáciu SIEA môžete získať (až do 1 150 € na fotovoltiku, do 4 600 € na tepelné čerpadlo, kombinovane do 5 750 €).
+            Zistite, koľko môžete ušetriť s fotovoltikou Marvol s.r.o. a akú štátnu dotáciu SIEA môžete získať (až do 1 150 € na fotovoltiku z programu Zelená domácnostiam alebo podnikom).
           </p>
         </div>
 
@@ -276,33 +275,6 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 </div>
               </button>
 
-              {/* Heat Pump Toggle */}
-              <button
-                type="button"
-                onClick={() => setHasHeatPump(!hasHeatPump)}
-                className={`w-full min-h-[56px] p-4 rounded-2xl border text-left transition-colors duration-200 flex items-center justify-between cursor-pointer active:scale-[0.99] ${
-                  hasHeatPump
-                    ? 'border-emerald-400/40 bg-emerald-400/10'
-                    : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'
-                }`}
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${hasHeatPump ? 'bg-emerald-400/20 text-emerald-400' : 'bg-slate-900 text-slate-500'}`}>
-                    <HeatPumpIcon className="w-5 h-5 text-emerald-400 shrink-0" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-white text-sm flex items-center gap-1.5">
-                      <span>Tepelné čerpadlo Vzduch-Voda (+2.0 kWp)</span>
-                      {hasHeatPump && <CheckIcon className="w-3.5 h-3.5 text-emerald-400" />}
-                    </p>
-                    <p className="text-xs text-slate-400">Ekologické vykurovanie s dotáciou SIEA až do 4 600 €</p>
-                  </div>
-                </div>
-                <div className={`w-5 h-5 rounded border flex items-center justify-center shrink-0 ${hasHeatPump ? 'bg-emerald-400 border-emerald-400 text-slate-950 font-bold' : 'border-slate-700 bg-slate-900'}`}>
-                  {hasHeatPump && <CheckIcon className="w-3.5 h-3.5 text-slate-950" />}
-                </div>
-              </button>
-
               {/* EV Wallbox Toggle */}
               <button
                 type="button"
@@ -368,7 +340,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                   </p>
                   <p className="text-[10px] text-slate-500 mt-0.5">
                     {propertyType === 'home'
-                      ? (hasHeatPump ? 'FV 1 150 € + TČ 4 600 €' : '575 €/kW (max 1 150 €)')
+                      ? '575 €/kW (max 1 150 €)'
                       : 'B2B podpora do 50 %'}
                   </p>
                 </div>
@@ -459,25 +431,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                   </div>
                 )}
 
-                {/* 4. Heat Pump (if active) */}
-                {hasHeatPump && (
-                  <div className="p-2.5 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center gap-2.5">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-emerald-400/20">
-                      <img
-                        src="/images/tepelne-cerpadla/hero.jpg"
-                        alt="Tepelné čerpadlo"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-emerald-300 truncate">Tepelné čerpadlo</div>
-                      <div className="text-[10px] text-slate-400 truncate">Dotácia do 4 600 €</div>
-                    </div>
-                  </div>
-                )}
-
-                {/* 5. EV Wallbox (if active) */}
+                {/* 4. EV Wallbox (if active) */}
                 {hasEV && (
                   <div className="p-2.5 rounded-xl bg-sky-400/10 border border-sky-400/30 flex items-center gap-2.5">
                     <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-sky-400/20">

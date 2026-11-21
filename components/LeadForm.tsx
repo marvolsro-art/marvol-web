@@ -6,7 +6,6 @@ import {
   ClockIcon,
   SunIcon,
   BatteryIcon,
-  HeatPumpIcon,
   CarIcon,
   AlertCircleIcon,
 } from '@/components/icons';
@@ -36,7 +35,6 @@ export const SERVICE_OPTIONS: { value: ServiceType; label: string }[] = [
   { value: 'fotovoltika-dom', label: 'Fotovoltika pre rodinný dom' },
   { value: 'fotovoltika-firma', label: 'Fotovoltika pre firmu / objekt' },
   { value: 'baterie', label: 'Batériové úložisko BESS & Wallbox' },
-  { value: 'cerpadlo', label: 'Tepelné čerpadlo' },
   { value: 'elektro', label: 'Elektroinštalácie & Revízie' },
   { value: 'vseobecny-kontakt', label: 'Všeobecný dopyt / Iné' },
 ];
@@ -327,11 +325,6 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             {prefillData.hasBattery && (
               <span className="inline-flex items-center gap-1 text-amber-300">
                 <BatteryIcon className="w-3.5 h-3.5 text-amber-400" /> Batéria
-              </span>
-            )}
-            {prefillData.hasHeatPump && (
-              <span className="inline-flex items-center gap-1 text-emerald-300">
-                <HeatPumpIcon className="w-3.5 h-3.5 text-emerald-400" /> Tepelné čerpadlo
               </span>
             )}
             {prefillData.hasEV && (

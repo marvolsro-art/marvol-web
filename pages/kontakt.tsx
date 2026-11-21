@@ -26,7 +26,7 @@ export default function KontaktPage() {
     },
     {
       q: 'Pomôžete nám s vybavením štátnej dotácie SIEA na kľúč?',
-      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike a do 4 600 € pri tepelnom čerpadle, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
+      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy do 50 %) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
     },
   ];
 
@@ -148,7 +148,7 @@ export default function KontaktPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
-              Máte otázky k fotovoltike, batériovému úložisku, tepelnému čerpadlu alebo štátnym dotáciám? Náš tím
+              Máte otázky k fotovoltike, batériovému úložisku, elektroinštaláciám alebo štátnym dotáciám? Náš tím
               certifikovaných inžinierov a technikov je pripravený navrhnúť pre vás optimálne energetické riešenie s
               garanciou maximálnej úspory.
             </p>

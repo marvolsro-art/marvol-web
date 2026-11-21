@@ -15,11 +15,11 @@ export default function MinimalistTestPage() {
   // Minimalist Calculator State
   const [monthlyBill, setMonthlyBill] = useState(120);
   const [withBattery, setWithBattery] = useState(true);
-  const [withHeatPump, setWithHeatPump] = useState(false);
+  const withHeatPump = false;
   const [withWallbox, setWithWallbox] = useState(false);
 
   // Lead Form State
-  const [leadCategory, setLeadCategory] = useState<'dom' | 'firma' | 'bateria' | 'cerpadlo'>('dom');
+  const [leadCategory, setLeadCategory] = useState<'dom' | 'firma' | 'bateria' | 'elektro'>('dom');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
@@ -129,7 +129,7 @@ export default function MinimalistTestPage() {
   const faqs = [
     {
       q: 'Aká je aktuálna výška štátnej dotácie SIEA?',
-      a: 'Pre fotovoltiku je sadzba 575 € na 1 kW inštalovaného výkonu (max. 2 kW, celkovo do 1 150 €). Pri tepelných čerpadlách je dotácia až 4 600 €. Nízkopríjmové domácnosti v programe Zelená solidarita môžu získať podporu až do 90 % oprávnených nákladov. Všetko zabezpečujeme elektronickou rezerváciou za vás.',
+      a: 'Pre fotovoltiku je sadzba 575 € na 1 kW inštalovaného výkonu (max. 2 kW, celkovo do 1 150 €). Nízkopríjmové domácnosti v programe Zelená solidarita môžu získať podporu až do 90 % oprávnených nákladov a firmy do 50 %. Všetko zabezpečujeme elektronickou rezerváciou za vás.',
     },
     {
       q: 'Ako dlho trvá kompletná realizácia na kľúč?',
@@ -151,7 +151,7 @@ export default function MinimalistTestPage() {
         <title>Marvol s.r.o. | Moderná fotovoltika & Energetická sebestačnosť</title>
         <meta
           name="description"
-          content="Moderný minimalistický pohľad na fotovoltiku, batériové úložiská a tepelné čerpadlá pre rodinné domy a firmy na Slovensku. Dotácie SIEA a inžiniering na kľúč."
+          content="Moderný minimalistický pohľad na fotovoltiku, batériové úložiská a elektroinštalácie pre rodinné domy a firmy na Slovensku. Dotácie SIEA a inžiniering na kľúč."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="robots" content="noindex, nofollow" />
@@ -169,10 +169,10 @@ export default function MinimalistTestPage() {
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 sm:gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
           <span className="sm:hidden font-medium text-slate-200">
-            Dotácia SIEA: FV 1 150 € • TČ 4 600 €
+            Dotácia SIEA: FV do 1 150 € • Firmy do 50 %
           </span>
           <span className="hidden sm:inline font-medium text-slate-200">
-            Nová schéma SIEA: Dotácia 575 € / kW pre fotovoltiku (max. 1 150 €) a do 4 600 € pre tepelné čerpadlá
+            Nová schéma SIEA: Dotácia 575 € / kW pre fotovoltiku (max. 1 150 €) a do 50 % pre firmy
           </span>
           <a
             href="#konfigurator"
@@ -346,7 +346,7 @@ export default function MinimalistTestPage() {
             </h1>
 
             <p className="text-sm sm:text-xl text-slate-300/90 leading-relaxed font-normal px-2">
-              Navrhujeme a inštalujeme prémiové fotovoltické elektrárne, bezpečné batériové úložiská LiFePO4 a tepelné čerpadlá. Všetko na kľúč so zárukou až 30 rokov.
+              Navrhujeme a inštalujeme prémiové fotovoltické elektrárne, bezpečné batériové úložiská LiFePO4 a elektroinštalácie. Všetko na kľúč so zárukou až 30 rokov.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2">
@@ -562,25 +562,6 @@ export default function MinimalistTestPage() {
 
               <button
                 type="button"
-                onClick={() => setWithHeatPump(!withHeatPump)}
-                className={`min-h-[56px] p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border text-left transition-all duration-300 flex items-start gap-3.5 cursor-pointer active:scale-[0.98] ${
-                  withHeatPump
-                    ? 'border-emerald-400/40 bg-emerald-400/10 shadow-sm'
-                    : 'border-white/5 bg-slate-900/50 hover:border-white/20'
-                }`}
-              >
-                <div className="text-2xl shrink-0">🌡️</div>
-                <div>
-                  <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                    <span>Tepelné čerpadlo</span>
-                    {withHeatPump && <span className="text-emerald-400 text-xs font-bold">✓</span>}
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Vykurovanie & chladenie (dotácia do 4 600 €)</div>
-                </div>
-              </button>
-
-              <button
-                type="button"
                 onClick={() => setWithWallbox(!withWallbox)}
                 className={`min-h-[56px] p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border text-left transition-all duration-300 flex items-start gap-3.5 cursor-pointer active:scale-[0.98] ${
                   withWallbox
@@ -683,27 +664,15 @@ export default function MinimalistTestPage() {
                   </div>
                 )}
 
-                {withHeatPump ? (
-                  <div className="p-2.5 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center gap-2.5">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-emerald-400/20">
-                      <img src="/images/tepelne-cerpadla/hero.jpg" alt="Tepelné čerpadlo" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-emerald-300 truncate">Tepelné čerpadlo</div>
-                      <div className="text-[10px] text-slate-400 truncate">Dotácia do 4 600 €</div>
-                    </div>
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                    <img src="/images/sluzby/revizie-dotacie.jpg" alt="Revízia" className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                ) : (
-                  <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex items-center gap-2.5">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
-                      <img src="/images/sluzby/revizie-dotacie.jpg" alt="Revízia" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-white truncate">Revízia OPOS</div>
-                      <div className="text-[10px] text-slate-400 truncate">§ 24 a distribúcia</div>
-                    </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-white truncate">Revízia OPOS</div>
+                    <div className="text-[10px] text-slate-400 truncate">§ 24 a distribúcia</div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
 
@@ -811,34 +780,34 @@ export default function MinimalistTestPage() {
               </div>
             </div>
 
-            {/* Card 3: Tepelné čerpadlá */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-emerald-400/30 transition-all duration-300">
+            {/* Card 3: Elektroinštalácie & Revízie OPOS */}
+            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-amber-400/30 transition-all duration-300">
               <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
                 <img
-                  src="/images/tepelne-cerpadla/hero.jpg"
-                  alt="Tepelné čerpadlá Vzduch-Voda"
+                  src="/images/sluzby/revizie-dotacie.jpg"
+                  alt="Elektroinštalácie a revízie OPOS"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                   <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
-                    🌡️
+                    ⚡
                   </div>
                 </div>
               </div>
               <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
                 <div className="space-y-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                    Tepelné čerpadlá Vzduch-Voda
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                    Elektroinštalácie &amp; Revízie OPOS
                   </h3>
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Ekologické vykurovanie a letné chladenie s energetickou triedou A+++. Inteligentná synergia SG Ready využíva solárne prebytky na ohrev vody.
+                    Certifikované silnoprúdové inštalácie, revízne správy § 24 a pripojenie do distribučných sústav (SSD, ZSD, VSD).
                   </p>
                 </div>
                 <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                  <span>Dotácia až 4 600 €</span>
-                  <Link href="/tepelne-cerpadla" className="text-emerald-400 font-semibold hover:underline flex items-center gap-1">
+                  <span>Odborná spôsobilosť § 24</span>
+                  <Link href="/elektroinstalacie-revizie" className="text-amber-400 font-semibold hover:underline flex items-center gap-1">
                     <span>Podrobnosti</span>
                     <span>&rarr;</span>
                   </Link>
@@ -988,7 +957,7 @@ export default function MinimalistTestPage() {
                   100% garancia odpočítania dotácie
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Ako registrovaný partner SIEA (Zelená domácnostiam & Zelená podnikom) zabezpečíme elektronickú rezerváciu poukážky. Dotáciu do 1 150 € (alebo až 4 600 € pri tepelnom čerpadle) vám odpočítame priamo z faktúry.
+                  Ako registrovaný partner SIEA (Zelená domácnostiam & Zelená podnikom) zabezpečíme elektronickú rezerváciu poukážky. Dotáciu do 1 150 € (alebo do 50 % pre firmy) vám odpočítame priamo z faktúry.
                 </p>
               </div>
               <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
@@ -1136,7 +1105,7 @@ export default function MinimalistTestPage() {
                     Marvol s.r.o.
                   </h3>
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Slovenský certifikovaný zhotoviteľ solárnych elektrární, batériových systémov LiFePO4 a tepelných čerpadiel na kľúč.
+                    Slovenský certifikovaný zhotoviteľ solárnych elektrární, batériových systémov LiFePO4 a elektroinštalácií na kľúč.
                   </p>
 
                   <div className="space-y-2.5 pt-1">
@@ -1240,7 +1209,7 @@ export default function MinimalistTestPage() {
                         { id: 'dom', label: 'Rodinný dom' },
                         { id: 'firma', label: 'Firma / B2B' },
                         { id: 'bateria', label: 'Batériové úložisko' },
-                        { id: 'cerpadlo', label: 'Tepelné čerpadlo' },
+                        { id: 'elektro', label: 'Elektroinštalácie' },
                       ].map((cat) => (
                         <button
                           key={cat.id}

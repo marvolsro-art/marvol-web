@@ -11,7 +11,7 @@ export const SubsidyBanner: React.FC = () => {
               Oficiálny registrovaný zhotoviteľ SIEA pre rok 2026
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 leading-tight">
-              Vybavíme za vás štátne dotácie do výšky 4 600 €
+              Vybavíme za vás štátne dotácie Zelená domácnostiam &amp; podnikom
             </h2>
             <p className="text-slate-950/90 font-medium text-base leading-relaxed">
               Zabezpečíme online registráciu poukážky, kompletnú technickú a revíznu dokumentáciu aj priame vyplatenie príspevku. Celý proces prebehne bez administratívnych poplatkov a zbytočných prieťahov.
@@ -24,8 +24,8 @@ export const SubsidyBanner: React.FC = () => {
                 <span className="text-xs font-bold text-slate-900 mt-0.5 block">Fotovoltika pre domy</span>
               </div>
               <div className="bg-slate-950/10 p-4 rounded-xl">
-                <span className="block text-2xl font-black text-slate-950 tracking-tight">do 4 600 €</span>
-                <span className="text-xs font-bold text-slate-900 mt-0.5 block">Tepelné čerpadlá</span>
+                <span className="block text-2xl font-black text-slate-950 tracking-tight">do 50 %</span>
+                <span className="text-xs font-bold text-slate-900 mt-0.5 block">Zelená podnikom</span>
               </div>
               <div className="bg-slate-950/10 p-4 rounded-xl">
                 <span className="block text-2xl font-black text-slate-950 tracking-tight">0 € poplatok</span>

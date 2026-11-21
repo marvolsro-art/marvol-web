@@ -111,7 +111,7 @@ export default function RevizieDotacie() {
     },
     {
       q: 'Ako prebieha odpočítanie dotácie z faktúry?',
-      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA odpočíta Marvol s.r.o. schválenú hodnotu štátnej dotácie (napr. 1 150 € pri fotovoltike alebo až 4 600 € pri tepelnom čerpadle) priamo z vašej realizačnej faktúry. Vy ako zákazník uhradíte iba doplatok (rozdiel celkovej ceny a dotácie) a administratívne vysporiadanie s agentúrou SIEA vyrieši naša spoločnosť.',
+      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA odpočíta Marvol s.r.o. schválenú hodnotu štátnej dotácie (napr. 1 150 € pri fotovoltike pre rodinné domy alebo do 50 % pre firmy) priamo z vašej realizačnej faktúry. Vy ako zákazník uhradíte iba doplatok (rozdiel celkovej ceny a dotácie) a administratívne vysporiadanie s agentúrou SIEA vyrieši naša spoločnosť.',
     },
     {
       q: 'Ako často sa musia vykonávať periodické revízie fotovoltiky?',

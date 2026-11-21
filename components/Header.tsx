@@ -109,7 +109,7 @@ export const Header: React.FC = () => {
 
   const isSluzbyActive =
     router.pathname.startsWith('/sluzby') ||
-    ['/tepelne-cerpadla', '/elektroinstalacie-revizie'].includes(router.pathname);
+    ['/elektroinstalacie-revizie'].includes(router.pathname);
 
   const isEshopActive = router.pathname === '/eshop';
   const isKontaktActive = router.pathname === '/kontakt';
@@ -507,26 +507,15 @@ export const Header: React.FC = () => {
 
                   {/* Preserved auxiliary service destinations for full multi-sphere compatibility */}
                   <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400"> {/* taste-skill-ignore: flyout menu divider */}
-                    <span>Ďalšie technológie:</span>
-                    <div className="flex items-center gap-3">
-                      <Link
-                        href="/tepelne-cerpadla"
-                        onClick={() => setActiveDropdown(null)}
-                        className="hover:text-amber-400 transition-colors"
-                        role="menuitem"
-                      >
-                        Tepelné čerpadlá
-                      </Link>
-                      <span>•</span>
-                      <Link
-                        href="/elektroinstalacie-revizie"
-                        onClick={() => setActiveDropdown(null)}
-                        className="hover:text-amber-400 transition-colors"
-                        role="menuitem"
-                      >
-                        Elektroinštalácie
-                      </Link>
-                    </div>
+                    <span>Certifikované inštalácie:</span>
+                    <Link
+                      href="/elektroinstalacie-revizie"
+                      onClick={() => setActiveDropdown(null)}
+                      className="hover:text-amber-400 transition-colors font-medium text-slate-300"
+                      role="menuitem"
+                    >
+                      Elektroinštalácie &amp; Revízie →
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -751,19 +740,11 @@ export const Header: React.FC = () => {
                 ))}
                 <div className="pt-2 px-1 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800/40"> {/* taste-skill-ignore: modal drawer divider */}
                   <Link
-                    href="/tepelne-cerpadla"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="hover:text-amber-400 transition-colors py-2"
-                  >
-                    Tepelné čerpadlá
-                  </Link>
-                  <span>•</span>
-                  <Link
                     href="/elektroinstalacie-revizie"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="hover:text-amber-400 transition-colors py-2"
+                    className="hover:text-amber-400 transition-colors py-2 text-slate-300 font-medium"
                   >
-                    Elektroinštalácie &amp; Revízie
+                    Elektroinštalácie &amp; Revízie OPOS →
                   </Link>
                 </div>
               </div>

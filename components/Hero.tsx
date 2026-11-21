@@ -8,7 +8,6 @@ import {
   HomeIcon,
   BuildingOfficeIcon,
   BatteryIcon,
-  HeatPumpIcon,
   BoltIcon,
   AlertCircleIcon,
 } from '@/components/icons';
@@ -40,7 +39,7 @@ export const Hero: React.FC = () => {
 
             {/* Subheading (>= 16px body copy) */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> zabezpečuje profesionálny návrh, autorizovanú montáž a servis fotovoltických systémov, batériových úložísk BESS a tepelných čerpadiel. Znížte náklady na energie až o 80 % s využitím štátnych dotácií SIEA.
+              Spoločnosť <strong className="text-white font-semibold">Marvol s.r.o.</strong> zabezpečuje profesionálny návrh, autorizovanú montáž a servis fotovoltických systémov, batériových úložísk BESS a elektroinštalácií. Znížte náklady na energie až o 80 % s využitím štátnych dotácií SIEA.
             </p>
 
             {/* Value Triggers (Guarantees & Compliance) */}
@@ -48,7 +47,7 @@ export const Hero: React.FC = () => {
               <div className="flex items-center gap-2.5 bg-slate-900 p-3 rounded-xl text-xs font-medium text-slate-200">
                 <CurrencyEuroIcon className="w-5 h-5 text-amber-400 shrink-0" />
                 <div className="text-left">
-                  <strong className="block text-white font-semibold">Dotácia do 4 600 €</strong>
+                  <strong className="block text-white font-semibold">Dotácia do 1 150 €</strong>
                   <span className="text-slate-400 text-[11px]">Vybavenie SIEA zadarmo</span>
                 </div>
               </div>
@@ -119,11 +118,11 @@ export const Hero: React.FC = () => {
                 </Link>
 
                 <Link
-                  href="/tepelne-cerpadla"
+                  href="/elektroinstalacie-revizie"
                   className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/50 text-slate-300 hover:text-white text-xs font-medium transition-colors min-h-[48px] tap-target-48"
                 >
-                  <HeatPumpIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Tepelné čerpadlá</span>
+                  <BoltIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Elektroinštalácie &amp; Revízie</span>
                 </Link>
               </div>
             </div>
@@ -215,7 +214,7 @@ export const Hero: React.FC = () => {
                     {/* Window 4: Dotácie notice */}
                     <div className="bg-slate-950 p-3 rounded-xl flex items-center gap-2.5 text-xs text-slate-300">
                       <AlertCircleIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                      <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na fotovoltike až <strong>1 150 €</strong> (tepelné čerpadlá až <strong>4 600 €</strong>, Solidarita <strong>90 %</strong>).</span>
+                      <span>S dotáciou <strong>Zelená domácnostiam</strong> ušetríte na fotovoltike až <strong>1 150 €</strong> (Zelená solidarita až <strong>90 %</strong>).</span>
                     </div>
 
                   </div>

@@ -25,15 +25,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-10** | **CRM & Spracovanie Leadov** | Dátová štruktúra leadov (JSON backend / log), enrichnuté parametre z kalkulačky (spotreba, kWp, úspory), prevencia straty kontaktov. | 2,0 h | **50,00 €** | 150,00 € | ✅ Hotovo |
 | **ACT-11** | **Autor webu & Branding** | Implementácia podpisu autora do päty (`Ing. Matej Machej`, `mamachej@gmail.com`) na vetvách `main` aj `preview`, úprava full-width slideru partnerov. | 1,0 h | *Zahrnuté v balíku (0 €)* | 50,00 € | ✅ Hotovo |
 | **ACT-12** | **Anti-Slop refaktoring dizajnu & Impeccable Critique (`components/`)** | Hĺbkový audit dizajnu podľa štandardov `/design-taste-frontend` (tasteskill v2) a Impeccable Critique. Kompletná eliminácia 100 % zakázaných AI-slop vzorov v komponentoch: odstránené ambient multicolour glow efekty v Hero a kalkulačke, zrušené lacné gradienty v SubsidyBanner v prospech čistej architektonickej plochy (amber-400), odstránené tiene (drop shadows) z odpočívajúcich kariet, odstránené hairlines (1px rámiky) a nahradené prirodzeným tone-step krokovaním plôch, eliminácia tiny tracked uppercase micro-labelov a kickerov. Dosiahnuté skóre 0 FAIL naprieč všetkými 48 komponentmi, typová kontrola `tsc --noEmit` s 0 chybami. | 1,5 h | **37,50 €** | 220,00 € | ✅ Hotovo |
+| **ACT-13** | **Úprava portfólia služieb** | Dočasné odstránenie ponuky a možnosti výberu tepelných čerpadiel naprieč celým webom: odstránený toggle prepínač a výpočet z interaktívnej kalkulačky (`CalculatorSection`), vyčistená desktopová a mobilná navigácia (`Header`), aktualizované portfólio na 3 hlavné piliere (fotovoltika, BESS batérie, elektroinštalácie & revízie v `ServicesSection`), odstránenie z dopytových formulárov (`LeadForm`, `ContactSection`), úprava dotačného banneru a FAQ (nahradenie dotácie 4 600 € na TČ presnou fotovoltickou a B2B schémou Zelená podnikom). Overené cez anti-slop linter (0 FAIL) a `tsc --noEmit`. | 1,0 h | **25,00 €** | 150,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **41,5 hodín + základný balík webu**
-- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 437,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 090,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 652,50 € (úspora cca 72 %)**
+- **Celkový počet odpracovaných hodín:** **42,5 hodín + základný balík webu**
+- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 462,50 €**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 240,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 777,50 € (úspora cca 72 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

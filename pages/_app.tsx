@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         "url": "https://marvol.sk",
         "logo": "https://marvol.sk/logos/logo-marvol.svg",
         "image": "https://marvol.sk/og.png",
-        "description": "Špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS, tepelné čerpadlá a elektroinštalácie pre domácnosti a firmy.",
+        "description": "Špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS a elektroinštalácie pre domácnosti a firmy.",
         "telephone": COMPANY_DETAILS.contact.phoneClean,
         "email": COMPANY_DETAILS.contact.email,
         "address": {
@@ -74,7 +74,7 @@ export default function App({ Component, pageProps }: AppProps) {
             "name": "Akú výšku dotácie môžem získať z programu Zelená domácnostiam?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Z programu Zelená domácnostiam môžete získať príspevok na fotovoltiku v sadzbe 575 €/kW (max. 1 150 €) a na tepelné čerpadlá až do 4 600 € (v schéme Zelená solidarita až do 90 % oprávnených nákladov).",
+              "text": "Z programu Zelená domácnostiam môžete získať príspevok na fotovoltiku v sadzbe 575 €/kW (max. 1 150 €) a v schéme Zelená solidarita až do 90 % oprávnených nákladov.",
             },
           },
           {
@@ -101,8 +101,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title key="title">Marvol s.r.o. | Fotovoltické riešenia na kľúč, Batérie &amp; Tepelné čerpadlá</title>
-        <meta key="description" name="description" content="Marvol s.r.o. - Špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS, tepelné čerpadlá a elektroinštalácie pre domácnosti, firmy a obce s vybavení dotácie." />
+        <title key="title">Marvol s.r.o. | Fotovoltické riešenia na kľúč, Batérie &amp; Elektroinštalácie</title>
+        <meta key="description" name="description" content="Marvol s.r.o. - Špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS a elektroinštalácie pre domácnosti, firmy a obce s vybavením dotácie." />
         <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:site_name" property="og:site_name" content="Marvol s.r.o." />

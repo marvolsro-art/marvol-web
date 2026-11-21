@@ -81,11 +81,6 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/tepelne-cerpadla" className="hover:text-amber-400 transition-colors">
-                  Tepelné čerpadlá (A+++)
-                </Link>
-              </li>
-              <li>
                 <Link href="/#kalkulacka" className="hover:text-amber-400 transition-colors">
                   Kalkulačka úspory
                 </Link>
