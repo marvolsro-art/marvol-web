@@ -12,7 +12,6 @@ interface ProcessStep {
   step: number;
   title: string;
   description: string;
-  timeframe: string;
   image: string;
   subpage: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -22,45 +21,40 @@ export const ProcessSection: React.FC = () => {
   const steps: ProcessStep[] = [
     {
       step: 1,
-      title: 'Bezplatná konzultácia & obhliadka',
-      description: 'Náš technik navštívi vašu nehnuteľnosť, posúdi stav strechy, elektroinštalácie a navrhne optimálne technické riešenie.',
-      timeframe: 'Do 48 hodín',
+      title: 'Bezplatná obhliadka',
+      description: 'Posúdenie nosnosti strechy, orientácie a stavu elektroinštalácie na mieste.',
       image: '/images/sluzby/poradenstvo.jpg',
       subpage: '/sluzby/konzultacie-poradenstvo',
       icon: PhoneIcon,
     },
     {
       step: 2,
-      title: '3D Návrh & Energetický audit',
-      description: 'Pripravíme presnú 3D simuláciu osvitu a tienenia v PVSOL, garantovaný výkon a podrobný harmonogram návratnosti.',
-      timeframe: 'Do 3 dní',
+      title: '3D Návrh v PVSOL',
+      description: 'Presná simulácia oslnenia, model výroby a výpočet návratnosti investície.',
       image: '/images/sluzby/navrh-projektu.jpg',
       subpage: '/sluzby/navrh-projektu',
       icon: FileTextIcon,
     },
     {
       step: 3,
-      title: 'Certifikovaná montáž na kľúč',
-      description: 'Kvalifikovaní montéri osadia panely, striedač aj batériu s dôrazom na 100% hydroizoláciu a estetiku strechy.',
-      timeframe: '1 až 2 dni',
+      title: 'Montáž na kľúč',
+      description: 'Certifikovaná inštalácia panelov, nosných konštrukcií, striedača a úložiska.',
       image: '/images/sluzby/montaz-instalacia.jpg',
       subpage: '/sluzby/instalacia-montaz',
       icon: WrenchIcon,
     },
     {
       step: 4,
-      title: 'Protipožiarna ochrana & Bezpečnosť',
-      description: 'Inštalujeme DC hasičské odpínače Rapid Shutdown a prepäťové ochrany podľa STN pre maximálnu ochranu majetku.',
-      timeframe: 'Štandard montáže',
+      title: 'Bezpečnosť & DC ochrana',
+      description: 'Inštalácia DC odpínačov Rapid Shutdown a prepäťovej ochrany podľa STN.',
       image: '/images/sluzby/protipoziarna-ochrana.jpg',
       subpage: '/sluzby/protipoziarna-ochrana-bezpecne-napatie',
       icon: ShieldIcon,
     },
     {
       step: 5,
-      title: 'Odborná revízia & Dotácia SIEA',
-      description: 'Revízny technik § 24 vyhotoví revíznu správu OPOS, zaevidujeme systém u prevádzkovateľa siete a vybavíme štátnu dotáciu.',
-      timeframe: 'Hotovo na kľúč',
+      title: 'Revízia OPOS & SIEA',
+      description: 'Revízna správa § 24, odovzdanie do siete distribúcie a vyplatenie dotácie.',
       image: '/images/sluzby/revizie-dotacie.jpg',
       subpage: '/sluzby/revizie-dotacie',
       icon: CheckIcon,
@@ -104,9 +98,6 @@ export const ProcessSection: React.FC = () => {
                     />
                     <div className="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center">
                       {step.step}
-                    </div>
-                    <div className="absolute top-2.5 right-2.5 text-[11px] font-medium px-2 py-0.5 rounded bg-slate-950/85 text-amber-300">
-                      {step.timeframe}
                     </div>
                   </div>
 

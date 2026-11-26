@@ -34,15 +34,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-19** | **Aktualizácia portfólia striedačov (Solinteg & GoodWe)** | Nahradenie starých značiek striedačov (Deye, Huawei) reálne inštalovanými špičkovými asymetrickými hybridnými meničmi Solinteg a GoodWe naprieč webom (`ServicesSection.tsx`, `WhyUsSection.tsx`, `TestimonialsSection.tsx`, `fotovoltika-pre-domacnosti.tsx`, `bateriove-uloziska-bess.tsx`, `sluzby/instalacia-montaz.tsx`). Overené `tsc --noEmit` a nasadené na `preview`. | 0,5 h | *V rámci servisu (0 €)* | 40,00 € | ✅ Hotovo |
 | **ACT-20** | **Aktualizácia navigácie pre Revízie & Dotácie SIEA** | Úprava názvu a podtitulu v navigačnom menu (`Header.tsx`), päte (`Footer.tsx`), sitemape a na podstránke `revizie-dotacie.tsx` na presné znenie „Revízie & Dotácie SIEA / Úradné správy § 24, termovízia Fluke.“, odstránenie prísľubu odpočtu dotácie z revíznej správy a dočistenie posledných zvyškov TČ. Overené `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-21** | **Kalkulačka úspor (MWh & MK-2.0)** | Prepracovanie interaktívnej kalkulačky úspor (`components/CalculatorSection.tsx` & `pages/api/lead.ts`): zadávanie ročnej spotreby elektriny v MWh (1,5 až 20 MWh pre domy, 10 až 250 MWh pre firmy), rýchle predvoľby (3.5, 5.5, 8.0, 12.0 MWh / 25, 50, 100, 200 MWh), automatický prepočet na kWh a ekvivalent mesačnej platby. Implementácia presných vzorcov z firemného systému MK-2.0: dimenzovanie výkonu (1 kWp vyrobí 1,07 MWh), sadzba úspor 0,18 €/kWh, akumulácia a úspory BESS 80 % vs On-Grid 55 %, štátna dotácia SIEA s hranicou spotreby 3,5 MWh (2 kWp / 1 150 € vs 3 kWp / 1 725 €) a presná návratnosť investície. Overené `tsc --noEmit` a nasadené na `preview`. | 1,0 h | **25,00 €** | 180,00 € | ✅ Hotovo |
+| **ACT-22** | **Proces realizácie (UI/UX)** | Odstránenie časových a stavových odznakov (Do 48 hodín, Do 3 dní, 1 až 2 dni, Súčasť montáže, Finálne spustenie) z kariet postupu realizácie v `components/ProcessSection.tsx` a zosúladenie textov kariet s finálnym schváleným vizuálom (Bezplatná obhliadka, 3D Návrh v PVSOL, Montáž na kľúč, Bezpečnosť & DC ochrana, Revízia OPOS & SIEA). Overené `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **46,5 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **46,7 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 890,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 327,50 € (úspora cca 73 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 915,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 352,50 € (úspora cca 74 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
