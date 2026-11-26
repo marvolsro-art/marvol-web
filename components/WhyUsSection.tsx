@@ -24,7 +24,7 @@ export const WhyUsSection: React.FC = () => {
       metric: '24/7',
       title: 'Diaľkový cloudový dohľad a promptný servis',
       description: 'Každú elektráreň pripájame na centrálny monitoring. V prípade akejkoľvek anomálie v sieti alebo na striedači dostáva náš dispečing okamžité hlásenie pre rýchly servis.',
-      tag: 'Garancia promptného servisného zásahu',
+      tag: 'Garancia servisného zásahu',
     },
   ];
 

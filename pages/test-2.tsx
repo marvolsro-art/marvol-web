@@ -985,7 +985,7 @@ export default function MinimalistTestPage() {
                 </p>
               </div>
               <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
-                ✓ Záručný a pozáručný servis do 48 hodín
+                ✓ Záručný a pozáručný servis
               </div>
             </div>
 

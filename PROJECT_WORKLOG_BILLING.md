@@ -36,15 +36,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-21** | **Kalkulačka úspor (MWh & MK-2.0)** | Prepracovanie interaktívnej kalkulačky úspor (`components/CalculatorSection.tsx` & `pages/api/lead.ts`): zadávanie ročnej spotreby elektriny v MWh (1,5 až 20 MWh pre domy, 10 až 250 MWh pre firmy), rýchle predvoľby (3.5, 5.5, 8.0, 12.0 MWh / 25, 50, 100, 200 MWh), automatický prepočet na kWh a ekvivalent mesačnej platby. Implementácia presných vzorcov z firemného systému MK-2.0: dimenzovanie výkonu (1 kWp vyrobí 1,07 MWh), sadzba úspor 0,18 €/kWh, akumulácia a úspory BESS 80 % vs On-Grid 55 %, štátna dotácia SIEA s hranicou spotreby 3,5 MWh (2 kWp / 1 150 € vs 3 kWp / 1 725 €) a presná návratnosť investície. Overené `tsc --noEmit` a nasadené na `preview`. | 1,0 h | **25,00 €** | 180,00 € | ✅ Hotovo |
 | **ACT-22** | **Proces realizácie (UI/UX)** | Odstránenie časových a stavových odznakov (Do 48 hodín, Do 3 dní, 1 až 2 dni, Súčasť montáže, Finálne spustenie) z kariet postupu realizácie v `components/ProcessSection.tsx` a zosúladenie textov kariet s finálnym schváleným vizuálom (Bezplatná obhliadka, 3D Návrh v PVSOL, Montáž na kľúč, Bezpečnosť & DC ochrana, Revízia OPOS & SIEA). Overené `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-23** | **Textácie & Garancie (UI/UX)** | Úprava garančného piliera dotácií v `components/WhyUsSection.tsx` (odstránené „je pre vás zadarmo“ zo znenia „Kompletná administrácia.“ a úprava dotačného tagu bez TČ) a aktualizácia sprievodného textu v `components/Hero.tsx` na „Vybavenie SIEA na kľúč“. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
+| **ACT-24** | **Textácie & Garancie (UI/UX)** | Odstránenie časového záväzku „do 48 hodín“ z garančného piliera v `components/WhyUsSection.tsx` (úprava tagu na presné znenie „Garancia servisného zásahu“) a z podstránky `pages/test-2.tsx`. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **46,9 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **47,0 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 940,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 377,50 € (úspora cca 74 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 955,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 392,50 € (úspora cca 74 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
