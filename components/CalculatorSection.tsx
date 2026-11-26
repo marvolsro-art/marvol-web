@@ -14,6 +14,7 @@ import {
 export interface CalculatorSectionProps {
   className?: string;
   defaultPropertyType?: 'home' | 'business';
+  defaultAnnualMwh?: number;
   defaultMonthlyBill?: number;
 }
 
@@ -23,10 +24,13 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   className = '',
   defaultPropertyType = 'home',
+  defaultAnnualMwh,
   defaultMonthlyBill = 140,
 }) => {
   const [propertyType, setPropertyType] = useState<'home' | 'business'>(defaultPropertyType);
-  const [monthlyBill, setMonthlyBill] = useState<number>(defaultMonthlyBill);
+  const [annualMwh, setAnnualMwh] = useState<number>(
+    defaultAnnualMwh || (defaultPropertyType === 'home' ? 5.5 : 35.0)
+  );
   const [hasBattery, setHasBattery] = useState<boolean>(true);
   const [hasEV, setHasEV] = useState<boolean>(false);
 
@@ -42,39 +46,74 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   const [submittedLeadId, setSubmittedLeadId] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
 
-  // 1. Capacity formula: clamp(round(M/16 + 1.5*EV, 1), 3.0, 25.0) for domestic; up to 250 kWp for commercial
-  const annualBill = monthlyBill * 12;
-  const baseKwp = monthlyBill / 16;
+  const handlePropertyTypeChange = (newType: 'home' | 'business') => {
+    setPropertyType(newType);
+    if (newType === 'home' && annualMwh > 20) {
+      setAnnualMwh(5.5);
+    } else if (newType === 'business' && annualMwh < 10) {
+      setAnnualMwh(35.0);
+    }
+  };
+
+  // --- MK-2.0 VZORCE A PREPOČTY ---
+  // 1. Ročná spotreba v kWh a ekvivalent mesačnej faktúry (MK-2.0 sadzba 0,18 € / kWh)
+  const annualKwh = Math.round(annualMwh * 1000);
+  const monthlyEquivalent = Math.round((annualKwh * 0.18) / 12);
+
+  // 2. Dimenzovanie výkonu podľa ročnej spotreby (1 kWp vyrobí v SR cca 1,07 MWh / 1 070 kWh)
+  // MK-2.0: kwp = watts / 1000; mwh = kwp * 1.07;
+  const baseKwp = annualMwh / 1.07;
   const evKwp = hasEV ? 1.5 : 0;
-  const maxKwp = propertyType === 'home' ? 25 : 250;
+  const minKwp = propertyType === 'home' ? 3.0 : 10.0;
+  const maxKwp = propertyType === 'home' ? 25.0 : 250.0;
   const recommendedKwp = Math.min(
-    Math.max(Math.round((baseKwp + (propertyType === 'home' ? evKwp : 0)) * 10) / 10, 3),
+    Math.max(Math.round((baseKwp + (propertyType === 'home' ? evKwp : 0)) * 10) / 10, minKwp),
     maxKwp
   );
 
-  // 2. Physical production ceiling (1050 kWh/kWp * 0.22 €/kWh)
-  const annualKwhProduction = recommendedKwp * 1050;
-  const maxAnnualSavingsValue = annualKwhProduction * 0.22;
+  // 3. Ročná výroba elektriny
+  const producedMwh = Math.round(recommendedKwp * 1.07 * 100) / 100;
+  const producedKwh = Math.round(producedMwh * 1000);
 
-  // 3. Self-consumption rates: 0.78 (battery), 0.55 (basic)
-  const selfConsumptionRate = hasBattery ? 0.78 : 0.55;
+  // 4. Miera vlastnej spotreby a ročná finančná úspora (MK-2.0 priemerná úspora 0,18 € / kWh)
+  // BESS Batéria: 80 % priama spotreba/akumulácia (0,18 €), 20 % výkup/virtuálna batéria (0,08 €)
+  // Bez batérie: 55 % priama spotreba (0,18 €), 45 % výkup do siete (0,08 €)
+  const selfConsumptionRate = hasBattery ? 0.80 : 0.55;
+  const usableKwh = Math.min(producedKwh, annualKwh);
+  const directSavings = usableKwh * selfConsumptionRate * 0.18;
+  const excessKwh = Math.max(0, producedKwh - (usableKwh * selfConsumptionRate));
+  const virtualSavings = excessKwh * 0.08;
+  const estimatedSavings = Math.round(directSavings + virtualSavings);
 
-  const rawSavings = Math.round(annualBill * selfConsumptionRate);
-  const estimatedSavings = Math.min(rawSavings, Math.round(maxAnnualSavingsValue));
+  // 5. Štátna dotácia SIEA (Zelená domácnostiam z MK-2.0)
+  // Spotreba >= 3 500 kWh (3.5 MWh) umožňuje dotáciu až na 3 kWp (3 x 575 € = 1 725 €)
+  // Spotreba < 3 500 kWh podporuje max 2 kWp (2 x 575 € = 1 150 €)
+  const maxSubsidyKw = annualKwh >= 3500 ? 3 : 2;
+  const supportedKw = Math.min(recommendedKwp, maxSubsidyKw);
+  const estimatedSubsidy = propertyType === 'home' ? Math.round(supportedKw * 575) : 0;
 
-  // 4. State subsidies: SIEA PV (575 €/kW, max 2 kW = 1 150 € cap)
-  const estimatedSubsidy = propertyType === 'home'
-    ? Math.min(Math.round(Math.min(recommendedKwp, 2) * 575), 1150)
-    : 0;
-
-  // 5. Pricing and payback period
+  // 6. Cena systému na kľúč a reálna návratnosť investície (MK-2.0 riadok 3933)
   const estimatedSystemPrice = Math.round(
     recommendedKwp * 1050 +
-    (hasBattery ? 3200 : 0) +
+    (hasBattery ? 3300 : 0) +
     (hasEV ? 950 : 0)
   );
   const netPrice = Math.max(estimatedSystemPrice - estimatedSubsidy, 2200);
   const paybackYears = estimatedSavings > 0 ? (netPrice / estimatedSavings).toFixed(1) : '4.5';
+
+  const presets = propertyType === 'home'
+    ? [
+        { label: '3.5 MWh', value: 3.5, desc: 'Menší dom' },
+        { label: '5.5 MWh', value: 5.5, desc: 'Štandardný dom' },
+        { label: '8.0 MWh', value: 8.0, desc: 'Klíma / čerpadlo' },
+        { label: '12.0 MWh', value: 12.0, desc: 'Väčšia rodina' },
+      ]
+    : [
+        { label: '25 MWh', value: 25.0, desc: 'Kancelárie' },
+        { label: '50 MWh', value: 50.0, desc: 'Dielňa / sklad' },
+        { label: '100 MWh', value: 100.0, desc: 'Stredná výroba' },
+        { label: '200 MWh', value: 200.0, desc: 'Priemyselný areál' },
+      ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,7 +154,9 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
           email: trimmedEmail || undefined,
           city: city.trim() || undefined,
           propertyType,
-          monthlyBill,
+          annualMwh,
+          annualKwh,
+          monthlyBill: monthlyEquivalent,
           hasBattery,
           hasEV,
           recommendedKwp,
@@ -125,7 +166,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
           b_url: bUrl,
           source: 'calculator_section',
           service: propertyType === 'home' ? 'fotovoltika-dom' : 'fotovoltika-firma',
-          message: `Kalkulačka úspor Marvol: Typ: ${propertyType === 'home' ? 'Rodinný dom' : 'Firma'}, Mesačná platba: ${monthlyBill} €/mes, Výkon: ${recommendedKwp} kWp, Odhadovaná úspora: ${estimatedSavings} €/rok, Batéria: ${hasBattery ? 'Áno' : 'Nie'}, EV Wallbox: ${hasEV ? 'Áno' : 'Nie'}, Dotácia: ${estimatedSubsidy} €.`,
+          message: `Kalkulačka úspor Marvol (MK-2.0): Typ: ${propertyType === 'home' ? 'Rodinný dom' : 'Firma'}, Ročná spotreba: ${annualMwh.toFixed(1)} MWh (${annualKwh.toLocaleString('sk-SK')} kWh/rok, cca ${monthlyEquivalent} €/mes), Výkon: ${recommendedKwp} kWp (~${producedMwh} MWh výroba), Odhadovaná úspora: ${estimatedSavings} €/rok, Batéria: ${hasBattery ? 'Áno' : 'Nie'}, EV Wallbox: ${hasEV ? 'Áno' : 'Nie'}, Štátna dotácia SIEA: ${estimatedSubsidy} €, Návratnosť: ${paybackYears} roka, Cena po dotácii: od ${netPrice.toLocaleString('sk-SK')} €.`,
         }),
       });
 
@@ -157,7 +198,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
             Nakonfigurujte si solárnu elektráreň a dotáciu na mieru
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Zistite, koľko môžete ušetriť s fotovoltikou Marvol s.r.o. a akú štátnu dotáciu SIEA môžete získať (až do 1 150 € na fotovoltiku z programu Zelená domácnostiam alebo podnikom).
+            Zistite, koľko môžete ušetriť s fotovoltikou Marvol s.r.o. a akú štátnu dotáciu SIEA môžete získať (až do 1 725 € na fotovoltiku z programu Zelená domácnostiam, resp. Zelená podnikom).
           </p>
         </div>
 
@@ -176,7 +217,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
-                  onClick={() => setPropertyType('home')}
+                  onClick={() => handlePropertyTypeChange('home')}
                   className={`min-h-[48px] py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2.5 border transition-colors cursor-pointer active:scale-[0.98] ${
                     propertyType === 'home'
                       ? 'bg-amber-400 text-slate-950 border-amber-400 font-black'
@@ -188,7 +229,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setPropertyType('business')}
+                  onClick={() => handlePropertyTypeChange('business')}
                   className={`min-h-[48px] py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2.5 border transition-colors cursor-pointer active:scale-[0.98] ${
                     propertyType === 'business'
                       ? 'bg-amber-400 text-slate-950 border-amber-400 font-black'
@@ -201,36 +242,70 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
               </div>
             </div>
 
-            {/* 2. Monthly Electricity Slider */}
+            {/* 2. Annual Electricity Consumption Slider (MWh) */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <div>
-                  <label htmlFor="calc-monthly-bill" className="text-sm font-medium text-slate-300 block">
-                    2. Mesačná platba za elektrinu
+                  <label htmlFor="calc-annual-mwh" className="text-sm font-medium text-slate-300 block">
+                    2. Ročná spotreba elektriny v MWh
                   </label>
-                  <span className="text-xs text-slate-500">Približná suma na mesačnej faktúre</span>
+                  <span className="text-xs text-slate-500">Údaj z ročného vyúčtovania alebo faktúry</span>
                 </div>
                 <div className="text-2xl sm:text-3xl font-black text-amber-400">
-                  {monthlyBill} € <span className="text-xs font-normal text-slate-400">/ mes.</span>
+                  {annualMwh.toFixed(1)} MWh <span className="text-xs font-normal text-slate-400">/ rok</span>
                 </div>
               </div>
 
               <input
-                id="calc-monthly-bill"
+                id="calc-annual-mwh"
                 type="range"
-                min="50"
-                max={propertyType === 'home' ? 800 : 3000}
-                step={propertyType === 'home' ? 10 : 50}
-                value={monthlyBill}
-                onChange={(e) => setMonthlyBill(Number(e.target.value))}
+                min={propertyType === 'home' ? 1.5 : 10.0}
+                max={propertyType === 'home' ? 20.0 : 250.0}
+                step={propertyType === 'home' ? 0.5 : 5.0}
+                value={annualMwh}
+                onChange={(e) => setAnnualMwh(parseFloat(e.target.value))}
                 className="w-full h-12 py-3 bg-transparent rounded-lg appearance-none cursor-pointer accent-amber-400"
               />
 
               <div className="flex justify-between text-xs text-slate-500 font-medium">
-                <span>50 €</span>
-                <span>250 €</span>
-                <span>{propertyType === 'home' ? '500 €' : '1 500 €'}</span>
-                <span>{propertyType === 'home' ? '800 €' : '3 000 €+'}</span>
+                <span>{propertyType === 'home' ? '1.5 MWh' : '10 MWh'}</span>
+                <span>{propertyType === 'home' ? '5.5 MWh' : '50 MWh'}</span>
+                <span>{propertyType === 'home' ? '12 MWh' : '125 MWh'}</span>
+                <span>{propertyType === 'home' ? '20 MWh+' : '250 MWh+'}</span>
+              </div>
+
+              {/* Equivalence subtitle */}
+              <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/70 text-xs text-slate-300 flex items-center justify-between">
+                <span>
+                  Ročne: <strong className="text-white">{annualKwh.toLocaleString('sk-SK')} kWh</strong>
+                </span>
+                <span className="text-slate-400">
+                  Mesačná platba: cca <strong className="text-amber-300">{monthlyEquivalent} € / mes.</strong>
+                </span>
+              </div>
+
+              {/* Quick Presets */}
+              <div className="pt-1">
+                <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                  Rýchla predvoľba spotreby:
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {presets.map((preset) => (
+                    <button
+                      key={preset.value}
+                      type="button"
+                      onClick={() => setAnnualMwh(preset.value)}
+                      className={`py-2 px-2.5 rounded-xl border text-center transition-colors cursor-pointer text-xs ${
+                        annualMwh === preset.value
+                          ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
+                          : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="font-bold">{preset.label}</div>
+                      <div className="text-[10px] text-slate-400 truncate mt-0.5">{preset.desc}</div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -314,25 +389,25 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 <div className="bg-slate-950 p-4 rounded-2xl">
                   <p className="text-xs text-slate-400 font-medium">Odporúčaný výkon</p>
                   <p className="text-xl sm:text-2xl font-black text-white mt-1">{recommendedKwp} kWp</p>
-                  <p className="text-[10px] text-slate-500 mt-0.5">cca {Math.round(recommendedKwp * 2.2)} panelov</p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">cca {Math.round(recommendedKwp * 2.2)} panelov (~{producedMwh} MWh/rok)</p>
                 </div>
 
                 {/* 2. Annual Savings */}
                 <div className="bg-slate-950 p-4 rounded-2xl">
                   <p className="text-xs text-slate-400 font-medium">Ročná úspora</p>
-                  <p className="text-xl sm:text-2xl font-black text-emerald-400 mt-1">{estimatedSavings} € / rok</p>
-                  <p className="text-[10px] text-slate-500 mt-0.5">úspora až {Math.round(selfConsumptionRate * 100)} %</p>
+                  <p className="text-xl sm:text-2xl font-black text-emerald-400 mt-1">{estimatedSavings.toLocaleString('sk-SK')} € / rok</p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">sadzba 0,18 €/kWh • úspora {Math.round(selfConsumptionRate * 100)} %</p>
                 </div>
 
                 {/* 3. State Subsidy */}
                 <div className="bg-slate-950 p-4 rounded-2xl">
                   <p className="text-xs text-slate-400 font-medium">Štátna dotácia SIEA</p>
                   <p className="text-xl sm:text-2xl font-black text-amber-400 mt-1">
-                    {estimatedSubsidy > 0 ? `${estimatedSubsidy} €` : (propertyType === 'home' ? '0 €' : 'Zelená podnikom')}
+                    {estimatedSubsidy > 0 ? `${estimatedSubsidy.toLocaleString('sk-SK')} €` : (propertyType === 'home' ? '0 €' : 'Zelená podnikom')}
                   </p>
                   <p className="text-[10px] text-slate-500 mt-0.5">
                     {propertyType === 'home'
-                      ? '575 €/kW (max 1 150 €)'
+                      ? (annualKwh >= 3500 ? '575 €/kW (max 1 725 €)' : '575 €/kW (max 1 150 €)')
                       : 'B2B podpora do 50 %'}
                   </p>
                 </div>
@@ -348,7 +423,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 <div className="bg-amber-400/10 p-4 rounded-2xl col-span-2 sm:col-span-2">
                   <p className="text-xs font-semibold text-amber-400">Odhadovaná investícia po štátnej dotácii</p>
                   <p className="text-2xl font-black text-white mt-0.5">od {netPrice.toLocaleString('sk-SK')} €</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže na kľúč, meniča, revízie a vybavenia dotácie SIEA</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže na kľúč, striedača Solinteg/GoodWe, revízie a dotácie SIEA</p>
                 </div>
               </div>
             </div>

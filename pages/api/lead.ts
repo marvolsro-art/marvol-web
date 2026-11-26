@@ -15,6 +15,8 @@ export interface LeadRequestBody {
   honeypot?: string;
   // Calculator enriched fields
   propertyType?: string;
+  annualMwh?: number;
+  annualKwh?: number;
   monthlyBill?: number;
   hasBattery?: boolean;
   hasEV?: boolean;
@@ -35,6 +37,8 @@ export type LeadRecord = {
   message?: string;
   source: string;
   propertyType?: string;
+  annualMwh?: number;
+  annualKwh?: number;
   monthlyBill?: number;
   hasBattery?: boolean;
   hasEV?: boolean;
@@ -280,6 +284,8 @@ export default async function handler(
       b_url,
       honeypot,
       propertyType,
+      annualMwh,
+      annualKwh,
       monthlyBill,
       hasBattery,
       hasEV,
@@ -344,6 +350,8 @@ export default async function handler(
       message: message && typeof message === 'string' ? sanitizeText(message, 3000, true) : '',
       source: typeof source === 'string' ? sanitizeText(source, 100) : 'website',
       propertyType: propertyType ? sanitizeText(String(propertyType), 50) : undefined,
+      annualMwh: typeof annualMwh === 'number' && !isNaN(annualMwh) ? annualMwh : undefined,
+      annualKwh: typeof annualKwh === 'number' && !isNaN(annualKwh) ? annualKwh : undefined,
       monthlyBill: typeof monthlyBill === 'number' && !isNaN(monthlyBill) ? monthlyBill : undefined,
       hasBattery: typeof hasBattery === 'boolean' ? hasBattery : undefined,
       hasEV: typeof hasEV === 'boolean' ? hasEV : undefined,
