@@ -37,7 +37,7 @@ export const ServicesSection: React.FC = () => {
       image: '/images/fotovoltika-domacnosti/hero.jpg',
       badge: 'Zelená domácnostiam',
       features: [
-        'Hybridné systémy s LiFePO4 batériovým úložiskom',
+        'Hybridné systémy s batériovým úložiskom',
         'On-Grid systémy pripojené do distribučnej siete',
         'Prémiové monokryštalické panely Tier 1 (JA Solar, Canadian Solar)',
         'Špičkové asymetrické hybridné striedače Deye a Huawei',

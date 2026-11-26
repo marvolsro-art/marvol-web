@@ -123,7 +123,7 @@ export default function NavrhProjektu() {
     },
     {
       q: 'Čo ak distribútor zamietne žiadosť o pripojenie z dôvodu kapacity siete?',
-      a: 'V regiónoch s preťaženou distribučnou sieťou môže distribútor obmedziť dodávku do siete. V takom prípade náš projektant navrhne systém s nulovým prietokom do siete (Zero Export) alebo hybridný systém s LiFePO4 batériovým úložiskom, ktorý distribúcia bezodkladne schváli, pretože sieť nijako nezaťažuje.',
+      a: 'V regiónoch s preťaženou distribučnou sieťou môže distribútor obmedziť dodávku do siete. V takom prípade náš projektant navrhne systém s nulovým prietokom do siete (Zero Export) alebo hybridný systém s batériovým úložiskom, ktorý distribúcia bezodkladne schváli, pretože sieť nijako nezaťažuje.',
     },
   ];
 
