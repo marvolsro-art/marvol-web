@@ -39,14 +39,6 @@ Pre neskoršie nahradenie reálnymi fotkami z vašich vlastných montáží a pr
 
 ---
 
-### 4. Tepelné čerpadlá (`/tepelne-cerpadla`)
-- **Hero fotka vonkajšej jednotky tepelného čerpadla**:
-  - Cesta: `public/images/tepelne-cerpadla/hero.jpg`
-  - Odporúčané rozlíšenie: `1920 × 1080 px` (16:9)
-  - Motív: Moderná vonkajšia monoblok jednotka vzduch-voda pri rodinnom dome
-
----
-
 ### 5. Elektroinštalácie a revízie OPOS (`/elektroinstalacie-revizie`)
 - **Hero fotka elektroinštalatéra pri rozvádzači**:
   - Cesta: `public/images/elektroinstalacie/hero.jpg`

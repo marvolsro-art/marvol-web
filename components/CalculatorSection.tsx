@@ -28,7 +28,6 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   const [propertyType, setPropertyType] = useState<'home' | 'business'>(defaultPropertyType);
   const [monthlyBill, setMonthlyBill] = useState<number>(defaultMonthlyBill);
   const [hasBattery, setHasBattery] = useState<boolean>(true);
-  const hasHeatPump = false;
   const [hasEV, setHasEV] = useState<boolean>(false);
 
   // Quick inquiry form state
@@ -43,14 +42,13 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   const [submittedLeadId, setSubmittedLeadId] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
 
-  // 1. Capacity formula: clamp(round(M/16 + 1.5*EV + 2.0*HP, 1), 3.0, 25.0) for domestic; up to 250 kWp for commercial
+  // 1. Capacity formula: clamp(round(M/16 + 1.5*EV, 1), 3.0, 25.0) for domestic; up to 250 kWp for commercial
   const annualBill = monthlyBill * 12;
   const baseKwp = monthlyBill / 16;
   const evKwp = hasEV ? 1.5 : 0;
-  const hpKwp = hasHeatPump ? 2.0 : 0;
   const maxKwp = propertyType === 'home' ? 25 : 250;
   const recommendedKwp = Math.min(
-    Math.max(Math.round((baseKwp + (propertyType === 'home' ? evKwp + hpKwp : 0)) * 10) / 10, 3),
+    Math.max(Math.round((baseKwp + (propertyType === 'home' ? evKwp : 0)) * 10) / 10, 3),
     maxKwp
   );
 
@@ -58,27 +56,22 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   const annualKwhProduction = recommendedKwp * 1050;
   const maxAnnualSavingsValue = annualKwhProduction * 0.22;
 
-  // 3. Self-consumption rates: 0.82 (battery + HP), 0.78 (battery), 0.60 (HP), 0.55 (basic)
-  const selfConsumptionRate = hasHeatPump
-    ? (hasBattery ? 0.82 : 0.60)
-    : (hasBattery ? 0.78 : 0.55);
+  // 3. Self-consumption rates: 0.78 (battery), 0.55 (basic)
+  const selfConsumptionRate = hasBattery ? 0.78 : 0.55;
 
   const rawSavings = Math.round(annualBill * selfConsumptionRate);
   const estimatedSavings = Math.min(rawSavings, Math.round(maxAnnualSavingsValue));
 
-  // 4. State subsidies: SIEA PV (575 €/kW, max 2 kW = 1 150 € cap) + Heat Pump (up to 4 600 €) = 5 750 € max combined
-  const pvSubsidy = propertyType === 'home'
+  // 4. State subsidies: SIEA PV (575 €/kW, max 2 kW = 1 150 € cap)
+  const estimatedSubsidy = propertyType === 'home'
     ? Math.min(Math.round(Math.min(recommendedKwp, 2) * 575), 1150)
     : 0;
-  const hpSubsidy = (propertyType === 'home' && hasHeatPump) ? 4600 : 0;
-  const estimatedSubsidy = pvSubsidy + hpSubsidy;
 
   // 5. Pricing and payback period
   const estimatedSystemPrice = Math.round(
     recommendedKwp * 1050 +
     (hasBattery ? 3200 : 0) +
-    (hasEV ? 950 : 0) +
-    (hasHeatPump ? 7800 : 0)
+    (hasEV ? 950 : 0)
   );
   const netPrice = Math.max(estimatedSystemPrice - estimatedSubsidy, 2200);
   const paybackYears = estimatedSavings > 0 ? (netPrice / estimatedSavings).toFixed(1) : '4.5';
@@ -124,7 +117,6 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
           propertyType,
           monthlyBill,
           hasBattery,
-          hasHeatPump,
           hasEV,
           recommendedKwp,
           estimatedSavings,

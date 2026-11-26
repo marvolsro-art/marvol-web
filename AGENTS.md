@@ -83,3 +83,13 @@ This repository contains the Next.js application for **Marvol s.r.o.** (Photovol
 - **Google Drive Auto-Sync**: Po každej úprave kalkulačky (`MARVOL-Kalkulacka-spodna-kalkulacia.html`, `MARVOL-Kalkulacka.html`, `data/`) sa súbory automaticky nahrávajú do lokálneho Google Drive priečinka: `/Users/matejmachej/Library/CloudStorage/GoogleDrive-mamachej@gmail.com/Môj disk/Marvol Kalkulačka` (beží na pozadí cez daemon `node scripts/watch-sync-drive.js` resp. `npm run watch:drive`).
 - **MK 2.0 CRM & Webhook Sync**: Konfigurácia a poznámky k Google Apps Script Webhooku pre MK 2.0 sú evidované v [`CRM_GOOGLE_DRIVE_SETUP.md`](CRM_GOOGLE_DRIVE_SETUP.md) a zdrojovom skripte [`scripts/google-apps-script-crm.js`](scripts/google-apps-script-crm.js).
 - **Worklog & Billing Ledger**: Všetky nové úlohy, vylepšenia, funkčné rozšírenia a servisné zásahy sa priebežne zaznamenávajú do [`PROJECT_WORKLOG_BILLING.md`](PROJECT_WORKLOG_BILLING.md) so sadzbou 25 €/hod. a komerčným ekvivalentom pre potreby presného a kamarátskeho vyúčtovania klientovi.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

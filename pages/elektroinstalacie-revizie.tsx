@@ -22,7 +22,7 @@ export default function ElektroinstalacieRevizie() {
       description: 'Komplexné silnoprúdové rozvody pre novostavby rodinných domov, rekonštrukcie bytov, polyfunkčné objekty, výrobné haly a priemyselné areály.',
       features: [
         'Káblové trasy, rozvody zásuviek, svetelných okruhov a spotrebičov',
-        'Napájanie technológií, vzduchotechniky, HVAC a tepelných čerpadiel',
+        'Napájanie technológií, vzduchotechniky, chladenia a HVAC',
         'Priemyselné rozvody v káblových žľaboch a podlahových kanáloch',
         'Prípojky nízkeho napätia (NN) od uličnej skrine po elektromerový rozvádzač',
         'Prepojovanie záložných generátorov a automatických prepínačov sietí (ATS)',
@@ -83,7 +83,7 @@ export default function ElektroinstalacieRevizie() {
     },
     {
       q: 'Aké revízne správy potrebujem ku kolaudácii novostavby rodinného domu?',
-      a: 'Ku kolaudácii rodinného domu sú štandardne potrebné 3 východiskové revízne správy: 1. Východisková revízna správa elektrickej prípojky (od uličného stĺpa / rozvodu po elektromer), 2. Východisková revízna správa vnútornej elektroinštalácie domu vrátane rozvádzača, 3. Východisková revízna správa bleskozvodu a uzemnenia. Pokiaľ máte na dome fotovoltiku alebo tepelné čerpadlo, je potrebná aj revízia tohto vyhradeného technického zariadenia. Všetky tieto správy pre vás vystaví tím Marvol s.r.o.',
+      a: 'Ku kolaudácii rodinného domu sú štandardne potrebné 3 východiskové revízne správy: 1. Východisková revízna správa elektrickej prípojky (od uličného stĺpa / rozvodu po elektromer), 2. Východisková revízna správa vnútornej elektroinštalácie domu vrátane rozvádzača, 3. Východisková revízna správa bleskozvodu a uzemnenia. Pokiaľ máte na dome fotovoltiku alebo batériové úložisko, je potrebná aj revízia tohto vyhradeného technického zariadenia. Všetky tieto správy pre vás vystaví tím Marvol s.r.o.',
     },
     {
       q: 'Ako často sa musia vykonávať pravidelné (periodické) revízie elektroinštalácií a bleskozvodov?',

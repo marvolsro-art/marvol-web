@@ -42,7 +42,7 @@ export default function FotovoltikaPreFirmy() {
       annualProduction: 'cca 49 000 kWh',
       annualSavings: '8 600 € / rok',
       paybackPeriod: '4,5 roka',
-      highlights: 'Zníženie uhlíkovej stopy (ESG reporting pre nadnárodných nájomcov) a napájanie HVAC tepelných čerpadiel.',
+      highlights: 'Zníženie uhlíkovej stopy (ESG reporting pre nadnárodných nájomcov) a napájanie HVAC technológií, vzduchotechniky a chladenia.',
     },
   ];
 

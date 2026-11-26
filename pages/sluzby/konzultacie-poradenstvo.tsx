@@ -71,7 +71,7 @@ export default function KonzultaciePoradenstvo() {
         'Nezávislé porovnanie ponúk dodávateľov na slovenskom trhu (ZSE, SSE, VSE, SPP, Magna Energia)',
         'Posúdenie výhodnosti virtuálnej batérie verzus fyzického LiFePO4 batériového úložiska',
         'Nastavenie stratégií dynamického nákupu a predaja elektriny na spotovom trhu OKTE',
-        'Prepojenie fotovoltiky s tepelným čerpadlom (SG Ready) a inteligentným ohrevom TÚV',
+        'Inteligentné riadenie spotreby energie a smart ohrev TÚV',
         'Inteligentné riadenie nabíjania elektromobilu z vlastných fotovoltických prebytkov',
       ],
     },
@@ -111,7 +111,7 @@ export default function KonzultaciePoradenstvo() {
     },
     {
       q: 'Aké podklady potrebujem pripraviť na konzultáciu?',
-      a: 'Na prvotnú konzultáciu vám postačí posledná ročná vyúčtovacia faktúra za elektrickú energiu (prípadne mesačné zálohové platby), adresa nehnuteľnosti a informácia o spôsobe vykurovania (tepelné čerpadlo, plyn, elektrické podlahové kúrenie) a ohrevu teplej vody.',
+      a: 'Na prvotnú konzultáciu vám postačí posledná ročná vyúčtovacia faktúra za elektrickú energiu (prípadne mesačné zálohové platby), adresa nehnuteľnosti a informácia o spôsobe vykurovania (plyn, elektrické kúrenie, pelety) a ohrevu teplej vody.',
     },
     {
       q: 'Oplatí sa mi viac fyzická batéria alebo virtuálna batéria?',
@@ -324,7 +324,7 @@ export default function KonzultaciePoradenstvo() {
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>SG Ready synergia s čerpadlami</span>
+                    <span>Smart riadenie energetickej záťaže</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />

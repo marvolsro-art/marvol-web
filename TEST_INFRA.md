@@ -83,7 +83,7 @@ Total Test Cases: **135 test cases** (exceeding the >= 127 requirement).
 - `T1-R4-04`: Embeds `LeadForm` preselected with `initialService="baterie"`.
 - `T1-R4-05`: Declares canonical path and Layout wrapper.
 
-#### 5. Route `/tepelne-cerpadla`: 5 Tests
+#### 5. Route `/tepelne-cerpadla`: Permanent 301 Redirect to `/fotovoltika-pre-domacnosti`
 - `T1-R5-01`: Heat Pumps subpage exists and exports React component.
 - `T1-R5-02`: Air-to-water seasonal coefficient of performance (COP 5.0).
 - `T1-R5-03`: Hybrid solar PV + heat pump synergy.

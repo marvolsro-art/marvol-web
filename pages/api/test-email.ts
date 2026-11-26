@@ -58,7 +58,6 @@ export default async function handler(
     netPrice: 7800,
     subsidy: 1150,
     hasBattery: true,
-    hasHeatPump: false,
     hasEV: false,
     monthlyBill: 140,
   };

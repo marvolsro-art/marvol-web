@@ -17,7 +17,6 @@ export interface LeadRequestBody {
   propertyType?: string;
   monthlyBill?: number;
   hasBattery?: boolean;
-  hasHeatPump?: boolean;
   hasEV?: boolean;
   recommendedKwp?: number;
   estimatedSavings?: number;
@@ -38,7 +37,6 @@ export type LeadRecord = {
   propertyType?: string;
   monthlyBill?: number;
   hasBattery?: boolean;
-  hasHeatPump?: boolean;
   hasEV?: boolean;
   recommendedKwp?: number;
   estimatedSavings?: number;
@@ -284,7 +282,6 @@ export default async function handler(
       propertyType,
       monthlyBill,
       hasBattery,
-      hasHeatPump,
       hasEV,
       recommendedKwp,
       estimatedSavings,
@@ -349,7 +346,6 @@ export default async function handler(
       propertyType: propertyType ? sanitizeText(String(propertyType), 50) : undefined,
       monthlyBill: typeof monthlyBill === 'number' && !isNaN(monthlyBill) ? monthlyBill : undefined,
       hasBattery: typeof hasBattery === 'boolean' ? hasBattery : undefined,
-      hasHeatPump: typeof hasHeatPump === 'boolean' ? hasHeatPump : undefined,
       hasEV: typeof hasEV === 'boolean' ? hasEV : undefined,
       recommendedKwp: typeof recommendedKwp === 'number' && !isNaN(recommendedKwp) ? recommendedKwp : undefined,
       estimatedSavings: typeof estimatedSavings === 'number' && !isNaN(estimatedSavings) ? estimatedSavings : undefined,
@@ -404,7 +400,7 @@ export default async function handler(
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `**Nový Dopyt pre Marvol s.r.o.!**\n**Meno:** ${newLead.name}\n**Tel:** ${newLead.phone}\n**E-mail:** ${newLead.email || 'Nezadané'}\n**Lokalita:** ${newLead.city || 'Nezadané'}\n**Služba:** ${newLead.service || 'Nezadané'}\n**Zdroj:** ${newLead.source}\n**Výkon:** ${newLead.recommendedKwp || '-'} kWp | **Úspora:** ${newLead.estimatedSavings || '-'} €/rok\n**Investícia:** ${newLead.netPrice || '-'} € | **Dotácia:** ${newLead.subsidy !== undefined ? `${newLead.subsidy} €` : '-'}\n**Tepelné čerpadlo:** ${newLead.hasHeatPump ? 'Áno' : 'Nie'}`,
+            content: `**Nový Dopyt pre Marvol s.r.o.!**\n**Meno:** ${newLead.name}\n**Tel:** ${newLead.phone}\n**E-mail:** ${newLead.email || 'Nezadané'}\n**Lokalita:** ${newLead.city || 'Nezadané'}\n**Služba:** ${newLead.service || 'Nezadané'}\n**Zdroj:** ${newLead.source}\n**Výkon:** ${newLead.recommendedKwp || '-'} kWp | **Úspora:** ${newLead.estimatedSavings || '-'} €/rok\n**Investícia:** ${newLead.netPrice || '-'} € | **Dotácia:** ${newLead.subsidy !== undefined ? `${newLead.subsidy} €` : '-'}`,
           }),
         });
       } catch (err) {

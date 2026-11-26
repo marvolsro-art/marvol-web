@@ -15,7 +15,6 @@ export default function MinimalistTestPage() {
   // Minimalist Calculator State
   const [monthlyBill, setMonthlyBill] = useState(120);
   const [withBattery, setWithBattery] = useState(true);
-  const withHeatPump = false;
   const [withWallbox, setWithWallbox] = useState(false);
 
   // Lead Form State
@@ -39,9 +38,7 @@ export default function MinimalistTestPage() {
     25
   );
   const estimatedSavings = Math.round(monthlyBill * 12 * (withBattery ? 0.76 : 0.52));
-  const estimatedSubsidy = withHeatPump
-    ? 4600
-    : Math.min(Math.round(Math.min(recommendedKwp, 2) * 575), 1150);
+  const estimatedSubsidy = Math.min(Math.round(Math.min(recommendedKwp, 2) * 575), 1150);
   const payback = (
     Math.max(recommendedKwp * 980 + (withBattery ? 3000 : 0) - estimatedSubsidy, 1800) /
     estimatedSavings
@@ -65,7 +62,7 @@ export default function MinimalistTestPage() {
           name,
           phone,
           city,
-          message: `Dopyt z minimalistickej stránky (/test-2) - Kategória: ${leadCategory}. Odporúčaný výkon: ${recommendedKwp} kWp, Batéria: ${withBattery ? 'Áno' : 'Nie'}, TČ: ${withHeatPump ? 'Áno' : 'Nie'}. Poznámka: ${note}`,
+          message: `Dopyt z minimalistickej stránky (/test-2) - Kategória: ${leadCategory}. Odporúčaný výkon: ${recommendedKwp} kWp, Batéria: ${withBattery ? 'Áno' : 'Nie'}. Poznámka: ${note}`,
           propertyType: leadCategory === 'firma' ? 'business' : 'home',
           monthlyBill,
           hasBattery: withBattery,

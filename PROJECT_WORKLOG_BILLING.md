@@ -28,15 +28,17 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-13** | **Úprava portfólia služieb** | Dočasné odstránenie ponuky a možnosti výberu tepelných čerpadiel naprieč celým webom: odstránený toggle prepínač a výpočet z interaktívnej kalkulačky (`CalculatorSection`), vyčistená desktopová a mobilná navigácia (`Header`), aktualizované portfólio na 3 hlavné piliere (fotovoltika, BESS batérie, elektroinštalácie & revízie v `ServicesSection`), odstránenie z dopytových formulárov (`LeadForm`, `ContactSection`), úprava dotačného banneru a FAQ (nahradenie dotácie 4 600 € na TČ presnou fotovoltickou a B2B schémou Zelená podnikom). Overené cez anti-slop linter (0 FAIL) a `tsc --noEmit`. | 1,0 h | **25,00 €** | 150,00 € | ✅ Hotovo |
 | **ACT-14** | **GDPR & Cookie Compliance v2.0** | Kompletný redesign a technický refaktoring cookie lišty pre 100% zosúladenie so slovenským Zákonom o elektronických komunikáciách (§ 109 ods. 8 zákona č. 452/2021 Z. z.) a GDPR. Implementácia rovnocenných tlačidiel „Prijať všetky“ a „Odmietnuť všetky“ bez dark patterns, rozdelenie do 4 kategórií, zoznam konkrétnych cookies a expirácií v lište i v zásadách na webe, trvalé odvolanie súhlasu, striktné Google Consent Mode v2 default denied načítavanie v hlavičke (`_document.tsx`) a backendový audit log súhlasov (`/api/consent`) s anonymizovanou IP preukázateľný pri kontrole ÚOOÚ a Telekomunikačného úradu. | 1,5 h | **37,50 €** | 250,00 € | ✅ Hotovo |
 | **ACT-15** | **CI/CD & Vercel Lockfile Sync** | Vyriešenie zlyhania buildu na Verceli (`ERR_PNPM_OUTDATED_LOCKFILE`) po aktualizácii Next.js na verziu 16.4.5. Kompletná resynchronizácia `pnpm-lock.yaml`, overenie `pnpm install --frozen-lockfile` a redeployment na vetvy `main` aj `preview`. | 0,5 h | *V rámci technickej garancie (0 €)* | 50,00 € | ✅ Hotovo |
+| **ACT-16** | **Hero fotografia – Reálna inštalácia & vizuálny orez** | Nahradenie umelej/stockovej makro fotky v hero sekcii údržbovej stránky (`pages/index.tsx`) reálnou fotografiou montáže MARVOL na rodinnom dome s tmavou škridlou. Precízny orez s elimináciou lešenia, susedných objektov a stavebného dreva v pomere 16:9 (1376×768), architektonický color grading (vyzdvihnutie textúry FV článkov, busbarov a čiernej škridly pre bezproblémovú čitateľnosť textu pod radiálnou vinetou) a overenie cez DevTools. | 0,5 h | **12,50 €** | 60,00 € | ✅ Hotovo |
+| **ACT-17** | **Kompletná eliminácia tepelných čerpadiel naprieč celým webom & podstránkami** | Forenzná čistka všetkých zostávajúcich zmienok o tepelných čerpadlách naprieč celým projektom: podstránka `/tepelne-cerpadla` prerobená na permanentný 301 server-side redirect na `/fotovoltika-pre-domacnosti`, vyčistený sitemap.xml, referenčná karta Košice prepnutá z fotky tepelného čerpadla na reálny hybridný fotovoltický systém (`hybrid-system.jpg`), vyčistené texty v `fotovoltika-pre-domacnosti.tsx`, `fotovoltika-pre-firmy.tsx`, `sluzby/konzultacie-poradenstvo.tsx`, `elektroinstalacie-revizie.tsx`, odstránené dotácie na TČ z `constants/company.ts`, vyčistené API routy (`/api/lead`, `/api/test-email`), odstránené nepoužívané ikony (`HeatPumpIcon`), aktualizácia kalkulátora na `test-2.tsx` a `CalculatorSection.tsx`. Overené cez `tsc --noEmit` a `tasteskill lint` (0 FAIL). | 1,0 h | **25,00 €** | 160,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **44,0 hodín + základný balík webu**
-- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 500,00 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 490,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~3 990,00 € (úspora cca 73 %)**
+- **Celkový počet odpracovaných hodín:** **45,5 hodín + základný balík webu**
+- **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 537,50 €**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 710,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 172,50 € (úspora cca 73 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

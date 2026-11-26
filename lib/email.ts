@@ -158,10 +158,6 @@ export function buildLeadNotificationHtml(lead: LeadRecord): string {
           <td class="value">${lead.hasBattery ? '✅ Áno (Hybridný systém)' : '❌ Nie (On-Grid)'}</td>
         </tr>
         <tr>
-          <td class="label">Tepelné čerpadlo</td>
-          <td class="value">${lead.hasHeatPump ? '✅ Áno' : '❌ Nie'}</td>
-        </tr>
-        <tr>
           <td class="label">EV Wallbox (nabíjanie auta)</td>
           <td class="value">${lead.hasEV ? '✅ Áno' : '❌ Nie'}</td>
         </tr>
@@ -224,7 +220,6 @@ export function buildLeadNotificationPlainText(lead: LeadRecord): string {
       `- Odhadovaná investícia po dotácii: ${lead.netPrice ? `${lead.netPrice} €` : '-'}`,
       `- Mesačná platba za elektrinu: ${lead.monthlyBill ? `${lead.monthlyBill} €` : '-'}`,
       `- Batéria: ${lead.hasBattery ? 'Áno' : 'Nie'}`,
-      `- Tepelné čerpadlo: ${lead.hasHeatPump ? 'Áno' : 'Nie'}`,
       `- EV Wallbox: ${lead.hasEV ? 'Áno' : 'Nie'}`
     );
   }

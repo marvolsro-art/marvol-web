@@ -28,13 +28,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  <!-- Tepelné čerpadlá -->
-  <url>
-    <loc>https://marvol.sk/tepelne-cerpadla</loc>
-    <lastmod>2026-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
   <!-- Elektroinštalácie & Revízie -->
   <url>
     <loc>https://marvol.sk/elektroinstalacie-revizie</loc>

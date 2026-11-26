@@ -165,7 +165,6 @@ export const LeadForm: React.FC<LeadFormProps> = ({
           propertyType: prefillData?.propertyType,
           monthlyBill: prefillData?.monthlyBill,
           hasBattery: prefillData?.hasBattery,
-          hasHeatPump: prefillData?.hasHeatPump,
           hasEV: prefillData?.hasEV,
           recommendedKwp: prefillData?.recommendedKwp,
           estimatedSavings: prefillData?.estimatedSavings,
@@ -261,7 +260,6 @@ export const LeadForm: React.FC<LeadFormProps> = ({
       (prefillData.recommendedKwp ||
         prefillData.monthlyBill ||
         prefillData.hasBattery ||
-        prefillData.hasHeatPump ||
         prefillData.hasEV)
   );
 

@@ -1,6 +1,5 @@
 export { default as SunIcon, SunIcon as Sun } from './SunIcon';
 export { default as BatteryIcon, BatteryIcon as Battery } from './BatteryIcon';
-export { default as HeatPumpIcon, HeatPumpIcon as HeatPump } from './HeatPumpIcon';
 export { default as BoltIcon, BoltIcon as Bolt } from './BoltIcon';
 export { default as CarIcon, CarIcon as Car } from './CarIcon';
 export { default as CheckIcon, CheckIcon as Check } from './CheckIcon';

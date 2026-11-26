@@ -64,7 +64,7 @@ export const ReferencesSection: React.FC = () => {
       specs: '10 kWp + Wallbox + Batéria 10 kWh',
       description: 'Fotovoltika s orientáciou JV/JZ s integrovaným inteligentným wallboxom pre nabíjanie elektromobilu priamo z nadbytočnej slnečnej energie.',
       badge: 'Dom + EV Wallbox',
-      image: '/images/tepelne-cerpadla/hero.jpg',
+      image: '/images/fotovoltika-domacnosti/hybrid-system.jpg',
     },
     {
       location: 'Obec Malinová',
