@@ -25,7 +25,7 @@ export const TestimonialsSection: React.FC = () => {
       name: 'Pavol Varga',
       date: '16. Jún 2026',
       rating: 5,
-      text: 'Špičková kvalita a individuálny prístup. Technologický návrh s komponentmi Deye a zapojením inteligentných wallboxov prispôsobili chodu našej domácnosti. Integrácia batériového úložiska vykazuje vysokú efektivitu.'
+      text: 'Špičková kvalita a individuálny prístup. Technologický návrh s komponentmi Solinteg a zapojením inteligentných wallboxov prispôsobili chodu našej domácnosti. Integrácia batériového úložiska vykazuje vysokú efektivitu.'
     },
     {
       name: 'Michal Chovanec',

@@ -40,7 +40,7 @@ export const ServicesSection: React.FC = () => {
         'Hybridné systémy s batériovým úložiskom',
         'On-Grid systémy pripojené do distribučnej siete',
         'Prémiové monokryštalické panely Tier 1 (JA Solar, Canadian Solar)',
-        'Špičkové asymetrické hybridné striedače Deye a Huawei',
+        'Špičkové asymetrické hybridné striedače Solinteg a GoodWe',
         'Kompletná administratíva a schválenie distribúcie (SSD, ZSD, VSD)',
         'Mobilná aplikácia na monitoring výroby a spotreby v reálnom čase',
       ],
@@ -227,7 +227,7 @@ export const ServicesSection: React.FC = () => {
                   <span>Garantované štandardy Marvol s.r.o.</span>
                 </div>
                 <div className="space-y-2 text-xs text-slate-300">
-                  <p><strong className="text-white">Tier 1 komponenty:</strong> Používame výhradne overené značky (JA Solar, Canadian Solar, Deye, Huawei).</p>
+                  <p><strong className="text-white">Tier 1 komponenty:</strong> Používame výhradne overené značky (JA Solar, Canadian Solar, Solinteg, GoodWe).</p>
                   <p><strong className="text-white">Distribúcia & Dotácie:</strong> Žiadosti na SSD, ZSD a VSD aj SIEA vybavíme za vás bez poplatku.</p>
                   <p><strong className="text-white">Odborná revízia:</strong> Certifikovaný revízny technik vystaví platnú správu OPOS pre kolaudáciu.</p>
                 </div>

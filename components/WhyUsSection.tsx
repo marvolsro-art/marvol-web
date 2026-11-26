@@ -44,7 +44,7 @@ export const WhyUsSection: React.FC = () => {
     {
       icon: BoltIcon,
       title: 'Prémiové komponenty Tier 1',
-      description: 'Používame vysokoúčinné solárne panely (JA Solar, Canadian Solar) a inteligentné asymetrické striedače Deye a Huawei s dlhoročnou zárukou.',
+      description: 'Používame vysokoúčinné solárne panely (JA Solar, Canadian Solar) a inteligentné asymetrické striedače Solinteg a GoodWe s dlhoročnou zárukou.',
       tag: 'Záruka až 25 rokov',
     },
     {

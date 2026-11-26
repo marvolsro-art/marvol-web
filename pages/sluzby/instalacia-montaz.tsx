@@ -53,7 +53,7 @@ export default function InstalaciaMontaz() {
       description:
         'Montáž a konfigurácia špičkových meničov a bezpečných LiFePO4 batériových modulov. Zabezpečíme plynulý prechod na núdzové napájanie (EPS) pri výpadku siete.',
       features: [
-        'Osadenie a zapojenie prémiových striedačov (Solax, GoodWe, Huawei, Fronius, Deye)',
+        'Osadenie a zapojenie prémiových striedačov (Solinteg, GoodWe)',
         'Inštalácia bezpečných LiFePO4 batériových modulov s viacstupňovým BMS a balancovaním článkov',
         'Zapojenie vyhradeného havarijného okruhu (EPS / Backup) s prepnutím do mikrosekúnd',
         'Dodržanie predpísaných bezpečnostných odstupov a odvetrania technickej miestnosti',

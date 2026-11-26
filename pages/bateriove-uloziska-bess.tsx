@@ -28,7 +28,7 @@ export default function BaterioveUloziskaBess() {
         'Hĺbka vybitia až 95% (DoD) bez degradácie kapacity',
         'Prepnutie do záložného režimu za menej ako 20 milisekúnd',
         'Možnosť postupného dokupovania batériových modulov',
-        'Plná integrácia s hybridnými meničmi GoodWe, Growatt, Deye',
+        'Plná integrácia s hybridnými meničmi Solinteg a GoodWe',
       ],
     },
     {

@@ -452,7 +452,7 @@ export default function FotovoltikaPreDomacnosti() {
               </div>
               <h3 className="text-xl font-black text-white">Asymetrické hybridné striedače</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Používame trojfázové hybridné meniče (GoodWe, Growatt, Deye, Huawei) s plnou asymetriou. To znamená, že ak máte na jednej fáze zapnutú rýchlovarnú kanvicu a na druhej nič, menič pošle energiu presne tam, kde vzniká spotreba.
+                Používame trojfázové hybridné meniče (Solinteg, GoodWe) s plnou asymetriou. To znamená, že ak máte na jednej fáze zapnutú rýchlovarnú kanvicu a na druhej nič, menič pošle energiu presne tam, kde vzniká spotreba.
               </p>
               <ul className="text-xs text-slate-300 space-y-1.5 pt-2">
                 <li>• Mikrosekundový záložný výstup UPS / EPS</li>
