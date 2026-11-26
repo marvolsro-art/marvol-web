@@ -74,8 +74,8 @@ export const SLUZBY_ITEMS: NavDropdownItem[] = [
     icon: 'shield',
   },
   {
-    title: 'Revízie, servis & Dotácie SIEA',
-    subtitle: 'Východiskové OPOS revízie, záručný servis & rezervácia dotácií SIEA',
+    title: 'Revízie & Dotácie SIEA',
+    subtitle: 'Úradné správy § 24, termovízia Fluke.',
     href: '/sluzby/revizie-dotacie',
     badge: 'Úradné revízie',
     badgeColor: 'emerald',

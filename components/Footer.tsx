@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/sluzby/revizie-dotacie" className="hover:text-amber-400 transition-colors">
-                  Revízie OPOS &amp; Dotácie SIEA
+                  Revízie &amp; Dotácie SIEA
                 </Link>
               </li>
               <li>

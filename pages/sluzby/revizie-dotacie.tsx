@@ -11,7 +11,7 @@ export default function RevizieDotacie() {
   const breadcrumbs = [
     { name: 'Domov', href: '/' },
     { name: 'Služby', href: '/#sluzby' },
-    { name: 'Revízie, servis & Dotácie SIEA', href: '/sluzby/revizie-dotacie' },
+    { name: 'Revízie & Dotácie SIEA', href: '/sluzby/revizie-dotacie' },
   ];
 
   const parameterCards = [
@@ -47,7 +47,7 @@ export default function RevizieDotacie() {
     },
     {
       id: 'dotacie-zelena-domacnostiam',
-      title: 'Vybavenie dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €)',
+      title: 'Vybavenie dotácie Zelená domácnostiam (FV do 1 150 €)',
       badge: 'SIEA Zelená domácnostiam',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
@@ -100,7 +100,7 @@ export default function RevizieDotacie() {
       step: '4',
       title: 'Odovzdanie správy & odpočet dotácie',
       description:
-        'Dostanete originál revíznej správy pre distribútora (SSD/ZSD/VSD) i poisťovňu, pričom dotáciu vám odpočítame priamo z faktúry.',
+        'Dostanete originál revíznej správy pre distribútora (SSD/ZSD/VSD) i poisťovňu s kompletnou dotačnou dokumentáciou.',
     },
   ];
 
@@ -147,7 +147,7 @@ export default function RevizieDotacie() {
         {
           '@type': 'ListItem',
           position: 3,
-          name: 'Revízie, servis & Dotácie SIEA',
+          name: 'Revízie & Dotácie SIEA',
           item: 'https://marvol.sk/sluzby/revizie-dotacie',
         },
       ],
@@ -159,7 +159,7 @@ export default function RevizieDotacie() {
       name: 'Úradné revízie fotovoltiky (OPOS) & Dotácie SIEA',
       serviceType: 'Revízie elektrických zariadení OPOS a dotačný servis',
       description:
-        'Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €) a Zelená podnikom. Rýchlo a spoľahlivo.',
+        'Odborné prehliadky a skúšky (OPOS) certifikovaným revíznym technikom (§ 24) a vybavenie štátnych dotácií SIEA Zelená domácnostiam (FV do 1 150 €) a Zelená podnikom. Rýchlo a spoľahlivo.',
       provider: {
         '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
