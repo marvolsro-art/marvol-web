@@ -9,7 +9,6 @@ import { CalculatorSection } from '@/components/CalculatorSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { WhyUsSection } from '@/components/WhyUsSection';
 import { ReferencesSection } from '@/components/ReferencesSection';
-import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { FAQSection } from '@/components/FAQSection';
 import { ContactSection } from '@/components/ContactSection';
 
@@ -99,7 +98,6 @@ export default function Home() {
       <ProcessSection />
       <WhyUsSection />
       <ReferencesSection />
-      <TestimonialsSection />
       <FAQSection />
       <PartnerLogosSection />
       <ContactSection />
