@@ -11,7 +11,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: 'Akú výšku dotácie môžem získať pre svoj rodinný dom?',
-      a: 'Z programu Zelená domácnostiam môžete na fotovoltiku získať štátny príspevok v sadzbe 575 € na 1 kW (podporovaný výkon do 2 kW, teda maximálne 1 150 €). Nízkopríjmové domácnosti v programe Zelená solidarita môžu získať podporu až do 90 % oprávnených nákladov a podnikateľské subjekty v programe Zelená podnikom až do 50 %. Spoločnosť Marvol s.r.o. ako registrovaný zhotoviteľ SIEA zabezpečí kompletnú online rezerváciu prostriedkov aj administráciu bezplatne za vás.'
+      a: 'Z programu Zelená domácnostiam môžete na fotovoltiku získať štátny príspevok v sadzbe 575 € na 1 kW (podporovaný výkon do 2 kW, teda maximálne 1 150 €). Nízkopríjmové domácnosti v programe Zelená solidarita môžu získať podporu až do 90 % oprávnených nákladov a podnikateľské subjekty v programe Zelená podnikom až do 50 %. Spoločnosť Marvol s.r.o. ako registrovaný zhotoviteľ SIEA zabezpečí kompletnú online rezerváciu prostriedkov aj administráciu.'
     },
     {
       q: 'Čo sa stane s vyrobenou elektrinou, ktorú momentálne nespotrebujem?',

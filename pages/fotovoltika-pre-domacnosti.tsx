@@ -85,7 +85,7 @@ export default function FotovoltikaPreDomacnosti() {
   const faqs = [
     {
       q: 'Akú vysokú dotáciu môžem získať na fotovoltiku pre rodinný dom?',
-      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete získať štátny príspevok v sadzbe 575 € na 1 kW inštalovaného výkonu (podporovaný výkon max. 2 kW, celkovo do výšky 1 150 €, najviac 50 % oprávnených nákladov). Pre nízkopríjmové domácnosti v programe Zelená solidarita predstavuje podpora až do 90 % oprávnených výdavkov. Spoločnosť Marvol s.r.o. vybaví celú online rezerváciu a administratívu bezplatne za vás.',
+      a: 'Z národného projektu Zelená domácnostiam (SIEA) môžete získať štátny príspevok v sadzbe 575 € na 1 kW inštalovaného výkonu (podporovaný výkon max. 2 kW, celkovo do výšky 1 150 €, najviac 50 % oprávnených nákladov). Pre nízkopríjmové domácnosti v programe Zelená solidarita predstavuje podpora až do 90 % oprávnených výdavkov. Spoločnosť Marvol s.r.o. vybaví celú online rezerváciu a administratívu.',
     },
     {
       q: 'Ako dlho trvá kompletná inštalácia fotovoltickej elektrárne na kľúč?',
