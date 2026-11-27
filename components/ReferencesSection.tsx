@@ -91,9 +91,6 @@ export const ReferencesSection: React.FC = () => {
           <h2 className="text-3xl sm:text-5xl font-black text-white">
             Ukážky našich projektov
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Prezrite si výber z viac ako 350 úspešných inštalácií pre rodinné domy, firmy a obce.
-          </p>
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-3 pt-6">
