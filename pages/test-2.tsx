@@ -343,7 +343,7 @@ export default function MinimalistTestPage() {
             </h1>
 
             <p className="text-sm sm:text-xl text-slate-300/90 leading-relaxed font-normal px-2">
-              Navrhujeme a inštalujeme prémiové fotovoltické elektrárne, bezpečné batériové úložiská LiFePO4 a elektroinštalácie. Všetko na kľúč so zárukou až 30 rokov.
+              Navrhujeme a inštalujeme prémiové fotovoltické elektrárne, bezpečné batériové úložiská LiFePO4 a elektroinštalácie. Všetko na kľúč so zárukou až 25 rokov.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2">
@@ -474,7 +474,7 @@ export default function MinimalistTestPage() {
               <div className="text-[11px] sm:text-xs text-slate-400 font-medium">Zníženie výdavkov za elektrinu</div>
             </div>
             <div className="space-y-1 p-2">
-              <div className="text-2xl sm:text-4xl font-black text-white">30 rokov</div>
+              <div className="text-2xl sm:text-4xl font-black text-white">25 rokov</div>
               <div className="text-[11px] sm:text-xs text-slate-400 font-medium">Lineárna garancia výkonu panelov</div>
             </div>
             <div className="space-y-1 p-2">
@@ -729,7 +729,7 @@ export default function MinimalistTestPage() {
                     N-Type TOPCon Fotovoltika
                   </h3>
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Najnovšia generácia monokryštalických panelov s účinnosťou až 22,5%. Vysoký zisk aj pri difúznom zimnom svetle a lineárna záruka na výkon 30 rokov.
+                    Najnovšia generácia monokryštalických panelov s účinnosťou až 22,5%. Vysoký zisk aj pri difúznom zimnom svetle a lineárna záruka na výkon 25 rokov.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
@@ -981,7 +981,7 @@ export default function MinimalistTestPage() {
                   Slovenská spoločnosť s reálnym zázemím
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Žiadna virtuálna schránka. Disponujeme vlastným skladom komponentov vo Vrútkach, technickou podporou a monitorovacím dispečingom. Sme tu pre vás počas celej 30-ročnej životnosti systému.
+                  Žiadna virtuálna schránka. Disponujeme vlastným skladom komponentov vo Vrútkach, technickou podporou a monitorovacím dispečingom. Sme tu pre vás počas celej 25-ročnej životnosti systému.
                 </p>
               </div>
               <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">

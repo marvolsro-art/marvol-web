@@ -32,7 +32,7 @@ export default function FotovoltikaPreDomacnosti() {
     },
     {
       q: 'Aká je životnosť fotovoltických panelov, meniča a batérií?',
-      a: 'Námi dodávané Tier-1 N-Type TOPCon fotovoltické panely majú lineárnu garanciu výkonu 25 až 30 rokov (garantovaný minimálny výkon 85% po 30 rokoch). Hybridné meniče majú životnosť 12–15 rokov s možnosťou predĺženej záruky na 10 rokov. Batérie s chémiou LiFePO4 zvládnu viac ako 6 000 plných nabíjacích cyklov, čo pri bežnom dennom cyklovaní predstavuje životnosť 16 až 20 rokov.',
+      a: 'Námi dodávané Tier-1 fotovoltické panely majú lineárnu garanciu výkonu 25 rokov (garantovaný minimálny výkon po 25 rokoch). Hybridné meniče majú životnosť 12–15 rokov s možnosťou predĺženej záruky na 10 rokov. Batérie s chémiou LiFePO4 zvládnu viac ako 6 000 plných nabíjacích cyklov, čo pri bežnom dennom cyklovaní predstavuje životnosť 16 až 20 rokov.',
     },
     {
       q: 'Vybaví Marvol s.r.o. celú komunikáciu s distribučnou spoločnosťou a štátom?',
@@ -158,7 +158,7 @@ export default function FotovoltikaPreDomacnosti() {
                   <div className="text-slate-400 text-xs mt-0.5">Vybavenie dotácie</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3  col-span-2 sm:col-span-1">
-                  <div className="text-sky-400 font-black text-xl sm:text-2xl">30 rokov</div>
+                  <div className="text-sky-400 font-black text-xl sm:text-2xl">25 rokov</div>
                   <div className="text-slate-400 text-xs mt-0.5">Garancia výkonu panelov</div>
                 </div>
               </div>
@@ -195,24 +195,13 @@ export default function FotovoltikaPreDomacnosti() {
                   <div className="absolute top-4 right-4 px-3 py-1 bg-amber-400 text-slate-950 font-bold text-xs rounded-full">
                     Marvol Štandard
                   </div>
-
-                  {/* Bottom Image Overlay Details */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
-                    <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">Celočierne N-Type TOPCon panely</span>
-                      <span className="text-emerald-400 font-bold">Úspora až 80%</span>
-                    </div>
-                    <p className="text-xs text-slate-400 mt-1">
-                      Estetická integrácia na rodinný dom s 30-ročnou garanciou výkonu a bezstarostným servisom.
-                    </p>
-                  </div>
                 </div>
 
                 {/* Quick Quality Matrix */}
                 <div className="p-4 sm:p-5 grid grid-cols-2 gap-3 bg-slate-900 text-xs">
                   <div className="flex items-center gap-2 text-slate-300">
                     <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
-                    <span>Tier-1 N-Type TOPCon</span>
+                    <span>Tier-1 fotovoltické panely</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <Check className="w-4 h-4 text-emerald-400 shrink-0 inline-block" />
@@ -245,7 +234,7 @@ export default function FotovoltikaPreDomacnosti() {
               Prémiové technológie
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Komponenty s overenou 30-ročnou životnosťou
+              Komponenty s overenou 25-ročnou životnosťou
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
               Neinštalujeme no-name komponenty. Pre vaše domovy volíme výhradne Tier-1 technológie, ktoré garantujú maximálnu bezpečnosť, vysokú účinnosť a bezproblémový servis.
@@ -258,14 +247,14 @@ export default function FotovoltikaPreDomacnosti() {
               <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
                 <Sun className="w-6 h-6 text-amber-400" />
               </div>
-              <h3 className="text-xl font-black text-white">Fotovoltické panely N-Type TOPCon</h3>
+              <h3 className="text-xl font-black text-white">Fotovoltické panely Tier-1</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Nová generácia kremíkových článkov N-Type TOPCon prekonáva staršie P-Type PERC panely. Prináša vyššiu účinnosť (&gt;22,5%), mimoriadny výkon pri slabom rannom i večernom osvetlení a zanedbateľnú degradáciu (max. 0,4% ročne).
+                Nová generácia fotovoltických kremíkových článkov prekonáva staršie panely. Prináša vysokú účinnosť (&gt;22,5%), mimoriadny výkon pri slabom rannom i večernom osvetlení a zanedbateľnú degradáciu (max. 0,4% ročne).
               </p>
               <ul className="text-xs text-slate-300 space-y-1.5 pt-2">
                 <li>• 12 až 25 rokov produktová záruka</li>
-                <li>• 30 rokov lineárna garancia výkonu (min. 87,4%)</li>
-                <li>• Celočierny elegantný Full-Black dizajn</li>
+                <li>• 25 rokov lineárna garancia výkonu</li>
+                <li>• Robustný eloxovaný hliníkový rám</li>
               </ul>
             </div>
 

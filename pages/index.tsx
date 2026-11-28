@@ -34,7 +34,7 @@ const homepageSchema = [
         name: 'Ako dlho trvá návratnosť investície do fotovoltiky?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Návratnosť rodinného fotovoltického systému sa pri súčasných cenách elektrickej energie a s využitím štátnej dotácie pohybuje obvykle od 3,5 do 6 rokov. Pri životnosti panelov 25-30 rokov vám tak systém prináša desiatky rokov bezplatnej energie.',
+          text: 'Návratnosť rodinného fotovoltického systému sa pri súčasných cenách elektrickej energie a s využitím štátnej dotácie pohybuje obvykle od 3,5 do 6 rokov. Pri životnosti panelov 25 rokov vám tak systém prináša desiatky rokov stabilnej vyrobenej energie.',
         },
       },
       {

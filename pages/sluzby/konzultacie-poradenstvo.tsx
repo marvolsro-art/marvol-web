@@ -42,7 +42,7 @@ export default function KonzultaciePoradenstvo() {
         'Výpočet doby návratnosti (Payback Period) a čistej súčasnej hodnoty projektu (NPV)',
         'Porovnanie ekonomiky čisto fotovoltického systému vs. hybridného systému s batériou',
         'Započítanie ročnej degradácie fotovoltických panelov (iba 0,4% ročne pri N-Type TOPCon)',
-        'Výpočet mernej ceny vyrobenej elektriny (LCOE) počas garantovanej 30-ročnej životnosti',
+        'Výpočet mernej ceny vyrobenej elektriny (LCOE) počas garantovanej 25-ročnej životnosti',
       ],
     },
     {
@@ -88,7 +88,7 @@ export default function KonzultaciePoradenstvo() {
       step: '2',
       title: 'Spracovanie energetického prepočtu',
       description:
-        'Naši inžinieri namodelujú hodinový profil výroby a spotreby, vypočítajú mieru sebestačnosti a presnú ekonomickú návratnosť v horizonte 15 až 30 rokov.',
+        'Naši inžinieri namodelujú hodinový profil výroby a spotreby, vypočítajú mieru sebestačnosti a presnú ekonomickú návratnosť v horizonte 15 až 25 rokov.',
     },
     {
       step: '3',

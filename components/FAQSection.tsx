@@ -7,7 +7,7 @@ export const FAQSection: React.FC = () => {
   const faqs = [
     {
       q: 'Ako dlho trvá návratnosť investície do fotovoltiky?',
-      a: 'Návratnosť rodinného fotovoltického systému sa pri súčasných cenách elektrickej energie a s využitím štátnej dotácie pohybuje obvykle od 3,5 do 6 rokov. Pri životnosti panelov 25-30 rokov vám tak systém prináša desiatky rokov bezplatnej energie.'
+      a: 'Návratnosť rodinného fotovoltického systému sa pri súčasných cenách elektrickej energie a s využitím štátnej dotácie pohybuje obvykle od 3,5 do 6 rokov. Pri životnosti panelov 25 rokov vám tak systém prináša desiatky rokov stabilnej vyrobenej energie.'
     },
     {
       q: 'Akú výšku dotácie môžem získať pre svoj rodinný dom?',
