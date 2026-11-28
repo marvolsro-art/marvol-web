@@ -57,7 +57,7 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
   // 1. Solárne panely
   {
     id: 'panel-canadian-450',
-    name: 'Canadian Solar HiKu7 N-Type TOPCon 450 Wp Bifacial',
+    name: 'Canadian Solar HiKu7 Tier 1 450 Wp Bifacial',
     category: 'panels',
     brand: 'Canadian Solar',
     model: 'CS7L-450MS-BF',
@@ -67,19 +67,19 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
     stockQty: 142,
     badge: 'Tier 1 Top Seller',
     badgeColor: 'amber',
-    warranty: '30 rokov lineárna garancia',
+    warranty: '25 rokov lineárna garancia',
     specs: [
       { label: 'Účinnosť', value: '22.5 %' },
-      { label: 'Technológia', value: 'Bifacial N-Type TOPCon' },
+      { label: 'Technológia', value: 'Bifacial Tier 1 panely' },
       { label: 'Rám', value: 'Čierny eloxovaný hliník 30mm' },
       { label: 'Zaťaženie', value: 'Sneh 5400 Pa / Vietor 2400 Pa' },
     ],
     description:
-      'Špičkový bifaciálny fotovoltický panel s TOPCon článkami a zadným sklom pre dodatočný energetický zisk až +25% odrazom z podkladu.',
+      'Špičkový bifaciálny Tier 1 fotovoltický panel so zadným sklom pre dodatočný energetický zisk až +25% odrazom z podkladu.',
   },
   {
     id: 'panel-jinko-580',
-    name: 'Jinko Solar Tiger Neo 580 Wp Bifacial N-Type',
+    name: 'Jinko Solar Tiger Neo 580 Wp Bifacial Tier 1',
     category: 'panels',
     brand: 'Jinko',
     model: 'JKM580N-72HL4-BDV',
@@ -89,10 +89,10 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
     stockQty: 88,
     badge: 'Priemyselný výkon',
     badgeColor: 'sky',
-    warranty: '30 rokov lineárna garancia',
+    warranty: '25 rokov lineárna garancia',
     specs: [
       { label: 'Účinnosť', value: '22.45 %' },
-      { label: 'Technológia', value: 'SMBB Dual-Glass N-Type' },
+      { label: 'Technológia', value: 'SMBB Dual-Glass Tier 1' },
       { label: 'Rozmery', value: '2278 × 1134 × 30 mm' },
       { label: 'Degradácia', value: '1. rok <1%, potom max 0.4%/rok' },
     ],
@@ -312,7 +312,7 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
   // 6. Hotové FV sety
   {
     id: 'set-ongrid-5kwp',
-    name: 'Kompletný On-Grid set 5 kWp (Canadian Solar TOPCon + Huawei)',
+    name: 'Kompletný On-Grid set 5 kWp (Tier 1 panely + Huawei)',
     category: 'sets',
     brand: 'Huawei',
     model: 'Set On-Grid 5 kWp',
@@ -323,9 +323,9 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
     stockQty: 8,
     badge: 'Dotácia SIEA do 1 500 €',
     badgeColor: 'amber',
-    warranty: '30 rokov panely, 10 rokov menič',
+    warranty: '25 rokov panely, 10 rokov menič',
     specs: [
-      { label: 'Panely v zostave', value: '11× Canadian Solar 450 Wp TOPCon' },
+      { label: 'Panely v zostave', value: '11× Tier 1 panely 450 Wp' },
       { label: 'Striedač', value: 'Huawei SUN2000-5KTL-M1 (3-fázový)' },
       { label: 'Príslušenstvo', value: 'Kompletná konštrukcia, DC/AC rozvádzač' },
       { label: 'Ročná výroba', value: 'cca 5 500 – 6 000 kWh / rok' },
@@ -347,9 +347,9 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
     stockQty: 6,
     badge: 'Dotácia SIEA do 1 150 €',
     badgeColor: 'emerald',
-    warranty: '30 rokov panely, 10 rokov menič & batéria',
+    warranty: '25 rokov panely, 10 rokov menič & batéria',
     specs: [
-      { label: 'Panely v zostave', value: '22× Canadian Solar 450 Wp N-Type' },
+      { label: 'Panely v zostave', value: '22× Tier 1 panely 450 Wp' },
       { label: 'Striedač', value: 'SolaX X3-Hybrid G4 10.0-D 3-fázový' },
       { label: 'Batériové úložisko', value: '10 kWh LiFePO4 HV s BMS modulom' },
       { label: 'UPS funkcia', value: 'Automatický záskok EPS do 10 ms' },
@@ -375,7 +375,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
   {
     id: 'panels',
     title: 'Solárne panely',
-    subtitle: 'TOPCon, Bifacial N-Type s vysokou účinnosťou až 22.5%',
+    subtitle: 'Tier 1 panely s vysokou účinnosťou až 22.5%',
     icon: 'sun',
     highlight: 'Od 109 € bez DPH',
   },
@@ -704,7 +704,7 @@ export default function EshopPage() {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Product',
-                  name: 'Canadian Solar HiKu7 TOPCon 450 Wp',
+                  name: 'Canadian Solar HiKu7 Tier 1 450 Wp',
                   brand: 'Canadian Solar',
                   category: 'Solar Panels',
                 },
@@ -841,7 +841,7 @@ export default function EshopPage() {
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Dodávame prémiové fotovoltické panely TOPCon, inteligentné trojfázové hybridné striedače,
+              Dodávame prémiové fotovoltické panely Tier 1, inteligentné trojfázové hybridné striedače,
               bezpečné batériové úložiská LiFePO4 a montážne konštrukcie. Kúpte si samostatný materiál
               alebo využite kompletnú montáž na kľúč so štátnou dotáciou SIEA (FV do 1 150 €, Solidarita až 90 %).
             </p>

@@ -251,7 +251,7 @@ export const Hero: React.FC = () => {
                     </div>
 
                     <div className="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-xs">
-                      <span>N-Type TOPCon</span>
+                      <span>Tier 1 panely</span>
                     </div>
 
                     <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-slate-950 text-xs text-slate-300">

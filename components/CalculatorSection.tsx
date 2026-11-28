@@ -450,7 +450,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-bold text-white truncate">Tier 1 Panely</div>
-                    <div className="text-[10px] text-slate-400 truncate">{recommendedKwp} kWp N-Type</div>
+                    <div className="text-[10px] text-slate-400 truncate">{recommendedKwp} kWp Tier 1</div>
                   </div>
                 </div>
 

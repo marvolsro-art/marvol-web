@@ -41,7 +41,7 @@ export default function KonzultaciePoradenstvo() {
         'Transparentný prepočet ročnej finančnej úspory v eurách s uvážením rastu cien energií',
         'Výpočet doby návratnosti (Payback Period) a čistej súčasnej hodnoty projektu (NPV)',
         'Porovnanie ekonomiky čisto fotovoltického systému vs. hybridného systému s batériou',
-        'Započítanie ročnej degradácie fotovoltických panelov (iba 0,4% ročne pri N-Type TOPCon)',
+        'Započítanie ročnej degradácie fotovoltických panelov (iba 0,4% ročne pri Tier 1 paneloch)',
         'Výpočet mernej ceny vyrobenej elektriny (LCOE) počas garantovanej 25-ročnej životnosti',
       ],
     },

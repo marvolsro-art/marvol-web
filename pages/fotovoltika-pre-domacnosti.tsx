@@ -28,7 +28,7 @@ export default function FotovoltikaPreDomacnosti() {
     },
     {
       q: 'Funguje fotovoltika aj v zime, pri zamračenej oblohe alebo snežení?',
-      a: 'Áno. Moderné fotovoltické panely typu N-Type TOPCon využívajú difúzne denné svetlo a vyrábajú elektrinu aj pri zamračenom počasí či miernom daždi. Výroba v zime je pochopiteľne nižšia kvôli kratšiemu slnečnému svitu a nižšej trajektórii slnka (cca 20–25% letného výkonu), avšak systém stále pomáha kryť stálu spotrebu domu (chladnička, stála spotreba, router, osvetlenie).',
+      a: 'Áno. Prémiové Tier 1 fotovoltické panely využívajú difúzne denné svetlo a vyrábajú elektrinu aj pri zamračenom počasí či miernom daždi. Výroba v zime je pochopiteľne nižšia kvôli kratšiemu slnečnému svitu a nižšej trajektórii slnka (cca 20–25% letného výkonu), avšak systém stále pomáha kryť stálu spotrebu domu (chladnička, stála spotreba, router, osvetlenie).',
     },
     {
       q: 'Aká je životnosť fotovoltických panelov, meniča a batérií?',
@@ -247,14 +247,14 @@ export default function FotovoltikaPreDomacnosti() {
               <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
                 <Sun className="w-6 h-6 text-amber-400" />
               </div>
-              <h3 className="text-xl font-black text-white">Fotovoltické panely Tier-1</h3>
+              <h3 className="text-xl font-black text-white">Tier 1 fotovoltické panely</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Nová generácia fotovoltických kremíkových článkov prekonáva staršie panely. Prináša vysokú účinnosť (&gt;22,5%), mimoriadny výkon pri slabom rannom i večernom osvetlení a zanedbateľnú degradáciu (max. 0,4% ročne).
+                Inštalujeme výhradne fotovoltické panely od overených výrobcov svetového ratingu Tier 1 (BloombergNEF). Tento elitný štandard zaručuje 100% robotizovanú výrobu bez mikroskopických chýb, špičkovú účinnosť nad 22,5% a mimoriadny energetický zisk aj pri difúznom svetle, zamračenej oblohe či rannom a večernom osvetlení.
               </p>
               <ul className="text-xs text-slate-300 space-y-1.5 pt-2">
                 <li>• 12 až 25 rokov produktová záruka</li>
                 <li>• 25 rokov lineárna garancia výkonu</li>
-                <li>• Robustný eloxovaný hliníkový rám</li>
+                <li>• Celočierny elegantný Full-Black dizajn</li>
               </ul>
             </div>
 

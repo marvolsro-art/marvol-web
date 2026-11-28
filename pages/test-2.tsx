@@ -95,7 +95,7 @@ export default function MinimalistTestPage() {
       metric2: '3 – 5 rokov',
       label2: 'Reálna návratnosť',
       img: '/images/fotovoltika-domacnosti/hero.jpg',
-      features: ['Tier 1 panely N-Type TOPCon', 'Asymetrický 3-fázový menič', '100% online rezervácia dotácie'],
+      features: ['Tier 1 fotovoltické panely', 'Asymetrický 3-fázový menič', '100% online rezervácia dotácie'],
     },
     business: {
       tag: 'Pre firmy & priemysel',
@@ -625,7 +625,7 @@ export default function MinimalistTestPage() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-bold text-white truncate">Tier 1 Panely</div>
-                    <div className="text-[10px] text-slate-400 truncate">{recommendedKwp} kWp TOPCon</div>
+                    <div className="text-[10px] text-slate-400 truncate">{recommendedKwp} kWp Tier 1</div>
                   </div>
                 </div>
 
@@ -712,7 +712,7 @@ export default function MinimalistTestPage() {
               <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
                 <img
                   src="/images/fotovoltika-domacnosti/hybrid-system.jpg"
-                  alt="N-Type TOPCon Fotovoltika"
+                  alt="Tier 1 fotovoltické panely"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
@@ -726,7 +726,7 @@ export default function MinimalistTestPage() {
               <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
                 <div className="space-y-3">
                   <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
-                    N-Type TOPCon Fotovoltika
+                    Tier 1 fotovoltické panely
                   </h3>
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     Najnovšia generácia monokryštalických panelov s účinnosťou až 22,5%. Vysoký zisk aj pri difúznom zimnom svetle a lineárna záruka na výkon 25 rokov.
