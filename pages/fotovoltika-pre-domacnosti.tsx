@@ -13,75 +13,6 @@ export default function FotovoltikaPreDomacnosti() {
     { name: 'Fotovoltika pre domácnosti', href: '/fotovoltika-pre-domacnosti' },
   ];
 
-  const packages = [
-    {
-      id: 'zakladny-3kwp',
-      name: 'Základný Štart 3 kWp',
-      badge: 'Pre menšie domy',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description: 'Ideálne riešenie pre menšie domácnosti s ročnou spotrebou do 3 500 kWh.',
-      panels: '7× N-Type TOPCon 435–450 Wp',
-      inverter: '1-fázový / 3-fázový sieťový On-Grid striedač (GoodWe / Growatt)',
-      storage: 'Bez batérie (s možnosťou neskoršieho doplnenia)',
-      subsidy: 'Dotácia SIEA do 1 150 €',
-      annualProduction: 'cca 3 300 – 3 600 kWh / rok',
-      savings: 'Úspora až 550 € ročne',
-      features: [
-        '7 ks Tier-1 celočiernych N-Type TOPCon panelov',
-        'Značkový inteligentný menič s Wi-Fi monitoringom',
-        'Kompletná konštrukcia na šikmú alebo rovnú strechu',
-        'Kabeláž, DC/AC rozvádzač s prepäťovými ochranami',
-        'Odborná revízna správa OPOS v cene',
-        'Vybavenie dotácie Zelená domácnostiam na kľúč',
-      ],
-      popular: false,
-    },
-    {
-      id: 'standard-hybrid-6kwp',
-      name: 'Štandard Hybrid 6 kWp s batériou',
-      badge: 'Najobľúbenejší balík',
-      badgeColor: 'border-amber-500/40 text-amber-400 bg-amber-500/15',
-      description: 'Zlatý štandard pre moderné rodinné domy. Akumuluje prebytky energie na večer a poskytuje záložné napájanie pri výpadku.',
-      panels: '14× N-Type TOPCon 440–450 Wp',
-      inverter: '3-fázový hybridný asymetrický striedač 6–8 kW',
-      storage: 'Kapacitná LiFePO4 batéria 5,12 až 10,24 kWh',
-      subsidy: 'Dotácia SIEA do 1 150 €',
-      annualProduction: 'cca 6 600 – 7 200 kWh / rok',
-      savings: 'Úspora až 1 150 € ročne',
-      features: [
-        '14 ks prémiových Tier-1 TOPCon panelov s účinnosťou 22,5%',
-        'Asymetrický 3-fázový hybridný menič najnovšej generácie',
-        'Modulárne LiFePO4 batériové úložisko (6 000+ cyklov)',
-        'Funkcia záložného zdroja (UPS) pri výpadku verejnej siete',
-        'Smart meter a meranie spotreby v reálnom čase',
-        'Vybavenie dotácie SIEA a distribučného pripojenia (SSD/ZSD/VSD)',
-      ],
-      popular: true,
-    },
-    {
-      id: 'premium-max-10kwp',
-      name: 'Prémium Max 10 kWp s batériou a UPS',
-      badge: 'Maximálna nezávislosť',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-      description: 'Nekompromisný výkon pre domy s klimatizáciou, elektrickým kúrením, bazénom alebo elektromobilom (EV).',
-      panels: '22–24× N-Type TOPCon 440–450 Wp',
-      inverter: '3-fázový hybridný asymetrický striedač 10 kW',
-      storage: 'Vysokonapäťová LiFePO4 batéria 10,24 až 15,36 kWh',
-      subsidy: 'Dotácia 1 150 € (Solidarita až 90 %)',
-      annualProduction: 'cca 10 500 – 11 800 kWh / rok',
-      savings: 'Úspora až 1 900 € ročne',
-      features: [
-        '22–24 ks vysokovýkonných N-Type panelov s bifaciálnym ziskom',
-        '10 kW trojfázový hybridný menič s mikrosekundovým EPS/UPS zálohovaním',
-        'Veľkokapacitné batériové úložisko LiFePO4 s 15-ročnou životnosťou',
-        'Plná integrácia so smart riadením záťaže a Wallboxom',
-        'Kompletný inžiniering: projekt, revízia, pripojenie do siete',
-        'Prioritný záručný a pozáručný servis od Marvol s.r.o.',
-      ],
-      popular: false,
-    },
-  ];
-
   const faqs = [
     {
       q: 'Akú vysokú dotáciu môžem získať na fotovoltiku pre rodinný dom?',
@@ -235,16 +166,10 @@ export default function FotovoltikaPreDomacnosti() {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href="#baliky"
+                  href="#dopyt"
                   className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 text-center transition-colors cursor-pointer"
                 >
-                  Pozrieť balíky & ceny
-                </a>
-                <a
-                  href="#dopyt"
-                  className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 text-center transition-colors cursor-pointer"
-                >
-                  Bezplatná kalkulácia na mieru
+                  Požiadať o nezáväznú kalkuláciu na mieru
                 </a>
               </div>
             </div>
@@ -309,108 +234,7 @@ export default function FotovoltikaPreDomacnosti() {
         </div>
       </section>
 
-      {/* 3 Turnkey Package Tiers Section */}
-      <section id="baliky" className="py-20 bg-slate-950 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-bold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Kompletné inštalácie na kľúč
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Vyberte si overený fotovoltický balík
-            </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
-              Všetky balíky zahŕňajú prémiové komponenty, kompletnú inštaláciu, kabeláž, rozvádzač, revíznu správu a bezplatné vybavenie štátnej dotácie Zelená domácnostiam.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative ${
-                  pkg.popular
-                    ? 'bg-slate-900 border-2 border-amber-400 scale-[1.01]'
-                    : 'bg-slate-900/60 border border-slate-800 hover:border-slate-700'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-amber-400 text-slate-950 font-bold text-xs rounded-full">
-                    Najobľúbenejšia voľba
-                  </div>
-                )}
-
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${pkg.badgeColor}`}>
-                      {pkg.badge}
-                    </span>
-                    <span className="text-xs text-emerald-400 font-semibold">
-                      Dotácia: {pkg.subsidy}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {pkg.name}
-                  </h3>
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {pkg.description}
-                  </p>
-
-                  <div className="space-y-3 py-4 mb-6 text-xs text-slate-300">
-                    <div>
-                      <div className="text-slate-500 uppercase font-semibold text-[10px] tracking-wider">Panely</div>
-                      <div className="font-medium text-white">{pkg.panels}</div>
-                    </div>
-                    <div>
-                      <div className="text-slate-500 uppercase font-semibold text-[10px] tracking-wider">Striedač</div>
-                      <div className="font-medium text-white">{pkg.inverter}</div>
-                    </div>
-                    <div>
-                      <div className="text-slate-500 uppercase font-semibold text-[10px] tracking-wider">Batériové úložisko</div>
-                      <div className="font-medium text-white">{pkg.storage}</div>
-                    </div>
-                    <div>
-                      <div className="text-slate-500 uppercase font-semibold text-[10px] tracking-wider">Odhadovaná ročná úspora</div>
-                      <div className="font-bold text-amber-400">{pkg.savings}</div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2.5 mb-8">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                      Čo balík obsahuje:
-                    </div>
-                    {pkg.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <a
-                    href="#dopyt"
-                    className={`w-full min-h-[48px] py-3.5 px-4 rounded-xl font-bold text-center flex items-center justify-center text-sm transition-colors cursor-pointer ${
-                      pkg.popular
-                        ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold'
-                        : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
-                    }`}
-                  >
-                    Mám záujem o tento balík
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center text-xs text-slate-500 max-w-xl mx-auto">
-            * Ceny a konfigurácie môžu byť upravené podľa konkrétneho typu strechy, dĺžky káblových trás a individuálnych požiadaviek rodinného domu. Presná kalkulácia je vždy bezplatná po obhliadke.
-          </div>
-        </div>
-      </section>
 
       {/* Technical Specifications & Hardware Quality */}
       <section className="py-20 bg-slate-900 ">
