@@ -43,7 +43,7 @@ export const FOTOVOLTIKA_ITEMS: NavDropdownItem[] = [
 export const SLUZBY_ITEMS: NavDropdownItem[] = [
   {
     title: 'Návrh projektu & Projektovanie',
-    subtitle: '3D analýza tienenia, autorizovaný projekt & prepočet návratnosti',
+    subtitle: 'Autorizovaný projekt, prepočet návratnosti & možnosť 3D analýzy',
     href: '/sluzby/navrh-projektu',
     badge: 'Inžiniering',
     badgeColor: 'sky',

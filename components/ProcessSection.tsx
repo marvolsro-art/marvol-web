@@ -29,8 +29,8 @@ export const ProcessSection: React.FC = () => {
     },
     {
       step: 2,
-      title: '3D Návrh v PVSOL',
-      description: 'Presná simulácia oslnenia, model výroby a výpočet návratnosti investície.',
+      title: 'Technický návrh & simulácia',
+      description: 'Prepočet výroby a návratnosti s možnosťou fotometrickej 3D vizualizácie v PVSOL.',
       image: '/images/sluzby/navrh-projektu.jpg',
       subpage: '/sluzby/navrh-projektu',
       icon: FileTextIcon,

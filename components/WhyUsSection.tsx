@@ -80,7 +80,7 @@ export const WhyUsSection: React.FC = () => {
               Hľadáte energetické riešenie s reálnou návratnosťou?
             </h4>
             <p className="text-slate-400 text-sm">
-              Pripravíme pre vás nezáväzný 3D model oslnenia a presný rozpočet bez akýchkoľvek záväzkov.
+              Pripravíme pre vás nezáväzný technický návrh s možnosťou 3D vizualizácie a presný rozpočet bez akýchkoľvek záväzkov.
             </p>
           </div>
           <a

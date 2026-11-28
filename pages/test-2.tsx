@@ -89,7 +89,7 @@ export default function MinimalistTestPage() {
     home: {
       tag: 'Pre rodinné domy',
       title: 'Solárna nezávislosť bez starostí',
-      desc: 'Znížte ročné účty za elektrinu až o 80%. Kompletné riešenie od 3D projektu cez štátnu dotáciu SIEA až po revíziu.',
+      desc: 'Znížte ročné účty za elektrinu až o 80%. Kompletné riešenie od technického projektu cez štátnu dotáciu SIEA až po revíziu.',
       metric1: 'do 1 150 €',
       label1: 'Dotácia SIEA (575 €/kW)',
       metric2: '3 – 5 rokov',
@@ -134,7 +134,7 @@ export default function MinimalistTestPage() {
     },
     {
       q: 'Čo je súčasťou bezplatnej osobnej obhliadky?',
-      a: 'Náš technik zameria orientáciu a sklon strechy, posúdi tienenie okolitými prekážkami, skontroluje hlavný domový rozvádzač a vypracuje 3D model s presným výpočtom ročných úspor a návratnosti.',
+      a: 'Náš technik zameria orientáciu a sklon strechy, posúdi tienenie okolitými prekážkami, skontroluje hlavný domový rozvádzač a vypracuje technický návrh s možnosťou 3D vizualizácie a presným výpočtom ročných úspor a návratnosti.',
     },
     {
       q: 'Je potrebné pri výpadku prúdu manuálne prepínať na batériu?',
@@ -1014,8 +1014,8 @@ export default function MinimalistTestPage() {
             {[
               {
                 step: '01',
-                title: '3D Návrh & Obhliadka',
-                desc: 'Zameriame strechu, vytvoríme digitálny 3D model tienenia a prepočítame reálnu ročnú návratnosť.',
+                title: 'Technický návrh & Obhliadka',
+                desc: 'Zameriame strechu, posúdime tienenie s možnosťou digitálneho 3D modelu a prepočítame reálnu ročnú návratnosť.',
                 img: '/images/sluzby/navrh-projektu.jpg',
               },
               {

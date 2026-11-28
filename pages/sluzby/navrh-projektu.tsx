@@ -17,13 +17,13 @@ export default function NavrhProjektu() {
   const parameterCards = [
     {
       id: '3d-simulacia',
-      title: '3D Modelovanie a analýza zatienenia',
+      title: 'Analýza zatienenia & možnosť 3D modelu',
       badge: 'Fotometrická simulácia',
       badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
       description:
         'Digitálna dvojička vašej strechy s fotometrickou simuláciou slnečného svitu. Odhaľujeme mikrotieňovanie komínov, vikierov a stromov ešte pred položením jediného panelu.',
       features: [
-        'Presný digitálny 3D model strechy s uvážením sklonu, azimutu a typu krytiny',
+        'Možnosť vypracovania digitálneho 3D modelu strechy s uvážením sklonu, azimutu a krytiny',
         'Simulácia tieňov vrhaných komínmi, vikiermi, okolitými stromami a susednými stavbami',
         'Výpočet optimálnych odstupov radov na plochých strechách (eliminácia vzájomného tienenia)',
         'Porovnanie ziskovosti variantov zapojenia stringov vs. použitie výkonových optimizérov',
@@ -86,9 +86,9 @@ export default function NavrhProjektu() {
     },
     {
       step: '2',
-      title: '3D simulácia & optimalizácia rozmiestnenia',
+      title: 'Optimalizácia rozmiestnenia & možnosť 3D simulácie',
       description:
-        'Vytvoríme presný 3D model v simulačnom softvéri PV*SOL. Optimalizujeme rozostupy panelov, eliminujeme tiene z komínov a zvolíme najvýhodnejšie stringy.',
+        'Optimalizujeme rozostupy panelov a eliminujeme tiene z komínov s možnosťou fotometrického 3D modelu v simulačnom softvéri PV*SOL.',
     },
     {
       step: '3',
@@ -107,7 +107,7 @@ export default function NavrhProjektu() {
   const faqs = [
     {
       q: 'Prečo je 3D analýza zatienenia taká dôležitá pred montážou panelov?',
-      a: 'Aj malý lokálny tieň z komína, vikiera či susedného stromu na jedinom solárnom článku môže znížiť výkon celého stringu o 30 až 50%. Naša fotometrická 3D analýza v PV*SOL presne nasimuluje dráhu slnka počas celých 8 760 hodín v roku, vďaka čomu panely umiestnime iba na nezatienené plochy alebo navrhneme výkonové optimizéry, čím ochránime vašu investíciu.',
+      a: 'Aj malý lokálny tieň z komína, vikiera či susedného stromu na jedinom solárnom článku môže znížiť výkon celého stringu o 30 až 50%. Pri zložitejších strechách preto ponúkame možnosť fotometrickej 3D simulácie v PV*SOL, ktorá presne nasimuluje dráhu slnka počas celých 8 760 hodín v roku. Vďaka tomu panely umiestnime iba na nezatienené plochy alebo navrhneme výkonové optimizéry, čím ochránime vašu investíciu.',
     },
     {
       q: 'Aký je rozdiel medzi projektom pre rodinný dom a komerčnú firmu?',
@@ -119,7 +119,7 @@ export default function NavrhProjektu() {
     },
     {
       q: 'Koľko trvá vypracovanie kompletného projektu?',
-      a: 'Štandardný projekt pre rodinný dom s 3D fotometrickou simuláciou a jednopólovou schémou pripravíme do 3 až 5 pracovných dní. Komplexné komerčné projekty pre priemyselné budovy a firmy trvajú obvykle 1 až 2 týždne v závislosti od dostupnosti podkladov.',
+      a: 'Štandardný projekt pre rodinný dom s jednopólovou schémou a možnosťou 3D fotometrickej simulácie pripravíme do 3 až 5 pracovných dní. Komplexné komerčné projekty pre priemyselné budovy a firmy trvajú obvykle 1 až 2 týždne v závislosti od dostupnosti podkladov.',
     },
     {
       q: 'Čo ak distribútor zamietne žiadosť o pripojenie z dôvodu kapacity siete?',
@@ -156,10 +156,10 @@ export default function NavrhProjektu() {
       '@context': 'https://schema.org',
       '@type': 'Service',
       '@id': 'https://marvol.sk/sluzby/navrh-projektu#service',
-      name: 'Návrh projektu & 3D simulácia fotovoltiky',
-      serviceType: 'Elektrotechnické projektovanie a 3D analýza zatienenia',
+      name: 'Návrh projektu fotovoltiky & inžiniering',
+      serviceType: 'Elektrotechnické projektovanie a možnosť 3D analýzy zatienenia',
       description:
-        'Profesionálny elektrotechnický návrh fotovoltiky, 3D analýza zatienenia a jednopólové schémy. Kompletná projektová dokumentácia pre SSD, ZSD, VSD a stavebný úrad.',
+        'Profesionálny elektrotechnický návrh fotovoltiky, možnosť 3D analýzy zatienenia a jednopólové schémy. Kompletná projektová dokumentácia pre SSD, ZSD, VSD a stavebný úrad.',
       provider: {
         '@id': 'https://marvol.sk/#organization',
         '@type': 'LocalBusiness',
@@ -195,8 +195,8 @@ export default function NavrhProjektu() {
 
   return (
     <Layout
-      title="Návrh projektu & 3D simulácia fotovoltiky | Marvol s.r.o."
-      description="Profesionálny elektrotechnický návrh fotovoltiky, 3D analýza zatienenia a jednopólové schémy. Kompletná projektová dokumentácia pre SSD, ZSD, VSD a stavebný úrad."
+      title="Návrh projektu fotovoltiky & inžiniering | Marvol s.r.o."
+      description="Profesionálny elektrotechnický návrh fotovoltiky, možnosť 3D analýzy zatienenia a jednopólové schémy. Kompletná projektová dokumentácia pre SSD, ZSD, VSD a stavebný úrad."
       canonicalPath="/sluzby/navrh-projektu"
       schema={jsonLdSchema}
       isSubpage={true}
@@ -229,12 +229,12 @@ export default function NavrhProjektu() {
               {/* Badge Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-bold tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <SunIcon className="w-4 h-4 text-amber-400 shrink-0" /><span>3D PVSol modelovanie a inžiniering</span>
+                <SunIcon className="w-4 h-4 text-amber-400 shrink-0" /><span>Elektrotechnické projektovanie &amp; možnosť 3D modelu</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                 Návrh projektu fotovoltiky <br className="hidden sm:block" />
-                <span className="text-amber-400">a 3D analýza zatienenia</span>
+                <span className="text-amber-400">s možnosťou 3D analýzy</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
@@ -253,7 +253,7 @@ export default function NavrhProjektu() {
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">0 €</div>
-                  <div className="text-slate-400 text-xs mt-0.5">3D koncept pri realizácii</div>
+                  <div className="text-slate-400 text-xs mt-0.5">Možnosť 3D konceptu</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">100%</div>
@@ -284,7 +284,7 @@ export default function NavrhProjektu() {
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
                   <img
                     src="/images/sluzby/navrh-projektu.jpg"
-                    alt="3D projektovanie a simulácia fotovoltiky Marvol"
+                    alt="Projektovanie fotovoltiky s možnosťou 3D simulácie Marvol"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
@@ -293,7 +293,7 @@ export default function NavrhProjektu() {
                   {/* Status Badges */}
                   <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 font-semibold text-xs flex items-center gap-1.5 ">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    <span>3D PVSol modelovanie</span>
+                    <span>Možnosť 3D modelovania</span>
                   </div>
                   
                   <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-slate-950 font-black text-xs font-semibold rounded-full ">
@@ -303,7 +303,7 @@ export default function NavrhProjektu() {
                   {/* Bottom Image Overlay Details */}
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
-                      <span className="font-bold text-white text-sm">3D modelovanie &amp; simulácia zatienenia</span>
+                      <span className="font-bold text-white text-sm">Optimalizácia &amp; možnosť 3D modelu</span>
                       <span className="text-amber-400 font-bold">Presnosť 98,5%</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
@@ -350,7 +350,7 @@ export default function NavrhProjektu() {
               Projektová dokumentácia a simulácie
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Od vstupnej 3D fotometrie rodinného domu až po rozsiahle projekty firemných lokálnych zdrojov pripojených na vysoké napätie.
+              Od technického návrhu pre rodinné domy s možnosťou 3D fotometrie až po rozsiahle projekty firemných lokálnych zdrojov pripojených na vysoké napätie.
             </p>
           </div>
 
@@ -506,7 +506,7 @@ export default function NavrhProjektu() {
             
             <div className="lg:col-span-6 space-y-6">
               <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-                Bezplatný 3D návrh
+                Bezplatný technický návrh
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
@@ -514,7 +514,7 @@ export default function NavrhProjektu() {
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia 3D návrh, fotometrickú simuláciu oslnenia a predbežnú technickú kalkuláciu.
+                Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia technický návrh s možnosťou 3D simulácie oslnenia a predbežnú kalkuláciu.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -564,7 +564,7 @@ export default function NavrhProjektu() {
                 initialService="fotovoltika-dom"
                 source="page_sluzby_navrh_projektu"
                 title="Nezáväzný dopyt na projekt fotovoltiky"
-                subtitle="Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia 3D návrh a technickú kalkuláciu."
+                subtitle="Zašlite nám adresu nehnuteľnosti alebo pôdorys strechy a naši inžinieri pripravia technický návrh s možnosťou 3D vizualizácie a kalkuláciu."
                 showLocationField={true}
               />
             </div>

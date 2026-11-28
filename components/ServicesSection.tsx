@@ -58,7 +58,7 @@ export const ServicesSection: React.FC = () => {
       features: [
         'Lokálne fotovoltické zdroje od 10 kWp do 500+ kWp',
         'Aktívne vyrovnávanie odberových špičiek (Peak shaving)',
-        '3D PVSOL analýza oslnenia a podrobný energetický audit',
+        'Podrobný energetický audit s možnosťou 3D PVSOL analýzy oslnenia',
         'Priemyselné striedače s telemetriou a SCADA integráciou',
         'Možnosť financovania a vybavenie dotácie Zelená podnikom',
         'Garantovaná návratnosť investície v horizonte 3 až 5 rokov',

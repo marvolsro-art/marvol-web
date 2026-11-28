@@ -54,15 +54,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-39** | **Úprava technologických kariet batérií (UI/UX)** | Kompletné odstránenie strednej karty „Mikrosekundový Full Backup“ zo sekcie „Prečo na type batérie a elektroniky záleží?“ na podstránke `pages/bateriove-uloziska-bess.tsx` na základe požiadavky klienta. Layout prispôsobený na vycentrovaný 2-stĺpcový grid (Pokročilé BMS riadenie a Solar-Only EV Charging). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 | **ACT-40** | **Odstránenie FAQ o AC-Coupled batériách (UI/UX)** | Odstránenie otázky „Môžem si batériové úložisko dokúpiť aj k už existujúcej fotovoltike?“ a technickej odpovede o AC-Coupled striedačoch zo sekcie FAQ a JSON-LD schémy na podstránke `pages/bateriove-uloziska-bess.tsx` na žiadosť klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 | **ACT-41** | **Odstránenie obcí a samospráv z navigácie (UI/UX)** | Odstránenie položky „Riešenia pre verejný sektor: Obce a samosprávy →“ z desktopového rozbaľovacieho menu Fotovoltika aj z mobilného menu v komponente `components/Header.tsx` na žiadosť klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
+| **ACT-42** | **3D Vizualizácia ako voliteľná možnosť (UI/UX)** | Preformulovanie všetkých zmienok o 3D vizualizáciách, 3D modelovaní a fotometrickej simulácii oslnenia naprieč celým webom (`components/ProcessSection.tsx`, `components/WhyUsSection.tsx`, `components/LeadForm.tsx`, `components/ServicesSection.tsx`, `components/Header.tsx`, `pages/sluzby/navrh-projektu.tsx`, `pages/test-2.tsx`) podľa požiadavky klienta. 3D vizualizácia už nie je prezentovaná ako automatická samozrejmosť pre každý dopyt, ale ako dostupná voliteľná možnosť pri komplexných strechách a realizáciách („nezáväzný technický návrh s možnosťou 3D vizualizácie / simulácie oslnenia v PV*SOL“). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **48,7 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **48,9 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~6 170,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 607,50 € (úspora cca 74 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~6 195,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 632,50 € (úspora cca 75 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

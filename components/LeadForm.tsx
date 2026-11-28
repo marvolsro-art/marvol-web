@@ -240,7 +240,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             2. Prejdeme si vaše požiadavky a navrhneme bezplatnú technickú obhliadku.
           </p>
           <p>
-            3. Vypracujeme nezáväzný 3D návrh a kalkuláciu štátnej dotácie.
+            3. Vypracujeme nezáväzný technický návrh s možnosťou 3D vizualizácie a kalkuláciu štátnej dotácie.
           </p>
         </div>
         <button
