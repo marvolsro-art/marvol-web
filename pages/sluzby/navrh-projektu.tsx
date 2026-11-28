@@ -15,32 +15,6 @@ export default function NavrhProjektu() {
   ];
 
 
-  const workflowSteps = [
-    {
-      step: '1',
-      title: 'Zber podkladov & satelitné zameranie',
-      description:
-        'Zanalyzujeme ortofotomapu vašej strechy, orientáciu, sklon, typ krytiny a vaše ročné vyúčtovacie faktúry pre presné stanovenie energetického profilu.',
-    },
-    {
-      step: '2',
-      title: 'Optimalizácia rozmiestnenia & možnosť 3D simulácie',
-      description:
-        'Optimalizujeme rozostupy panelov a eliminujeme tiene z komínov s možnosťou fotometrického 3D modelu v simulačnom softvéri PV*SOL.',
-    },
-    {
-      step: '3',
-      title: 'Elektrotechnický návrh & schémy',
-      description:
-        'Autorizovaný elektrotechnický projektant navrhne jednopólové schémy, dimenzovanie istenia, prepäťové ochrany T1+T2 a komunikačné trasy striedača s batériou.',
-    },
-    {
-      step: '4',
-      title: 'Autorizácia & schválenie distribúciou',
-      description:
-        'Finálnu dokumentáciu podáme na schválenie distribučnej spoločnosti (SSD, ZSD, VSD). Získate projekt pripravený na realizáciu s pečiatkou projektanta.',
-    },
-  ];
 
   const faqs = [
     {
@@ -277,51 +251,6 @@ export default function NavrhProjektu() {
       </section>
 
 
-      {/* 4-Step Process Roadmap */}
-      <section className="py-20 bg-slate-900 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Proces inžinieringu
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Ako prebieha návrh fotovoltiky v Marvol s.r.o.
-            </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
-              Rýchly a transparentný postup od prvých satelitných dát až po autorizovanú dokumentáciu.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((step) => (
-              <div key={step.step} className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 relative">
-                <div className="text-4xl font-black text-amber-400/30 mb-2">{step.step}</div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <div className="text-amber-400 font-bold text-base sm:text-lg">
-                Projekt zdarma pri realizácii na kľúč
-              </div>
-              <div className="text-slate-300 text-xs sm:text-sm">
-                Pri podpise zmluvy o dielo na kompletnú dodávku a montáž fotovoltiky od Marvol s.r.o. vám celú sumu za projektovú dokumentáciu odpočítame z ceny diela.
-              </div>
-            </div>
-            <a
-              href="#dopyt"
-              className="inline-flex items-center justify-center min-h-[44px] min-h-[48px] px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm rounded-xl transition-colors shrink-0 cursor-pointer"
-            >
-              Získať projektový návrh
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Accordion Section */}
       <section className="py-20 bg-slate-950 ">

@@ -56,15 +56,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-41** | **Odstránenie obcí a samospráv z navigácie (UI/UX)** | Odstránenie položky „Riešenia pre verejný sektor: Obce a samosprávy →“ z desktopového rozbaľovacieho menu Fotovoltika aj z mobilného menu v komponente `components/Header.tsx` na žiadosť klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 | **ACT-42** | **3D Vizualizácia ako voliteľná možnosť (UI/UX)** | Preformulovanie všetkých zmienok o 3D vizualizáciách, 3D modelovaní a fotometrickej simulácii oslnenia naprieč celým webom (`components/ProcessSection.tsx`, `components/WhyUsSection.tsx`, `components/LeadForm.tsx`, `components/ServicesSection.tsx`, `components/Header.tsx`, `pages/sluzby/navrh-projektu.tsx`, `pages/test-2.tsx`) podľa požiadavky klienta. 3D vizualizácia už nie je prezentovaná ako automatická samozrejmosť pre každý dopyt, ale ako dostupná voliteľná možnosť pri komplexných strechách a realizáciách („nezáväzný technický návrh s možnosťou 3D vizualizácie / simulácie oslnenia v PV*SOL“). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-43** | **Odstránenie sekcie obsahu projektovej dokumentácie (UI/UX)** | Kompletné odstránenie sekcie obsahu projektovej dokumentácie („Obsah dokumentácie / Čo presne od nás dostanete do rúk“ – 3D situačný výkres strechy, jednopólová schéma SLD, technická správa pre distribučné sústavy a simulačný audit výnosov / karty projektovej dokumentácie) z podstránky návrhu projektu (`pages/sluzby/navrh-projektu.tsx`) na základe explicitnej požiadavky klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
+| **ACT-44** | **Odstránenie procesnej roadmapy projektu (UI/UX)** | Kompletné odstránenie sekcie procesnej roadmapy návrhu fotovoltiky („Ako postupujeme / Cesta od adresy domu po hotový projekt“ – zber dát, 3D model, jednopólová schéma a odovzdanie vrátane informačného boxu o projekte zadarmo pri realizácii) z podstránky návrhu projektu (`pages/sluzby/navrh-projektu.tsx`) podľa vizuálnej požiadavky klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **49,0 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **49,1 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~6 210,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 647,50 € (úspora cca 75 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~6 225,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 662,50 € (úspora cca 75 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
