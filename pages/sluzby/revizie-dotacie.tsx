@@ -51,12 +51,12 @@ export default function RevizieDotacie() {
       badge: 'SIEA Zelená domácnostiam',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
-        'Kompletný servis štátnych dotácií SIEA. Sme registrovaným zhotoviteľom SIEA, vďaka čomu zabezpečíme priamu online rezerváciu prostriedkov a uplatnenie dotácie priamo na realizačnej faktúre.',
+        'Kompletný servis štátnych dotácií SIEA. Sme registrovaným zhotoviteľom SIEA, vďaka čomu zabezpečíme priamu online rezerváciu prostriedkov a bezproblémové vyplatenie dotácie priamo na váš účet.',
       features: [
         'Kompletná kontrola oprávnenosti žiadateľa a listu vlastníctva nehnuteľnosti',
         'Zaregistrovanie žiadosti v elektronickom systéme SIEA a online rezervácia finančných prostriedkov',
         'Inštalácia výhradne certifikovaných zariadení evidovaných v zozname oprávnených zariadení',
-        'Odpočítanie plnej sumy dotácie priamo z konečnej faktúry (klient nečaká na preplatenie štátom)',
+        'Kompletné vybavenie a online registrácia dotácie v systéme SIEA s vyplatením na váš bankový účet',
         'Asistencia pri programe Zelená solidarita pre nízkopríjmové domácnosti (financovanie až do 90%)',
       ],
     },
@@ -98,7 +98,7 @@ export default function RevizieDotacie() {
     },
     {
       step: '4',
-      title: 'Odovzdanie správy & odpočet dotácie',
+      title: 'Odovzdanie správy & vybavenie dotácie',
       description:
         'Dostanete originál revíznej správy pre distribútora (SSD/ZSD/VSD) i poisťovňu s kompletnou dotačnou dokumentáciou.',
     },
@@ -110,8 +110,8 @@ export default function RevizieDotacie() {
       a: 'Distribučné spoločnosti (Stredoslovenská distribučná SSD, Západoslovenská distribučná ZSD a Východoslovenská distribučná VSD) nepovolia trvalé pripojenie fotovoltiky do siete ani nevymenia elektromer za 4-kvadrantný bez platnej východiskovej revíznej správy OPOS. Táto správa je zákonnou garanciou, že fotovoltická elektráreň neohrozí stabilitu distribučnej sústavy ani bezpečnosť technikov pracujúcich na vedení.',
     },
     {
-      q: 'Ako prebieha odpočítanie dotácie z faktúry?',
-      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA odpočíta Marvol s.r.o. schválenú hodnotu štátnej dotácie (napr. 1 150 € pri fotovoltike pre rodinné domy alebo do 50 % pre firmy) priamo z vašej realizačnej faktúry. Vy ako zákazník uhradíte iba doplatok (rozdiel celkovej ceny a dotácie) a administratívne vysporiadanie s agentúrou SIEA vyrieši naša spoločnosť.',
+      q: 'Ako prebieha vybavenie a vyplatenie štátnej dotácie?',
+      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA zabezpečí Marvol s.r.o. kompletnú elektronickú rezerváciu poukážky, prípravu technickej dokumentácie aj finálne podanie žiadosti. Schválená štátna dotácia (napr. 1 150 € pri fotovoltike pre rodinné domy alebo do 50 % pre firmy) je po úspešnej realizácii a schválení agentúrou SIEA vyplatená priamo na bankový účet zákazníka.',
     },
     {
       q: 'Ako často sa musia vykonávať periodické revízie fotovoltiky?',
@@ -253,7 +253,7 @@ export default function RevizieDotacie() {
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">Dotácie SIEA</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Odpočet priamo z faktúry</div>
+                  <div className="text-slate-400 text-xs mt-0.5">100% vybavenie na kľúč</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">100%</div>
@@ -320,7 +320,7 @@ export default function RevizieDotacie() {
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />
-                    <span>Dotácia odpočítaná priamo z ceny</span>
+                    <span>Kompletné vybavenie dotácie SIEA</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-sky-400 shrink-0 inline" />

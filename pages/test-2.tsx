@@ -600,7 +600,7 @@ export default function MinimalistTestPage() {
                 <div className="text-xl sm:text-3xl font-black text-amber-400 mt-1">
                   {estimatedSubsidy} €
                 </div>
-                <span className="text-[10px] text-slate-500">odpočet z faktúry</span>
+                <span className="text-[10px] text-slate-500">vybavenie na kľúč</span>
               </div>
 
               <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5">
@@ -951,10 +951,10 @@ export default function MinimalistTestPage() {
               </div>
               <div className="p-6 sm:p-7 space-y-3 flex-1">
                 <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
-                  100% garancia odpočítania dotácie
+                  100% garancia vybavenia dotácie
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                  Ako registrovaný partner SIEA (Zelená domácnostiam & Zelená podnikom) zabezpečíme elektronickú rezerváciu poukážky. Dotáciu do 1 150 € (alebo do 50 % pre firmy) vám odpočítame priamo z faktúry.
+                  Ako registrovaný partner SIEA (Zelená domácnostiam & Zelená podnikom) zabezpečíme elektronickú rezerváciu poukážky aj kompletnú administratívu. Dotácia do 1 150 € (alebo do 50 % pre firmy) je vyplatená priamo na váš účet.
                 </p>
               </div>
               <div className="px-6 pb-6 pt-2 text-[11px] text-slate-400 font-medium border-t border-white/5">
@@ -1021,7 +1021,7 @@ export default function MinimalistTestPage() {
               {
                 step: '02',
                 title: 'Rezervácia dotácie SIEA',
-                desc: 'Zaregistrujeme vašu žiadosť v portáli SIEA a garantujeme priame odpočítanie príspevku z faktúry.',
+                desc: 'Zaregistrujeme vašu žiadosť v portáli SIEA a garantujeme kompletné vybavenie štátneho príspevku.',
                 img: '/images/sluzby/poradenstvo.jpg',
               },
               {

@@ -51,12 +51,12 @@ export default function KonzultaciePoradenstvo() {
       badge: 'Dotácia SIEA',
       badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
       description:
-        'Oficiálny zhotoviteľ v programe Zelená domácnostiam a Zelená podnikom. Získajte maximálny štátny príspevok odpočítaný priamo z faktúry bez zbytočnej byrokracie.',
+        'Oficiálny zhotoviteľ v programe Zelená domácnostiam a Zelená podnikom. Získajte maximálny štátny príspevok na kľúč bez zbytočnej byrokracie.',
       features: [
         'Bezplatné preverenie splnenia dotačných podmienok na liste vlastníctva nehnuteľnosti',
         'Výber optimálneho programu (Zelená domácnostiam, Zelená solidarita až 90%, Zelená podnikom)',
         'Kompletná registrácia a garancia online rezervácie dotácie v portáli SIEA',
-        'Odpočítanie dotácie priamo z realizačnej faktúry (nečakáte mesiace na peniaze od štátu)',
+        'Kompletná online registrácia a vybavenie žiadosti SIEA s vyplatením priamo na váš účet',
         '100% garancia správnosti dotačných podkladov a dokumentácie bez rizika prepadnutia',
       ],
     },
@@ -253,7 +253,7 @@ export default function KonzultaciePoradenstvo() {
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">SIEA Dotácia</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Priamy odpočet z faktúry</div>
+                  <div className="text-slate-400 text-xs mt-0.5">100% online vybavenie</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 backdrop-blur-sm">
                   <div className="text-sky-400 font-black text-xl sm:text-2xl">0 €</div>
@@ -320,7 +320,7 @@ export default function KonzultaciePoradenstvo() {
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
-                    <span>Odpočet dotácie priamo z faktúry</span>
+                    <span>Kompletné vybavenie dotácie na kľúč</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-300">
                     <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0 inline" />
@@ -433,7 +433,7 @@ export default function KonzultaciePoradenstvo() {
           <div className="mt-12 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1">
               <div className="text-emerald-400 font-bold text-base sm:text-lg">
-                100% garancia odpočítania dotácie priamo z faktúry
+                100% garancia vybavenia štátnej dotácie SIEA
               </div>
               <div className="text-slate-300 text-xs sm:text-sm">
                 Ako oprávnený zhotoviteľ SIEA garantujeme uplatnenie dotácie Zelená domácnostiam s priamou elektronickou rezerváciou bez rizika zamietnutia.

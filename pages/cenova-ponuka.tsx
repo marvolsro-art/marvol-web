@@ -1082,7 +1082,7 @@ export default function CenovaPonukaPage() {
                       {effectiveFinalPrice.toLocaleString("sk-SK")} €
                     </div>
                     <span className="text-[11px] text-emerald-400/80 block">
-                      s DPH po odpočítaní možnej dotácie ({effectivePricePerWp} €/Wp)
+                      s DPH po započítaní možnej dotácie ({effectivePricePerWp} €/Wp)
                     </span>
                   </div>
 
@@ -1457,7 +1457,7 @@ export default function CenovaPonukaPage() {
                       {effectiveFinalPrice.toFixed(2)} €
                     </div>
                     <span className="text-[9px] text-emerald-700 font-medium">
-                      Cena s DPH po odpočítaní štátnej dotácie ({effectivePricePerWp} € / Wp)
+                      Cena s DPH po započítaní štátnej dotácie ({effectivePricePerWp} € / Wp)
                     </span>
                   </div>
                 </div>

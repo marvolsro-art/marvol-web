@@ -779,7 +779,7 @@ export default function EshopPage() {
     },
     {
       q: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
-      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí.',
+      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku so započítaním štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí s vyplatením na váš účet.',
     },
     {
       q: 'Aká je záruka na dodávané fotovoltické komponenty?',
@@ -1344,7 +1344,7 @@ export default function EshopPage() {
                 }
                 source="eshop_turnkey_cta"
                 title="Dopyt na fotovoltiku na kľúč s dotáciou"
-                subtitle="Vyplňte kontaktné údaje a náš technik vám pripraví bezplatný návrh s odpočtom štátnej dotácie."
+                subtitle="Vyplňte kontaktné údaje a náš technik vám pripraví bezplatný návrh so započítaním štátnej dotácie."
                 showLocationField={true}
               />
             </div>

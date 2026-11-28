@@ -26,7 +26,7 @@ export default function KontaktPage() {
     },
     {
       q: 'Pomôžete nám s vybavením štátnej dotácie SIEA na kľúč?',
-      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy do 50 %) vyriešime za vás na kľúč. Sme registrovaný oprávnený zhotoviteľ SIEA – dotáciu vám odpočítame priamo z realizačnej faktúry za dielo.',
+      a: 'Celú administratívu dotácie (Zelená domácnostiam do 1 150 € pri fotovoltike, resp. Zelená solidarita do 90 % a Zelená podnikom pre firmy do 50 %) vyriešime za vás na kľúč. Ako registrovaný oprávnený zhotoviteľ SIEA zabezpečíme kompletnú online rezerváciu prostriedkov aj podanie žiadosti o vyplatenie priamo na váš účet.',
     },
   ];
 

@@ -45,15 +45,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-30** | **Odstránenie fixných balíkov (UI/UX)** | Kompletné odstránenie sekcie fotovoltických balíkov („Vyberte si overený fotovoltický balík“ – Základný Štart 3 kWp, Štandard Hybrid 6 kWp, Prémium Max 10 kWp) a príslušného CTA tlačidla z podstránky `pages/fotovoltika-pre-domacnosti.tsx` na základe požiadavky klienta na prechod k riešeniam na mieru. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-31** | **Úprava garancie na 25 rokov & odstránenie celočiernych N-Type panelov (UI/UX)** | Odstránenie rušivého spodného textového boxu „Celočierne N-Type TOPCon panely“ z hero karty na `pages/fotovoltika-pre-domacnosti.tsx` pre čisté zobrazenie reálnej fotografie inštalácie. Zjednotenie a oprava záručnej doby na presných 25 rokov lineárnej garancie naprieč celým webom (domácnosti, FAQ, testovacie stránky, poradenstvo). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-32** | **Odstránenie špecifikácie značiek komponentov z popisov (UI/UX)** | Komplexné odstránenie konkrétnych značiek komponentov (Solinteg, GoodWe, Huawei, Canadian Solar, JA Solar, SolaX atď.) zo všetkých marketingových popisov, kariet služieb, kalkulačky, pilierov a podstránok naprieč celým webom (`WhyUsSection`, `CalculatorSection`, `ServicesSection`, `TestimonialsSection`, `fotovoltika-pre-domacnosti`, `bateriove-uloziska-bess`, `instalacia-montaz`, `eshop`, `test-2`). Nahradenie profesionálnymi neutrálnymi označeniami (prémiové Tier-1 fotovoltické panely, asymetrické hybridné striedače najnovšej generácie). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
+| **ACT-33** | **Dotačná administratíva & Právna čistota (UI/UX)** | Komplexné odstránenie prísľubov odpočtu štátnej dotácie priamo z faktúry naprieč celým webom na základe požiadavky klienta. Marvol s.r.o. ako oprávnený zhotoviteľ SIEA poskytuje 100% online rezerváciu poukážky, vybavenie dokumentácie a bezstarostnú administratívu na kľúč, pričom štátna dotácia je po realizácii a schválení vyplatená priamo na bankový účet klienta (v súlade s legislatívou a oficiálnym mechanizmom SIEA). Úprava banneru na stránke domácností, kontaktov, revízií a dotácií, poradenstva, e-shopu a cenovej ponuky. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **47,0 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **47,3 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~5 955,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 392,50 € (úspora cca 74 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~5 990,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 427,50 € (úspora cca 74 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

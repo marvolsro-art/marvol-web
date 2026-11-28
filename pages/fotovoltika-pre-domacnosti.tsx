@@ -387,10 +387,10 @@ export default function FotovoltikaPreDomacnosti() {
           <div className="mt-12 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1">
               <div className="text-emerald-400 font-bold text-base sm:text-lg">
-                Garancia odpočtu dotácie z faktúry
+                100% garancia vybavenia štátnej dotácie SIEA
               </div>
               <div className="text-slate-300 text-xs sm:text-sm">
-                Dotáciu Zelená domácnostiam uplatňujeme priamo na konečnej faktúre. Nemusíte čakať mesiace na preplatenie od štátu.
+                Ako registrovaný oprávnený zhotoviteľ zabezpečíme kompletnú online rezerváciu aj žiadosť o vyplatenie štátnej dotácie na kľúč priamo na váš účet.
               </div>
             </div>
             <a
@@ -462,7 +462,7 @@ export default function FotovoltikaPreDomacnosti() {
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">
-                Pošlite nám krátky dopyt. Náš technik posúdi vašu lokalitu, vypočíta optimálny výkon fotovoltiky a pripraví kalkuláciu s odpočtom štátnej dotácie.
+                Pošlite nám krátky dopyt. Náš technik posúdi vašu lokalitu, vypočíta optimálny výkon fotovoltiky a pripraví kalkuláciu so započítaním štátnej dotácie.
               </p>
 
               <div className="space-y-4 pt-2">
