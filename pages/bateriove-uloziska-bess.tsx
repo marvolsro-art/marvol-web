@@ -77,10 +77,6 @@ export default function BaterioveUloziskaBess() {
       a: 'Keď distribučná sieť zaznamená výpadok (blackout), hybridný striedač sa v priebehu 10 až 20 milisekúnd galvanicky odpojí od vonkajšej siete a prepne dom do ostrovného režimu. Tento prechod je taký rýchly, že nedôjde k vypnutiu stolných počítačov, televízorov ani k resetovaniu domácej Wi-Fi či kotla. Pokiaľ svieti slnko, batéria sa dokáže priebežne dobíjať aj počas trvajúceho blackoutu.',
     },
     {
-      q: 'Môžem si batériové úložisko dokúpiť aj k už existujúcej fotovoltike?',
-      a: 'Áno. Pokiaľ už máte fotovoltiku s bežným sieťovým striedačom (On-Grid), môžeme systém doplniť o tzv. AC-Coupled batériový striedač s úložiskom bez nutnosti výmeny pôvodného striedača. Pokiaľ plánujete novú inštaláciu, odporúčame hybridný menič DC-Coupled, ktorý dosahuje vyššiu účinnosť premeny energie (až 97,5%).',
-    },
-    {
       q: 'Ako funguje nabíjanie elektromobilu výhradne zo slnka cez Smart Wallbox?',
       a: 'Náš inteligentný Wallbox komunikuje v reálnom čase so smart metrom v rozvádzači. Keď zistí, že fotovoltika vyrába napríklad 4,2 kW prebytkov, ktoré dom nespotrebúva, Wallbox plynule nastaví nabíjací prúd auta presne na túto hodnotu. Jazdíte tak na skutočne bezplatnú a 100% čistú slnečnú energiu bez odberu drahej elektriny zo siete.',
     },
