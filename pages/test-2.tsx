@@ -872,7 +872,7 @@ export default function MinimalistTestPage() {
                     E-Shop solárnych komponentov
                   </h3>
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Veľkoobchodný a maloobchodný predaj overených komponentov Huawei, SolaX, Canadian Solar a Fronius. Centrálny sklad vo Vrútkach.
+                    Veľkoobchodný a maloobchodný predaj overených Tier-1 fotovoltických komponentov. Centrálny sklad vo Vrútkach.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">

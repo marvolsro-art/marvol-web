@@ -5,7 +5,7 @@ export const WhyUsSection: React.FC = () => {
     {
       metric: '25 rokov',
       title: 'Lineárna garancia výkonu a Tier-1 komponenty',
-      description: 'Inštalujeme výhradne špičkové N-Type TOPCon solárne panely a overené hybridné striedače (Solinteg a GoodWe) s garantovanou degradáciou pod 0,4 % ročne.',
+      description: 'Inštalujeme výhradne špičkové fotovoltické panely a overené asymetrické hybridné striedače s garantovanou degradáciou pod 0,4 % ročne.',
       tag: 'Tier-1 komponenty s predĺženou zárukou',
     },
     {

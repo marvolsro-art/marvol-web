@@ -423,7 +423,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                 <div className="bg-amber-400/10 p-4 rounded-2xl col-span-2 sm:col-span-2">
                   <p className="text-xs font-semibold text-amber-400">Odhadovaná investícia po štátnej dotácii</p>
                   <p className="text-2xl font-black text-white mt-0.5">od {netPrice.toLocaleString('sk-SK')} €</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže na kľúč, striedača Solinteg/GoodWe, revízie a dotácie SIEA</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Vrátane montáže na kľúč, asymetrického hybridného striedača, revízie a dotácie SIEA</p>
                 </div>
               </div>
             </div>

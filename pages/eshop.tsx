@@ -215,7 +215,7 @@ export const ESHOP_PRODUCTS: ProductMock[] = [
       { label: 'Požiarna ochrana', value: 'Integrované hasiace mikrovrecká' },
     ],
     description:
-      'Modulárne vysokonapäťové úložisko Huawei s 100% využiteľnou kapacitou a vstavaným optimalizátorom energie pre každý batériový modul.',
+      'Modulárne vysokonapäťové LiFePO4 úložisko s 100% využiteľnou kapacitou a vstavaným optimalizátorom energie pre každý batériový modul.',
   },
   {
     id: 'storage-dyness-t10',
@@ -382,14 +382,14 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
   {
     id: 'inverters',
     title: 'Striedače & Invertory',
-    subtitle: 'Huawei, SolaX, Fronius – 1-fázové aj 3-fázové hybridné meniče',
+    subtitle: 'Asymetrické hybridné striedače – 1-fázové aj 3-fázové modely',
     icon: 'bolt',
     highlight: 'Skladom 10 kW modely',
   },
   {
     id: 'storage',
     title: 'Batériové úložiská',
-    subtitle: 'Vysokonapäťové LiFePO4 úložiská Dyness a Huawei LUNA2000',
+    subtitle: 'Modulárne vysokonapäťové LiFePO4 batériové úložiská',
     icon: 'battery',
     highlight: '6 000+ cyklov, 100% DoD',
   },
@@ -682,7 +682,7 @@ export default function EshopPage() {
       name: 'Marvol E-Shop — Solárne komponenty & FV sety',
       url: 'https://marvol.sk/eshop',
       description:
-        'Veľkoobchodný a maloobchodný predaj fotovoltických panelov TOPCon, striedačov napätia Huawei a SolaX, LiFePO4 batérií a montážnych konštrukcií s možnosťou realizácie na kľúč.',
+        'Veľkoobchodný a maloobchodný predaj fotovoltických panelov Tier-1, asymetrických striedačov napätia, LiFePO4 batérií a montážnych konštrukcií s možnosťou realizácie na kľúč.',
       telephone: COMPANY_DETAILS.contact.phoneClean,
       email: COMPANY_DETAILS.contact.email,
       address: {
@@ -760,7 +760,7 @@ export default function EshopPage() {
           name: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Pri každom produkte môžete zvoliť Kúpiť s kompletnou montážou na kľúč. Náš tím pripraví projektovú dokumentáciu, namontuje systém, vykoná revíziu OPOS a zabezpečí online rezerváciu štátnej dotácie Zelená domácnostiam (FV do 1 150 €, TČ do 4 600 €, Solidarita až do 90 %).',
+            text: 'Pri každom produkte môžete zvoliť Kúpiť s kompletnou montážou na kľúč. Náš tím pripraví projektovú dokumentáciu, namontuje systém, vykoná revíziu OPOS a zabezpečí online rezerváciu štátnej dotácie Zelená domácnostiam (FV do 1 150 €, Solidarita až do 90 %).',
           },
         },
       ],
@@ -779,11 +779,11 @@ export default function EshopPage() {
     },
     {
       q: 'Ako funguje možnosť nákupu s montážou na kľúč a dotáciou?',
-      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €, TČ až 4 600 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí.',
+      a: 'Pokiaľ pri produkte zvolíte tlačidlo "Kúpiť s kompletnou montážou na kľúč + dotácia", náš technik vás bude kontaktovať, posúdi vašu nehnuteľnosť a vypracuje cenovú ponuku s odpočtom štátnej dotácie Zelená domácnostiam (FV 575 €/kW do 1 150 €). V cene na kľúč je odborná montáž certifikovanými technikmi Marvol s.r.o., revízna správa OPOS, administratíva u distribučnej spoločnosti a vybavenie dotácie SIEA bez starostí.',
     },
     {
       q: 'Aká je záruka na dodávané fotovoltické komponenty?',
-      a: 'Všetky produkty pochádzajú výhradne z oficiálnej európskej distribúcie s plnou garanciou originality. Fotovoltické panely Tier 1 disponujú 25 až 30-ročnou lineárnou garanciou výkonu. Hybridné striedače Huawei, SolaX a Fronius majú 10-ročnú záruku výrobcu a LiFePO4 batériové úložiská garantujú minimálne 6 000 plných nabíjacích cyklov s 10-ročnou zárukou.',
+      a: 'Všetky produkty pochádzajú výhradne z oficiálnej európskej distribúcie s plnou garanciou originality. Fotovoltické panely Tier 1 disponujú 25-ročnou lineárnou garanciou výkonu. Hybridné striedače majú 10-ročnú záruku výrobcu a LiFePO4 batériové úložiská garantujú minimálne 6 000 plných nabíjacích cyklov s 10-ročnou zárukou.',
     },
     {
       q: 'Ako prebieha doručenie krehkých fotovoltických panelov a ťažkých batérií?',
@@ -798,7 +798,7 @@ export default function EshopPage() {
   return (
     <Layout
       title="E-Shop Solárnych Komponentov & FV Sety | Marvol"
-      description="Veľkoobchod a maloobchod: fotovoltické panely TOPCon, striedače Huawei a SolaX, batérie LiFePO4 a montážne sety. Sklad Vrútky aj montáž na kľúč s dotáciou."
+      description="Veľkoobchod a maloobchod: fotovoltické panely Tier-1, asymetrické striedače, batérie LiFePO4 a montážne sety. Sklad Vrútky aj montáž na kľúč s dotáciou."
       canonicalPath="/eshop"
       schema={storeAndCatalogSchema}
       isSubpage={true}
@@ -876,7 +876,7 @@ export default function EshopPage() {
               <ShieldIcon className="w-6 h-6 text-amber-400 mb-2" />
               <h3 className="text-white font-bold text-sm">Garancia originality & Tier 1</h3>
               <p className="text-slate-400 text-xs mt-1 leading-normal">
-                100% originálne komponenty Huawei, SolaX, Fronius, Canadian Solar a Dyness s plnou zárukou.
+                100% originálne komponenty od certifikovaných Tier-1 výrobcov s plnou zárukou.
               </p>
             </div>
 
