@@ -100,10 +100,10 @@ export default function MinimalistTestPage() {
     business: {
       tag: 'Pre firmy & priemysel',
       title: 'Fixácia cien energie pre váš biznis',
-      desc: 'Ochrana pred výkyvmi na burze, Lokálny zdroj bez distribučných poplatkov a podpora Zelená podnikom do 50%.',
+      desc: 'Ochrana pred výkyvmi na burze, inštitút Lokálneho zdroja a podpora Zelená podnikom do 50%.',
       metric1: 'do 50 %',
       label1: 'Podpora Zelená podnikom',
-      metric2: 'Bez TPS/TSS',
+      metric2: 'Do 500 kWp',
       label2: 'Inštitút Lokálneho zdroja',
       img: '/images/fotovoltika-firmy/hero.jpg',
       features: ['Komerčné strešné & pozemné FVE', 'Priemyselné úložiská BESS', 'Optimalizácia 1/4h maxím'],

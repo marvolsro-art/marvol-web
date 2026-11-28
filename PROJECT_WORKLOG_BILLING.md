@@ -47,15 +47,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-32** | **Odstránenie špecifikácie značiek komponentov z popisov (UI/UX)** | Komplexné odstránenie konkrétnych značiek komponentov (Solinteg, GoodWe, Huawei, Canadian Solar, JA Solar, SolaX atď.) zo všetkých marketingových popisov, kariet služieb, kalkulačky, pilierov a podstránok naprieč celým webom (`WhyUsSection`, `CalculatorSection`, `ServicesSection`, `TestimonialsSection`, `fotovoltika-pre-domacnosti`, `bateriove-uloziska-bess`, `instalacia-montaz`, `eshop`, `test-2`). Nahradenie profesionálnymi neutrálnymi označeniami (prémiové Tier-1 fotovoltické panely, asymetrické hybridné striedače najnovšej generácie). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
 | **ACT-33** | **Dotačná administratíva & Právna čistota (UI/UX)** | Komplexné odstránenie prísľubov odpočtu štátnej dotácie priamo z faktúry naprieč celým webom na základe požiadavky klienta. Marvol s.r.o. ako oprávnený zhotoviteľ SIEA poskytuje 100% online rezerváciu poukážky, vybavenie dokumentácie a bezstarostnú administratívu na kľúč, pričom štátna dotácia je po realizácii a schválení vyplatená priamo na bankový účet klienta (v súlade s legislatívou a oficiálnym mechanizmom SIEA). Úprava banneru na stránke domácností, kontaktov, revízií a dotácií, poradenstva, e-shopu a cenovej ponuky. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
 | **ACT-34** | **Zjednotenie špecifikácií panelov & Copywriting (UI/UX)** | Kompletné nahradenie technologických označení „N-Type TOPCon“ za prémiové „Tier 1 panely“ naprieč celým webom (`Hero.tsx`, kalkulačka úspor `CalculatorSection.tsx`, `fotovoltika-pre-domacnosti.tsx`, `sluzby/konzultacie-poradenstvo.tsx`, `eshop.tsx` a `test-2.tsx`). Vytvorenie nového dôveryhodného copywritingu pre technologickú kartu panelov: vysvetlenie elitného ratingu Tier 1 (BloombergNEF), 100% robotizovaná bezchybná výroba, mimoriadny zisk aj pri difúznom a zamračenom svetle, celočierny Full-Black dizajn a 25-ročná garancia. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
+| **ACT-35** | **Odstránenie zmienok o oslobodení od TPS/TSS (UI/UX)** | Komplexné odstránenie všetkých zmienok a tvrdení o oslobodení od poplatkov TPS (tarifa za prevádzkovanie systému) a TSS (tarifa za systémové služby) naprieč celým webom na základe požiadavky klienta. Úprava sekcie B2B fotovoltiky (`pages/fotovoltika-pre-firmy.tsx`), hero odznakov, kariet výhod Lokálneho zdroja, FAQ odpovedí a testovacích podstránok. Preformulovanie na priamu spotrebu zelenej energie a zníženie nákupu drahej silovej elektriny zo siete. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **47,6 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **47,8 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~6 025,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 462,50 € (úspora cca 74 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~6 050,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 487,50 € (úspora cca 74 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

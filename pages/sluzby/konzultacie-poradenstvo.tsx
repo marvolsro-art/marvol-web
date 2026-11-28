@@ -115,7 +115,7 @@ export default function KonzultaciePoradenstvo() {
     },
     {
       q: 'Oplatí sa mi viac fyzická batéria alebo virtuálna batéria?',
-      a: 'Virtuálna batéria vyzerá lákavo z dôvodu nízkej počiatočnej investície, avšak pri spätnom odbere zaplatíte distribučné poplatky a poplatky za systémové služby (cca 50 až 60% ceny elektriny) a navyše nefunguje pri výpadku prúdu. Fyzická LiFePO4 batéria uchováva 100% energie úplne zadarmo a funguje ako plnohodnotné UPS zálohovanie pri výpadku distribučnej siete.',
+      a: 'Virtuálna batéria vyzerá lákavo z dôvodu nízkej počiatočnej investície, avšak pri spätnom odbere zaplatíte vysoké distribučné a sieťové poplatky (cca 50 až 60% ceny elektriny) a navyše nefunguje pri výpadku prúdu. Fyzická LiFePO4 batéria uchováva 100% energie úplne zadarmo a funguje ako plnohodnotné UPS zálohovanie pri výpadku distribučnej siete.',
     },
     {
       q: 'Aké podmienky musím splniť pre získanie dotácie Zelená domácnostiam?',

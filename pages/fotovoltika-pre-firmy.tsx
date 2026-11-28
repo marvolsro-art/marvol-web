@@ -49,7 +49,7 @@ export default function FotovoltikaPreFirmy() {
   const faqs = [
     {
       q: 'Čo je to Lokálny zdroj podľa zákona č. 309/2009 Z. z. a aké má výhody?',
-      a: 'Lokálny zdroj je zariadenie na výrobu elektriny z obnoviteľných zdrojov (OZE) s výkonom do 500 kWp, ktoré slúži primárne na krytie vlastnej spotreby odberateľa v danom odbernom mieste. Jeho najväčšou výhodou je 100% oslobodenie od platby Tarify za prevádzkovanie systému (TPS) a Tarify za systémové služby (TSS) na všetku vyrobenú a priamo spotrebovanú elektrinu, čo prináša okamžitú úsporu desiatok eur na každú spotrebovanú megawatthodinu.',
+      a: 'Lokálny zdroj je zariadenie na výrobu elektriny z obnoviteľných zdrojov (OZE) s výkonom do 500 kWp, ktoré slúži primárne na priame krytie vlastnej spotreby podniku v danom odbernom mieste. Medzi hlavné výhody patrí zjednodušený proces pripojenia do distribučnej sústavy, okamžité zníženie nákupu drahej silovej elektriny zo siete a ochrana firmy pred výkyvmi trhových cien energií.',
     },
     {
       q: 'Aké dotácie môžu firmy čerpať z programu Zelená podnikom?',
@@ -178,14 +178,14 @@ export default function FotovoltikaPreFirmy() {
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Ochráňte svoj podnik pred volatilitou energetického trhu. Zabezpečujeme inžiniering komerčných solárnych elektrární na kľúč s oslobodením od TPS/TSS poplatkov v režime <strong className="text-white">Lokálneho zdroja</strong>, znížením 15-minútových špičiek a návratnosťou už od 3 rokov.
+                Ochráňte svoj podnik pred volatilitou energetického trhu. Zabezpečujeme inžiniering komerčných solárnych elektrární na kľúč v legislatívnom režime <strong className="text-white">Lokálneho zdroja</strong>, so znížením 15-minútových špičiek a návratnosťou už od 3 rokov.
               </p>
 
               {/* B2B Key Metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
-                  <div className="text-amber-400 font-black text-xl sm:text-2xl">0 € TPS/TSS</div>
-                  <div className="text-slate-400 text-xs mt-0.5">Zákon č. 309/2009 Z.z.</div>
+                  <div className="text-amber-400 font-black text-xl sm:text-2xl">Do 500 kWp</div>
+                  <div className="text-slate-400 text-xs mt-0.5">Lokálny zdroj OZE</div>
                 </div>
                 <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5 ">
                   <div className="text-emerald-400 font-black text-xl sm:text-2xl">3 – 5 rokov</div>
@@ -240,7 +240,7 @@ export default function FotovoltikaPreFirmy() {
                   <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/95 border border-slate-800">
                     <div className="flex items-center justify-between text-xs text-slate-300">
                       <span className="font-bold text-white text-sm">Ploché strechy výrobných & logistických hál</span>
-                      <span className="text-sky-400 font-bold">Bez poplatkov TPS/TSS</span>
+                      <span className="text-sky-400 font-bold">Režim Lokálneho zdroja</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">
                       Staticky overené bezpenetračné uloženie s aerodynamickým odľahčením konštrukcie.
@@ -304,7 +304,7 @@ export default function FotovoltikaPreFirmy() {
               <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
-                  <span><strong>Oslobodenie od TPS a TSS:</strong> Neplatíte tarifu za prevádzkovanie systému ani systémové služby na vlastnú spotrebu.</span>
+                  <span><strong>Priama spotreba na mieste:</strong> Vyrobenú elektrinu okamžite spotrebúvate vo výrobe, čím priamo nahrádzate drahú nakupovanú energiu zo siete.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-amber-400 shrink-0 inline-block" />
