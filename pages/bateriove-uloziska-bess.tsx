@@ -381,7 +381,7 @@ export default function BaterioveUloziskaBess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
               <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
                 <Shield className="w-6 h-6 text-amber-400" />
@@ -389,16 +389,6 @@ export default function BaterioveUloziskaBess() {
               <h3 className="text-xl font-black text-white">Pokročilé BMS riadenie</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                 Integrovaný Battery Management System (BMS) monitoruje napätie a teplotu každého jedného článku v batérii. Zabezpečuje rovnomerné nabíjanie, chráni pred podbitím a optimalizuje prenos energie.
-              </p>
-            </div>
-
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400">
-                <Bolt className="w-6 h-6 text-sky-400" />
-              </div>
-              <h3 className="text-xl font-black text-white">Mikrosekundový Full Backup</h3>
-              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                Bežné záložné systémy vyžadujú manuálne prepnutie alebo výpadok trvá niekoľko sekúnd. Naše riešenia disponujú vstavaným EPS/UPS stýkačom s prepnutím do 20 ms. Váš dom beží bez jediného bliknutia žiarovky.
               </p>
             </div>
 
