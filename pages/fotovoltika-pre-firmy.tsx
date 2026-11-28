@@ -420,10 +420,10 @@ export default function FotovoltikaPreFirmy() {
               Firemný proces
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Od 15-minútovej analýzy po spustenie bez výpadku výroby
+              Od 15-minútovej analýzy po spustenie s minimálnou odstávkou
             </h2>
             <p className="text-slate-400 text-sm sm:text-base">
-              Vážime si plynulosť vašej prevádzky. Inštalácie koordinujeme tak, aby nedošlo k prerušeniu výrobných procesov ani logistiky.
+              Rešpektujeme plynulosť vašej prevádzky. Všetky práce na streche realizujeme za plného chodu a nevyhnutné prepájanie hlavných rozvádzačov plánujeme na vopred dohodnuté servisné okná, víkendy či plánované odstávky.
             </p>
           </div>
 
@@ -454,9 +454,9 @@ export default function FotovoltikaPreFirmy() {
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
               <div className="text-3xl font-black text-sky-400/40">4</div>
-              <h4 className="text-base font-bold text-white">Čistá inštalácia</h4>
+              <h4 className="text-base font-bold text-white">Koordinovaná inštalácia</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
-                Profesionálna montáž balastných či trapézových systémov a prepojenie na VN/NN rozvádzače haly.
+                Montáž balastných či trapézových systémov za chodu prevádzky a prepájanie VN/NN rozvádzačov počas dohodnutej technologickej odstávky.
               </p>
             </div>
 

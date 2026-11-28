@@ -49,15 +49,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-34** | **Zjednotenie špecifikácií panelov & Copywriting (UI/UX)** | Kompletné nahradenie technologických označení „N-Type TOPCon“ za prémiové „Tier 1 panely“ naprieč celým webom (`Hero.tsx`, kalkulačka úspor `CalculatorSection.tsx`, `fotovoltika-pre-domacnosti.tsx`, `sluzby/konzultacie-poradenstvo.tsx`, `eshop.tsx` a `test-2.tsx`). Vytvorenie nového dôveryhodného copywritingu pre technologickú kartu panelov: vysvetlenie elitného ratingu Tier 1 (BloombergNEF), 100% robotizovaná bezchybná výroba, mimoriadny zisk aj pri difúznom a zamračenom svetle, celočierny Full-Black dizajn a 25-ročná garancia. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
 | **ACT-35** | **Odstránenie zmienok o oslobodení od TPS/TSS (UI/UX)** | Komplexné odstránenie všetkých zmienok a tvrdení o oslobodení od poplatkov TPS (tarifa za prevádzkovanie systému) a TSS (tarifa za systémové služby) naprieč celým webom na základe požiadavky klienta. Úprava sekcie B2B fotovoltiky (`pages/fotovoltika-pre-firmy.tsx`), hero odznakov, kariet výhod Lokálneho zdroja, FAQ odpovedí a testovacích podstránok. Preformulovanie na priamu spotrebu zelenej energie a zníženie nákupu drahej silovej elektriny zo siete. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 | **ACT-36** | **Zjednodušenie prípadových štúdií & referencií (UI/UX)** | Kompletná vizuálna a dátová redukcia všetkých prípadových štúdií a referenčných kariet naprieč celým webom (hlavná sekcia referencií v `components/ReferencesSection.tsx` a priemyselné prípadové štúdie na `pages/fotovoltika-pre-firmy.tsx`) na základe explicitného pokynu klienta. Odstránené lokality, technické špecifikácie meničov a batérií, návratnosti, ročné úspory, tabuľky a tlačidlá. Karty teraz striktne obsahujú iba autentickú 16:9 fotografiu a názov kategórie (Rodinný dom / Priemysel / Samospráva). Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 35,00 € | ✅ Hotovo |
+| **ACT-37** | **B2B Proces inštalácie & Odstávky (UI/UX)** | Korekcia textácie priemyselného inštalačného procesu na `pages/fotovoltika-pre-firmy.tsx`. Odstránenie nerealistického tvrdenia „bez výpadku výroby“ v prospech technicky presného a dôveryhodného inžinierskeho znenia: „Od 15-minútovej analýzy po spustenie s minimálnou odstávkou“. Spresnenie, že montáž na streche prebieha za plného chodu prevádzky, pričom nevyhnutné prepájanie hlavných rozvádzačov haly (VN/NN) sa koordinuje počas plánovaných servisných okien, technologických odstávok či víkendov. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,2 h | *V rámci servisu (0 €)* | 25,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **48,1 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **48,3 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~6 085,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 522,50 € (úspora cca 74 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~6 110,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 547,50 € (úspora cca 74 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**
