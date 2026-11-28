@@ -15,34 +15,16 @@ export default function FotovoltikaPreFirmy() {
 
   const caseStudies = [
     {
-      company: 'EUROTOOLS s.r.o., Martin',
-      type: 'Kovovýroba & Presné CNC obrábanie',
-      installedPower: '75 kWp',
-      roofType: 'Trapézový plech haly, sklon 8°',
-      annualProduction: 'cca 81 500 kWh',
-      annualSavings: '14 200 € / rok',
-      paybackPeriod: '3,8 roka',
-      highlights: 'Priama spotreba 92% energie priamo vo výrobe počas pracovnej zmeny, eliminácia rezervovanej kapacity.',
+      category: 'Priemysel',
+      image: '/images/fotovoltika-firmy/hero.jpg',
     },
     {
-      company: 'Logistický park Žilina',
-      type: 'Distribučné sklady & Chladiarenský hub',
-      installedPower: '180 kWp + 100 kWh BESS',
-      roofType: 'Plochá strecha s PVC fóliou (balastný systém bez kotvenia)',
-      annualProduction: 'cca 195 000 kWh',
-      annualSavings: '32 500 € / rok',
-      paybackPeriod: '4,2 roka',
-      highlights: 'Vyhladzovanie 15-minútových špičiek (peak shaving) a záložné napájanie chladiacich boxov pri výpadku.',
+      category: 'Priemysel',
+      image: '/images/bateriove-uloziska/hero.jpg',
     },
     {
-      company: 'Administratívne centrum Banská Bystrica',
-      type: 'Moderná kancelárska budova A+',
-      installedPower: '45 kWp',
-      roofType: 'Zelená extenzívna strecha s vyvýšenou konštrukciou',
-      annualProduction: 'cca 49 000 kWh',
-      annualSavings: '8 600 € / rok',
-      paybackPeriod: '4,5 roka',
-      highlights: 'Zníženie uhlíkovej stopy (ESG reporting pre nadnárodných nájomcov) a napájanie HVAC technológií, vzduchotechniky a chladenia.',
+      category: 'Priemysel',
+      image: '/images/fotovoltika-firmy/industrial-inverter.jpg',
     },
   ];
 
@@ -366,52 +348,21 @@ export default function FotovoltikaPreFirmy() {
             {caseStudies.map((study, idx) => (
               <div
                 key={idx}
-                className="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-colors"
+                className="bg-slate-950/80 border border-slate-800/60 rounded-2xl p-4 flex flex-col space-y-3 hover:border-slate-700 transition-colors group"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400">
-                      Výkon: {study.installedPower}
-                    </span>
-                    <span className="text-xs text-slate-400">
-                      Návratnosť: <strong className="text-emerald-400">{study.paybackPeriod}</strong>
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white">
-                    {study.company}
-                  </h3>
-                  <div className="text-xs text-sky-400 font-medium">
-                    {study.type}
-                  </div>
-
-                  <div className="space-y-2 py-3  text-xs text-slate-300">
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Typ inštalácie:</span>
-                      <span className="text-right text-white font-medium">{study.roofType}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Ročná výroba:</span>
-                      <span className="text-right text-white font-medium">{study.annualProduction}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Priama ročná úspora:</span>
-                      <span className="text-right text-emerald-400 font-bold">{study.annualSavings}</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {study.highlights}
-                  </p>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+                  <img
+                    src={study.image}
+                    alt={study.category}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
                 </div>
 
-                <div className="pt-6">
-                  <a
-                    href="#dopyt"
-                    className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-sm font-bold text-center flex items-center justify-center text-white transition-colors"
-                  >
-                    Navrhnúť podobné riešenie
-                  </a>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+                    {study.category}
+                  </h3>
                 </div>
               </div>
             ))}
