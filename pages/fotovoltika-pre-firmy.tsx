@@ -51,7 +51,7 @@ export default function FotovoltikaPreFirmy() {
     },
     {
       q: 'Ako funguje monitoring a záručný servis komerčnej elektrárne?',
-      a: 'Každú inštaláciu pripájame na centrálny monitoring s rozhraním SCADA / Modbus TCP. Naše dohľadové centrum v reálnom čase sleduje parametre každého stringu a striedača. V prípade anomálie okamžite zasahujú naši servisní technici. Ponúkame garantované zmluvné SLA s nástupom na servis do 24 hodín.',
+      a: 'Každú inštaláciu pripájame na centrálny monitoring s rozhraním SCADA / Modbus TCP. Naše dohľadové centrum v reálnom čase sleduje parametre každého stringu a striedača. V prípade akejkoľvek anomálie zabezpečujeme spoľahlivú technickú podporu a odborný záručný i pozáručný servis.',
     },
   ];
 
@@ -462,7 +462,7 @@ export default function FotovoltikaPreFirmy() {
 
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-2">
               <div className="text-3xl font-black text-sky-400/40">5</div>
-              <h4 className="text-base font-bold text-white">Revízia & SLA</h4>
+              <h4 className="text-base font-bold text-white">Revízia & Servis</h4>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Oficiálna revízna správa OPOS, kolaudácia, zapojenie do dispečingu a 24/7 monitoring s rýchlym servisom.
               </p>
