@@ -411,22 +411,7 @@ export const Header: React.FC = () => {
                     </Link>
                   ))}
 
-                  {/* Quick sector reference: Samosprávy */}
-                  <div className="mt-2 pt-2 border-t border-slate-800/80 px-3 flex items-center justify-between text-[11px] text-slate-400"> {/* taste-skill-ignore: flyout menu divider */}
-                    <span>Riešenia pre verejný sektor:</span>
-                    <Link
-                      href={isHome ? '#target-groups' : '/#target-groups'}
-                      onClick={(e) => {
-                        if (isHome) handleNavClick(e, '#target-groups');
-                        else setActiveDropdown(null);
-                      }}
-                      className="text-amber-400 hover:text-amber-300 transition-colors font-medium flex items-center gap-1"
-                      role="menuitem"
-                    >
-                      <span>Obce a samosprávy</span>
-                      <span>→</span>
-                    </Link>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -675,18 +660,7 @@ export const Header: React.FC = () => {
                     <div className="text-xs text-slate-400 mt-0.5 line-clamp-1">{item.subtitle}</div>
                   </Link>
                 ))}
-                <div className="pt-1.5 px-1 border-t border-slate-800/40"> {/* taste-skill-ignore: modal drawer divider */}
-                  <Link
-                    href={isHome ? '#target-groups' : '/#target-groups'}
-                    onClick={(e) => {
-                      if (isHome) handleNavClick(e, '#target-groups');
-                      else setMobileMenuOpen(false);
-                    }}
-                    className="block p-2 rounded-lg text-xs font-medium text-amber-400/90 hover:text-amber-300 transition-colors"
-                  >
-                    Pre obce a verejný sektor →
-                  </Link>
-                </div>
+
               </div>
             )}
           </div>
