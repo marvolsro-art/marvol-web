@@ -14,68 +14,6 @@ export default function NavrhProjektu() {
     { name: 'Návrh projektu & Projektovanie', href: '/sluzby/navrh-projektu' },
   ];
 
-  const parameterCards = [
-    {
-      id: '3d-simulacia',
-      title: 'Analýza zatienenia & možnosť 3D modelu',
-      badge: 'Fotometrická simulácia',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
-      description:
-        'Digitálna dvojička vašej strechy s fotometrickou simuláciou slnečného svitu. Odhaľujeme mikrotieňovanie komínov, vikierov a stromov ešte pred položením jediného panelu.',
-      features: [
-        'Možnosť vypracovania digitálneho 3D modelu strechy s uvážením sklonu, azimutu a krytiny',
-        'Simulácia tieňov vrhaných komínmi, vikiermi, okolitými stromami a susednými stavbami',
-        'Výpočet optimálnych odstupov radov na plochých strechách (eliminácia vzájomného tienenia)',
-        'Porovnanie ziskovosti variantov zapojenia stringov vs. použitie výkonových optimizérov',
-        'Hodinová ročná krivka očakávanej výroby energie (PV*SOL / AutoCAD export)',
-      ],
-    },
-    {
-      id: 'elektro-projekt-sld',
-      title: 'Elektrotechnický projekt & Jednopólové schémy (SLD)',
-      badge: 'STN 33 2000-7-712',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Kompletný inžiniersky návrh elektrického zapojenia v súlade so slovenskými elektrotechnickými normami STN, zaručujúci maximálnu požiarnu i prevádzkovú bezpečnosť.',
-      features: [
-        'Detailné dimenzovanie prierezov solárnych káblov (Solárflex 4 mm² / 6 mm²) s úbytkom napätia < 1%',
-        'Návrh DC stringových rozvádzačov s poistkovými odpínačmi gPV a spoľahlivými DC odpojovačmi',
-        'Koordinácia stupňov prepäťových ochrán SPD Typ 1 + Typ 2 na DC aj AC strane',
-        'Schéma zapojenia inteligentného Smart Metra a hybridného striedača s batériovým úložiskom',
-        'Projekt prepojenia s domovým rozvádzačom, záložným okruhom (EPS/UPS) a podružnými okruhmi',
-      ],
-    },
-    {
-      id: 'distribucna-sustava',
-      title: 'Projekt pripojenia do distribučnej sústavy',
-      badge: 'SSD / ZSD / VSD',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-      description:
-        'Autorizovaná projektová dokumentácia pre prevádzkovateľov distribučných sústav. Garantujeme bezproblémové schválenie žiadosti o pripojenie mikrozdroja aj lokálneho zdroja.',
-      features: [
-        'Kompletná technická dokumentácia k žiadosti o pripojenie mikrozdroja (do 10,8 kW)',
-        'Projektová dokumentácia pre lokálny zdroj a komerčné inštalácie nad 10,8 kW',
-        'Posúdenie impedancie siete, skratových pomerov a spätného vplyvu na distribučnú sústavu',
-        'Návrh sieťových ochrán a rozpadového miesta podľa technických podmienok distribútora',
-        'Garancia rýchleho schválenia a bezproblémového osadenia 4-kvadrantného elektromera',
-      ],
-    },
-    {
-      id: 'statika-poziarna-ochrana',
-      title: 'Statické a požiarno-bezpečnostné posúdenie',
-      badge: 'STN EN 1991 / Eurokódy',
-      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
-      description:
-        'Odborné statické výpočty zaťaženia krovu a požiarno-bezpečnostné riešenie stavby (PBS) garantujúce dlhodobú stabilitu a schválenie stavebným úradom i hasičmi.',
-      features: [
-        'Prepočet zaťaženia strešnej konštrukcie snehom a vetrom pre konkrétnu vetrovú a snehovú oblasť',
-        'Výpočet potrebnej balastnej záťaže pre rovné strechy bez mechanického narušenia hydroizolácie',
-        'Požiarno-bezpečnostné odstupy od požiarnych stien, svetlíkov a odvodňovacích žľabov',
-        'Návrh certifikovaných protipožiarnych prestupov káblových trás triedy odolnosti EI 60 až EI 120',
-        'Oficiálny podklad pre stavebný úrad (ohlásenie drobnej stavby alebo stavebné povolenie)',
-      ],
-    },
-  ];
 
   const workflowSteps = [
     {
@@ -338,70 +276,6 @@ export default function NavrhProjektu() {
         </div>
       </section>
 
-      {/* 4 Parameter Cards Section */}
-      <section id="parametre" className="py-20 bg-slate-950 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-amber-400 text-xs font-semibold px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-              Inžinierske portfólio
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              Projektová dokumentácia a simulácie
-            </h2>
-            <p className="text-slate-400 text-sm sm:text-base">
-              Od technického návrhu pre rodinné domy s možnosťou 3D fotometrie až po rozsiahle projekty firemných lokálnych zdrojov pripojených na vysoké napätie.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {parameterCards.map((card) => (
-              <div
-                key={card.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-700 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-bold font-semibold px-2.5 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-2">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                    {card.description}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8  pt-4">
-                    <div className="text-[11px] font-bold font-semibold text-slate-400 mb-1">
-                      Rozsah projektovej činnosti:
-                    </div>
-                    {card.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <a
-                    href="#dopyt"
-                    className="w-full min-h-[44px] min-h-[48px] py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center inline-flex items-center justify-center text-sm transition-colors border border-slate-700 cursor-pointer"
-                  >
-                    Dopytovať tento projekt
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
 
       {/* 4-Step Process Roadmap */}
       <section className="py-20 bg-slate-900 ">
