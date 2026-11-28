@@ -58,15 +58,16 @@ Tento dokument slúži ako **oficiálny a transparentný denník všetkých real
 | **ACT-43** | **Odstránenie sekcie obsahu projektovej dokumentácie (UI/UX)** | Kompletné odstránenie sekcie obsahu projektovej dokumentácie („Obsah dokumentácie / Čo presne od nás dostanete do rúk“ – 3D situačný výkres strechy, jednopólová schéma SLD, technická správa pre distribučné sústavy a simulačný audit výnosov / karty projektovej dokumentácie) z podstránky návrhu projektu (`pages/sluzby/navrh-projektu.tsx`) na základe explicitnej požiadavky klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 | **ACT-44** | **Odstránenie procesnej roadmapy projektu (UI/UX)** | Kompletné odstránenie sekcie procesnej roadmapy návrhu fotovoltiky („Ako postupujeme / Cesta od adresy domu po hotový projekt“ – zber dát, 3D model, jednopólová schéma a odovzdanie vrátane informačného boxu o projekte zadarmo pri realizácii) z podstránky návrhu projektu (`pages/sluzby/navrh-projektu.tsx`) podľa vizuálnej požiadavky klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
 | **ACT-45** | **Odstránenie FAQ otázky o dotácii z faktúry (UI/UX)** | Kompletné odstránenie otázky a odpovede o odpočítaní / vyplatení dotácie z faktúry („Ako prebieha odpočítanie dotácie z faktúry?“) zo sekcie FAQ a JSON-LD schémy na podstránke `pages/sluzby/revizie-dotacie.tsx` na základe explicitnej požiadavky klienta. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,1 h | *V rámci servisu (0 €)* | 15,00 € | ✅ Hotovo |
+| **ACT-46** | **Dočasné vyradenie e-shopu (UI/UX & Navigácia)** | Kompletné dočasné odstránenie e-shopu naprieč celým webom na základe požiadavky klienta: odstránený odkaz a B2B odznak z desktopovej a mobilnej navigácie (`components/Header.tsx`), vyčistený popis a odstránený odkaz v päte webu (`components/Footer.tsx`), upravená mobilná lišta (`components/MobileStickyBar.tsx`), vyčistená stránka `test-2.tsx`, odstránenie z `public/sitemap.xml` a nastavenie bezpečného dočasného presmerovania (307 redirect) z `/eshop` na úvodnú stránku so zálohou pôvodného e-shop kódu v `components/archive/eshop-backup.tsx`. Overené cez `tsc --noEmit` a nasadené na `preview`. | 0,3 h | *V rámci servisu (0 €)* | 45,00 € | ✅ Hotovo |
 
 ---
 
 ## 2. Finančný súhrn (Aktuálna bilancia)
 
-- **Celkový počet odpracovaných hodín:** **49,2 hodín + základný balík webu**
+- **Celkový počet odpracovaných hodín:** **49,5 hodín + základný balík webu**
 - **Jednorazová suma pri kamarátskej sadzbe (25 €/h):** **1 562,50 €**
-- **Reálna trhová hodnota (komerčná agentúra):** **~6 240,00 €**
-- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 677,50 € (úspora cca 75 %)**
+- **Reálna trhová hodnota (komerčná agentúra):** **~6 285,00 €**
+- **Odhadovaná úspora pre Marvol s.r.o.:** **~4 722,50 € (úspora cca 75 %)**
 
 ### Pravidelné mesačné položky:
 - **Licencia program / nástroje:** **30,00 € / mesiac**

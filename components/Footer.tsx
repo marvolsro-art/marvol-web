@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             </div>
             
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Certifikovaný špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS, veľkoobchodný e-shop a kompletné inžinierske služby s úradnými revíziami po celom Slovensku.
+              Certifikovaný špecialista na fotovoltické elektrárne na kľúč, batériové úložiská BESS a kompletné inžinierske služby s úradnými revíziami po celom Slovensku.
             </p>
 
             <div className="pt-2 text-xs text-slate-500 space-y-1">
@@ -55,9 +55,9 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Col 2: Fotovoltika & E-shop */}
+          {/* Col 2: Fotovoltika */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase text-white">Fotovoltika &amp; E-shop</h4>
+            <h4 className="text-xs font-bold uppercase text-white">Fotovoltika</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link href="/fotovoltika-pre-domacnosti" className="hover:text-amber-400 transition-colors">
@@ -72,12 +72,6 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/bateriove-uloziska-bess" className="hover:text-amber-400 transition-colors">
                   Batériové úložiská BESS &amp; Wallbox
-                </Link>
-              </li>
-              <li>
-                <Link href="/eshop" className="text-amber-400 font-semibold hover:text-amber-300 transition-colors flex items-center gap-1.5">
-                  <span>E-shop solárnych komponentov</span>
-                  <span className="bg-amber-400/20 text-amber-300 text-[9px] px-1 rounded uppercase font-bold">Nové</span>
                 </Link>
               </li>
               <li>

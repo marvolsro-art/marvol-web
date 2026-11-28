@@ -215,10 +215,6 @@ export default function MinimalistTestPage() {
             <a href="#faq" className="hover:text-white transition-colors">
               FAQ
             </a>
-            <Link href="/eshop" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-              <span>E-shop</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-semibold">B2B</span>
-            </Link>
           </nav>
 
           {/* CTA & Phone */}
@@ -295,14 +291,6 @@ export default function MinimalistTestPage() {
             >
               Časté otázky (FAQ)
             </a>
-            <Link
-              href="/eshop"
-              onClick={() => setMobileNavOpen(false)}
-              className="min-h-[48px] flex items-center justify-between text-lg font-semibold text-amber-400 border-b border-white/5"
-            >
-              <span>E-shop solárnych komponentov</span>
-              <span className="text-xs bg-amber-400/20 px-2 py-0.5 rounded-full text-amber-300">B2B</span>
-            </Link>
 
             <div className="pt-4 flex flex-col gap-3">
               <a
@@ -850,40 +838,7 @@ export default function MinimalistTestPage() {
               </div>
             </div>
 
-            {/* Card 5: E-shop & Komponenty */}
-            <div className="glass-minimal glass-minimal-hover rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-amber-400/30 transition-all duration-300">
-              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-slate-900">
-                <img
-                  src="/images/fotovoltika-firmy/industrial-inverter.jpg"
-                  alt="E-Shop solárnych komponentov"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md flex items-center justify-center text-xl shadow-lg">
-                    📦
-                  </div>
-                </div>
-              </div>
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-6">
-                <div className="space-y-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
-                    E-Shop solárnych komponentov
-                  </h3>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Veľkoobchodný a maloobchodný predaj overených Tier-1 fotovoltických komponentov. Centrálny sklad vo Vrútkach.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                  <span>Skladom na Slovensku</span>
-                  <Link href="/eshop" className="text-amber-400 font-semibold hover:underline flex items-center gap-1">
-                    <span>Prejsť do e-shopu</span>
-                    <span>&rarr;</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
+
 
           </div>
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { COMPANY_DETAILS } from '@/constants/company';
-import { SunIcon, WrenchIcon, CartIcon, BoltIcon, MapPinIcon } from '@/components/icons';
+import { SunIcon, WrenchIcon, BoltIcon, MapPinIcon } from '@/components/icons';
 
 export interface NavDropdownItem {
   title: string;
@@ -111,7 +111,6 @@ export const Header: React.FC = () => {
     router.pathname.startsWith('/sluzby') ||
     ['/elektroinstalacie-revizie'].includes(router.pathname);
 
-  const isEshopActive = router.pathname === '/eshop';
   const isKontaktActive = router.pathname === '/kontakt';
 
   // Scroll detection for navbar background styling
@@ -506,18 +505,6 @@ export const Header: React.FC = () => {
               </div>
             </div>
 
-            {/* 3. E-shop Link */}
-            <Link
-              href="/eshop"
-              className={`transition-colors flex items-center gap-1.5 font-medium text-sm ${
-                isEshopActive ? 'text-amber-400 font-bold' : 'text-slate-200 hover:text-amber-400'
-              }`}
-            >
-              <span>E-shop</span>
-              <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded font-bold uppercase">
-                B2B &amp; B2C
-              </span>
-            </Link>
 
             {/* 4. Kalkulačka úspory */}
             <Link
@@ -725,20 +712,6 @@ export const Header: React.FC = () => {
             )}
           </div>
 
-          {/* Standalone Direct Link 1: E-shop */}
-          <Link
-            href="/eshop"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between p-3.5 rounded-xl font-bold text-sm text-slate-200 hover:bg-slate-800 hover:text-amber-400 transition-colors min-h-[48px]"
-          >
-            <span className="flex items-center gap-2.5">
-              <CartIcon className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>E-shop komponentov</span>
-            </span>
-            <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">
-              B2B &amp; B2C
-            </span>
-          </Link>
 
           {/* Standalone Direct Link 2: Kalkulačka úspory */}
           <Link

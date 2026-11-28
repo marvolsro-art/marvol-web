@@ -18,9 +18,6 @@ export const MobileStickyBar: React.FC = () => {
   if (router.pathname === '/') {
     ctaHref = '#kalkulacka';
     ctaLabel = 'Kalkulačka úspory';
-  } else if (router.pathname === '/eshop') {
-    ctaHref = '#katalog';
-    ctaLabel = 'Katalóg dielov';
   } else if (router.pathname === '/kontakt') {
     ctaHref = '#dopyt';
     ctaLabel = 'Odoslať dopyt';
