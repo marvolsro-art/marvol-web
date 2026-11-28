@@ -234,7 +234,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             <span>Čo sa bude diať teraz?</span>
           </div>
           <p>
-            1. Náš certifikovaný špecialista vás bude kontaktovať najneskôr do 24 hodín.
+            1. Náš certifikovaný špecialista vás bude kontaktovať najneskôr do 48 hodín.
           </p>
           <p>
             2. Prejdeme si vaše požiadavky a navrhneme bezplatnú technickú obhliadku.

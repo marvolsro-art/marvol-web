@@ -1028,7 +1028,7 @@ export default function MinimalistTestPage() {
               Začnite s bezplatnou obhliadkou
             </h2>
             <p className="text-xs sm:text-base text-slate-400 max-w-xl mx-auto">
-              Odpovieme vám do 24 hodín s orientačným technickým návrhom, prepočtom návratnosti a postupom pre dotáciu SIEA.
+              Odpovieme vám do 48 hodín s orientačným technickým návrhom, prepočtom návratnosti a postupom pre dotáciu SIEA.
             </p>
           </div>
 
@@ -1125,7 +1125,7 @@ export default function MinimalistTestPage() {
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white">Ďakujeme za váš dopyt!</h3>
                   <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                    Náš technický poradca z Marvol s.r.o. vás bude kontaktovať najneskôr do 24 hodín s návrhom riešenia.
+                    Náš technický poradca z Marvol s.r.o. vás bude kontaktovať najneskôr do 48 hodín s návrhom riešenia.
                   </p>
                 </div>
               ) : (

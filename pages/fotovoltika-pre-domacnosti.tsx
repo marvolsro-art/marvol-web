@@ -458,7 +458,7 @@ export default function FotovoltikaPreDomacnosti() {
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                Získajte nezáväznú cenovú ponuku do 24 hodín
+                Získajte nezáväznú cenovú ponuku do 48 hodín
               </h2>
 
               <p className="text-slate-300 text-base leading-relaxed">

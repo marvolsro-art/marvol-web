@@ -22,7 +22,7 @@ export default function KontaktPage() {
     },
     {
       q: 'Ako rýchlo od odoslania kontaktného formulára dostanem odpoveď a kalkuláciu?',
-      a: 'Váš dopyt spracovávame prioritne najneskôr do 24 hodín (počas pracovných dní spravidla do 2 hodín). Špecialista vás bude telefonicky kontaktovať, preberie vaše energetické potreby a dohodne termín osobnej obhliadky alebo zašle orientačný technický návrh s kalkuláciou úspor.',
+      a: 'Váš dopyt spracovávame prioritne najneskôr do 48 hodín. Špecialista vás bude telefonicky kontaktovať, preberie vaše energetické potreby a dohodne termín osobnej obhliadky alebo zašle orientačný technický návrh s kalkuláciou úspor.',
     },
     {
       q: 'Pomôžete nám s vybavením štátnej dotácie SIEA na kľúč?',
@@ -156,7 +156,7 @@ export default function KontaktPage() {
             {/* Quick Trust Highlights */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
-                <span className="text-amber-400 font-bold block text-sm sm:text-base">do 24 hodín</span>
+                <span className="text-amber-400 font-bold block text-sm sm:text-base">do 48 hodín</span>
                 <span className="text-slate-400 text-xs">Odpoveď a kalkulácia</span>
               </div>
               <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
@@ -425,7 +425,7 @@ export default function KontaktPage() {
                   source="page_kontakt"
                   showLocationField={true}
                   title="Formulár nezáväzného dopytu & obhliadky"
-                  subtitle="Vyplňte kontaktné údaje a lokalitu realizácie. Technik vás bude kontaktovať do 24 hodín s bezplatnou ponukou."
+                  subtitle="Vyplňte kontaktné údaje a lokalitu realizácie. Technik vás bude kontaktovať do 48 hodín s bezplatnou ponukou."
                 />
 
                 {/* Trust guarantee banner below form */}

@@ -522,7 +522,7 @@ export default function ElektroinstalacieRevizie() {
                 initialService="elektro"
                 source="page_elektro_revizie"
                 title="Dopyt na elektroinštalácie & revízie"
-                subtitle="Zadajte podrobnosti (napr. typ objektu, kolaudácia, počet okruhov) a do 24 hodín vám pošleme termín a kalkuláciu."
+                subtitle="Zadajte podrobnosti (napr. typ objektu, kolaudácia, počet okruhov) a do 48 hodín vám pošleme termín a kalkuláciu."
                 showLocationField={true}
               />
             </div>

@@ -545,7 +545,7 @@ export const CalculatorSection: React.FC<CalculatorSectionProps> = ({
                   <h4 className="text-lg font-bold text-white">Ďakujeme! Váš dopyt bol úspešne odoslaný.</h4>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     Váš dopyt evidujeme pod kódom{' '}
-                    <span className="font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">{submittedLeadId}</span>. Náš technik vás bude kontaktovať do 24 hodín s presnou cenovou ponukou a dohodnutím bezplatnej obhliadky.
+                    <span className="font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">{submittedLeadId}</span>. Náš technik vás bude kontaktovať do 48 hodín s presnou cenovou ponukou a dohodnutím bezplatnej obhliadky.
                   </p>
                 </div>
               ) : (
