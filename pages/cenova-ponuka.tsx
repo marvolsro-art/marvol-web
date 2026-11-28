@@ -1510,7 +1510,7 @@ export default function CenovaPonukaPage() {
               <div className="mt-5 pt-3 border-t border-slate-100 text-center text-[8px] text-slate-400 leading-tight">
                 MARVOL s.r.o. | Chotárna 3394/6, 038 61 Vrútky | IČO: 53 060 091 | DIČ: 2121255961 | IČ DPH: SK2121255961
                 <br />
-                Spoločnosť zapísaná v Obchodnom registri Okresného súdu Žilina | info@marvol.sk | www.marvol.sk
+                Spoločnosť zapísaná v Obchodnom registri Okresného súdu Žilina | marvolsro@gmail.com | www.marvol.sk
               </div>
             </div>
           </div>

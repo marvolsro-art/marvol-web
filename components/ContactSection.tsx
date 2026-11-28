@@ -107,8 +107,8 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-bold">E-mailová adresa</p>
-                  <a href="mailto:info@marvol.sk" className="text-base font-bold text-white hover:text-amber-400 transition-colors">
-                    info@marvol.sk
+                  <a href={`mailto:${COMPANY_DETAILS.contact.email}`} className="text-base font-bold text-white hover:text-amber-400 transition-colors">
+                    {COMPANY_DETAILS.contact.email}
                   </a>
                   <p className="text-[11px] text-slate-400 mt-0.5">Odpovedáme do 24 hodín</p>
                 </div>
