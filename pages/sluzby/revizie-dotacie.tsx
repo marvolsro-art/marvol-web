@@ -110,10 +110,6 @@ export default function RevizieDotacie() {
       a: 'Distribučné spoločnosti (Stredoslovenská distribučná SSD, Západoslovenská distribučná ZSD a Východoslovenská distribučná VSD) nepovolia trvalé pripojenie fotovoltiky do siete ani nevymenia elektromer za 4-kvadrantný bez platnej východiskovej revíznej správy OPOS. Táto správa je zákonnou garanciou, že fotovoltická elektráreň neohrozí stabilitu distribučnej sústavy ani bezpečnosť technikov pracujúcich na vedení.',
     },
     {
-      q: 'Ako prebieha vybavenie a vyplatenie štátnej dotácie?',
-      a: 'Ako oprávnený zhotoviteľ registrovaný v systéme SIEA zabezpečí Marvol s.r.o. kompletnú elektronickú rezerváciu poukážky, prípravu technickej dokumentácie aj finálne podanie žiadosti. Schválená štátna dotácia (napr. 1 150 € pri fotovoltike pre rodinné domy alebo do 50 % pre firmy) je po úspešnej realizácii a schválení agentúrou SIEA vyplatená priamo na bankový účet zákazníka.',
-    },
-    {
       q: 'Ako často sa musia vykonávať periodické revízie fotovoltiky?',
       a: 'Pre rodinné domy sa odporúča vykonať periodickú kontrolu a revíziu elektroinštalácie a fotovoltiky každé 3 až 4 roky (alebo podľa požiadavky konkrétnej poisťovne v poistnej zmluve). Pre podniky, firmy a výrobné areály sú lehoty striktne stanovené vyhláškou MPSVR SR č. 508/2009 Z. z. podľa vonkajších vplyvov prostredia (obvykle každé 2 až 3 roky).',
     },
